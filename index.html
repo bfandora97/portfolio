@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><title>Bobbi | Data Analyst Portfolio</title>
-<meta name="description" content="Data analyst portfolio: Power BI, SQL and Python projects."></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><title>Kemang Data | Data Analytics Studio</title>
+<meta name="description" content="Kemang Data is a Jakarta analytics studio: Power BI, SQL and Python projects."></head>
 <body><div class="wrap">
-<header class="top"><b>Bobbi</b><nav><a href="#projects">Projects</a><a href="#contact">Contact</a></nav></header>
+<header class="top"><a class="brand" href="index.html"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#0e7c7b"><circle cx="5" cy="19" r="2.6"/><circle cx="12" cy="19" r="2.6"/><circle cx="12" cy="12" r="2.6"/><circle cx="19" cy="19" r="2.6"/><circle cx="19" cy="12" r="2.6"/></g><circle cx="19" cy="5" r="2.6" fill="#f2c811"/></svg>Kemang Data</a><nav><a href="#projects">Projects</a><a href="#contact">Contact</a></nav></header>
 <main>
-<div class="hero"><h1>Data analyst who cleans messy data and builds dashboards.</h1>
-<p>4+ years in database work with SQL, Python and Power BI. Below are projects I built, grouped by tool.</p></div>
+<div class="hero2"><div class="hero"><h1>Messy data in. Clear dashboards out.</h1>
+<p>Kemang Data is a Jakarta analytics studio. We clean the data first, then build the reports on top of it, using Power BI, SQL and Python.</p></div>
+<canvas id="dots" aria-hidden="true"></canvas></div>
 <section id="projects"><h2>Power BI</h2>
 <div class="grid">
 <a class="card" href="powerbi-visitor-dashboard.html"><img src="dashboard.png" alt="Event Visitor Registration Dashboard preview"><div>
@@ -14,5 +15,49 @@
 <ul class="tools"><li>Power BI</li><li>Power Query</li><li>DAX</li></ul></div></a>
 </div>
 <p class="soon">More projects (SQL, Python) coming soon.</p></section>
-<section class="contact" id="contact"><h2>Need a dashboard or cleaner data?</h2><p class="lead">Send me a sample of your data and what you want to track. I will tell you what I can build and how long it takes.</p><a class="btn" href="mailto:YOUR_EMAIL@example.com">Email me</a><a class="btn alt" href="https://www.upwork.com/freelancers/YOUR_UPWORK_ID">Upwork profile</a><a class="btn alt" href="https://github.com/YOUR_GITHUB">GitHub</a><a class="btn alt" href="https://www.linkedin.com/in/YOUR_LINKEDIN">LinkedIn</a></section>
-</main><footer>kemangdata.my.id</footer></div></body></html>
+<section class="contact" id="contact"><h2>Need a dashboard or cleaner data?</h2><p class="lead">Send us a sample of your data and what you want to track. We will tell you what we can build and how long it takes.</p><a class="btn" href="mailto:YOUR_EMAIL@example.com">Email us</a><a class="btn alt" href="https://www.upwork.com/freelancers/YOUR_UPWORK_ID">Upwork profile</a><a class="btn alt" href="https://github.com/YOUR_GITHUB">GitHub</a><a class="btn alt" href="https://www.linkedin.com/in/YOUR_LINKEDIN">LinkedIn</a></section>
+</main><footer>Kemang Data · kemangdata.my.id</footer></div>
+<script>
+(function(){
+var c=document.getElementById('dots'),x=c.getContext('2d');
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var S=28,W,H,dots,cols,rows,barOf,nb,mouse={x:-999,y:-999},t0=performance.now();
+function init(){
+ var dpr=window.devicePixelRatio||1,r=c.getBoundingClientRect();
+ W=r.width;H=r.height;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+ cols=Math.floor(W/S);rows=Math.floor(H/S);
+ var ox=(W-(cols-1)*S)/2,oy=(H-(rows-1)*S)/2;dots=[];barOf=[];nb=0;
+ for(var i=0;i<cols;i++){barOf[i]=(i%2===1)?nb++:-1;}
+ for(i=0;i<cols;i++)for(var j=0;j<rows;j++)dots.push({i:i,j:j,gx:ox+i*S,gy:oy+j*S,sx:(Math.random()-.5)*260,sy:(Math.random()-.5)*260,dx:0,dy:0,d:i/cols*700+Math.random()*300});
+}
+function barH(k,now){
+ var base=.25+.6*k/Math.max(1,nb-1)+Math.sin(k*1.7)*.07;
+ return rows*(base+(reduce?0:Math.sin(now/1300+k)*.03));
+}
+function frame(now){
+ var el=reduce?9999:now-t0,rp=Math.min(1,Math.max(0,(el-1900)/1300)),rise=1-Math.pow(1-rp,3);
+ x.clearRect(0,0,W,H);
+ for(var n=0;n<dots.length;n++){
+  var d=dots[n],p=Math.min(1,Math.max(0,(el-d.d)/1300)),e=1-Math.pow(1-p,3);
+  var px=d.gx+d.sx*(1-e),py=d.gy+d.sy*(1-e);
+  var tx=0,ty=0,mx=px-mouse.x,my=py-mouse.y,dist=Math.hypot(mx,my);
+  if(!reduce&&dist<110&&dist>0){var f=(1-dist/110)*16;tx=mx/dist*f;ty=my/dist*f;}
+  d.dx+=(tx-d.dx)*.12;d.dy+=(ty-d.dy)*.12;px+=d.dx;py+=d.dy;
+  var k=barOf[d.i],inBar=false,top=false;
+  if(k>-1){var h=Math.round(barH(k,now)*rise),fb=rows-1-d.j;if(fb<h){inBar=true;top=(fb===h-1);}}
+  x.beginPath();
+  if(top){x.fillStyle='#f2c811';x.arc(px,py,4.2,0,6.283);}
+  else if(inBar){x.fillStyle='#0e7c7b';x.arc(px,py,3.6,0,6.283);}
+  else{x.fillStyle='rgba(82,96,122,'+(.12+.33*e)+')';x.arc(px,py,2.2,0,6.283);}
+  x.fill();
+ }
+ if(!reduce)requestAnimationFrame(frame);
+}
+init();
+if(reduce){frame(0);}else{requestAnimationFrame(frame);}
+c.addEventListener('mousemove',function(ev){var r=c.getBoundingClientRect();mouse.x=ev.clientX-r.left;mouse.y=ev.clientY-r.top;});
+c.addEventListener('mouseleave',function(){mouse.x=mouse.y=-999;});
+var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){init();if(reduce)frame(0);},150);});
+})();
+</script>
+</body></html>
