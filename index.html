@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bobbi | Data Analyst Portfolio</title>
+<meta name="description" content="Data analyst portfolio: Power BI, SQL and Python projects. Featured: Event Visitor Registration Dashboard.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#101b2d;--muted:#52607a;--paper:#f4f6f8;--panel:#fff;--line:#d9dfe7;--yellow:#f2c811;--teal:#0e7c7b;--bad:#a23b2a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Familjen Grotesk","IBM Plex Sans",sans-serif;line-height:1.1;margin:0}
+a{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+header.top b{font:700 20px "Familjen Grotesk",sans-serif}
+header.top a{margin-left:20px;text-decoration:none;color:var(--muted)}
+header.top a:hover{color:var(--ink);text-decoration:underline}
+.hero{padding:40px 0 28px}
+.hero h1{font-size:clamp(38px,6.4vw,72px);font-weight:700;max-width:16ch;letter-spacing:-.02em}
+.hero p{max-width:58ch;color:var(--muted);font-size:19px;margin:20px 0 0}
+.shot{margin:32px 0 0;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:10px;border-top:6px solid var(--yellow)}
+.shot img{display:block;width:100%;height:auto;border-radius:3px}
+.shot figcaption{font-size:14px;color:var(--muted);padding:10px 4px 2px}
+section{padding:56px 0 8px}
+h2{font-size:clamp(28px,4vw,40px);margin-bottom:8px}
+.lead{color:var(--muted);max-width:62ch;margin:0 0 28px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:0 0 36px}
+.facts div{background:var(--panel);border:1px solid var(--line);padding:14px 16px;border-radius:4px}
+.facts strong{display:block;font:700 26px "Familjen Grotesk",sans-serif}
+.facts span{font-size:14px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px}
+.cols h3{font-size:22px;margin-bottom:10px}
+.cols ul{margin:0;padding-left:20px}
+.cols li{margin:0 0 8px}
+.tablebox{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:4px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+th{font:700 15px "Familjen Grotesk",sans-serif;background:#eaeef3}
+tr:last-child td{border-bottom:0}
+td.b{color:var(--bad)}
+td.a{color:var(--teal);font-weight:500}
+code,pre{font-family:ui-monospace,Consolas,monospace;font-size:14px}
+pre{background:var(--ink);color:#e8edf5;padding:18px 20px;border-radius:4px;overflow-x:auto;margin:0;line-height:1.55}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.tools li{border:1px solid var(--ink);padding:4px 12px;border-radius:999px;font-size:15px}
+.note{font-size:14px;color:var(--muted);margin-top:14px}
+.contact{padding:56px 0 72px}
+.contact a.btn{display:inline-block;background:var(--ink);color:#fff;padding:12px 22px;border-radius:4px;text-decoration:none;font-weight:500;margin:8px 10px 0 0}
+.contact a.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.contact a.btn:hover{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
+footer{border-top:1px solid var(--line);padding:20px 0;color:var(--muted);font-size:14px}
+@media (max-width:560px){header.top a{margin-left:12px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <b>Bobbi</b>
+    <nav><a href="#project">Project</a><a href="#cleaning">Cleaning</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h1>I turn messy registration data into dashboards teams can act on.</h1>
+      <p>Data analyst with 4+ years in database work (SQL, Python, Power BI). I clean the data first, then build the report, so the numbers you see can be trusted.</p>
+      <figure class="shot">
+        <img src="dashboard.png" alt="Power BI dashboard showing total registrations, attendance rate, registrations by day and hour, business nature and channel performance">
+        <figcaption>Event Visitor Registration Dashboard, built in Power BI. Synthetic data for portfolio demonstration.</figcaption>
+      </figure>
+    </div>
+
+    <section id="project">
+      <h2>Event Visitor Registration Dashboard</h2>
+      <p class="lead">An event organizer received visitor registrations as three separate files with duplicate tickets, mixed phone formats, typo emails and inconsistent names. I combined and cleaned them, then built one dashboard to track registrations, attendance and channel performance.</p>
+
+      <div class="facts">
+        <div><strong>6,060 → 6,000</strong><span>records after removing duplicate tickets</span></div>
+        <div><strong>57.53%</strong><span>attendance rate</span></div>
+        <div><strong>47.15%</strong><span>of visitors from Jabodetabek</span></div>
+      </div>
+
+      <div class="cols">
+        <div>
+          <h3>What I did</h3>
+          <ul>
+            <li>Combined 3 source tables in Power Query and removed duplicate ticket codes.</li>
+            <li>Standardized names, cities, emails and phone numbers (all to the 62… format).</li>
+            <li>Filled 120 blank job titles as "Unknown" so no visitor drops out of reports.</li>
+            <li>Added calculated columns: Region Group, Job Segment, Registration Date and Hour.</li>
+            <li>Wrote DAX measures for registrations, attendance and regional share.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What the dashboard shows</h3>
+          <ul>
+            <li>When people register: by day and by hour of day.</li>
+            <li>Who registers: business nature and job segment.</li>
+            <li>Which channels bring people who actually show up: registrations vs attended.</li>
+            <li>Filters for attendance status and region.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="cleaning">
+      <h2>Before and after cleaning</h2>
+      <p class="lead">Real rows from the source files and how they look after the Power Query steps.</p>
+      <div class="tablebox">
+        <table>
+          <thead><tr><th>Field</th><th>Before</th><th>After</th></tr></thead>
+          <tbody>
+            <tr><td>Full name</td><td class="b">KIKI HIDAYAT</td><td class="a">Kiki Hidayat</td></tr>
+            <tr><td>Full name</td><td class="b">citra permata</td><td class="a">Citra Permata</td></tr>
+            <tr><td>City</td><td class="b">BANDUNG</td><td class="a">Bandung</td></tr>
+            <tr><td>Phone</td><td class="b">0803-2848-4330</td><td class="a">6280328484330</td></tr>
+            <tr><td>Phone</td><td class="b">+62 880 1551 127</td><td class="a">628801551127</td></tr>
+            <tr><td>Phone</td><td class="b">08260440952</td><td class="a">628260440952</td></tr>
+            <tr><td>Email</td><td class="b">eka.halim63@gmial.com</td><td class="a">eka.halim63@gmail.com</td></tr>
+            <tr><td>Email</td><td class="b">gita.nugroho22@example.co,id</td><td class="a">gita.nugroho22@example.co.id</td></tr>
+            <tr><td>Job title</td><td class="b">(blank)</td><td class="a">Unknown</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Duplicates were removed by Ticket Code, keeping the first record found.</p>
+    </section>
+
+    <section>
+      <h2>Selected DAX</h2>
+      <p class="lead">The measures behind the three headline cards.</p>
+<pre>Total Registrations = COUNTROWS ( Registrations )
+
+Attended =
+CALCULATE ( [Total Registrations], Registrations[Status] = "Attended" )
+
+Attendance Rate = DIVIDE ( [Attended], [Total Registrations] )
+
+Jabodetabek Share =
+DIVIDE (
+    CALCULATE ( [Total Registrations], Registrations[Region Group] = "Jabodetabek" ),
+    [Total Registrations]
+)</pre>
+    </section>
+
+    <section>
+      <h2>Tools</h2>
+      <ul class="tools"><li>Power BI</li><li>Power Query</li><li>DAX</li><li>SQL</li><li>Python</li><li>Excel</li></ul>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2>Need a dashboard or cleaner data?</h2>
+      <p class="lead">Send me a sample of your data and what you want to track. I will tell you what I can build and how long it takes.</p>
+      <a class="btn" href="mailto:YOUR_EMAIL@example.com">Email me</a>
+      <a class="btn alt" href="https://www.upwork.com/freelancers/YOUR_UPWORK_ID">Upwork profile</a>
+      <a class="btn alt" href="https://github.com/YOUR_GITHUB">GitHub</a>
+      <a class="btn alt" href="https://www.linkedin.com/in/YOUR_LINKEDIN">LinkedIn</a>
+    </section>
+  </main>
+
+  <footer>kemangdata.my.id</footer>
+</div>
+</body>
+</html>
