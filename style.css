@@ -102,3 +102,6 @@ html:has(.hero2) footer{scroll-snap-align:end}
 .page2{margin-top:0}
 .hero2{min-height:calc(100vh - 70px)}
 }
+
+.tools-row svg{width:18px;height:18px;flex:none;display:block}
+.lg .t{fill:var(--teal)}
