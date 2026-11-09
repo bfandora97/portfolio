@@ -3,13 +3,22 @@
 <body><div class="wrap">
 <header class="top"><a class="brand" href="index.html"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#0e7c7b"><circle cx="5" cy="19" r="2.6"/><circle cx="12" cy="19" r="2.6"/><circle cx="12" cy="12" r="2.6"/><circle cx="19" cy="19" r="2.6"/><circle cx="19" cy="12" r="2.6"/></g><circle cx="19" cy="5" r="2.6" fill="#f2c811"/></svg>Kemang Data</a><nav><a href="index.html#projects">All projects</a><a href="#contact">Contact</a><button class="tg" id="tg" type="button" aria-label="Toggle dark mode">☾</button></nav></header>
 <main>
-<div class="hero"><h1>Event Visitor Registration Dashboard</h1>
-<p>Power BI. An event organizer received visitor registrations as three separate files with duplicate tickets, mixed phone formats, typo emails and inconsistent names. We combined and cleaned them, then built one dashboard to track registrations, attendance and channel performance.</p></div>
-<div class="views" id="views"><div class="vtabs" role="tablist" aria-label="Dashboard views"><button type="button" role="tab" aria-selected="true">Overview</button><button type="button" role="tab" aria-selected="false">Filter by region</button><button type="button" role="tab" aria-selected="false">Click a bar</button><button type="button" class="fs" id="fs">⤢ Full screen</button></div><figure class="shot"><img src="dashboard-1.png" alt="Dashboard overview with all 6,000 registrations"><figcaption>Overview: all 6,000 registrations across every channel, day and hour. Synthetic data for portfolio demonstration.</figcaption></figure><figure class="shot"><img src="dashboard-2.png" alt="Dashboard filtered to Jabodetabek, showing 2,829 registrations" loading="lazy"><figcaption>Region slicer: Jabodetabek selected. Every card and chart recalculates to 2,829 registrations. Synthetic data for portfolio demonstration.</figcaption></figure><figure class="shot"><img src="dashboard-3.png" alt="Dashboard with the Restaurant & Cafe bar selected, highlighting its share in every chart" loading="lazy"><figcaption>Cross-filter: clicking Restaurant & Cafe highlights its share in every other chart (1,236 registrations). Synthetic data for portfolio demonstration.</figcaption></figure></div>
-<section><div class="facts">
-<div><strong>6,060 → 6,000</strong><span>records after removing duplicate tickets</span></div>
-<div><strong>57.53%</strong><span>attendance rate</span></div>
-<div><strong>47.15%</strong><span>of visitors from Jabodetabek</span></div></div>
+<div class="case">
+<div class="case-text">
+<p class="eyebrow">Power BI · Data cleaning</p>
+<h1>Event Visitor Registration Dashboard</h1>
+<p class="sub">An event organizer sent visitor registrations as 3 messy files. We merged and cleaned them, then built one dashboard to track registrations, attendance and channels.</p>
+<ol class="flow" aria-label="Project steps">
+<li><b>1</b><div><strong>Combine</strong><span>3 files, 6,060 rows</span></div></li>
+<li><b>2</b><div><strong><a href="#cleaning">Clean</a></strong><span>duplicates, phones, emails, names</span></div></li>
+<li><b>3</b><div><strong><a href="#dax">Measure</a></strong><span>DAX for the 3 KPIs</span></div></li>
+<li><b>4</b><div><strong>Dashboard</strong><span>6,000 clean rows, 3 views &rarr;</span></div></li>
+</ol>
+<div class="kpis"><div><strong>6,000</strong><span>registrations</span></div><div><strong>57.53%</strong><span>attendance</span></div><div><strong>47.15%</strong><span>Jabodetabek</span></div></div>
+</div>
+<div class="views" id="views"><div class="vtabs" role="tablist" aria-label="Dashboard views"><button type="button" role="tab" aria-selected="true">1 &middot; Overview</button><button type="button" role="tab" aria-selected="false">2 &middot; Filter by region</button><button type="button" role="tab" aria-selected="false">3 &middot; Click a bar</button><button type="button" class="fs" id="fs">&#10530; Full screen</button></div><figure class="shot"><img src="dashboard-1.png" alt="Dashboard overview with all 6,000 registrations"><figcaption><b>Overview.</b> All 6,000 registrations by day, hour, business, job and channel.</figcaption></figure><figure class="shot"><img src="dashboard-2.png" alt="Dashboard filtered to Jabodetabek, showing 2,829 registrations" loading="lazy"><figcaption><b>Region filter.</b> Jabodetabek selected: every chart recalculates to 2,829 registrations.</figcaption></figure><figure class="shot"><img src="dashboard-3.png" alt="Dashboard with the Restaurant &amp; Cafe bar selected, highlighting its share in every chart" loading="lazy"><figcaption><b>Cross-filter.</b> Click Restaurant &amp; Cafe and its 1,236 registrations highlight in every chart.</figcaption></figure></div>
+</div>
+<section><h2>What we did</h2>
 <div class="cols">
 <div><h3>What we did</h3><ul>
 <li>Combined 3 source tables in Power Query and removed duplicate ticket codes.</li>
@@ -17,12 +26,12 @@
 <li>Filled 120 blank job titles as "Unknown" so no visitor drops out of reports.</li>
 <li>Added calculated columns: Region Group, Job Segment, Registration Date and Hour.</li>
 <li>Wrote DAX measures for registrations, attendance and regional share.</li></ul></div>
-<div><h3>What the dashboard shows</h3><ul>
+<div><h3>What the dashboard answers</h3><ul>
 <li>When people register: by day and by hour.</li>
 <li>Who registers: business nature and job segment.</li>
 <li>Which channels bring people who actually show up.</li>
 <li>Filters for attendance status and region.</li></ul></div></div></section>
-<section><h2>Before and after cleaning</h2><p class="lead">Real rows from the source files and how they look after the Power Query steps.</p>
+<section id="cleaning"><h2>Step 2 &middot; Before and after cleaning</h2><p class="lead">Real rows from the source files and how they look after the Power Query steps.</p>
 <div class="tablebox"><table><thead><tr><th>Field</th><th>Before</th><th>After</th></tr></thead><tbody>
 <tr><td>Full name</td><td class="b">KIKI HIDAYAT</td><td class="a">Kiki Hidayat</td></tr>
 <tr><td>Full name</td><td class="b">citra permata</td><td class="a">Citra Permata</td></tr>
@@ -34,8 +43,8 @@
 <tr><td>Email</td><td class="b">gita.nugroho22@example.co,id</td><td class="a">gita.nugroho22@example.co.id</td></tr>
 <tr><td>Job title</td><td class="b">(blank)</td><td class="a">Unknown</td></tr>
 </tbody></table></div>
-<p class="note">Duplicates were removed by Ticket Code, keeping the first record found.</p></section>
-<section><h2>Selected DAX</h2><p class="lead">The measures behind the three headline cards.</p>
+<p class="note">Synthetic data for portfolio demonstration. Duplicates were removed by Ticket Code, keeping the first record found.</p></section>
+<section id="dax"><h2>Step 3 &middot; Selected DAX</h2><p class="lead">The measures behind the three headline cards.</p>
 <pre>Total Registrations = COUNTROWS ( Registrations )
 
 Attended =

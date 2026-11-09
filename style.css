@@ -131,3 +131,28 @@ html:has(.hero2) footer{scroll-snap-align:end}
 .lb .nav:hover,.lb .x:hover{background:var(--yellow);color:#101b2d;border-color:var(--yellow)}
 .lb .prev{left:20px}
 .lb .next{right:20px}
+
+/* ---- case study: fit one screen, clear flow ---- */
+.case{display:grid;grid-template-columns:minmax(300px,380px) minmax(0,1fr);gap:clamp(24px,3vw,56px);align-items:center;min-height:calc(100vh - 70px);padding:8px 0 24px}
+.eyebrow{margin:0 0 8px;font:700 13px "Familjen Grotesk",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+.case h1{font-size:clamp(28px,2.7vw,42px);letter-spacing:-.02em;max-width:14ch}
+.case .sub{margin:14px 0 20px;color:var(--muted);font-size:16px;line-height:1.55}
+.flow{list-style:none;margin:0 0 20px;padding:0;position:relative}
+.flow::before{content:"";position:absolute;left:13px;top:14px;bottom:14px;width:2px;background:var(--line)}
+.flow li{display:flex;gap:12px;align-items:flex-start;position:relative;padding:6px 0}
+.flow b{flex:none;width:28px;height:28px;border-radius:50%;background:var(--btn-bg);color:var(--btn-fg);display:grid;place-items:center;font:700 14px "Familjen Grotesk",sans-serif}
+.flow li:last-child b{background:var(--yellow);color:#101b2d}
+.flow strong{display:block;font:700 16px/1.2 "Familjen Grotesk",sans-serif}
+.flow strong a{text-decoration-thickness:2px;text-decoration-color:var(--yellow);text-underline-offset:3px}
+.flow span{font-size:14px;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kpis div{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:8px 10px}
+.kpis strong{display:block;font:700 20px "Familjen Grotesk",sans-serif}
+.kpis span{font-size:12px;color:var(--muted)}
+.case .views{width:100%;margin:0}
+.case .vtabs{margin:0}
+.case .views .shot{width:100%;margin-top:10px;padding:6px}
+.case .views .shot img{margin:0 auto;width:auto;max-width:100%;max-height:max(300px,calc(100vh - 250px))}
+.case .shot figcaption{font-size:14px;padding:8px 4px 2px}
+.case .shot figcaption b{color:var(--ink)}
+@media(max-width:1000px){.case{grid-template-columns:1fr;min-height:0}.case h1{max-width:none}.case .views .shot img{max-height:none}}
