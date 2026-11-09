@@ -105,3 +105,19 @@ html:has(.hero2) footer{scroll-snap-align:end}
 
 .tools-row svg{width:18px;height:18px;flex:none;display:block}
 .lg .t{fill:var(--teal)}
+
+.vtabs{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
+.vtabs button{font:500 15px "IBM Plex Sans",system-ui,sans-serif;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 18px;cursor:pointer}
+.vtabs button:hover{border-color:var(--ink)}
+.vtabs button.on{background:var(--btn-bg);color:var(--btn-fg);border-color:var(--btn-bg)}
+.vtabs button:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.views .shot{margin-top:12px}
+
+.views .shot{max-width:1040px}
+.shot img{cursor:zoom-in}
+.vtabs .fs{margin-left:auto}
+.lb{border:0;padding:16px;width:100vw;height:100vh;max-width:100vw;max-height:100vh;margin:0;background:transparent}
+.lb[open]{display:flex;align-items:center;justify-content:center}
+.lb::backdrop{background:rgba(5,10,20,.93)}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;background:#fff;border-radius:4px;cursor:zoom-out}
+.lb .x{position:fixed;top:16px;right:20px;width:40px;height:40px;border-radius:50%;border:1px solid #fff;background:rgba(0,0,0,.5);color:#fff;font-size:18px;cursor:pointer}
