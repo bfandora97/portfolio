@@ -93,3 +93,12 @@ html{scroll-padding-top:70px}
 .top{position:fixed;top:0;left:0;right:0;z-index:50;padding:18px clamp(24px,5.5vw,110px);background:var(--paper);transition:opacity .3s}
 .top.scrolled{opacity:.75;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .top.scrolled:hover{opacity:1}
+
+@media(min-width:900px) and (min-height:650px){
+html:has(.hero2){scroll-snap-type:y mandatory}
+.hero2,#projects,.page2{scroll-snap-align:start}
+html:has(.hero2) footer{scroll-snap-align:end}
+#projects{min-height:calc(100vh - 70px);display:flex;flex-direction:column;justify-content:center}
+.page2{margin-top:0}
+.hero2{min-height:calc(100vh - 70px)}
+}
