@@ -125,3 +125,9 @@ html:has(.hero2) footer{scroll-snap-align:end}
 
 .views{width:fit-content;max-width:100%;margin:0 auto}
 .views .shot{width:auto}
+
+.lb{padding:16px 84px}
+.lb .nav{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid #fff;background:rgba(0,0,0,.5);color:#fff;font-size:30px;line-height:1;padding:0 0 4px;cursor:pointer}
+.lb .nav:hover,.lb .x:hover{background:var(--yellow);color:#101b2d;border-color:var(--yellow)}
+.lb .prev{left:20px}
+.lb .next{right:20px}
