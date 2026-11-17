@@ -9,5 +9,7 @@ document.addEventListener('DOMContentLoaded',function(){
  var b=document.getElementById('tg');paint();
  if(b)b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem(k,n);}catch(e){}paint();dispatchEvent(new Event('themechange'));});
 });
+function hdr(){var h=document.querySelector('.top');if(h)h.classList.toggle('scrolled',(window.scrollY||d.scrollTop)>40);}
+addEventListener('scroll',hdr,{passive:true});document.addEventListener('DOMContentLoaded',hdr);
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){paint();dispatchEvent(new Event('themechange'));});
 })();
