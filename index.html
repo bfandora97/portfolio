@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><script src="theme.js"></script><title>Kemang Data | Data Analytics Studio</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27%3E%3Cg fill=%27%230e7c7b%27%3E%3Ccircle cx=%275%27 cy=%2719%27 r=%272.6%27/%3E%3Ccircle cx=%2712%27 cy=%2719%27 r=%272.6%27/%3E%3Ccircle cx=%2712%27 cy=%2712%27 r=%272.6%27/%3E%3Ccircle cx=%2719%27 cy=%2719%27 r=%272.6%27/%3E%3Ccircle cx=%2719%27 cy=%2712%27 r=%272.6%27/%3E%3C/g%3E%3Ccircle cx=%2719%27 cy=%275%27 r=%272.6%27 fill=%27%23f2c811%27/%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"><script src="theme.js"></script><title>Kemang Data | Data Analytics Studio</title>
 <meta name="description" content="Kemang Data is a Jakarta analytics studio: Power BI, SQL and Python projects.">
 <noscript><style>.rv{opacity:1;transform:none;filter:none}</style></noscript></head>
 <body>
@@ -34,7 +34,7 @@ var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 var tealc,dotc,tr=[14,124,123],dr=[82,96,122];
 function hex(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
 function readCols(){var s=getComputedStyle(document.documentElement);tealc=s.getPropertyValue("--teal").trim()||"#0e7c7b";dotc=s.getPropertyValue("--dot").trim()||"82,96,122";tr=hex(tealc);dr=dotc.split(',').map(Number);}
-var S=22,W,H,dots,cols,rows,barOf,nb,mouse={x:-999,y:-999},t0=performance.now();
+var vis=true,running=true,S=22,W,H,dots,cols,rows,barOf,nb,mouse={x:-999,y:-999},t0=performance.now();
 function init(){
  var dpr=window.devicePixelRatio||1,r=c.getBoundingClientRect();
  W=r.width;H=r.height;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
@@ -91,12 +91,13 @@ function frame(now){
   var q=[0,1,2,3,4].map(function(z){return A[z]+(B[z]-A[z])*mo;});
   x.beginPath();x.fillStyle='rgba('+(q[0]|0)+','+(q[1]|0)+','+(q[2]|0)+','+q[3]+')';x.arc(px,py,q[4],0,6.283);x.fill();
  }
- if(!reduce)requestAnimationFrame(frame);
+ if(!reduce&&vis)requestAnimationFrame(frame);else running=false;
 }
 readCols();addEventListener('themechange',function(){readCols();if(reduce)frame(0);});
 init();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(buildMask);
 if(reduce){frame(0);}else{requestAnimationFrame(frame);}
+if(!reduce&&'IntersectionObserver' in window){new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis&&!running){running=true;requestAnimationFrame(frame);}}).observe(c);}
 c.addEventListener('mousemove',function(ev){var r=c.getBoundingClientRect();mouse.x=ev.clientX-r.left;mouse.y=ev.clientY-r.top;});
 c.addEventListener('mouseleave',function(){mouse.x=mouse.y=-999;});
 var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){init();if(reduce)frame(0);},150);});

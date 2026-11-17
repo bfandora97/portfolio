@@ -17,7 +17,7 @@ a:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 section{padding:36px 0 4px}
 h2{font-size:clamp(24px,3.2vw,32px);margin-bottom:8px}
 .lead{color:var(--muted);max-width:64ch;margin:0 0 22px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:24px}
 .card{display:block;background:var(--panel);border:1px solid var(--line);border-top:5px solid var(--yellow);border-radius:4px;text-decoration:none;overflow:hidden}
 .card:hover h3{text-decoration:underline}
 .card img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;border-bottom:1px solid var(--line)}
@@ -35,7 +35,7 @@ h2{font-size:clamp(24px,3.2vw,32px);margin-bottom:8px}
 .facts div{background:var(--panel);border:1px solid var(--line);padding:12px 14px;border-radius:4px}
 .facts strong{display:block;font:700 24px "Familjen Grotesk",sans-serif}
 .facts span{font-size:14px;color:var(--muted)}
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:28px}
 .cols h3{font-size:20px;margin-bottom:8px}
 .cols ul{margin:0;padding-left:20px}
 .cols li{margin:0 0 6px}
@@ -156,3 +156,10 @@ html:has(.hero2) footer{scroll-snap-align:end}
 .case .shot figcaption{font-size:14px;padding:8px 4px 2px}
 .case .shot figcaption b{color:var(--ink)}
 @media(max-width:1000px){.case{grid-template-columns:1fr;min-height:0}.case h1{max-width:none}.case .views .shot img{max-height:none}}
+
+/* ---- fixes ---- */
+a.btn{display:inline-block;background:var(--btn-bg);color:var(--btn-fg);padding:13px 22px;font-size:16px;line-height:1.4;border:1px solid var(--btn-bg);border-radius:4px;text-decoration:none;font-weight:500;margin:6px 8px 0 0}
+a.btn:hover{background:var(--yellow);color:#101b2d;border-color:var(--yellow)}
+a.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+@media(max-width:520px){.top{padding:14px 16px}.top a{margin-left:12px;font-size:15px}.top a.brand{font-size:18px;gap:8px}.tg{margin-left:12px}.wrap{padding:0 16px}}
+@media(max-width:380px){.top nav a[href$="#contact"]{display:none}}
