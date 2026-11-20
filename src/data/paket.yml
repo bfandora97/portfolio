@@ -71,9 +71,9 @@ paket:
 
   - id: laporan-bulanan
     nama: Laporan bulanan otomatis
-    nama_en: Monthly automated report
+    nama_en: Monthly reporting
     web: true
-    web_en: false
+    web_en: true
     satuan: " / bulan"
     satuan_en: " / month"
     web_isi:
@@ -82,9 +82,15 @@ paket:
       - "Ringkasan: apa yang naik, turun, dan perlu dilakukan"
       - 1x sesi review per bulan
       - Bisa berhenti kapan saja
+    web_isi_en:
+      - Your sources merged and refreshed every month
+      - Dashboard always up to date
+      - "Short summary: what went up, what went down, what to do"
+      - One review call per month
+      - Cancel anytime
     wa: Halo Kemang Data, saya mau tanya paket laporan bulanan.
     tingkat:
-      - {nama: Bulanan, harga: 1500000, usd: null, isi: "Laporan & dashboard bulanan", waktu: null, revisi: "-"}
+      - {nama: Bulanan, harga: 1500000, usd: 120, isi: "Laporan & dashboard bulanan", waktu: null, revisi: "-"}
 
   - id: dashboard-powerbi
     upwork: "Power BI dashboard with Power Query and DAX"
