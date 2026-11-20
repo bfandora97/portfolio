@@ -1,0 +1,132 @@
+# SATU-SATUNYA tempat mengubah harga & isi paket.
+# Dipakai oleh:
+#   - website (bagian Jasa & Harga, ID dan EN)          -> python build.py
+#   - teks marketplace & gambar Fastwork (repo ops)      -> tools/sync_marketplace.py, tools/build_fastwork.py
+#
+# Kolom:
+#   id            kode unik (jangan diubah)
+#   nama / nama_en
+#   web           tampil di website ID? (true/false)
+#   web_en        tampil di website EN?
+#   unggulan      diberi garis kuning + label
+#   label / label_en  teks label kecil (opsional)
+#   satuan / satuan_en  teks kecil setelah harga
+#   web_isi / web_isi_en  poin di kartu website
+#   wa            pesan WhatsApp saat klik "Tanya paket ini"
+#   upwork        judul di Upwork Project Catalog (kalau ada); upwork_satuan untuk paket per jumlah
+#   tingkat       paket Basic / Standard / Premium (marketplace). harga dalam Rupiah, usd dalam Dolar.
+
+paket:
+  - id: rapikan-data
+    upwork: "Clean and merge your Excel / Google Sheets data"
+    nama: Rapikan & gabungkan data
+    nama_en: Data cleaning & merging
+    web: true
+    web_en: true
+    satuan: " mulai"
+    satuan_en: " from"
+    web_isi:
+      - Hapus duplikat
+      - Seragamkan no. HP, nama, kota
+      - Perbaiki typo email
+      - Gabungkan beberapa file jadi satu
+      - Laporan apa saja yang diperbaiki
+    web_isi_en:
+      - Remove duplicates
+      - Standardize phones, names, cities
+      - Fix common email typos
+      - Merge files into one table
+    wa: Halo Kemang Data, saya mau tanya jasa rapikan data.
+    tingkat:
+      - {nama: Basic, harga: 300000, usd: 25, isi: "1 file, sampai 1.000 baris", waktu: 2, revisi: 2x}
+      - {nama: Standard, harga: 500000, usd: 45, isi: "Sampai 3 file, sampai 5.000 baris", waktu: 3, revisi: 2x}
+      - {nama: Premium, harga: 900000, usd: 80, isi: "Sampai 5 file, sampai 20.000 baris, plus rumus otomatis supaya data baru ikut rapi", waktu: 5, revisi: 2x}
+
+  - id: dashboard-looker
+    upwork: "Looker Studio dashboard from your Google Sheets"
+    nama: Dashboard Looker Studio / Excel
+    nama_en: Looker Studio dashboard
+    web: true
+    web_en: true
+    unggulan: true
+    label: Paling cocok untuk UMKM
+    label_en: Most popular
+    satuan: " mulai"
+    satuan_en: " from"
+    web_isi:
+      - Penjualan harian / bulanan
+      - Produk terlaris & kurang laku
+      - Per cabang, sales, atau channel
+      - Gratis dibuka di HP lewat link
+      - Update otomatis dari Google Sheets
+    web_isi_en:
+      - Built on your Google Sheets
+      - Updates automatically
+      - Date, region, category filters
+    wa: Halo Kemang Data, saya mau tanya jasa dashboard Looker Studio / Excel.
+    tingkat:
+      - {nama: Basic, harga: 500000, usd: 40, isi: "1 halaman, 3–5 KPI", waktu: 3, revisi: 2x}
+      - {nama: Standard, harga: 1000000, usd: 80, isi: "2 halaman, filter tanggal, cabang, dan kategori", waktu: 5, revisi: 2x}
+      - {nama: Premium, harga: 1800000, usd: 140, isi: "3 halaman, terhubung otomatis ke Google Sheets, plus video tutorial cara pakai", waktu: 7, revisi: 2x}
+
+  - id: laporan-bulanan
+    nama: Laporan bulanan otomatis
+    nama_en: Monthly automated report
+    web: true
+    web_en: false
+    satuan: " / bulan"
+    satuan_en: " / month"
+    web_isi:
+      - Data dari kasir, marketplace, & Excel digabung tiap bulan
+      - Dashboard selalu ter-update
+      - "Ringkasan: apa yang naik, turun, dan perlu dilakukan"
+      - 1x sesi review per bulan
+      - Bisa berhenti kapan saja
+    wa: Halo Kemang Data, saya mau tanya paket laporan bulanan.
+    tingkat:
+      - {nama: Bulanan, harga: 1500000, usd: null, isi: "Laporan & dashboard bulanan", waktu: null, revisi: "-"}
+
+  - id: dashboard-powerbi
+    upwork: "Power BI dashboard with Power Query and DAX"
+    nama: Dashboard Power BI
+    nama_en: Power BI dashboard
+    web: true
+    web_en: true
+    satuan: " mulai"
+    satuan_en: " from"
+    web_isi:
+      - Power Query untuk bersihkan data
+      - KPI dengan DAX
+      - Visual interaktif
+      - File .pbix diserahkan
+    web_isi_en:
+      - Power Query cleaning
+      - DAX measures
+      - .pbix file delivered
+    wa: Halo Kemang Data, saya mau tanya jasa dashboard Power BI.
+    tingkat:
+      - {nama: Basic, harga: 750000, usd: 60, isi: "1 halaman, 1 sumber data", waktu: 3, revisi: 2x}
+      - {nama: Standard, harga: 1500000, usd: 120, isi: "2–3 halaman, sampai 3 sumber data", waktu: 5, revisi: 2x}
+      - {nama: Premium, harga: 2500000, usd: 200, isi: "4+ halaman, sampai 5 sumber data, plus dokumentasi rumus DAX", waktu: 8, revisi: 2x}
+
+  - id: lead-list
+    upwork: "B2B lead list from public sources"
+    upwork_satuan: leads
+    nama: Daftar calon pelanggan B2B
+    nama_en: B2B lead list
+    web: true
+    web_en: true
+    satuan: " / 100 perusahaan"
+    satuan_en: " / 100 leads"
+    web_isi:
+      - Sesuai industri & kota target
+      - Nama, bidang, alamat, website, telepon, email umum
+      - Dari sumber publik, sesuai UU PDP
+    web_isi_en:
+      - Public business data only
+      - Company, industry, website, phone, general email
+    wa: Halo Kemang Data, saya mau tanya jasa lead list B2B.
+    tingkat:
+      - {nama: Basic, harga: 300000, usd: 25, jumlah: 100, isi: "100 perusahaan", waktu: 2, revisi: "1x (ganti data yang tidak valid)"}
+      - {nama: Standard, harga: 600000, usd: 50, jumlah: 250, isi: "250 perusahaan", waktu: 3, revisi: 1x}
+      - {nama: Premium, harga: 1000000, usd: 90, jumlah: 500, isi: "500 perusahaan, plus kolom tambahan sesuai permintaan", waktu: 5, revisi: 2x}
