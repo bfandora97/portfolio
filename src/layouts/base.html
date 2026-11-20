@@ -1,0 +1,20 @@
+{#- Kerangka semua halaman: <head>, favicon, font, meta, script. Isi halaman ada di src/pages/. -#}
+<!DOCTYPE html>
+<html lang="{{ page.lang }}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27%3E%3Cg fill=%27%230e7c7b%27%3E%3Ccircle cx=%275%27 cy=%2719%27 r=%272.6%27/%3E%3Ccircle cx=%2712%27 cy=%2719%27 r=%272.6%27/%3E%3Ccircle cx=%2712%27 cy=%2712%27 r=%272.6%27/%3E%3Ccircle cx=%2719%27 cy=%2719%27 r=%272.6%27/%3E%3Ccircle cx=%2719%27 cy=%2712%27 r=%272.6%27/%3E%3C/g%3E%3Ccircle cx=%2719%27 cy=%275%27 r=%272.6%27 fill=%27%23f2c811%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/style.css"><script src="/assets/js/theme.js"></script>
+<title>{{ page.title|e }}</title>
+<meta name="description" content="{{ page.description|e }}">
+<link rel="canonical" href="{{ page.url }}">
+{%- for lang, href in page.get("alternates", {}).items() %}
+<link rel="alternate" hreflang="{{ lang }}" href="{{ site.url }}{{ href }}">
+{%- endfor %}
+<meta property="og:type" content="{{ page.get('og_type') or 'website' }}"><meta property="og:site_name" content="{{ site.nama }}"><meta property="og:title" content="{{ page.title|e }}"><meta property="og:description" content="{{ page.description|e }}"><meta property="og:url" content="{{ page.url }}"><meta property="og:image" content="{{ site.url }}{{ page.get('og_image') or '/assets/img/og-image.png' }}"><meta name="twitter:card" content="summary_large_image">
+<noscript><style>.rv{opacity:1;transform:none;filter:none}</style></noscript></head>
+<body>
+{{ content }}
+{%- for s in page.get("scripts", []) %}
+<script src="{{ s }}"></script>
+{%- endfor %}
+</body></html>

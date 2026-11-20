@@ -1,0 +1,65 @@
+---
+title: "Dashboard Penjualan UMKM | Kemang Data"
+description: "Studi kasus demo: menggabungkan data kasir, GoFood/GrabFood dan Shopee ke satu dashboard penjualan UMKM yang update otomatis di Google Sheets dan Looker Studio."
+lang: "id"
+og_type: "article"
+og_image: /assets/img/umkm-sales-dashboard-thumb.png
+scripts: [/assets/js/case.js]
+---
+<div class="wrap">
+{{ header([["Semua proyek", "/#projects"], ["Kontak", "#contact"]], home="/", toggle_label="Ganti mode gelap") }}
+<main>
+<div class="case">
+<div class="case-text">
+<p class="eyebrow">UMKM · Google Sheets · Looker Studio</p>
+<h1>Dashboard Penjualan UMKM</h1>
+<p class="sub">Sebuah kedai kopi dengan 2 outlet, GoFood/GrabFood dan Shopee merekap penjualan secara manual setiap minggu. Kami gabungkan semua sumber data ke satu dashboard yang update otomatis.</p>
+<p class="note" style="margin:0 0 18px;padding:8px 12px;border-left:4px solid var(--yellow);background:var(--panel)">Studi kasus demo dengan data fiktif — menunjukkan cara kerja dan hasil yang bisa Anda dapatkan.</p>
+<ol class="flow" aria-label="Langkah proyek">
+<li><b>1</b><div><strong><a href="#masalah">Masalah</a></strong><span>4 file Excel terpisah, &plusmn;4 jam per minggu</span></div></li>
+<li><b>2</b><div><strong><a href="#dikerjakan">Gabungkan &amp; rapikan</a></strong><span>kasir, GoFood/GrabFood, Shopee</span></div></li>
+<li><b>3</b><div><strong>Otomatiskan</strong><span>Google Sheets + Looker Studio</span></div></li>
+<li><b>4</b><div><strong><a href="#hasil">Hasil</a></strong><span>satu dashboard, update tiap hari &rarr;</span></div></li>
+</ol>
+<div class="kpis"><div><strong>&plusmn;4 jam</strong><span>rekap mingguan jadi otomatis</span></div><div><strong>4</strong><span>sumber data jadi satu</span></div><div><strong>2</strong><span>produk disarankan dihentikan</span></div></div>
+</div>
+<div class="views" id="views"><div class="vtabs" role="tablist" aria-label="Tampilan dashboard"><button type="button" role="tab" aria-selected="true">Dashboard penjualan</button><button type="button" class="fs" id="fs">&#10530; Layar penuh</button></div><figure class="shot"><img src="/assets/img/umkm-sales-dashboard.png" width="1600" height="1000" alt="Dashboard penjualan Kopi Senja (fiktif): KPI penjualan, omzet bulanan per channel, 5 produk terlaris, jam ramai dan produk kurang laku"><figcaption><b>Dashboard penjualan.</b> Omzet, transaksi, margin, produk terlaris, jam ramai dan stok menumpuk dalam satu halaman. Data fiktif untuk demo.</figcaption></figure></div>
+</div>
+<section id="masalah"><h2>Masalah</h2>
+<p class="lead">Pemilik usaha merekap penjualan sendiri setiap minggu. Datanya tersebar di 4 tempat dengan format yang berbeda-beda.</p>
+<div class="cols">
+<div><h3>Sumber data yang terpisah</h3><ul>
+<li>Export kasir dari 2 outlet, masing-masing dalam file Excel sendiri.</li>
+<li>Laporan GoFood/GrabFood yang diunduh terpisah dari aplikasi mitra.</li>
+<li>Laporan pesanan Shopee dengan kolom dan nama produk yang berbeda lagi.</li></ul></div>
+<div><h3>Akibatnya</h3><ul>
+<li>Rekap mingguan memakan &plusmn;4 jam: salin-tempel, cocokkan nama produk, hitung ulang.</li>
+<li>Nama produk tidak seragam ("Es Kopsu", "ES KOPI SUSU SENJA", "Kopi Susu Es"), jadi angka per produk sering tidak cocok.</li>
+<li>Komisi aplikasi tidak ikut dihitung, sehingga margin per channel tidak terlihat.</li></ul></div></div></section>
+<section id="dikerjakan"><h2>Yang dikerjakan</h2>
+<div class="cols">
+<div><h3>Gabungkan dan rapikan</h3><ul>
+<li>Menggabungkan 4 sumber data (kasir 2 outlet, GoFood/GrabFood, Shopee) ke satu tabel penjualan.</li>
+<li>Standardisasi nama produk dengan tabel pemetaan, jadi satu produk punya satu nama di semua channel.</li>
+<li>Menambahkan HPP per produk dan komisi per channel untuk menghitung margin kotor.</li></ul></div>
+<div><h3>Update otomatis</h3><ul>
+<li>Data masuk ke Google Sheets sebagai satu sumber utama.</li>
+<li>Dashboard Looker Studio membaca Sheets tersebut dan ter-update otomatis setiap hari.</li>
+<li>Pemilik cukup membuka satu link, tanpa rekap manual di Excel.</li></ul></div></div></section>
+<section id="hasil"><h2>Hasil</h2>
+<p class="lead">Angka di bawah berasal dari data demo, untuk menunjukkan jenis jawaban yang bisa Anda dapatkan dari dashboard seperti ini.</p>
+<div class="facts"><div><strong>&plusmn;4 jam &rarr; otomatis</strong><span>rekap penjualan mingguan</span></div><div><strong>1 link</strong><span>untuk semua outlet dan channel</span></div><div><strong>15.00–18.00</strong><span>jam paling ramai</span></div></div>
+<div class="cols">
+<div><h3>Contoh insight</h3><ul>
+<li>Margin channel online lebih tipis karena komisi aplikasi: sekitar 41% di GoFood/GrabFood dibanding 61% di outlet.</li>
+<li>2 produk kurang laku (Red Velvet Latte dan Kue Lumpur Pandan) disarankan dihentikan agar stok tidak menumpuk.</li>
+<li>Jam ramai 15.00–18.00 di semua hari, paling padat di akhir pekan: waktu yang tepat untuk menambah staf atau promo.</li></ul></div>
+<div><h3>Yang ada di dashboard</h3><ul>
+<li>Total penjualan, jumlah transaksi, rata-rata per transaksi dan margin kotor.</li>
+<li>Omzet bulanan per channel dan 5 produk terlaris.</li>
+<li>Heatmap jam ramai per hari dan tabel produk kurang laku / stok menumpuk.</li></ul></div></div>
+<p class="note">Kopi Senja adalah usaha fiktif. Semua angka dibuat untuk demo.</p></section>
+<section id="tools"><h2>Tools</h2>
+<ul class="tools"><li>Google Sheets</li><li>Looker Studio</li><li>Excel</li></ul></section>
+<section class="contact" id="contact"><h2>Mau dashboard seperti ini untuk usaha Anda?</h2><p class="lead">Kirim contoh data penjualan Anda dan apa yang ingin dipantau. Kami jelaskan apa yang bisa dibuat dan berapa lama pengerjaannya.</p><a class="btn big" href="/#contact">Hubungi Kemang Data</a><a class="btn alt" href="{{ wa('Halo Kemang Data, saya mau tanya soal dashboard penjualan.') }}">Chat via WhatsApp</a></section>
+</main><footer><a href="/">← Kembali ke semua proyek</a> · Kemang Data</footer></div>{{ lightbox("Dashboard layar penuh", "Gambar sebelumnya", "Gambar berikutnya", "Tutup") }}

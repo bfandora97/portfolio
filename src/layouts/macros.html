@@ -1,0 +1,44 @@
+{#- Potongan yang dipakai berulang. Dipanggil dari halaman: {{ header(...) }}, {{ wa("pesan") }}, dst. -#}
+
+{% macro logo() -%}
+<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#0e7c7b"><circle cx="5" cy="19" r="2.6"/><circle cx="12" cy="19" r="2.6"/><circle cx="12" cy="12" r="2.6"/><circle cx="19" cy="19" r="2.6"/><circle cx="19" cy="12" r="2.6"/></g><circle cx="19" cy="5" r="2.6" fill="#f2c811"/></svg>
+{%- endmacro %}
+
+{#- nav: daftar [teks, link] atau [teks, link, bahasa] -#}
+{% macro header(nav, home="/", toggle_label="Toggle dark mode") -%}
+<header class="top"><a class="brand" href="{{ home }}">{{ logo() }}Kemang Data</a><nav>
+{%- for item in nav %}<a href="{{ item[1] }}"{% if item|length > 2 %} hreflang="{{ item[2] }}" lang="{{ item[2] }}"{% endif %}>{{ item[0] }}</a>{% endfor -%}
+<button class="tg" id="tg" type="button" aria-label="{{ toggle_label }}">☾</button></nav></header>
+{%- endmacro %}
+
+{#- Link WhatsApp dengan pesan otomatis -#}
+{% macro wa(pesan) -%}
+https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
+{%- endmacro %}
+
+{% macro rupiah(n) -%}
+{%- if n >= 1000000 -%}Rp{{ ('%.1f' % (n / 1000000)).replace('.0', '').replace('.', ',') }} jt
+{%- else -%}Rp{{ (n // 1000) }} rb{%- endif -%}
+{%- endmacro %}
+
+{#- Kartu paket di bagian Jasa & Harga. Data dari src/data/paket.yml -#}
+{% macro plan_card(p, lang="id") -%}
+{%- set en = lang == "en" -%}
+{%- set t = p.tingkat[0] -%}
+<div class="plan{% if p.get("unggulan") %} hl{% endif %} rv">
+{%- if p.get("unggulan") %}<span class="tag">{{ p.label_en if en else p.label }}</span>{% endif -%}
+<h3>{{ p.nama_en if en else p.nama }}</h3><p class="price">{% if en %}${{ t.usd }}{% else %}{{ rupiah(t.harga) }}{% endif %}<small>{{ p.satuan_en if en else p.satuan }}</small></p>
+<ul>{% for i in (p.web_isi_en if en else p.web_isi) %}<li>{{ i }}</li>{% endfor %}</ul>
+{%- if not en %}<a class="ask" href="{{ wa(p.wa) }}">Tanya paket ini &rarr;</a>{% endif -%}
+</div>
+{%- endmacro %}
+
+{#- Jendela layar penuh untuk gambar dashboard di halaman studi kasus -#}
+{% macro lightbox(label="Full screen view", prev="Previous image", next="Next image", close="Close") -%}
+<dialog id="lb" class="lb" aria-label="{{ label }}"><img alt=""><button type="button" class="nav prev" aria-label="{{ prev }}">‹</button><button type="button" class="nav next" aria-label="{{ next }}">›</button><button type="button" class="x" aria-label="{{ close }}">✕</button></dialog>
+{%- endmacro %}
+
+{#- Tombol kontak standar (bahasa Inggris) untuk halaman studi kasus -#}
+{% macro contact_buttons_en() -%}
+<a class="btn big" href="{{ wa('Hi Kemang Data, I want to ask about a dashboard.') }}">Chat me on WhatsApp</a><a class="btn" href="mailto:{{ site.email }}">Email us</a><a class="btn alt" href="{{ site.upwork }}">Upwork profile</a><a class="btn alt" href="{{ site.github }}">GitHub</a><a class="btn alt" href="{{ site.linkedin }}">LinkedIn</a>
+{%- endmacro %}
