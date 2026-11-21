@@ -5,12 +5,13 @@
 #
 # Kolom:
 #   id            kode unik (jangan diubah)
-#   nama / nama_en
+#   nama / nama_en  nama di website, ditulis sebagai MANFAAT untuk klien (judul di Fastwork/Upwork tetap pakai kata kunci pencarian)
 #   web           tampil di website ID? (true/false)
 #   web_en        tampil di website EN?
 #   unggulan      diberi garis kuning + label
 #   label / label_en  teks label kecil (opsional)
 #   satuan / satuan_en  teks kecil setelah harga
+#   alat / alat_en  teks kecil: alat yang dipakai (opsional)
 #   web_isi / web_isi_en  poin di kartu website
 #   wa            pesan WhatsApp saat klik "Tanya paket ini"
 #   upwork        judul di Upwork Project Catalog (kalau ada); upwork_satuan untuk paket per jumlah
@@ -19,8 +20,10 @@
 paket:
   - id: rapikan-data
     upwork: "Clean and merge your Excel / Google Sheets data"
-    nama: Rapikan & gabungkan data
-    nama_en: Data cleaning & merging
+    nama: Rapikan data pelanggan & penjualan
+    nama_en: Clean & merge your data
+    alat: Excel / Google Sheets
+    alat_en: Excel / Google Sheets
     web: true
     web_en: true
     satuan: " mulai"
@@ -44,8 +47,10 @@ paket:
 
   - id: dashboard-looker
     upwork: "Looker Studio dashboard from your Google Sheets"
-    nama: Dashboard Looker Studio / Excel
-    nama_en: Looker Studio dashboard
+    nama: Laporan penjualan otomatis di HP
+    nama_en: Multi-channel sales dashboard
+    alat: Looker Studio / Excel
+    alat_en: Looker Studio / Google Sheets
     web: true
     web_en: true
     unggulan: true
@@ -54,15 +59,16 @@ paket:
     satuan: " mulai"
     satuan_en: " from"
     web_isi:
-      - Penjualan harian / bulanan
-      - Produk terlaris & kurang laku
-      - Per cabang, sales, atau channel
-      - Gratis dibuka di HP lewat link
-      - Update otomatis dari Google Sheets
+      - Outlet, GoFood/GrabFood, Shopee jadi satu
+      - Untung per produk & per channel, sudah dipotong komisi
+      - Produk terlaris & yang menumpuk
+      - Dibuka di HP lewat 1 link, gratis
+      - Update otomatis, tanpa rekap manual
     web_isi_en:
-      - Built on your Google Sheets
+      - Shopify, Amazon, Etsy & more in one view
+      - Real profit after fees, per product
       - Updates automatically
-      - Date, region, category filters
+      - Opens on any phone or laptop
     wa: Halo Kemang Data, saya mau tanya jasa dashboard Looker Studio / Excel.
     tingkat:
       - {nama: Basic, harga: 500000, usd: 40, isi: "1 halaman, 3–5 KPI", waktu: 3, revisi: 2x}
@@ -70,8 +76,10 @@ paket:
       - {nama: Premium, harga: 1800000, usd: 140, isi: "3 halaman, terhubung otomatis ke Google Sheets, plus video tutorial cara pakai", waktu: 7, revisi: 2x}
 
   - id: laporan-bulanan
-    nama: Laporan bulanan otomatis
+    nama: Laporan bulanan + saran tindakan
     nama_en: Monthly reporting
+    alat: dikerjakan untuk Anda tiap bulan
+    alat_en: done for you every month
     web: true
     web_en: true
     satuan: " / bulan"
@@ -96,6 +104,8 @@ paket:
     upwork: "Power BI dashboard with Power Query and DAX"
     nama: Dashboard Power BI
     nama_en: Power BI dashboard
+    alat: untuk tim yang sudah pakai Power BI
+    alat_en: Power Query + DAX
     web: true
     web_en: true
     satuan: " mulai"
@@ -120,6 +130,8 @@ paket:
     upwork_satuan: leads
     nama: Daftar calon pelanggan B2B
     nama_en: B2B lead list
+    alat: dari sumber publik
+    alat_en: from public sources
     web: true
     web_en: true
     satuan: " / 100 perusahaan"
