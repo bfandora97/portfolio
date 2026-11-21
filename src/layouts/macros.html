@@ -27,7 +27,7 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 {%- set t = p.tingkat[0] -%}
 <div class="plan{% if p.get("unggulan") %} hl{% endif %} rv">
 {%- if p.get("unggulan") %}<span class="tag">{{ p.label_en if en else p.label }}</span>{% endif -%}
-<h3>{{ p.nama_en if en else p.nama }}</h3><p class="price">{% if en %}${{ t.usd }}{% else %}{{ rupiah(t.harga) }}{% endif %}<small>{{ p.satuan_en if en else p.satuan }}</small></p>
+<h3>{{ p.nama_en if en else p.nama }}</h3>{% set alat = p.get("alat_en") if en else p.get("alat") %}{% if alat %}<p class="via">{{ alat }}</p>{% endif %}<p class="price">{% if en %}${{ t.usd }}{% else %}{{ rupiah(t.harga) }}{% endif %}<small>{{ p.satuan_en if en else p.satuan }}</small></p>
 <ul>{% for i in (p.web_isi_en if en else p.web_isi) %}<li>{{ i }}</li>{% endfor %}</ul>
 {%- if not en %}<a class="ask" href="{{ wa(p.wa) }}">Tanya paket ini &rarr;</a>{% endif -%}
 </div>

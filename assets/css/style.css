@@ -93,6 +93,26 @@ pre{font:14px/1.55 ui-monospace,Consolas,monospace;background:var(--code);color:
 .plan .ask{margin-top:auto;font-weight:500;text-decoration-color:var(--yellow);text-decoration-thickness:2px;text-underline-offset:3px}
 .tag{align-self:flex-start;font-size:12px;font-weight:500;background:var(--yellow);color:#101b2d;padding:2px 9px;border-radius:999px;margin:0 0 8px}
 
+.plan .via{margin:2px 0 0;font-size:13px;color:var(--muted)}
+
+/* ---- 7b. Masalah klien, contoh hasil, "cocok untuk" ---- */
+.fit{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:22px 0 0;font-size:15px;color:var(--muted)}
+.fit b{font-weight:500;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+.probs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px}
+.prob{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--yellow);border-radius:4px;padding:16px 18px}
+.prob q{display:block;font:700 18px/1.3 "Familjen Grotesk",sans-serif;quotes:"“" "”"}
+.prob p{margin:10px 0 0;color:var(--muted);font-size:15px}
+.showcase{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(20px,3vw,44px);align-items:center;margin:0 0 28px}
+.showcase .shot{display:block;margin:0}
+.showcase figure.shot img{cursor:default}
+.showcase h3{font-size:22px;margin:0 0 10px}
+.wins{margin:0 0 12px;padding-left:20px}
+.wins li{margin:0 0 8px}
+.more{font-weight:500;text-decoration-color:var(--yellow);text-decoration-thickness:2px;text-underline-offset:3px}
+.grid.small{grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
+.grid.small .card h3{font-size:18px}
+@media(max-width:860px){.showcase{grid-template-columns:1fr}}
+
 /* ---- 8. Cara kerja, tentang, FAQ ---- */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px}
 .step{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:16px 18px}
@@ -181,12 +201,11 @@ a.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 /* ---- 13. Layar besar & kecil ---- */
 @media(min-width:900px) and (min-height:650px){
 .hero2{min-height:calc(100vh - 70px)}
-#projects{min-height:calc(100vh - 70px);display:flex;flex-direction:column;justify-content:center}
 .page2{margin-top:0}
 }
 @media(max-width:1000px){.case{grid-template-columns:1fr;min-height:0}.case h1{max-width:none}.case .views .shot img{max-height:none}}
 @media(max-width:860px){.page2 .contact{grid-template-columns:1fr}.page2 .contact>div:last-child{grid-column:1;grid-row:auto}}
 @media(max-width:760px){.hero2{grid-template-columns:1fr}.hero2 canvas{height:230px}}
 @media(max-width:600px){.about{grid-template-columns:1fr}.avatar{width:110px;height:110px;font-size:44px}}
-@media(max-width:520px){.top{padding:14px 16px}.top a{margin-left:12px;font-size:15px}.top a.brand{font-size:18px;gap:8px}.tg{margin-left:12px}.wrap{padding:0 16px}.top nav a[href="#jasa"],.top nav a[href="#services"]{display:none}}
+@media(max-width:520px){.top{padding:14px 16px}.top a{margin-left:12px;font-size:15px}.top a.brand{font-size:18px;gap:8px}.tg{margin-left:12px}.wrap{padding:0 16px}.top nav a[href="#jasa"],.top nav a[href="#services"],.top nav a[href="#problems"]{display:none}}
 @media(max-width:380px){.top nav a[href$="#contact"]{display:none}}

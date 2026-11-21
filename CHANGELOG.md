@@ -2,6 +2,9 @@
 
 Paling baru di atas. Satu baris per PR.
 
+## 2026-11-21
+- PR #7: Pesan website diubah jadi berbasis masalah klien. ID untuk UMKM lokal (hero, "Masalah yang sering kami bantu", Contoh hasil, nama jasa = manfaat, proyek event dikecilkan). EN untuk toko online internasional (hero + "Problems I solve").
+
 ## 2026-11-20
 - PR #6: Versi Inggris dilengkapi (Cara kerja, Tentang + foto, FAQ, paket bulanan $120) + studi kasus UMKM versi Inggris.
 - PR #5: Foto di bagian Tentang dibuat lebih lebar dan tajam.
