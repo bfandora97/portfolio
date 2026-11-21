@@ -68,7 +68,8 @@ def resolve(page_path, link):
 def main():
     if not SITE.exists():
         sys.exit("_site/ belum ada. Jalankan: python build.py")
-    pages = {p.resolve(): p for p in SITE.rglob("*.html")}
+    # file verifikasi Google Search Console (googleXXXX.html) bukan halaman, dilewati
+    pages = {p.resolve(): p for p in SITE.rglob("*.html") if not re.fullmatch(r"google[0-9a-f]+\.html", p.name)}
     parsed = {}
     for p in pages:
         pr = Page()
