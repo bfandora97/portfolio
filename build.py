@@ -6,7 +6,7 @@
 Struktur:
     src/pages/   isi tiap halaman (path file = path URL), diawali "front matter" YAML
     src/layouts/ base.html (kerangka) + macros.html (header, tombol WA, kartu paket, dll.)
-    src/data/    site.yml (kontak, link) + paket.yml (harga)
+    src/data/    site.yml (kontak, link) + paket.yml (harga) + alur.yml (isi animasi contoh)
     assets/      css, js, gambar (disalin apa adanya)
     static/      file yang disalin ke root situs (CNAME, robots.txt)
 """
@@ -18,7 +18,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 ROOT = Path(__file__).parent
 SRC, OUT = ROOT / "src", ROOT / "_site"
-MACROS = ("header", "logo", "wa", "rupiah", "plan_card", "lightbox", "contact_buttons_en")
+MACROS = ("header", "logo", "wa", "rupiah", "plan_card", "lightbox", "contact_buttons_en", "alur")
 
 
 def load_data():
@@ -49,7 +49,7 @@ def build():
     site = data["site"]
     env = Environment(loader=FileSystemLoader([str(SRC / "layouts"), str(SRC / "pages")]),
                       undefined=StrictUndefined, autoescape=False, keep_trailing_newline=True)
-    env.globals.update(site=site, paket=data["paket"]["paket"])
+    env.globals.update(site=site, paket=data["paket"]["paket"], alur_data=data["alur"])
     base = env.get_template("base.html")
     imports = "{% from 'macros.html' import " + ", ".join(MACROS) + " with context %}"
 

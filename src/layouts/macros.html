@@ -42,3 +42,17 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 {% macro contact_buttons_en() -%}
 <a class="btn big" href="{{ wa('Hi Kemang Data, I want to ask about a dashboard.') }}">Chat me on WhatsApp</a><a class="btn" href="mailto:{{ site.email }}">Email us</a><a class="btn alt" href="{{ site.upwork }}">Upwork profile</a><a class="btn alt" href="{{ site.github }}">GitHub</a><a class="btn alt" href="{{ site.linkedin }}">LinkedIn</a>
 {%- endmacro %}
+
+{#- Animasi 3 adegan "berantakan -> digabung -> laporan di HP". a = satu versi dari src/data/alur.yml.
+    Gerakannya diatur assets/js/alur.js + CSS bagian 7c. Tanpa JS / reduced motion: adegan 3 tampil diam. -#}
+{% macro alur(a) -%}
+<figure class="alur" data-alur data-s="3" aria-label="{{ a.label }}">
+<div class="alur-top"><div class="alur-steps">{% for s in a.langkah %}<button type="button" data-go="{{ loop.index }}" aria-pressed="{{ 'true' if loop.last else 'false' }}"><b>{{ loop.index }}</b><span>{{ s }}</span><i></i></button>{% endfor %}</div><button type="button" class="alur-pp" data-pp data-jeda="{{ a.jeda }}" data-putar="{{ a.putar }}" aria-label="{{ a.jeda }}" hidden></button></div>
+<div class="alur-stage"><span class="alur-fk">{{ a.fiktif }}</span>
+<div class="sc sc1"><div class="files">{% for f in a.file %}<div class="file" style="--i:{{ loop.index0 }};--fc:{{ f.warna }}"><p class="fn">{{ f.nama }}</p><table>{% for r in f.baris %}<tr><td>{% if r[2] %}<span class="x">{{ r[0] }}</span>{% else %}{{ r[0] }}{% endif %}</td><td>{{ r[1] }}</td></tr>{% endfor %}</table></div>{% endfor %}</div><p class="q">{{ a.tanya }}</p></div>
+<div class="sc sc2"><table class="merged"><thead><tr>{% for k in a.kolom %}<th>{{ k }}</th>{% endfor %}</tr></thead><tbody>{% for r in a.tabel %}<tr style="--i:{{ loop.index0 }}"><td>{% if r[0] != r[1] %}<span class="nm"><s>{{ r[0] }}</s><span>{{ r[1] }}</span></span>{% else %}<span class="ok">{{ r[1] }}</span>{% endif %}</td><td><em style="--cc:{{ r[3] }}">{{ r[2] }}</em></td><td>{{ r[4] }}</td><td>{% if r[5] %}<mark>&minus;{{ r[5] }}</mark>{% else %}<mark class="no">&ndash;</mark>{% endif %}</td></tr>{% endfor %}</tbody></table><p class="tot">{{ a.total }}</p></div>
+<div class="sc sc3"><p class="co" style="--i:0">{{ a.sorot[0] }}</p><div class="phone"><p class="ph">{{ a.hp_judul }}<small>{{ a.hp_sub }}</small></p><p class="lbl">{{ a.hp_label }}</p>{% for b in a.bar %}<div class="bar{% if b[2] %} low{% endif %}" style="--v:{{ b[1] }};--i:{{ loop.index0 }}"><span>{{ b[0] }}</span><b>{{ b[1] }}%</b><i></i></div>{% endfor %}<div class="warn"><b>{{ a.hp_awas }}</b><span>{{ a.hp_awas_isi }}</span></div><p class="peak">{{ a.hp_jam }}</p></div><p class="co" style="--i:1">{{ a.sorot[1] }}</p></div>
+</div>
+<figcaption><span data-c="1">{{ a.cap1 }}</span><span data-c="2">{{ a.cap2 }}</span><span data-c="3">{{ a.cap3 }}</span></figcaption>
+</figure>
+{%- endmacro %}
