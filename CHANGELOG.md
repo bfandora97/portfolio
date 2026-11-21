@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-21
+- PR #9: Tombol booking konsultasi gratis 30 menit (Cal.com). Link di `site.yml` → `booking`; kosong = tombol tidak tampil. ID: tombol kedua setelah WA. EN: tombol utama.
 - PR #8: File verifikasi Google Search Console (`static/googlefdbe962ee824253f.html`). Jangan dihapus, atau verifikasi Google akan hilang.
 - PR #7: Pesan website diubah jadi berbasis masalah klien. ID untuk UMKM lokal (hero, "Masalah yang sering kami bantu", Contoh hasil, nama jasa = manfaat, proyek event dikecilkan). EN untuk toko online internasional (hero + "Problems I solve").
 
