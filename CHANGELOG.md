@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-21
+- PR #10: Animasi contoh 3 adegan (berantakan → digabung → laporan di HP) di halaman utama ID/EN dan studi kasus. Isi di `src/data/alur.yml` (fiktif), tampilan di macro `alur()` + CSS 7c + `assets/js/alur.js`. Bisa dijeda; reduced motion = gambar diam.
 - PR #8: File verifikasi Google Search Console (`static/googlefdbe962ee824253f.html`). Jangan dihapus, atau verifikasi Google akan hilang.
 - PR #7: Pesan website diubah jadi berbasis masalah klien. ID untuk UMKM lokal (hero, "Masalah yang sering kami bantu", Contoh hasil, nama jasa = manfaat, proyek event dikecilkan). EN untuk toko online internasional (hero + "Problems I solve").
 

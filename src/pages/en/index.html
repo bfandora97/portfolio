@@ -5,7 +5,7 @@ lang: "en"
 og_type: "website"
 og_image: /assets/img/og-image-en.png
 alternates: {id: /, en: /en/, x-default: /}
-scripts: [/assets/js/home.js]
+scripts: [/assets/js/home.js, /assets/js/alur.js]
 ---
 <div class="wrap">
 {{ header([["Problems", "#problems"], ["Services", "#services"], ["Projects", "#projects"], ["Contact", "#contact"], ["ID", "/", "id"]], home="/en/", toggle_label="Toggle dark mode") }}
@@ -25,6 +25,11 @@ scripts: [/assets/js/home.js]
 <div class="prob rv" style="--d:.2s"><q>I don&rsquo;t know which products actually make money.</q><p>&rarr; Best sellers vs slow movers per product, on one screen.</p></div>
 <div class="prob rv" style="--d:.3s"><q>My customer list is a mess.</q><p>&rarr; One clean, deduplicated list, ready for email or SMS campaigns.</p></div>
 </div></section>
+
+<section id="how"><h2 class="rv">From messy exports to real profit</h2>
+<p class="lead rv">Juniper Candle Co. sells on Shopify, Amazon, Etsy and at a weekend market. The shop and its numbers are fictional; the process is exactly what I do for you.</p>
+{{ alur(alur_data.en_shop) }}
+</section>
 
 <section id="services"><h2 class="rv">Services &amp; pricing</h2>
 <p class="lead rv">Fixed-price packages, 2 rounds of revisions included. Final scope and price are confirmed in writing before work starts.</p>

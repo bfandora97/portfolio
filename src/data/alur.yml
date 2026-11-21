@@ -1,0 +1,107 @@
+# Isi animasi "berantakan -> digabung -> laporan di HP" (macro alur() di macros.html).
+# SEMUA DATA FIKTIF. Angka margin Kopi Senja sama dengan tools/gen_umkm.py (outlet 61%, Shopee 49%, GoFood/GrabFood 41%).
+#
+# Kolom per versi:
+#   langkah     3 judul langkah (tombol)
+#   file        4 file sumber: nama, warna, baris [nama produk, jumlah, salah?]  (salah = diberi garis bergelombang merah)
+#   tanya       gelembung pertanyaan di adegan 1
+#   kolom       judul kolom tabel adegan 2
+#   tabel       [nama lama, nama rapi, channel, warna channel, terjual, potongan]
+#   total       kalimat total di adegan 2
+#   hp_*, bar   isi layar HP adegan 3. bar: [nama, persen, merah?]
+#   sorot       2 keterangan di samping HP (disembunyikan di layar kecil)
+#   cap1-3      teks penjelasan di bawah animasi
+#   fiktif, jeda, putar, label   label kecil + teks tombol
+
+id:
+  label: "Animasi: dari 4 file penjualan yang berantakan jadi 1 laporan otomatis di HP"
+  langkah: ["Berantakan", "Digabung & dirapikan", "Laporan di HP"]
+  file:
+    - {nama: "Kasir_Kemang.xlsx", warna: "#0e7c7b", baris: [["Es Kopsu", "42", true], ["Red Velvet", "3", false], ["Kue Lumpur", "2", false]]}
+    - {nama: "kasir tebet (final).xlsx", warna: "#7fc4c0", baris: [["ES KOPI SUSU SENJA", "38", true], ["Americano", "21", false], ["Croissant", "17", false]]}
+    - {nama: "GoFood_Juni.csv", warna: "#f2c811", baris: [["Kopi Susu Es", "55", true], ["Cafe Latte", "24", false], ["Matcha", "15", false]]}
+    - {nama: "Shopee_pesanan.xlsx", warna: "#e07a3f", baris: [["Es Kopi Susu 250ml", "12", true], ["Kopi Aren 1L", "6", false], ["Bubuk 250g", "4", false]]}
+  tanya: "Untung per channel berapa?"
+  kolom: ["Produk", "Channel", "Terjual", "Potongan"]
+  tabel:
+    - ["Es Kopsu", "Es Kopi Susu Senja", "Outlet Kemang", "#0e7c7b", "42", ""]
+    - ["ES KOPI SUSU SENJA", "Es Kopi Susu Senja", "Outlet Tebet", "#7fc4c0", "38", ""]
+    - ["Kopi Susu Es", "Es Kopi Susu Senja", "GoFood/Grab", "#f2c811", "55", "komisi 20%"]
+    - ["Es Kopi Susu 250ml", "Es Kopi Susu Senja", "Shopee", "#e07a3f", "12", "biaya 11%"]
+  total: "Es Kopi Susu Senja: 147 terjual dari semua channel"
+  hp_judul: "Kopi Senja"
+  hp_sub: "Ter-update otomatis tiap pagi"
+  hp_label: "Untung bersih per channel"
+  bar: [["Outlet", 61, false], ["Shopee", 49, false], ["GoFood/GrabFood", 41, true]]
+  hp_awas: "2 produk bikin stok menumpuk"
+  hp_awas_isi: "Red Velvet Latte, Kue Lumpur Pandan"
+  hp_jam: "Jam paling ramai: 15.00–18.00"
+  sorot: ["Untung asli, sudah dipotong komisi aplikasi", "Produk yang perlu dihentikan langsung kelihatan"]
+  cap1: "Data penjualan ada di 4 file. Nama produk yang sama ditulis beda-beda, jadi rekap manual makan ±4 jam tiap minggu."
+  cap2: "Semua file digabung jadi 1 tabel. Nama produk disamakan, komisi aplikasi dipotong otomatis."
+  cap3: "Pemilik cukup buka 1 link di HP. Laporan ter-update sendiri, tanpa rekap manual."
+  fiktif: "Data fiktif"
+  jeda: "Jeda animasi"
+  putar: "Putar animasi"
+
+en_umkm:
+  label: "Animation: from 4 messy sales files to 1 auto-updating report on a phone"
+  langkah: ["Messy", "Merged & cleaned", "Report on your phone"]
+  file:
+    - {nama: "POS_Kemang.xlsx", warna: "#0e7c7b", baris: [["Es Kopsu", "42", true], ["Red Velvet", "3", false], ["Kue Lumpur", "2", false]]}
+    - {nama: "pos tebet (final).xlsx", warna: "#7fc4c0", baris: [["ES KOPI SUSU SENJA", "38", true], ["Americano", "21", false], ["Croissant", "17", false]]}
+    - {nama: "GoFood_June.csv", warna: "#f2c811", baris: [["Kopi Susu Es", "55", true], ["Cafe Latte", "24", false], ["Matcha", "15", false]]}
+    - {nama: "Shopee_orders.xlsx", warna: "#e07a3f", baris: [["Es Kopi Susu 250ml", "12", true], ["Kopi Aren 1L", "6", false], ["Bubuk 250g", "4", false]]}
+  tanya: "Profit per channel?"
+  kolom: ["Product", "Channel", "Sold", "Fees"]
+  tabel:
+    - ["Es Kopsu", "Es Kopi Susu Senja", "Outlet Kemang", "#0e7c7b", "42", ""]
+    - ["ES KOPI SUSU SENJA", "Es Kopi Susu Senja", "Outlet Tebet", "#7fc4c0", "38", ""]
+    - ["Kopi Susu Es", "Es Kopi Susu Senja", "GoFood/Grab", "#f2c811", "55", "20% commission"]
+    - ["Es Kopi Susu 250ml", "Es Kopi Susu Senja", "Shopee", "#e07a3f", "12", "11% fees"]
+  total: "Es Kopi Susu Senja: 147 sold across all channels"
+  hp_judul: "Kopi Senja"
+  hp_sub: "Refreshed automatically every morning"
+  hp_label: "Net profit by channel"
+  bar: [["Outlets", 61, false], ["Shopee", 49, false], ["GoFood/GrabFood", 41, true]]
+  hp_awas: "2 products are piling up in stock"
+  hp_awas_isi: "Red Velvet Latte, Kue Lumpur Pandan"
+  hp_jam: "Busiest hours: 3–6 pm"
+  sorot: ["Real profit, after app commissions", "Products to drop, flagged automatically"]
+  cap1: "Sales data lives in 4 files. The same product has a different name in each, so the weekly recap takes about 4 hours."
+  cap2: "Every file is merged into one table. Product names are matched and app commissions are deducted automatically."
+  cap3: "The owner opens one link on their phone. The report updates itself, no manual recap."
+  fiktif: "Fictional data"
+  jeda: "Pause animation"
+  putar: "Play animation"
+
+en_shop:
+  label: "Animation: from 4 messy store exports to 1 auto-updating profit report on a phone"
+  langkah: ["Messy exports", "Merged & cleaned", "Profit on your phone"]
+  file:
+    - {nama: "shopify_orders_export.csv", warna: "#0e7c7b", baris: [["Lavender Candle 8oz", "120", false], ["Rose Wax Melts", "40", false], ["Gift Set Mini", "18", false]]}
+    - {nama: "Amazon_settlement.txt", warna: "#e07a3f", baris: [["LAV-CNDL-8OZ", "64", true], ["ROSE-MELT-6", "22", false], ["GIFT-MINI", "9", false]]}
+    - {nama: "EtsySoldOrderItems.csv", warna: "#f2c811", baris: [["Lavender Soy Candle (8 oz)", "38", true], ["Rose Melts x6", "15", false], ["Mini Gift Box", "6", false]]}
+    - {nama: "market_stall_POS.xlsx", warna: "#7fc4c0", baris: [["lav candle 8", "21", true], ["melts rose", "11", false], ["gift mini", "4", false]]}
+  tanya: "Which channel actually makes money?"
+  kolom: ["Product", "Channel", "Sold", "Fees"]
+  tabel:
+    - ["Lavender Candle 8oz", "Lavender Candle 8oz", "Shopify", "#0e7c7b", "120", "3% payments"]
+    - ["LAV-CNDL-8OZ", "Lavender Candle 8oz", "Amazon", "#e07a3f", "64", "15% + FBA"]
+    - ["Lavender Soy Candle (8 oz)", "Lavender Candle 8oz", "Etsy", "#f2c811", "38", "10% fees"]
+    - ["lav candle 8", "Lavender Candle 8oz", "Market stall", "#7fc4c0", "21", ""]
+  total: "Lavender Candle 8oz: 243 sold across all channels"
+  hp_judul: "Juniper Candle Co."
+  hp_sub: "Refreshed automatically every morning"
+  hp_label: "Net profit by channel"
+  bar: [["Market stall", 64, false], ["Shopify", 58, false], ["Etsy", 47, false], ["Amazon", 31, true]]
+  hp_awas: "2 products lose money on Amazon"
+  hp_awas_isi: "Rose Wax Melts, Gift Set Mini"
+  hp_jam: "Best day: Sunday"
+  sorot: ["Real profit after every platform fee", "Loss-making listings, flagged automatically"]
+  cap1: "Every platform gives you a different export, and the same product has a different name in each. So the weekly recap eats hours."
+  cap2: "All exports are merged into one table. Product names and SKUs are matched, and platform fees are deducted automatically."
+  cap3: "You open one link on your phone and see real profit per channel and per product. It updates itself."
+  fiktif: "Fictional data"
+  jeda: "Pause animation"
+  putar: "Play animation"

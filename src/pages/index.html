@@ -4,7 +4,7 @@ description: "Gabungkan laporan outlet, GoFood/GrabFood, dan Shopee jadi satu la
 lang: "id"
 og_type: "website"
 alternates: {id: /, en: /en/, x-default: /}
-scripts: [/assets/js/home.js]
+scripts: [/assets/js/home.js, /assets/js/alur.js]
 ---
 <div class="wrap">
 {{ header([["Contoh", "#contoh"], ["Jasa", "#jasa"], ["Kontak", "#contact"], ["EN", "/en/", "en"]], home="/", toggle_label="Ganti mode gelap") }}
@@ -27,6 +27,7 @@ scripts: [/assets/js/home.js]
 
 <section id="contoh"><h2 class="rv">Contoh hasil</h2>
 <p class="lead rv">Kopi Senja: kedai kopi dengan 2 outlet, GoFood/GrabFood, dan Shopee. Usaha dan angkanya fiktif, dibuat untuk menunjukkan hasil yang bisa Anda dapatkan.</p>
+{{ alur(alur_data.id) }}
 <div class="showcase rv"><a class="shot" href="umkm-sales-dashboard.html"><img src="/assets/img/umkm-sales-dashboard.png" width="1600" height="1000" alt="Contoh laporan penjualan otomatis Kopi Senja (fiktif)" loading="lazy"></a>
 <div><h3>Laporan penjualan otomatis</h3><ul class="wins">
 <li><b>Rekap 4 jam per minggu &rarr; otomatis.</b> Pemilik cukup buka 1 link di HP.</li>

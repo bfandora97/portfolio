@@ -5,7 +5,7 @@ lang: "id"
 og_type: "article"
 og_image: /assets/img/umkm-sales-dashboard-thumb.png
 alternates: {id: /umkm-sales-dashboard.html, en: /en/small-business-sales-dashboard.html}
-scripts: [/assets/js/case.js]
+scripts: [/assets/js/case.js, /assets/js/alur.js]
 ---
 <div class="wrap">
 {{ header([["Semua proyek", "/#projects"], ["Kontak", "#contact"], ["EN", "/en/small-business-sales-dashboard.html", "en"]], home="/", toggle_label="Ganti mode gelap") }}
@@ -26,6 +26,9 @@ scripts: [/assets/js/case.js]
 </div>
 <div class="views" id="views"><div class="vtabs" role="tablist" aria-label="Tampilan dashboard"><button type="button" role="tab" aria-selected="true">Dashboard penjualan</button><button type="button" class="fs" id="fs">&#10530; Layar penuh</button></div><figure class="shot"><img src="/assets/img/umkm-sales-dashboard.png" width="1600" height="1000" alt="Dashboard penjualan Kopi Senja (fiktif): KPI penjualan, omzet bulanan per channel, 5 produk terlaris, jam ramai dan produk kurang laku"><figcaption><b>Dashboard penjualan.</b> Omzet, transaksi, margin, produk terlaris, jam ramai dan stok menumpuk dalam satu halaman. Data fiktif untuk demo.</figcaption></figure></div>
 </div>
+<section id="alur"><h2>Prosesnya dalam 3 langkah</h2>
+{{ alur(alur_data.id) }}
+</section>
 <section id="masalah"><h2>Masalah</h2>
 <p class="lead">Pemilik usaha merekap penjualan sendiri setiap minggu. Datanya tersebar di 4 tempat dengan format yang berbeda-beda.</p>
 <div class="cols">
