@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-20
+- PR #6: Versi Inggris dilengkapi (Cara kerja, Tentang + foto, FAQ, paket bulanan $120) + studi kasus UMKM versi Inggris.
 - PR #5: Foto di bagian Tentang dibuat lebih lebar dan tajam.
 - PR #4: Foto Bobbi di bagian "Tentang Kemang Data".
 - PR #3: Struktur dirapikan. Halaman dirakit dari template (`src/`), harga dari `paket.yml`, gambar di `assets/img/`, CSS disatukan tanpa tambalan. Ada pengecekan otomatis (link, gambar, anchor, sitemap) dan tayang otomatis lewat GitHub Actions. Tampilan tidak berubah.

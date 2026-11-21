@@ -1,0 +1,66 @@
+---
+title: "Small Business Sales Dashboard | Kemang Data"
+description: "Demo case study: merging POS, food-delivery and marketplace exports into one auto-updating sales dashboard with Google Sheets and Looker Studio."
+lang: "en"
+og_type: "article"
+og_image: /assets/img/umkm-sales-dashboard-thumb.png
+alternates: {id: /umkm-sales-dashboard.html, en: /en/small-business-sales-dashboard.html}
+scripts: [/assets/js/case.js]
+---
+<div class="wrap">
+{{ header([["All projects", "/en/#projects"], ["Contact", "#contact"], ["ID", "/umkm-sales-dashboard.html", "id"]], home="/en/", toggle_label="Toggle dark mode") }}
+<main>
+<div class="case">
+<div class="case-text">
+<p class="eyebrow">Small business · Google Sheets · Looker Studio</p>
+<h1>Small Business Sales Dashboard</h1>
+<p class="sub">A coffee shop with 2 outlets, food-delivery apps and a Shopee store recapped its sales by hand every week. I merged every source into one dashboard that updates itself.</p>
+<p class="note" style="margin:0 0 18px;padding:8px 12px;border-left:4px solid var(--yellow);background:var(--panel)">Demo case study with fictional data. It shows how I work and what you get. Dashboard labels are in Indonesian.</p>
+<ol class="flow" aria-label="Project steps">
+<li><b>1</b><div><strong><a href="#problem">Problem</a></strong><span>4 separate Excel files, about 4 hours a week</span></div></li>
+<li><b>2</b><div><strong><a href="#work">Merge &amp; clean</a></strong><span>POS, GoFood/GrabFood, Shopee</span></div></li>
+<li><b>3</b><div><strong>Automate</strong><span>Google Sheets + Looker Studio</span></div></li>
+<li><b>4</b><div><strong><a href="#result">Result</a></strong><span>one dashboard, refreshed daily &rarr;</span></div></li>
+</ol>
+<div class="kpis"><div><strong>~4 hrs</strong><span>weekly recap now automatic</span></div><div><strong>4</strong><span>data sources in one place</span></div><div><strong>2</strong><span>products flagged to drop</span></div></div>
+</div>
+<div class="views" id="views"><div class="vtabs" role="tablist" aria-label="Dashboard views"><button type="button" role="tab" aria-selected="true">Sales dashboard</button><button type="button" class="fs" id="fs">&#10530; Full screen</button></div><figure class="shot"><img src="/assets/img/umkm-sales-dashboard.png" width="1600" height="1000" alt="Sales dashboard for Kopi Senja (fictional): sales KPIs, monthly revenue by channel, top 5 products, busy hours and slow-moving products"><figcaption><b>Sales dashboard.</b> Revenue, transactions, margin, top products, busy hours and slow-moving stock on one page. Fictional demo data.</figcaption></figure></div>
+</div>
+<section id="problem"><h2>Problem</h2>
+<p class="lead">The owner recapped sales every week. The data lived in 4 places, each with its own format.</p>
+<div class="cols">
+<div><h3>Scattered sources</h3><ul>
+<li>POS exports from 2 outlets, each in its own Excel file.</li>
+<li>GoFood/GrabFood reports downloaded separately from the partner apps.</li>
+<li>Shopee order reports with different columns and product names again.</li></ul></div>
+<div><h3>The cost</h3><ul>
+<li>About 4 hours every week of copy-paste, matching product names and recalculating.</li>
+<li>Inconsistent product names ("Es Kopsu", "ES KOPI SUSU SENJA", "Kopi Susu Es"), so per-product totals rarely matched.</li>
+<li>App commissions were never deducted, so margin per channel was invisible.</li></ul></div></div></section>
+<section id="work"><h2>What I did</h2>
+<div class="cols">
+<div><h3>Merge and clean</h3><ul>
+<li>Combined 4 sources (2 outlets' POS, GoFood/GrabFood, Shopee) into one sales table.</li>
+<li>Standardized product names with a mapping table, so each product has one name across every channel.</li>
+<li>Added cost of goods per product and commission per channel to calculate gross margin.</li></ul></div>
+<div><h3>Automatic updates</h3><ul>
+<li>All data lands in Google Sheets as the single source of truth.</li>
+<li>The Looker Studio dashboard reads that sheet and refreshes daily.</li>
+<li>The owner opens one link. No more manual recap in Excel.</li></ul></div></div></section>
+<section id="result"><h2>Result</h2>
+<p class="lead">The numbers below come from demo data. They show the kind of answers a dashboard like this gives you.</p>
+<div class="facts"><div><strong>~4 hrs &rarr; automatic</strong><span>weekly sales recap</span></div><div><strong>1 link</strong><span>for every outlet and channel</span></div><div><strong>3–6 pm</strong><span>busiest hours</span></div></div>
+<div class="cols">
+<div><h3>Example insights</h3><ul>
+<li>Online channels earn thinner margins because of app commissions: about 41% on GoFood/GrabFood versus 61% in the outlets.</li>
+<li>2 slow sellers (Red Velvet Latte and Kue Lumpur Pandan) are flagged to drop so stock stops piling up.</li>
+<li>Peak hours are 3–6 pm every day, busiest on weekends: the right time for extra staff or promotions.</li></ul></div>
+<div><h3>What the dashboard shows</h3><ul>
+<li>Total sales, number of transactions, average ticket and gross margin.</li>
+<li>Monthly revenue by channel and the top 5 products.</li>
+<li>A busy-hours heatmap by weekday and a table of slow-moving stock.</li></ul></div></div>
+<p class="note">Kopi Senja is a fictional business. All figures were created for this demo.</p></section>
+<section id="tools"><h2>Tools</h2>
+<ul class="tools"><li>Google Sheets</li><li>Looker Studio</li><li>Excel</li></ul></section>
+<section class="contact" id="contact"><h2>Want a dashboard like this for your business?</h2><p class="lead">Send a sample of your sales data and what you want to track. I will tell you what I can build and how long it takes.</p><a class="btn big" href="{{ site.upwork }}">Hire me on Upwork</a><a class="btn" href="mailto:{{ site.email }}">Email me</a><a class="btn alt" href="{{ wa('Hi Kemang Data, I want to ask about a sales dashboard.') }}">WhatsApp</a></section>
+</main><footer><a href="/en/">← Back to all projects</a> · Kemang Data</footer></div>{{ lightbox("Dashboard full screen", "Previous image", "Next image", "Close") }}
