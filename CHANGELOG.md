@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-24
+- PR A (refactor 1/3): Menu & footer dari data (`src/data/teks.yml`), halaman cukup `{{ header() }}` + `{{ footer() }}`. Footer baru 3 kolom (Jelajahi, Hubungi) di semua halaman. Menu Proyek di halaman ID (desktop). Aturan HP pakai class `nhp`/`nkecil`. Isi halaman lain identik (dicek per halaman).
 - PR #11: Bagian "Ready-made templates" di /en/ (checkout langsung ke Etsy + disclaimer merek Etsy). `src/data/produk.yml` dibuat otomatis dari katalog produk di repo ops (`python produk/kd.py katalog`); hanya produk berstatus live + ada link Etsy yang tampil.
 
 ## 2026-11-21

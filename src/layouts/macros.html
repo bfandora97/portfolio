@@ -4,11 +4,44 @@
 <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#0e7c7b"><circle cx="5" cy="19" r="2.6"/><circle cx="12" cy="19" r="2.6"/><circle cx="12" cy="12" r="2.6"/><circle cx="19" cy="19" r="2.6"/><circle cx="19" cy="12" r="2.6"/></g><circle cx="19" cy="5" r="2.6" fill="#f2c811"/></svg>
 {%- endmacro %}
 
-{#- nav: daftar [teks, link] atau [teks, link, bahasa] -#}
-{% macro header(nav, home="/", toggle_label="Toggle dark mode") -%}
-<header class="top"><a class="brand" href="{{ home }}">{{ logo() }}Kemang Data</a><nav>
-{%- for item in nav %}<a href="{{ item[1] }}"{% if item|length > 2 %} hreflang="{{ item[2] }}" lang="{{ item[2] }}"{% endif %}>{{ item[0] }}</a>{% endfor -%}
-<button class="tg" id="tg" type="button" aria-label="{{ toggle_label }}">☾</button></nav></header>
+{#- Menu atas. Isi dari src/data/teks.yml (bahasa = page.lang, jenis = page.menu: utama / kasus).
+    Tombol ganti bahasa otomatis dari page.alternates. Halaman cukup memanggil {{ header() }}. -#}
+{% macro header() -%}
+{%- set t = teks[page.lang] -%}
+{%- set lain = "en" if page.lang == "id" else "id" -%}
+{%- set alt = page.get("alternates", {}) -%}
+<header class="top"><a class="brand" href="{{ t.beranda }}">{{ logo() }}Kemang Data</a><nav>
+{%- for m in t.menu[page.get("menu", "kasus")] if not (m.get("syarat") == "produk" and not produk.tampil) %}<a href="{{ m.link }}"
+{%- if m.get("hp") == false %} class="nhp"{% elif m.get("kecil") == false %} class="nkecil"{% endif %}>{{ m.teks }}</a>{% endfor -%}
+{%- if alt.get(lain) %}<a href="{{ alt[lain] }}" hreflang="{{ lain }}" lang="{{ lain }}">{{ teks[lain].label_bahasa }}</a>{% endif -%}
+<button class="tg" id="tg" type="button" aria-label="{{ t.mode_gelap }}">☾</button></nav></header>
+{%- endmacro %}
+
+{#- Footer semua halaman. Isi dari src/data/teks.yml + kontak dari site.yml. Halaman cukup memanggil {{ footer() }}. -#}
+{% macro footer() -%}
+{%- set t = teks[page.lang] -%}
+{%- set f = t.footer -%}
+{%- set lain = "en" if page.lang == "id" else "id" -%}
+{%- set alt = page.get("alternates", {}) -%}
+{%- set kontak = {
+  "whatsapp": ["WhatsApp", wa("Halo Kemang Data, saya mau tanya soal laporan usaha saya.")],
+  "email": ["Email", "mailto:" ~ site.email],
+  "linkedin": ["LinkedIn", site.linkedin],
+  "upwork": ["Upwork", site.upwork],
+  "github": ["GitHub", site.github]} -%}
+<footer class="ft">
+<div class="ft-grid">
+<div class="ft-brand"><a class="brand" href="{{ t.beranda }}">{{ logo() }}Kemang Data</a><p>{{ f.tagline }}</p></div>
+<nav aria-label="{{ f.jelajahi }}"><p class="ft-h">{{ f.jelajahi }}</p><ul>
+{%- for l in f.link if not (l.get("syarat") == "produk" and not produk.tampil) %}<li><a href="{{ l.link }}">{{ l.teks }}</a></li>{% endfor -%}
+</ul></nav>
+<div><p class="ft-h">{{ f.hubungi }}</p><ul>
+{%- for k in f.kontak %}<li><a href="{{ kontak[k][1] }}">{{ kontak[k][0] }}</a></li>{% endfor -%}
+</ul></div>
+</div>
+<div class="ft-bottom"><span>&copy; {{ tahun }} Kemang Data · {{ f.lokasi }}</span>
+{%- if alt.get(lain) %}<a href="{{ alt[lain] }}" hreflang="{{ lain }}" lang="{{ lain }}">{{ teks[lain].bahasa_ini }}</a>{% endif %}</div>
+</footer>
 {%- endmacro %}
 
 {#- Link WhatsApp dengan pesan otomatis -#}
