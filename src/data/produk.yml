@@ -1,0 +1,5 @@
+# DIBUAT OTOMATIS dari kemang-data-ops/produk/katalog.yml (python produk/kd.py katalog). Jangan diedit manual.
+# Bagian "Templates" di /en/ tampil kalau minimal 1 produk ada di sini. Checkout di Etsy.
+# toko: link toko Etsy (opsional, satu-satunya isian manual di file ini).
+toko: ''
+produk: []

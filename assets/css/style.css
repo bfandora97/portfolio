@@ -78,6 +78,8 @@ pre{font:14px/1.55 ui-monospace,Consolas,monospace;background:var(--code);color:
 .card div{padding:14px 16px 16px}
 .card h3{font-size:20px;margin-bottom:6px}
 .card p{margin:0 0 10px;color:var(--muted);font-size:15px}
+#templates .grid{grid-template-columns:repeat(auto-fill,minmax(min(380px,100%),1fr))}
+.card .buy{display:inline-block;margin-top:12px;font-weight:600;color:var(--teal)}
 .tools{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
 .tools li{border:1px solid var(--ink);padding:2px 10px;border-radius:999px;font-size:13px}
 

@@ -2,6 +2,9 @@
 
 Paling baru di atas. Satu baris per PR.
 
+## 2026-11-24
+- PR #11: Bagian "Ready-made templates" di /en/ (checkout langsung ke Etsy + disclaimer merek Etsy). `src/data/produk.yml` dibuat otomatis dari katalog produk di repo ops (`python produk/kd.py katalog`); hanya produk berstatus live + ada link Etsy yang tampil.
+
 ## 2026-11-21
 - PR #10: Animasi contoh 3 adegan (berantakan → digabung → laporan di HP) di halaman utama ID/EN dan studi kasus. Isi di `src/data/alur.yml` (fiktif), tampilan di macro `alur()` + CSS 7c + `assets/js/alur.js`. Bisa dijeda; reduced motion = gambar diam.
 - PR #8: File verifikasi Google Search Console (`static/googlefdbe962ee824253f.html`). Jangan dihapus, atau verifikasi Google akan hilang.
