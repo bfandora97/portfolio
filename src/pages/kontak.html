@@ -1,0 +1,20 @@
+---
+# Kontak: /kontak/ (id) dan /en/contact/ (en). Tombol dari i18n halaman.kontak.tombol, akun dari site.yml.
+bahasa: {id: kontak/index.html, en: en/contact/index.html}
+halaman: kontak
+og_type: "website"
+scripts: [/assets/js/home.js]
+---
+{%- set h = t.halaman.kontak -%}
+<div class="wrap">
+{{ header() }}
+<main>
+{{ kepala_halaman() }}
+<section id="contact">
+<div class="kontak-tombol rv" style="--d:.2s">{{ tombol(h.tombol) }}</div>
+{%- set sosial = temukan_kami(t.footer.temukan_link) %}{% if sosial %}
+<h2 class="rv">{{ t.footer.temukan }}</h2>
+<ul class="sosial rv">{{ sosial }}</ul>{% endif %}
+</section>
+</main>
+{{ footer() }}</div>

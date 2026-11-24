@@ -5,8 +5,9 @@
 
 Struktur:
     src/pages/   isi tiap halaman (path file = path URL), diawali "front matter" YAML
-                 - `bahasa: [id, en]`  = SATU kerangka dibuat jadi 2 halaman: /<path> (id) dan /en/<path> (en),
-                                         title/description/og_image dari i18n `utama.meta`
+                 - `bahasa: [id, en]`  = SATU kerangka dibuat jadi 2 halaman: /<path> (id) dan /en/<path> (en)
+                 - `bahasa: {id: tentang/index.html, en: en/about/index.html}` = URL beda per bahasa
+                 - `halaman: tentang`  = title/description/og_image/judul dari i18n `halaman.tentang` (default beranda)
                  - `layout: kasus`     = halaman studi kasus (pembuka, kontak, footer otomatis)
     src/layouts/ base.html (kerangka <head>) + macros.html (semua komponen)
     src/data/    i18n/id.yml + i18n/en.yml  SEMUA teks per bahasa (kunci wajib sama persis, dicek di sini)
@@ -25,7 +26,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 ROOT = Path(__file__).parent
 SRC, OUT = ROOT / "src", ROOT / "_site"
 MACROS = ("header", "logo", "wa", "rupiah", "plan_card", "lightbox", "alur", "template_card", "footer", "kasus_pembuka",
-          "kasus_kontak", "daftar_proyek", "tombol", "cara_kerja", "faq", "kontak_utama")
+          "kasus_kontak", "daftar_proyek", "tombol", "cara_kerja", "faq", "kontak_utama", "temukan_kami", "kepala_halaman")
 BAHASA = ("id", "en")
 
 
@@ -105,11 +106,14 @@ def build():
         rel = src.relative_to(SRC / "pages")
         meta, body = split_front_matter(src.read_text(encoding="utf-8"), rel)
         if meta.get("bahasa"):  # satu kerangka, beberapa bahasa
-            hasil = {b: (rel if b == "id" else Path(b) / rel) for b in meta["bahasa"]}
+            bh = meta["bahasa"]  # [id, en] (path sama, en di bawah /en/) atau {id: tentang/index.html, en: en/about/index.html}
+            hasil = ({b: Path(p) for b, p in bh.items()} if isinstance(bh, dict)
+                     else {b: (rel if b == "id" else Path(b) / rel) for b in bh})
             alternates = {b: url_path(r) for b, r in hasil.items()}
             alternates["x-default"] = alternates["id"]
             for b, r in hasil.items():
-                m = dict(meta, lang=b, alternates=alternates, **data["i18n"][b]["utama"]["meta"])
+                h = data["i18n"][b]["halaman"][meta.get("halaman", "beranda")]
+                m = dict(meta, lang=b, alternates=alternates, title=h["title"], description=h["description"], og_image=h["og_image"])
                 jobs.append((rel, r, m, body))
         else:
             jobs.append((rel, rel, meta, body))

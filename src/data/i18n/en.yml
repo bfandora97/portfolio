@@ -8,28 +8,27 @@ label_bahasa: EN
 
 menu:
   utama:
-    - {teks: Examples, link: "#how"}
-    - {teks: Services, link: "#services", hp: false}
-    - {teks: Projects, link: "#projects", hp: false}
-    - {teks: Templates, link: "#templates", hp: false, syarat: produk}
-    - {teks: About, link: "#about", hp: false}
-    - {teks: Contact, link: "#contact", kecil: false}
+    - {teks: About, link: "/en/about/", hp: false}
+    - {teks: Services, link: "/en/services/"}
+    - {teks: Contact, link: "/en/contact/", kecil: false}
   kasus:
-    - {teks: All projects, link: "/en/#projects"}
-    - {teks: Contact, link: "#contact", kecil: false}
+    - {teks: All projects, link: "/en/services/#projects"}
+    - {teks: Contact, link: "/en/contact/", kecil: false}
 
 footer:
   tagline: "One auto-updating report from all your sales channels. Real profit per product and per channel, no more copy-pasting exports."
   jelajahi: Explore
   hubungi: Contact
   link:
-    - {teks: Examples, link: "/en/#how"}
-    - {teks: Services & pricing, link: "/en/#services"}
-    - {teks: Projects, link: "/en/#projects"}
-    - {teks: Templates, link: "/en/#templates", syarat: produk}
-    - {teks: How I work, link: "/en/#how-i-work"}
-    - {teks: FAQ, link: "/en/#faq"}
-  kontak: [upwork, email, linkedin, github]
+    - {teks: Home, link: "/en/"}
+    - {teks: About, link: "/en/about/", hp: false}
+    - {teks: Services, link: "/en/services/"}
+    - {teks: Example results, link: "/en/services/#examples"}
+    - {teks: Digital products, link: "/en/services/#templates", syarat: produk}
+    - {teks: Contact, link: "/en/contact/"}
+  kontak: [upwork, email, booking]
+  temukan: Find us
+  temukan_link: [etsy, instagram, tiktok, linkedin, upwork, github]
   lokasi: Jakarta, Indonesia
 
 kasus:
@@ -41,12 +40,40 @@ kasus:
     - {teks: Book a free 30-min call, link: booking, kelas: btn}
     - {teks: Email me, link: email, kelas: btn alt}
 
-utama:
-  meta:
+halaman:
+  beranda:
     title: "Kemang Data | Multi-channel Sales Dashboards & Data Cleaning"
     description: "See your real profit per product and channel. I merge Shopify, Amazon, Etsy and marketplace reports into one dashboard that updates itself. Data cleaning, Looker Studio and Power BI."
     og_image: /assets/img/og-image-en.png
+    judul: ""
+    lead: ""
+    tombol: []
+  tentang:
+    title: "About Kemang Data | Bobbi, data analyst in Jakarta"
+    description: "Kemang Data is run by Bobbi: 4 years of merging, cleaning and automating business data. How I work and frequently asked questions."
+    og_image: /assets/img/og-image-en.png
+    judul: About Kemang Data
+    lead: "Who does the work, how a project runs, and answers to the questions clients ask most."
+    tombol: []
+  layanan:
+    title: "Services & Pricing | Kemang Data"
+    description: "Data cleaning, automated multi-channel sales reports and dashboards for online sellers, with fixed prices, example results, case studies and spreadsheet templates."
+    og_image: /assets/img/og-image-en.png
+    judul: Services
+    lead: "What I build for you, what the results look like, and ready-made digital products you can use today."
+    tombol: []
+  kontak:
+    title: "Contact | Kemang Data"
+    description: "Book a free 30-minute call, hire me on Upwork, or send an email to Kemang Data."
+    og_image: /assets/img/og-image-en.png
+    judul: Contact
+    lead: "Pick whatever is easiest for you. The first call is free with no obligation. I reply myself, usually within a day."
+    tombol:
+      - {teks: Book a free 30-min call, link: booking, kelas: btn big}
+      - {teks: Hire me on Upwork, link: upwork, kelas: btn}
+      - {teks: Email me, link: email, kelas: btn alt}
 
+utama:
   hero:
     judul: "Selling on several channels but can&rsquo;t see your real profit?"
     isi: "I merge your Shopify, Amazon, Etsy and marketplace reports into <b>one dashboard that updates itself</b>, so you see real profit per product and per channel, after fees. No more copy-pasting exports every week."
@@ -69,6 +96,8 @@ utama:
     anchor: how
     judul: From messy exports to real profit
     lead: "Juniper Candle Co. sells on Shopify, Amazon, Etsy and at a weekend market. The shop and its numbers are fictional; the process is exactly what I do for you."
+    hasil_anchor: examples
+    hasil_judul: Example results
     alur: en_shop
     showcase:
       - judul: Automatic sales report
@@ -100,6 +129,7 @@ utama:
     anchor: services
     judul: "Services &amp; pricing"
     lead: "Fixed-price packages, 2 rounds of revisions included. Final scope and price are confirmed in writing before work starts."
+    semua: "See all services &rarr;"
     tanya: "Ask about this on Upwork &rarr;"
 
   proyek:

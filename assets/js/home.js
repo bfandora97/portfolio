@@ -1,6 +1,7 @@
-// Animasi titik di hero + efek muncul saat scroll (halaman utama ID & EN)
+// Animasi titik di hero (beranda) + efek muncul saat scroll (semua halaman utama: beranda, tentang, layanan, kontak)
 (function(){
-var c=document.getElementById('dots'),x=c.getContext('2d');
+var c=document.getElementById('dots');if(!c)return; // halaman tanpa hero titik (Tentang, Layanan, Kontak)
+var x=c.getContext('2d');
 var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 var tealc,dotc,tr=[14,124,123],dr=[82,96,122];
 function hex(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}

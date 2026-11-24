@@ -1,8 +1,7 @@
 ---
-# SATU kerangka halaman utama untuk 2 bahasa: dibuat jadi / (id) dan /en/ (en).
-# Semua teks ada di src/data/i18n/id.yml dan en.yml (bagian `utama`). title/description/og_image juga dari sana.
+# Beranda: SATU kerangka untuk / (id) dan /en/ (en). Teks: src/data/i18n/<bahasa>.yml (halaman.beranda + utama).
 bahasa: [id, en]
-menu: utama
+halaman: beranda
 og_type: "website"
 scripts: [/assets/js/home.js, /assets/js/alur.js]
 ---
@@ -26,45 +25,17 @@ scripts: [/assets/js/home.js, /assets/js/alur.js]
 <section id="{{ u.contoh.anchor }}"><h2 class="rv">{{ u.contoh.judul }}</h2>
 <p class="lead rv">{{ u.contoh.lead }}</p>
 {{ alur(alur_data[u.contoh.alur]) }}
-{% for s in u.contoh.showcase %}<div class="showcase rv">
-{%- if s.link %}<a class="shot" href="{{ s.link }}">{% else %}<figure class="shot">{% endif %}<img src="{{ s.gambar }}" width="{{ s.lebar }}" height="{{ s.tinggi }}" alt="{{ s.alt }}" loading="lazy">{% if s.link %}</a>{% else %}</figure>{% endif %}
-<div><h3>{{ s.judul }}</h3><ul class="wins">
-{% for p in s.poin %}<li>{{ p }}</li>
-{% endfor %}</ul>
-{%- if s.link %}
-<a class="more" href="{{ s.link }}">{{ s.link_teks }}</a>{% endif %}</div></div>
-{% endfor %}</section>
+</section>
 
 <section id="{{ u.jasa.anchor }}"><h2 class="rv">{{ u.jasa.judul }}</h2>
 <p class="lead rv">{{ u.jasa.lead }}</p>
 <div class="plans">
-{#- Kartu dibuat dari src/data/paket.yml -#}
-{% for p in paket if p.get("web" if page.lang == "id" else "web_en") %}
+{#- 3 paket pertama dari src/data/paket.yml; semua paket di halaman Layanan -#}
+{% for p in paket if p.get("web" if page.lang == "id" else "web_en") %}{% if loop.index <= 3 %}
 {{ plan_card(p, page.lang) }}
-{% endfor %}
-</div></section>
-
-<section id="projects"><h2 class="rv">{{ u.proyek.judul }}</h2>
-<p class="lead rv">{{ u.proyek.lead }}</p>
-{{ daftar_proyek() }}</section>
-
-{% if produk.tampil -%}
-<section id="templates"><h2 class="rv">{{ u.template.judul }}</h2>
-<p class="lead rv">{{ u.template.lead }}</p>
-<div class="grid">{% for p in produk.tampil %}{{ template_card(p, "%.1fs" % (loop.index / 10)) }}{% endfor %}</div>
-{% if produk.toko %}<p class="rv"><a href="{{ produk.toko }}" target="_blank" rel="noopener">{{ u.template.toko }}</a></p>{% endif %}
-<p class="note">{{ u.template.catatan }}</p>
-</section>
-{%- endif %}
-
-{{ cara_kerja() }}
-
-<section id="{{ u.tentang.anchor }}"><h2 class="rv">{{ u.tentang.judul }}</h2>
-<div class="about rv"><img class="avatar" src="/assets/img/bobbi.jpg" alt="{{ u.tentang.foto_alt }}" width="140" height="140"><div>
-{% for p in u.tentang.paragraf %}<p>{{ p }}</p>
-{% endfor %}</div></div></section>
-
-{{ faq() }}
+{% endif %}{% endfor %}
+</div>
+<p class="rv"><a class="more" href="{{ t.menu.utama[1].link }}">{{ u.jasa.semua }}</a></p></section>
 </main></div>
 {{ kontak_utama() }}
 <div class="wrap">{{ footer() }}</div>

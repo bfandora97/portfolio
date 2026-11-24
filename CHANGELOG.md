@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-24
+- PR: Website jadi beberapa halaman: Beranda (lebih pendek), Tentang (/tentang/, /en/about/), Layanan (/layanan/, /en/services/), Kontak (/kontak/, /en/contact/). Menu Tentang · Layanan · Kontak. "Temukan kami" (Etsy, Instagram, TikTok, LinkedIn, Upwork) di halaman Kontak + footer; akun kosong otomatis tersembunyi. build.py: URL beda per bahasa + meta per halaman dari i18n `halaman`. home.js aman di halaman tanpa kanvas.
 - PR: Link booking Cal.com diisi (`cal.com/kemangdata-pcij5n/30min`), tombol booking tampil di kontak halaman utama & studi kasus ID/EN.
 - PR: Tombol booking konsultasi 30 menit (Cal.com) lewat data: `booking:` di `src/data/site.yml` + tombol `link: booking` di i18n (kontak halaman utama & studi kasus, ID & EN). Kosong = tidak tampil. Menggantikan PR #9.
 - PR: ID & EN jadi satu kerangka. `src/pages/index.html` dibuat jadi / dan /en/ (`bahasa: [id, en]`), semua teks di `src/data/i18n/id.yml` + `en.yml` (menggantikan teks.yml, konten.yml dan src/pages/en/index.html). Urutan bagian & menu sama: Masalah, Contoh, Jasa, Proyek, (Template), Cara kerja, Tentang, FAQ, Kontak. Contoh per pasar (Kopi Senja/Rupiah vs Juniper/USD). EN dapat contoh showcase + tombol tanya paket; ID dapat bagian Template. Build gagal kalau kunci ID/EN beda. Gaya bicara "saya".

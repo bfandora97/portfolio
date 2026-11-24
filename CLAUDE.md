@@ -5,7 +5,12 @@ Website Kemang Data. Halaman dirakit oleh `build.py` (Python + Jinja2) ke `_site
 ## Struktur
 
 ```
-src/pages/        isi tiap halaman; path file = URL. index.html = SATU kerangka untuk / (id) dan /en/ (en) lewat `bahasa: [id, en]`
+src/pages/        isi tiap halaman. Halaman utama = SATU kerangka untuk 2 bahasa (`bahasa:` di front matter):
+                    index.html   -> /           & /en/           (Beranda: hero, masalah, animasi contoh, 3 paket)
+                    tentang.html -> /tentang/   & /en/about/     (profil, cara kerja, FAQ)
+                    layanan.html -> /layanan/   & /en/services/  (semua paket, contoh hasil, studi kasus, produk digital)
+                    kontak.html  -> /kontak/    & /en/contact/   (booking, WA/Upwork, email, Temukan kami)
+                  + halaman studi kasus (layout kasus)
 src/layouts/      base.html (kerangka <head>, script) + macros.html (header, wa(), plan_card, lightbox, ...)
 src/data/i18n/    id.yml + en.yml: SEMUA teks per bahasa (menu, footer, halaman utama, label). Kunci wajib sama persis (build gagal kalau beda)
 src/data/         site.yml (WA, email, link) + paket.yml (HARGA, satu-satunya sumber) + alur.yml (isi animasi contoh, data fiktif) + proyek.yml (kartu proyek, tampil ya/tidak) + produk.yml (template Etsy, DIBUAT OTOMATIS dari repo ops: `python produk/kd.py katalog`, jangan diedit manual)
@@ -33,7 +38,9 @@ python -m http.server -d _site 8000      # http://localhost:8000
 ## Aturan isi
 
 - **Harga hanya diubah di `src/data/paket.yml`.** Setelah itu, di repo ops (`kemang-data-ops`, folder induk) jalankan `tools/sync_marketplace.py` dan `tools/build_fastwork.py` supaya marketplace ikut.
-- Nomor WA, email, link profil: hanya di `src/data/site.yml`. Link WA dibuat dengan `{{ wa("pesan") }}`.
+- Nomor WA, email, link profil, booking Cal.com, Instagram, TikTok: hanya di `src/data/site.yml` (kosong = tidak tampil). Toko Etsy: `toko:` di `src/data/produk.yml`.
+- Menu = Tentang · Layanan · Kontak (di HP: Layanan · Kontak). Judul/deskripsi tiap halaman di i18n `halaman.<nama>`; halaman baru = file di `src/pages/` dengan `bahasa: {id: ..., en: ...}` + `halaman: <nama>`.
+- Link WA dibuat dengan `{{ wa("pesan") }}`.
 - **ID dan EN sama bentuknya.** Satu kerangka, teks di `src/data/i18n/id.yml` dan `en.yml` dengan kunci yang sama. Isi boleh menyesuaikan pasar (contoh Kopi Senja + Rupiah untuk ID, toko online + USD untuk EN), bagian/urutan/menu tidak boleh beda. Menambah teks = tambahkan di KEDUA file. Gaya bicara: "saya" / "I".
 - Menu & footer: JANGAN ditulis di halaman. Halaman cukup memanggil `{{ header() }}` dan `{{ footer() }}`; isinya dari `src/data/i18n/<bahasa>.yml` sesuai `lang` + `menu` (utama/kasus) di front matter. Tombol ganti bahasa otomatis dari `alternates`. Di HP maksimal 3 link (`hp: false` untuk sisanya), tanpa burger menu.
 - **Anti kode berulang**: kalau sesuatu muncul 2x atau lebih, jadikan data (`src/data/`) + macro (`macros.html`). ID & EN berbagi macro, isinya terpisah per bahasa. `style="..."` hanya untuk variabel CSS (`--d`); link WA/email/Upwork/LinkedIn hanya dari `site.yml`. Dicek otomatis oleh `tools/check_site.py` (build gagal kalau dilanggar).
