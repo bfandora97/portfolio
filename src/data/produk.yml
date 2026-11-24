@@ -1,19 +1,5 @@
-# Template digital yang dijual di Etsy (checkout di Etsy, bukan di website ini).
-# Produk dengan `etsy: ""` (kosong) TIDAK tampil. Bagian "Templates" di /en/ baru muncul
-# kalau minimal 1 produk punya link Etsy. Harga tidak ditulis di sini: pembeli melihatnya di Etsy.
-toko: ""   # link toko Etsy (opsional), contoh https://www.etsy.com/shop/NamaToko
-
-produk:
-  - nama: Monthly Budget Planner
-    gambar: /assets/img/template-budget-planner.png
-    alt: "Monthly Budget Planner spreadsheet dashboard showing safe to spend, cash flow and expected vs actual (sample data)"
-    ringkas: "Know what's safe to spend, not just what you spent. Bills, debts and savings you haven't paid yet are subtracted for you. 12 months in one file."
-    format: [Google Sheets, Excel, Light & dark, PDF guide]
-    etsy: ""   # link listing Etsy
-
-  - nama: Etsy Seller Profit Calculator
-    gambar: /assets/img/template-profit-calculator.png
-    alt: "Etsy Seller Profit Calculator spreadsheet: monthly summary and chart (fictional sample data)"
-    ringkas: "Your real profit per product and per order, after Etsy fees, shipping and your time. Shows the price you need to hit your target margin."
-    format: [Excel, Google Sheets, Instant download]
-    etsy: ""   # link listing Etsy, contoh https://www.etsy.com/listing/1234567890/...
+# DIBUAT OTOMATIS dari kemang-data-ops/produk/katalog.yml (python produk/kd.py katalog). Jangan diedit manual.
+# Bagian "Templates" di /en/ tampil kalau minimal 1 produk ada di sini. Checkout di Etsy.
+# toko: link toko Etsy (opsional, satu-satunya isian manual di file ini).
+toko: ''
+produk: []

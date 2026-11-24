@@ -3,7 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-24
-- PR: Bagian "Ready-made templates" di /en/ (Monthly Budget Planner + Etsy Seller Profit Calculator, checkout langsung ke Etsy). Data di `src/data/produk.yml`; produk baru tampil setelah link Etsy diisi.
+- PR: Bagian "Ready-made templates" di /en/ (checkout langsung ke Etsy + disclaimer merek Etsy). `src/data/produk.yml` dibuat otomatis dari katalog produk di repo ops (`python produk/kd.py katalog`); hanya produk berstatus live + ada link Etsy yang tampil.
 
 ## 2026-11-21
 - PR #8: File verifikasi Google Search Console (`static/googlefdbe962ee824253f.html`). Jangan dihapus, atau verifikasi Google akan hilang.
