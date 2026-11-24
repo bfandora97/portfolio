@@ -81,13 +81,23 @@ halaman:
 
 utama:
   hero:
-    judul: Jualan ramai, tapi untung sebenarnya tidak kelihatan?
-    isi: "Untuk UMKM yang jualan di outlet, GoFood/GrabFood, dan Shopee. Semua laporan saya gabungkan jadi <b>satu laporan otomatis di HP</b>: untung per produk dan per channel langsung kelihatan, tanpa rekap manual."
+    label: Laporan penjualan & dashboard untuk UMKM
+    judul: Lihat untung sebenarnya dari tiap channel, langsung di HP.
+    isi: "Outlet, GoFood/GrabFood, dan Shopee saya gabungkan jadi <b>1 laporan otomatis</b>. Untung per produk dan per channel langsung kelihatan, tanpa rekap manual tiap minggu."
     tombol:
       - {teks: Konsultasi gratis via WhatsApp, link: "wa:Halo Kemang Data, saya mau konsultasi soal laporan penjualan usaha saya.", kelas: btn}
-      - {teks: Lihat contoh hasil, link: "#contoh", kelas: btn alt}
-    cocok: "Cocok untuk:"
-    cocok_isi: ["Kedai &amp; resto", Toko online, "Retail &amp; distributor"]
+      - {teks: Jadwalkan call 30 menit, link: booking, kelas: btn alt}
+    harga: "Mulai <b>{harga}</b> · selesai {hari} hari · 2x revisi"
+    oleh: "Dikerjakan langsung oleh <b>Bobbi</b> · 4 tahun di bidang data"
+    gambar_alt: "Contoh laporan penjualan otomatis untuk kedai kopi (data fiktif)"
+    gambar_label: Contoh hasil · data fiktif
+
+  layanan_ringkas:
+    judul: Yang bisa saya bantu
+    detail: "Detail &rarr;"
+    template_nama: Template spreadsheet siap pakai
+    template_isi: Budget planner, kalkulator untung, dan lainnya
+    template_harga: Beli di Etsy
 
   masalah:
     anchor: masalah

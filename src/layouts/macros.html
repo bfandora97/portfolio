@@ -186,3 +186,27 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 {%- set i = ikon_data.ikon.get(nama) -%}
 {%- if i %}<svg class="ik" viewBox="0 0 24 24" aria-hidden="true" focusable="false"{% if i.garis %} fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"{% else %} fill="currentColor"{% endif %}>{{ i.svg }}</svg>{% endif -%}
 {%- endmacro %}
+
+
+{#- Patokan harga di hero: harga termurah + rentang hari dihitung dari src/data/paket.yml (paket yang tampil di web). -#}
+{% macro hero_harga() -%}
+{%- set en = page.lang == "en" -%}
+{%- set tampil = [] %}{% for p in paket if p.get("web_en" if en else "web") %}{% for t in p.tingkat %}{% set _ = tampil.append(t) %}{% endfor %}{% endfor -%}
+{%- set hari = tampil|selectattr("waktu")|map(attribute="waktu")|list -%}
+{%- set murah = tampil|map(attribute="usd" if en else "harga")|min -%}
+{{ i18n[page.lang].utama.hero.harga.replace("{harga}", ("$" ~ murah) if en else rupiah(murah)).replace("{hari}", (hari|min) ~ "&ndash;" ~ (hari|max)) }}
+{%- endmacro %}
+
+{#- Strip "Yang bisa saya bantu": 3 paket pertama (nama, alat, harga mulai) + kartu template kalau ada produk Etsy live. -#}
+{% macro layanan_ringkas() -%}
+{%- set en = page.lang == "en" -%}{%- set u = i18n[page.lang].utama -%}
+{%- set ke = i18n[page.lang].menu.utama[1].link -%}
+<div class="ringkas">
+{%- for p in paket if p.get("web_en" if en else "web") %}{% if loop.index <= 3 %}{% set t = p.tingkat[0] %}
+<a class="rk rv"{% if not loop.first %} style="--d:.{{ loop.index0 }}s"{% endif %} href="{{ ke }}#{{ u.jasa.anchor }}"><h3>{{ p.nama_en if en else p.nama }}</h3><p>{{ p.get("alat_en") if en else p.get("alat") }}</p><b>{% if en %}${{ t.usd }}{% else %}{{ rupiah(t.harga) }}{% endif %}<small>{{ p.satuan_en if en else p.satuan }}</small></b><span>{{ u.layanan_ringkas.detail }}</span></a>
+{%- endif %}{% endfor %}
+{%- if produk.tampil %}
+<a class="rk rv" style="--d:.3s" href="{{ ke }}#templates"><h3>{{ u.layanan_ringkas.template_nama }}</h3><p>{{ u.layanan_ringkas.template_isi }}</p><b>{{ u.layanan_ringkas.template_harga }}</b><span>{{ u.layanan_ringkas.detail }}</span></a>
+{%- endif %}
+</div>
+{%- endmacro %}

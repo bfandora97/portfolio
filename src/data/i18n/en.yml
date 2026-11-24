@@ -75,13 +75,23 @@ halaman:
 
 utama:
   hero:
-    judul: "Selling on several channels but can&rsquo;t see your real profit?"
-    isi: "I merge your Shopify, Amazon, Etsy and marketplace reports into <b>one dashboard that updates itself</b>, so you see real profit per product and per channel, after fees. No more copy-pasting exports every week."
+    label: Sales reports & dashboards for online sellers
+    judul: See your real profit per channel, on one screen.
+    isi: "I merge your Shopify, Amazon, Etsy and marketplace exports into <b>1 report that updates itself</b>. Real profit per product and per channel, after fees. No more weekly copy-pasting."
     tombol:
       - {teks: Hire me on Upwork, link: upwork, kelas: btn}
-      - {teks: See an example, link: "#how", kelas: btn alt}
-    cocok: "Made for:"
-    cocok_isi: [Online shops, Multi-channel sellers, Small brands]
+      - {teks: Book a free 30-min call, link: booking, kelas: btn alt}
+    harga: "From <b>{harga}</b> · delivered in {hari} days · 2 revisions"
+    oleh: "Done by <b>Bobbi</b> myself · 4 years in data"
+    gambar_alt: "Example automated sales dashboard (fictional data)"
+    gambar_label: Example result · fictional data
+
+  layanan_ringkas:
+    judul: What I can do for you
+    detail: "Details &rarr;"
+    template_nama: Ready-made spreadsheet templates
+    template_isi: Budget planner, profit calculator and more
+    template_harga: Buy on Etsy
 
   masalah:
     anchor: problems
