@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-24
+- PR: Perbaikan footer jatuh jadi 1 kolom di desktop (aturan grid CSS tidak sah), sekarang 4 kolom.
 - PR: Website jadi beberapa halaman: Beranda (lebih pendek), Tentang (/tentang/, /en/about/), Layanan (/layanan/, /en/services/), Kontak (/kontak/, /en/contact/). Menu Tentang · Layanan · Kontak. "Temukan kami" (Etsy, Instagram, TikTok, LinkedIn, Upwork) di halaman Kontak + footer; akun kosong otomatis tersembunyi. build.py: URL beda per bahasa + meta per halaman dari i18n `halaman`. home.js aman di halaman tanpa kanvas.
 - PR: Link booking Cal.com diisi (`cal.com/kemangdata-pcij5n/30min`), tombol booking tampil di kontak halaman utama & studi kasus ID/EN.
 - PR: Tombol booking konsultasi 30 menit (Cal.com) lewat data: `booking:` di `src/data/site.yml` + tombol `link: booking` di i18n (kontak halaman utama & studi kasus, ID & EN). Kosong = tidak tampil. Menggantikan PR #9.

@@ -28,7 +28,7 @@ footer:
     - {teks: Contact, link: "/en/contact/"}
   kontak: [upwork, email, booking]
   temukan: Find us
-  temukan_link: [etsy, instagram, tiktok, linkedin, upwork, github]
+  temukan_link: [etsy, instagram, tiktok, linkedin, github]
   lokasi: Jakarta, Indonesia
 
 kasus:
