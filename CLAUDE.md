@@ -5,9 +5,10 @@ Website Kemang Data. Halaman dirakit oleh `build.py` (Python + Jinja2) ke `_site
 ## Struktur
 
 ```
-src/pages/        isi tiap halaman; path file = URL (src/pages/en/index.html -> /en/)
+src/pages/        isi tiap halaman; path file = URL. index.html = SATU kerangka untuk / (id) dan /en/ (en) lewat `bahasa: [id, en]`
 src/layouts/      base.html (kerangka <head>, script) + macros.html (header, wa(), plan_card, lightbox, ...)
-src/data/         site.yml (WA, email, link) + paket.yml (HARGA, satu-satunya sumber) + alur.yml (isi animasi contoh, data fiktif) + teks.yml (MENU, FOOTER, label UI per bahasa) + proyek.yml (kartu proyek, tampil ya/tidak) + konten.yml (cara kerja, FAQ, kontak halaman utama) + produk.yml (template Etsy, DIBUAT OTOMATIS dari repo ops: `python produk/kd.py katalog`, jangan diedit manual)
+src/data/i18n/    id.yml + en.yml: SEMUA teks per bahasa (menu, footer, halaman utama, label). Kunci wajib sama persis (build gagal kalau beda)
+src/data/         site.yml (WA, email, link) + paket.yml (HARGA, satu-satunya sumber) + alur.yml (isi animasi contoh, data fiktif) + proyek.yml (kartu proyek, tampil ya/tidak) + produk.yml (template Etsy, DIBUAT OTOMATIS dari repo ops: `python produk/kd.py katalog`, jangan diedit manual)
 assets/css/       style.css (dikelompokkan per bagian, lihat komentar di atasnya)
 assets/js/        theme.js (mode gelap + header), home.js (animasi halaman utama), case.js (tab gambar + layar penuh), alur.js (animasi contoh 3 adegan)
 assets/img/       semua gambar
@@ -33,11 +34,12 @@ python -m http.server -d _site 8000      # http://localhost:8000
 
 - **Harga hanya diubah di `src/data/paket.yml`.** Setelah itu, di repo ops (`kemang-data-ops`, folder induk) jalankan `tools/sync_marketplace.py` dan `tools/build_fastwork.py` supaya marketplace ikut.
 - Nomor WA, email, link profil: hanya di `src/data/site.yml`. Link WA dibuat dengan `{{ wa("pesan") }}`.
-- Menu & footer: JANGAN ditulis di halaman. Halaman cukup memanggil `{{ header() }}` dan `{{ footer() }}`; isinya dari `src/data/teks.yml` sesuai `lang` + `menu` (utama/kasus) di front matter. Tombol ganti bahasa otomatis dari `alternates`. Di HP maksimal 3 link (`hp: false` untuk sisanya), tanpa burger menu.
+- **ID dan EN sama bentuknya.** Satu kerangka, teks di `src/data/i18n/id.yml` dan `en.yml` dengan kunci yang sama. Isi boleh menyesuaikan pasar (contoh Kopi Senja + Rupiah untuk ID, toko online + USD untuk EN), bagian/urutan/menu tidak boleh beda. Menambah teks = tambahkan di KEDUA file. Gaya bicara: "saya" / "I".
+- Menu & footer: JANGAN ditulis di halaman. Halaman cukup memanggil `{{ header() }}` dan `{{ footer() }}`; isinya dari `src/data/i18n/<bahasa>.yml` sesuai `lang` + `menu` (utama/kasus) di front matter. Tombol ganti bahasa otomatis dari `alternates`. Di HP maksimal 3 link (`hp: false` untuk sisanya), tanpa burger menu.
 - **Anti kode berulang**: kalau sesuatu muncul 2x atau lebih, jadikan data (`src/data/`) + macro (`macros.html`). ID & EN berbagi macro, isinya terpisah per bahasa. `style="..."` hanya untuk variabel CSS (`--d`); link WA/email/Upwork/LinkedIn hanya dari `site.yml`. Dicek otomatis oleh `tools/check_site.py` (build gagal kalau dilanggar).
-- Halaman utama: `{{ cara_kerja() }}`, `{{ faq() }}`, `{{ kontak_utama() }}`, `{{ daftar_proyek() }}` mengambil isi dari data sesuai bahasa halaman. Tombol dari data pakai `{{ tombol(daftar) }}`.
+- Halaman utama (`src/pages/index.html`): semua teks dari `t.utama` (i18n). Macro `cara_kerja()`, `faq()`, `kontak_utama()`, `daftar_proyek()`, `tombol(daftar)`. Tombol: `link` = url / upwork / email / linkedin / github / `"wa:pesan"`.
 - Studi kasus: front matter `layout: kasus` + `kasus:` (judul, langkah, kpi, galeri, kontak); pembuka, tombol kontak, galeri layar penuh dan footer dibuat otomatis. Halaman hanya berisi bagian unik. Tambahkan juga kartunya di `src/data/proyek.yml`.
 - Halaman baru: buat file di `src/pages/` dengan front matter (`title`, `description`, `lang` wajib; `menu: utama` untuk halaman utama, `og_image`, `og_type`, `scripts`, `alternates`, `sitemap: false` opsional). Sitemap otomatis.
 - Link internal & gambar pakai path absolut (`/assets/img/x.png`, `/#contact`).
 - **Repo ini public**: tidak boleh ada data kantor, data klien asli, nama perusahaan asli dari pekerjaan kantor, atau catatan internal. Data demo harus fiktif dan diberi label.
-- Fase sekarang menyasar UMKM Indonesia (halaman utama Bahasa Indonesia) + Upwork (`/en/`). Jangan menonjolkan industri pameran/event.
+- Fase sekarang menyasar UMKM Indonesia (`/`) + toko online internasional via Upwork (`/en/`), dengan halaman yang sama bentuknya. Jangan menonjolkan industri pameran/event.

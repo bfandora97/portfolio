@@ -245,7 +245,7 @@ a.btn:hover{background:var(--yellow);color:#101b2d;border-color:var(--yellow)}
 a.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 .contact{padding:40px 0 48px}
 .contact a.btn{min-width:170px;text-align:center}
-.page2{position:relative;min-height:100vh;display:flex;align-items:center;margin-top:56px;background:var(--p2);overflow:hidden}
+.page2{position:relative;padding:72px 0;display:flex;align-items:center;margin-top:56px;background:var(--p2);overflow:hidden}
 .page2::before{content:"";position:absolute;inset:-60px 0;background-image:radial-gradient(circle,rgba(var(--p2dot),.30) 3px,transparent 3.5px);background-size:36px 36px;background-position:0 var(--py,0px)}
 .page2 .wrap{position:relative;width:100%}
 .page2 h2{font-size:clamp(32px,5.4vw,60px);max-width:16ch;letter-spacing:-.02em}

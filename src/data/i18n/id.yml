@@ -1,0 +1,151 @@
+# SEMUA TEKS BAHASA INDONESIA. Pasangannya: en.yml dengan KUNCI YANG SAMA PERSIS.
+# build.py gagal kalau ada kunci (atau jumlah item daftar) yang tidak sama di id.yml dan en.yml,
+# jadi versi ID dan EN tidak bisa beda bentuk. Isi boleh menyesuaikan pasar (contoh & harga), bentuknya tidak.
+#
+# Halaman utama: SATU kerangka (src/pages/index.html) dibuat jadi / (id) dan /en/ (en). Teksnya di `utama`.
+# Menu: urutan = urutan bagian di halaman. hp: false = sembunyi di HP (maks 3 link di HP), kecil: false = sembunyi di HP <= 380px,
+#       syarat: produk = hanya tampil kalau ada template Etsy live (src/data/produk.yml).
+# Tombol: link = url / upwork / email / linkedin / github (dari site.yml) / "wa:isi pesan WhatsApp"; kelas = btn big / btn / btn alt.
+
+beranda: /
+mode_gelap: Ganti mode gelap
+bahasa_ini: Bahasa Indonesia
+label_bahasa: ID
+
+menu:
+  utama:
+    - {teks: Contoh, link: "#contoh"}
+    - {teks: Jasa, link: "#jasa", hp: false}
+    - {teks: Proyek, link: "#projects", hp: false}
+    - {teks: Template, link: "#templates", hp: false, syarat: produk}
+    - {teks: Tentang, link: "#tentang", hp: false}
+    - {teks: Kontak, link: "#contact", kecil: false}
+  kasus:
+    - {teks: Semua proyek, link: "/#projects"}
+    - {teks: Kontak, link: "#contact", kecil: false}
+
+footer:
+  tagline: "Satu laporan otomatis dari semua channel jualan. Untung per produk dan per channel langsung kelihatan, tanpa rekap manual."
+  jelajahi: Jelajahi
+  hubungi: Hubungi
+  link:
+    - {teks: Contoh hasil, link: "/#contoh"}
+    - {teks: Jasa & harga, link: "/#jasa"}
+    - {teks: Proyek, link: "/#projects"}
+    - {teks: Template, link: "/#templates", syarat: produk}
+    - {teks: Cara kerja, link: "/#cara-kerja"}
+    - {teks: Pertanyaan umum, link: "/#faq"}
+  kontak: [whatsapp, email, linkedin]
+  lokasi: Jakarta
+
+kasus:
+  langkah: Langkah proyek
+  layar_penuh: Layar penuh
+  lightbox: [Dashboard layar penuh, Gambar sebelumnya, Gambar berikutnya, Tutup]
+  tombol:
+    - {teks: Chat WhatsApp, link: "wa:Halo Kemang Data, saya mau tanya soal dashboard penjualan.", kelas: btn big}
+    - {teks: Kirim email, link: email, kelas: btn alt}
+
+utama:
+  meta:
+    title: "Kemang Data | Laporan Penjualan Otomatis untuk UMKM"
+    description: "Gabungkan laporan outlet, GoFood/GrabFood, dan Shopee jadi satu laporan otomatis di HP. Lihat untung sebenarnya per produk dan per channel. Konsultasi gratis via WhatsApp."
+    og_image: /assets/img/og-image.png
+
+  hero:
+    judul: Jualan ramai, tapi untung sebenarnya tidak kelihatan?
+    isi: "Untuk UMKM yang jualan di outlet, GoFood/GrabFood, dan Shopee. Semua laporan saya gabungkan jadi <b>satu laporan otomatis di HP</b>: untung per produk dan per channel langsung kelihatan, tanpa rekap manual."
+    tombol:
+      - {teks: Konsultasi gratis via WhatsApp, link: "wa:Halo Kemang Data, saya mau konsultasi soal laporan penjualan usaha saya.", kelas: btn}
+      - {teks: Lihat contoh hasil, link: "#contoh", kelas: btn alt}
+    cocok: "Cocok untuk:"
+    cocok_isi: ["Kedai &amp; resto", Toko online, "Retail &amp; distributor"]
+
+  masalah:
+    anchor: masalah
+    judul: Masalah yang sering saya bantu
+    daftar:
+      - {q: "Tiap Senin rekap penjualan, bisa setengah hari.", a: "Laporan dari semua channel jadi satu dan ter-update sendiri."}
+      - {q: "Omzet naik, tapi uangnya segitu-segitu saja.", a: "Untung per channel kelihatan, sudah dipotong komisi aplikasi."}
+      - {q: "Nggak tahu produk mana yang sebenarnya rugi.", a: "Produk laris vs produk yang bikin stok menumpuk, jelas dalam satu layar."}
+      - {q: "Nomor pelanggan banyak, tapi berantakan.", a: "Daftar pelanggan rapi tanpa dobel, siap untuk promo WhatsApp."}
+
+  contoh:
+    anchor: contoh
+    judul: Contoh hasil
+    lead: "Kopi Senja: kedai kopi dengan 2 outlet, GoFood/GrabFood, dan Shopee. Usaha dan angkanya fiktif, dibuat untuk menunjukkan hasil yang bisa Anda dapatkan."
+    alur: id
+    showcase:
+      - judul: Laporan penjualan otomatis
+        gambar: /assets/img/umkm-sales-dashboard.png
+        lebar: 1600
+        tinggi: 1000
+        alt: Contoh laporan penjualan otomatis Kopi Senja (fiktif)
+        link: /umkm-sales-dashboard.html
+        link_teks: "Lihat studi kasus lengkap &rarr;"
+        poin:
+          - "<b>Rekap 4 jam per minggu &rarr; otomatis.</b> Pemilik cukup buka 1 link di HP."
+          - "<b>Ketahuan margin GoFood/GrabFood cuma 41%</b>, dibanding 61% di outlet, karena komisi aplikasi."
+          - "<b>2 produk bikin stok menumpuk</b> dan disarankan dihentikan."
+          - "<b>Jam paling ramai 15.00&ndash;18.00</b>: waktu yang pas untuk tambah karyawan atau promo."
+      - judul: Data pelanggan dirapikan
+        gambar: /assets/img/contoh-rapikan-data.png
+        lebar: 1280
+        tinggi: 960
+        alt: Contoh data pelanggan sebelum dan sesudah dirapikan (fiktif)
+        link: ""
+        link_teks: ""
+        poin:
+          - "<b>8 baris berantakan &rarr; 5 pelanggan unik.</b> Data dobel dibuang."
+          - "<b>Nomor HP diseragamkan</b> ke format +62, siap untuk WhatsApp."
+          - "<b>Typo email diperbaiki</b> (gmial, hotmial, .con) dan nama kota disamakan."
+          - "<b>Ada laporan singkat</b> berisi apa saja yang diperbaiki."
+
+  jasa:
+    anchor: jasa
+    judul: "Jasa &amp; harga"
+    lead: "Harga mulai dari angka di bawah. Harga final saya sampaikan setelah melihat contoh data Anda, sebelum pekerjaan dimulai. Semua paket termasuk 2x revisi."
+    tanya: "Tanya paket ini &rarr;"
+
+  proyek:
+    judul: Proyek
+    lead: "Studi kasus lengkap: masalahnya, apa yang dikerjakan, dan hasilnya."
+
+  template:
+    judul: Template siap pakai
+    lead: "Template spreadsheet buatan saya, dijual di Etsy. Cukup isi beberapa sel, rumusnya yang bekerja. Langsung diunduh, pembayaran aman lewat Etsy."
+    beli: "Beli di Etsy &rarr;"
+    toko: "Lihat semua template di toko Etsy saya &rarr;"
+    catatan: "Etsy adalah merek dagang Etsy, Inc. Template ini tidak dibuat atau didukung oleh Etsy, Inc."
+
+  cara_kerja:
+    anchor: cara-kerja
+    judul: Cara kerja
+    langkah:
+      - {judul: Kirim contoh data, isi: "Chat WhatsApp, kirim 10&ndash;20 baris contoh (boleh disamarkan) dan ceritakan apa yang ingin dipantau."}
+      - {judul: Estimasi gratis, isi: "Saya kirim lingkup kerja, harga, dan waktu secara tertulis. Tidak ada biaya sebelum Anda setuju."}
+      - {judul: "Dikerjakan &amp; direvisi", isi: "Hasil dikirim sesuai jadwal, termasuk 2x revisi. Untuk dashboard, saya ajari cara pakainya."}
+
+  tentang:
+    anchor: tentang
+    judul: Tentang Kemang Data
+    foto_alt: Foto Bobbi, pendiri Kemang Data
+    paragraf:
+      - "Halo, saya <b>Bobbi</b>, pendiri Kemang Data. Sudah 4 tahun saya bekerja di bidang data: menggabungkan data dari banyak sistem, membersihkan data yang berantakan, membuat dashboard di Power BI dan Looker Studio, serta mengotomatiskan laporan yang tadinya dikerjakan manual."
+      - "Kemang Data saya dirikan di Jakarta untuk membawa cara kerja itu ke UMKM: laporan yang rapi, angka yang bisa dipercaya, dan keputusan yang lebih cepat. Saya sendiri yang mengerjakan dan membalas chat Anda."
+
+  faq:
+    judul: Pertanyaan umum
+    tanya:
+      - {t: "Apakah data usaha saya aman?", j: "Ya. Data hanya dipakai untuk mengerjakan pesanan Anda, tidak dibagikan ke pihak lain, dan dihapus setelah proyek selesai kalau Anda minta. Saya mengikuti prinsip UU Pelindungan Data Pribadi."}
+      - {t: "Saya tidak paham teknis. Apakah bisa?", j: "Bisa. Anda cukup cerita masalahnya dan kirim file yang biasa Anda pakai. Hasil akhirnya saya jelaskan dengan bahasa sederhana, dan dashboard bisa dibuka di HP."}
+      - {t: "Perlu beli software?", j: "Tidak harus. Google Sheets dan Looker Studio gratis. Power BI hanya saya sarankan kalau tim Anda sudah memakainya."}
+      - {t: "Bagaimana cara bayarnya?", j: "Transfer bank. Untuk proyek di atas Rp1 juta bisa DP 50% di awal dan pelunasan sebelum serah terima. Bisa juga lewat Fastwork atau Upwork."}
+      - {t: "Kalau butuh tambahan di luar paket?", j: "Bisa. Saya sampaikan biaya dan waktunya dulu, dan dikerjakan setelah Anda setuju."}
+
+  kontak:
+    judul: Mau tahu untung sebenarnya dari tiap channel?
+    lead: "Chat saja dan ceritakan usaha Anda. Kalau ada, kirim contoh laporan yang biasa Anda pakai. Saya balas dengan apa yang bisa dibuat, harga, dan lama pengerjaannya. Gratis, tanpa kewajiban."
+    tombol:
+      - {teks: Chat WhatsApp, link: "wa:Halo Kemang Data, saya mau konsultasi soal laporan penjualan usaha saya.", kelas: btn big}
+      - {teks: Kirim email, link: email, kelas: btn alt}
