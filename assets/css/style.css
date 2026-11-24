@@ -3,7 +3,7 @@
    Urutan: 1 warna, 2 dasar, 3 header, 4 hero, 5 bagian umum,
    6 kartu portofolio, 7 jasa & harga, 8 cara kerja / tentang / FAQ,
    9 tombol & kontak, 10 halaman studi kasus, 11 layar penuh,
-   12 animasi, 13 layar kecil/besar.
+   12 animasi, 13 layar kecil/besar. (7b masalah klien & contoh, 7c animasi alur)
    ========================================================= */
 
 /* ---- 1. Warna (terang + gelap) ---- */
@@ -114,6 +114,104 @@ pre{font:14px/1.55 ui-monospace,Consolas,monospace;background:var(--code);color:
 .grid.small{grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
 .grid.small .card h3{font-size:18px}
 @media(max-width:860px){.showcase{grid-template-columns:1fr}}
+
+/* ---- 7c. Animasi contoh: berantakan -> digabung -> laporan di HP (macro alur, js/alur.js) ---- */
+.alur{margin:0 0 34px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px clamp(10px,1.6vw,18px) 14px}
+.alur-top{display:flex;gap:8px;align-items:stretch}
+.alur-steps{display:flex;gap:6px;flex:1;min-width:0}
+.alur-steps button{flex:1;min-width:0;position:relative;overflow:hidden;display:flex;align-items:center;gap:8px;background:none;border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-family:inherit;font-size:14px;font-weight:500;line-height:1.25;color:var(--muted);cursor:pointer;text-align:left}
+.alur-steps button:hover{border-color:var(--ink);color:var(--ink)}
+.alur-steps b{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--th);color:var(--ink);font-size:12px}
+.alur-steps [aria-pressed=true]{color:var(--ink);border-color:var(--ink)}
+.alur-steps [aria-pressed=true] b{background:var(--yellow);color:#101b2d}
+.alur-steps i{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--teal)}
+.alur.run .alur-steps [aria-pressed=true] i{animation:alurbar var(--dur,5s) linear forwards}
+@keyframes alurbar{to{width:100%}}
+.alur-pp{flex:none;width:40px;border:1px solid var(--line);border-radius:4px;background:none;color:var(--ink);cursor:pointer;font-size:13px}
+.alur-pp::before{content:"\275A\275A"}
+.alur-pp.paused::before{content:"\25B6"}
+.alur-steps button:focus-visible,.alur-pp:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.alur-stage{position:relative;height:clamp(360px,34vw,430px);margin-top:10px;border-radius:6px;background:var(--paper);overflow:hidden}
+.alur table{min-width:0}
+.alur th,.alur td{border-bottom:0}
+.alur-fk{position:absolute;top:8px;right:10px;z-index:3;font-size:11px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:1px 9px}
+.alur .sc{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:28px 14px 14px;opacity:0;visibility:hidden;transition:opacity .45s,visibility 0s .45s}
+.alur[data-s="1"] .sc1,.alur[data-s="2"] .sc2,.alur[data-s="3"] .sc3{opacity:1;visibility:visible;transition:opacity .45s .2s}
+.alur figcaption{margin-top:10px;min-height:3.2em;font-size:15px;color:var(--ink)}
+.alur figcaption span{display:none}
+.alur[data-s="1"] [data-c="1"],.alur[data-s="2"] [data-c="2"],.alur[data-s="3"] [data-c="3"]{display:block}
+/* adegan 1: file berserakan */
+.files{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,2.2vw,28px);width:min(660px,100%)}
+.file{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--fc);border-radius:6px;box-shadow:0 6px 18px rgba(16,27,45,.08);padding:7px 10px 8px;opacity:0;transform:scale(.7);transition:transform .55s cubic-bezier(.2,.8,.3,1.25),opacity .35s;transition-delay:calc(var(--i)*.28s)}
+.file:nth-child(1){--r:-3deg}.file:nth-child(2){--r:2.5deg}.file:nth-child(3){--r:2deg}.file:nth-child(4){--r:-2.5deg}
+.alur[data-s="1"] .file{opacity:1;transform:rotate(var(--r))}
+.file .fn{margin:0 0 4px;font-weight:600;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.file table{width:100%;border-collapse:collapse;table-layout:fixed;font:12px/1.35 ui-monospace,Consolas,monospace}
+.file td{border-top:1px solid var(--line);padding:3px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.file td:last-child{text-align:right;width:4.5ch}
+.file .x{text-decoration:underline wavy transparent;text-decoration-thickness:1.5px;text-underline-offset:3px;transition:text-decoration-color .3s 1.5s}
+.alur[data-s="1"] .file .x{text-decoration-color:var(--bad)}
+.alur .q{position:absolute;left:50%;top:54%;margin:0;transform:translate(-50%,-50%) scale(.6);opacity:0;background:var(--bad);color:#fff;font:700 clamp(15px,1.6vw,19px)/1.2 "Familjen Grotesk",sans-serif;padding:10px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(16,27,45,.25);white-space:nowrap;transition:transform .4s cubic-bezier(.2,.8,.3,1.4),opacity .3s}
+.alur[data-s="1"] .q{opacity:1;transform:translate(-50%,-50%) scale(1);transition-delay:2.6s}
+/* adegan 2: satu tabel rapi */
+.sc2{flex-direction:column;gap:14px}
+.merged{width:min(700px,100%);border-collapse:collapse;background:var(--panel);border:1px solid var(--line);font-size:14px;box-shadow:0 6px 18px rgba(16,27,45,.08)}
+.merged th{background:var(--th);text-align:left;padding:7px 10px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.merged td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:middle}
+.merged td:nth-child(3),.merged th:nth-child(3){text-align:right;font-variant-numeric:tabular-nums}
+.merged tbody tr{opacity:0;transform:translateX(-28px);transition:opacity .35s,transform .45s;transition-delay:calc(var(--i)*.3s)}
+.alur[data-s="2"] .merged tbody tr{opacity:1;transform:none}
+.nm{display:inline-grid}
+.nm>*{grid-area:1/1;transition:opacity .35s;transition-delay:calc(1.5s + var(--i)*.3s)}
+.nm s{text-decoration:underline wavy var(--bad);text-underline-offset:3px;color:var(--muted)}
+.nm span,.merged .ok{font-weight:600;color:var(--teal)}
+.nm span{opacity:0}
+.alur[data-s="2"] .nm s{opacity:0}
+.alur[data-s="2"] .nm span{opacity:1}
+.merged em{font-style:normal;white-space:nowrap}
+.merged em::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--cc);margin-right:6px}
+.merged mark{background:none;color:var(--bad);font-weight:600;white-space:nowrap;opacity:0;transition:opacity .35s;transition-delay:calc(2.9s + var(--i)*.2s)}
+.merged mark.no{color:var(--muted);font-weight:400}
+.alur[data-s="2"] .merged mark{opacity:1}
+.tot{margin:0;background:var(--yellow);color:#101b2d;font-weight:600;padding:7px 16px;border-radius:4px;text-align:center;opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s}
+.alur[data-s="2"] .tot{opacity:1;transform:none;transition-delay:3.9s}
+/* adegan 3: laporan di HP */
+.sc3{gap:clamp(16px,3.5vw,44px)}
+.phone{flex:none;width:clamp(214px,21vw,240px);min-height:72%;max-height:100%;border:8px solid #26324a;border-radius:28px;background:var(--panel);padding:14px 13px;box-shadow:0 14px 34px rgba(16,27,45,.2);display:flex;flex-direction:column;gap:8px;font-size:12.5px;overflow:hidden;opacity:0;transform:translateY(46px);transition:opacity .4s,transform .6s cubic-bezier(.2,.8,.2,1)}
+.alur[data-s="3"] .phone{opacity:1;transform:none;transition-delay:.15s}
+.ph{margin:0;font:700 17px/1.2 "Familjen Grotesk",sans-serif}
+.ph small{display:block;font:400 11px/1.4 "IBM Plex Sans",sans-serif;color:var(--muted)}
+.lbl{margin:4px 0 0;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.bar{display:grid;grid-template-columns:1fr auto;gap:3px 8px;line-height:1.2}
+.bar i{grid-column:1/-1;position:relative;height:9px;border-radius:5px;background:var(--th);overflow:hidden}
+.bar i::after{content:"";position:absolute;left:0;top:0;bottom:0;width:0;border-radius:5px;background:var(--teal);transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.bar.low i::after{background:var(--bad)}
+.bar.low b{color:var(--bad)}
+.alur[data-s="3"] .bar i::after{width:calc(var(--v)*1%);transition-delay:calc(.8s + var(--i)*.25s)}
+.warn,.peak{opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
+.warn{margin-top:4px;border-left:3px solid var(--bad);background:var(--paper);border-radius:4px;padding:6px 8px;line-height:1.35}
+.warn b{display:block;color:var(--bad)}
+.warn span{color:var(--muted)}
+.peak{margin:0;font-weight:500}
+.alur[data-s="3"] .warn{opacity:1;transform:none;transition-delay:2.1s}
+.alur[data-s="3"] .peak{opacity:1;transform:none;transition-delay:2.6s}
+.co{margin:0;max-width:210px;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--yellow);border-radius:4px;padding:10px 12px;font-size:14px;font-weight:500;line-height:1.35;opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s}
+.alur[data-s="3"] .co{opacity:1;transform:none;transition-delay:calc(3.1s + var(--i)*.5s)}
+@media(max-width:700px){
+ .alur-steps button{flex:none;padding:7px 8px;font-size:14px;gap:7px}
+ .alur-steps button span{display:none}
+ .alur-steps [aria-pressed=true]{flex:1}
+ .alur-steps [aria-pressed=true] span{display:inline}
+ .alur-stage{height:400px}
+ .alur .co{display:none}
+ .merged{font-size:12.5px}
+ .merged th,.merged td{padding:6px}
+ .merged th:nth-child(3),.merged td:nth-child(3){display:none}
+ .file{padding:6px 7px}
+ .file table{font-size:11px}
+ .alur .q{top:50%;white-space:normal;text-align:center;width:max-content;max-width:86%}
+}
+@media (prefers-reduced-motion:reduce){.alur *,.alur .sc{transition:none!important;animation:none!important}}
 
 /* ---- 8. Cara kerja, tentang, FAQ ---- */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px}
