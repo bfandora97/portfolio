@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-24
+- PR: Tombol booking konsultasi 30 menit (Cal.com) lewat data: `booking:` di `src/data/site.yml` + tombol `link: booking` di i18n (kontak halaman utama & studi kasus, ID & EN). Kosong = tidak tampil. Menggantikan PR #9.
 - PR: ID & EN jadi satu kerangka. `src/pages/index.html` dibuat jadi / dan /en/ (`bahasa: [id, en]`), semua teks di `src/data/i18n/id.yml` + `en.yml` (menggantikan teks.yml, konten.yml dan src/pages/en/index.html). Urutan bagian & menu sama: Masalah, Contoh, Jasa, Proyek, (Template), Cara kerja, Tentang, FAQ, Kontak. Contoh per pasar (Kopi Senja/Rupiah vs Juniper/USD). EN dapat contoh showcase + tombol tanya paket; ID dapat bagian Template. Build gagal kalau kunci ID/EN beda. Gaya bicara "saya".
 - PR #15: Menu EN jadi Services · Projects · About · Contact (Problems dihapus), ID jadi Contoh · Jasa · Tentang · Kontak. Bagian kontak halaman utama dirampingkan: 2 tombol utama (ID: WhatsApp + Email, EN: Upwork + Email), LinkedIn/GitHub cukup di footer, tidak lagi setinggi 1 layar penuh.
 - PR C (refactor 3/3): Cara kerja, FAQ dan kontak halaman utama dari `src/data/konten.yml` (macro `cara_kerja()`, `faq()`, `kontak_utama()`, `tombol()`). `check_site.py` sekarang juga menolak inline style selain variabel CSS, link kontak yang ditulis manual, dan halaman tanpa header/footer macro. HTML hasil build identik dengan sebelumnya.

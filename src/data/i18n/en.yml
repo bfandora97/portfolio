@@ -38,6 +38,7 @@ kasus:
   lightbox: [Full screen view, Previous image, Next image, Close]
   tombol:
     - {teks: Hire me on Upwork, link: upwork, kelas: btn big}
+    - {teks: Book a free 30-min call, link: booking, kelas: btn}
     - {teks: Email me, link: email, kelas: btn alt}
 
 utama:
@@ -142,4 +143,5 @@ utama:
     lead: "Send a sample of your data and what you want to track. I will tell you what I can build and how long it takes."
     tombol:
       - {teks: Hire me on Upwork, link: upwork, kelas: btn big}
+      - {teks: Book a free 30-min call, link: booking, kelas: btn}
       - {teks: Email me, link: email, kelas: btn alt}

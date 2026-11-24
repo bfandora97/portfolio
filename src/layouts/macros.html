@@ -123,8 +123,8 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 
 {#- Deretan tombol dari data. link: url / upwork / email / linkedin / github (dari site.yml) / "wa:isi pesan WhatsApp" -#}
 {% macro tombol(daftar) -%}
-{%- set dari_site = {"upwork": site.upwork, "email": "mailto:" ~ site.email, "linkedin": site.linkedin, "github": site.github} -%}
-{%- for b in daftar -%}
+{%- set dari_site = {"upwork": site.upwork, "email": "mailto:" ~ site.email, "linkedin": site.linkedin, "github": site.github, "booking": site.booking} -%}
+{%- for b in daftar if not (b.link == "booking" and not site.booking) -%}
 <a class="{{ b.kelas }}" href="{{ wa(b.link[3:]) if b.link.startswith("wa:") else dari_site.get(b.link, b.link) }}">{{ b.teks }}</a>
 {%- endfor -%}
 {%- endmacro %}

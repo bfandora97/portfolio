@@ -5,7 +5,7 @@
 # Halaman utama: SATU kerangka (src/pages/index.html) dibuat jadi / (id) dan /en/ (en). Teksnya di `utama`.
 # Menu: urutan = urutan bagian di halaman. hp: false = sembunyi di HP (maks 3 link di HP), kecil: false = sembunyi di HP <= 380px,
 #       syarat: produk = hanya tampil kalau ada template Etsy live (src/data/produk.yml).
-# Tombol: link = url / upwork / email / linkedin / github (dari site.yml) / "wa:isi pesan WhatsApp"; kelas = btn big / btn / btn alt.
+# Tombol: link = url / upwork / email / linkedin / github / booking (dari site.yml; booking kosong = tombol disembunyikan) / "wa:isi pesan WhatsApp"; kelas = btn big / btn / btn alt.
 
 beranda: /
 mode_gelap: Ganti mode gelap
@@ -44,6 +44,7 @@ kasus:
   lightbox: [Dashboard layar penuh, Gambar sebelumnya, Gambar berikutnya, Tutup]
   tombol:
     - {teks: Chat WhatsApp, link: "wa:Halo Kemang Data, saya mau tanya soal dashboard penjualan.", kelas: btn big}
+    - {teks: Jadwalkan konsultasi 30 menit, link: booking, kelas: btn}
     - {teks: Kirim email, link: email, kelas: btn alt}
 
 utama:
@@ -148,4 +149,5 @@ utama:
     lead: "Chat saja dan ceritakan usaha Anda. Kalau ada, kirim contoh laporan yang biasa Anda pakai. Saya balas dengan apa yang bisa dibuat, harga, dan lama pengerjaannya. Gratis, tanpa kewajiban."
     tombol:
       - {teks: Chat WhatsApp, link: "wa:Halo Kemang Data, saya mau konsultasi soal laporan penjualan usaha saya.", kelas: btn big}
+      - {teks: Jadwalkan konsultasi 30 menit, link: booking, kelas: btn}
       - {teks: Kirim email, link: email, kelas: btn alt}
