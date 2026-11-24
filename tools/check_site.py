@@ -5,6 +5,10 @@ Yang dicek:
   - setiap link #anchor punya id tujuan
   - setiap halaman punya <title>, meta description, og:image yang filenya ada
   - setiap halaman ada di sitemap.xml
+  - setiap halaman punya menu (header) dan footer standar dari macro
+  - aturan anti-kode-berulang di src/ (lihat cek_sumber):
+      * style="..." hanya boleh variabel CSS (--d, --i, ...); tampilan lain lewat class di style.css
+      * link WA / email / Upwork / LinkedIn tidak boleh ditulis manual di halaman: pakai site.yml ({{ wa() }}, {{ site.email }}, ...)
 Gagal = exit code 1, dan daftar masalahnya dicetak.
 """
 import re
@@ -13,7 +17,9 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
-SITE = Path(__file__).resolve().parent.parent / "_site"
+ROOT = Path(__file__).resolve().parent.parent
+SITE = ROOT / "_site"
+SRC = ROOT / "src"
 DOMAIN = "kemangdata.my.id"
 
 
@@ -65,6 +71,24 @@ def resolve(page_path, link):
     return target.resolve(), u.fragment
 
 
+def cek_sumber():
+    """Aturan supaya kode tidak berulang. Mengembalikan daftar masalah."""
+    errors = []
+    css_var = re.compile(r"^(\s*--[\w-]+:[^;]+;?)+\s*$")
+    kontak_manual = re.compile(r'href="[^"]*(wa\.me/|mailto:|upwork\.com|linkedin\.com)')  # hanya link, bukan teks contoh data
+    for f in sorted(list((SRC / "pages").rglob("*.html")) + list((SRC / "layouts").glob("*.html"))):
+        rel = f.relative_to(ROOT).as_posix()
+        s = f.read_text(encoding="utf-8")
+        for m in re.finditer(r'style="([^"]*)"', s):
+            isi = re.sub(r"\{\{.*?\}\}", "x", m.group(1))
+            if not css_var.match(isi):
+                errors.append(f"{rel}: inline style selain variabel CSS -> style=\"{m.group(1)[:60]}\" (pakai class di style.css)")
+        if f.parent.name != "layouts":
+            for m in kontak_manual.finditer(s):
+                errors.append(f"{rel}: link kontak ditulis manual ({m.group(1)}), ambil dari src/data/site.yml")
+    return errors
+
+
 def main():
     if not SITE.exists():
         sys.exit("_site/ belum ada. Jalankan: python build.py")
@@ -76,7 +100,7 @@ def main():
         pr.feed(p.read_text(encoding="utf-8"))
         parsed[p] = pr
 
-    errors = []
+    errors = cek_sumber()
     sitemap = (SITE / "sitemap.xml").read_text(encoding="utf-8")
     for p, pr in parsed.items():
         rel = p.relative_to(SITE.resolve()).as_posix()
@@ -91,6 +115,9 @@ def main():
             t, _ = resolve(p, og)
             if t and not t.exists():
                 errors.append(f"{rel}: og:image tidak ada -> {og}")
+        html = p.read_text(encoding="utf-8")
+        if html.count('<header class="top">') != 1 or html.count('<footer class="ft">') != 1:
+            errors.append(f"{rel}: harus punya tepat 1 header() dan 1 footer() dari macro")
         url_path = "" if rel == "index.html" else re.sub(r"index\.html$", "", rel)
         if f"https://{DOMAIN}/{url_path}<" not in sitemap:
             errors.append(f"{rel}: tidak ada di sitemap.xml")
@@ -108,7 +135,7 @@ def main():
         for e in errors:
             print("  -", e)
         sys.exit(1)
-    print(f"OK: {len(parsed)} halaman, semua link, gambar, dan anchor valid.")
+    print(f"OK: {len(parsed)} halaman, semua link, gambar, anchor, menu/footer, dan aturan anti-kode-berulang valid.")
 
 
 if __name__ == "__main__":
