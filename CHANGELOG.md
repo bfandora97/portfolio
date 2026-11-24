@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-24
+- PR: Hero tata letak B: judul kiri, panggung animasi kanan (HP: animasi di atas). 2 karakter original gaya kartun: Bobbi (analis data, mirip foto, kaos hitam + ID Kemang Data) & pemilik kedai; 4 adegan 12 detik (kirim berkas → laptop → poster laporan → tanda tangan). Bobbi di Alur kerja ikut gaya baru. Sumber: `tools/gen_karakter.py` (menggantikan gen_barista).
 - PR: Bobbi barista punya aksi berbeda di tiap meja saat berhenti: 1 terima berkas, 2 merapikan (menyortir), 3 poster laporan (batang grafik tumbuh), 4 tanda tangan (pena + centang).
 - PR: "Alur kerja" bergaya meja pesan (Kirim di sini → Saya racik → Ambil di sini → Cek, lalu bayar), memisahkan tugas Anda/saya + waktu, karakter original "Bobbi barista" (SVG) berjalan mengikuti kursor (desktop) / scroll (HP) dan meja terdekat menyala. Di beranda & Tentang (menggantikan Cara kerja lama). Langkah 2 menautkan repo pipeline + tanggal jalan terakhir (live).
 - PR: Beranda lebih jelas dalam 5 detik: label "ini apa", judul manfaat, harga mulai + lama pengerjaan (otomatis dari paket.yml), "Dikerjakan langsung oleh Bobbi" + foto, contoh dashboard di kanan (ganti titik dekorasi), strip "Yang bisa saya bantu" (3 paket + template saat live). Urutan: hero → layanan → contoh → masalah.

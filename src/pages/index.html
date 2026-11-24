@@ -17,7 +17,7 @@ scripts: [/assets/js/home.js, /assets/js/alur.js, /assets/js/alur-kerja.js]
 <p class="harga rv" style="--d:.4s">{{ hero_harga() }}</p>
 <p class="oleh rv" style="--d:.5s"><img src="/assets/img/bobbi.jpg" alt="" width="40" height="40"><span>{{ u.hero.oleh }}</span></p>
 </div>
-<figure class="hero-shot rv" style="--d:.2s"><div class="browser"><span></span><span></span><span></span></div><img src="/assets/img/umkm-sales-dashboard.png" width="1600" height="1000" alt="{{ u.hero.gambar_alt }}"><figcaption>{{ u.hero.gambar_label }}</figcaption></figure></div>
+{{ panggung_hero() }}</div>
 
 <section id="{{ u.jasa.anchor }}"><h2 class="rv">{{ u.layanan_ringkas.judul }}</h2>
 {{ layanan_ringkas() }}

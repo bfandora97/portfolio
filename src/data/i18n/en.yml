@@ -83,8 +83,9 @@ utama:
       - {teks: Book a free 30-min call, link: booking, kelas: btn alt}
     harga: "From <b>{harga}</b> · delivered in {hari} days · 2 revisions"
     oleh: "Done by <b>Bobbi</b> myself · 4 years in data"
-    gambar_alt: "Example automated sales dashboard (fictional data)"
-    gambar_label: Example result · fictional data
+    animasi_alt: "Animation of how it works: a shop owner sends files, Bobbi cleans them on a laptop, shows the report, and the owner signs off."
+    tokoh_klien: Shop owner
+    tokoh_bobbi: Bobbi · Kemang Data
 
   layanan_ringkas:
     judul: What I can do for you

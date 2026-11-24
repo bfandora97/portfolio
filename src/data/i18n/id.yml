@@ -89,8 +89,9 @@ utama:
       - {teks: Jadwalkan call 30 menit, link: booking, kelas: btn alt}
     harga: "Mulai <b>{harga}</b> · selesai {hari} hari · 2x revisi"
     oleh: "Dikerjakan langsung oleh <b>Bobbi</b> · 4 tahun di bidang data"
-    gambar_alt: "Contoh laporan penjualan otomatis untuk kedai kopi (data fiktif)"
-    gambar_label: Contoh hasil · data fiktif
+    animasi_alt: "Animasi alur kerja: pemilik kedai mengirim berkas, Bobbi merapikan di laptop, menunjukkan laporan, lalu pemilik kedai tanda tangan."
+    tokoh_klien: Pemilik kedai
+    tokoh_bobbi: Bobbi · Kemang Data
 
   layanan_ringkas:
     judul: Yang bisa saya bantu
