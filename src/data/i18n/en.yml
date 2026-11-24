@@ -155,11 +155,40 @@ utama:
 
   cara_kerja:
     anchor: how-i-work
-    judul: How I work
+    judul: How it works
+    lead: "Like ordering a coffee: you send, I prepare, you pick up."
+    label_anda: You
+    label_saya: Me
+    live: "Demo pipeline last ran automatically:"
     langkah:
-      - {judul: Share a sample, isi: "Send 10&ndash;20 rows of your data (anonymized is fine) and tell me what decisions it should support."}
-      - {judul: Fixed quote in writing, isi: "You get the scope, price and deadline before anything starts. No surprises, no hourly creep."}
-      - {judul: "Delivery &amp; revisions", isi: "Delivered on schedule with 2 rounds of revisions and a short walkthrough of how to use it."}
+      - papan: Send here
+        judul: Share your sales exports
+        anda: "Send your POS, Shopify, Amazon, Etsy or marketplace exports. Not sure how? I will guide you."
+        saya: Review the data and send a fixed quote (price &amp; deadline).
+        waktu: "Day 1 · about 10 minutes of your time"
+        link: ""
+        link_teks: ""
+      - papan: I prepare
+        judul: Cleaned &amp; merged
+        anda: Nothing.
+        saya: Match product names, remove duplicates, apply fees and calculate real profit per channel.
+        waktu: Days 2&ndash;4
+        link: pipeline
+        link_teks: "See the engine &rarr;"
+      - papan: Pick up here
+        judul: Your report, on any device
+        anda: Open one link, any time.
+        saya: The report refreshes itself, and I walk you through how to read it.
+        waktu: Day 5
+        link: /en/small-business-sales-dashboard.html
+        link_teks: "Example: Kopi Senja (fictional) &rarr;"
+      - papan: Approve &amp; pay
+        judul: Revisions, then payment
+        anda: Check the result, ask for changes, then approve.
+        saya: 2 rounds of revisions included. Payment is held safely by Upwork until you approve.
+        waktu: When you are happy
+        link: ""
+        link_teks: ""
 
   tentang:
     anchor: about

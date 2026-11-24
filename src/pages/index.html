@@ -3,7 +3,7 @@
 bahasa: [id, en]
 halaman: beranda
 og_type: "website"
-scripts: [/assets/js/home.js, /assets/js/alur.js]
+scripts: [/assets/js/home.js, /assets/js/alur.js, /assets/js/alur-kerja.js]
 ---
 {%- set u = t.utama -%}
 <div class="wrap">
@@ -22,6 +22,8 @@ scripts: [/assets/js/home.js, /assets/js/alur.js]
 <section id="{{ u.jasa.anchor }}"><h2 class="rv">{{ u.layanan_ringkas.judul }}</h2>
 {{ layanan_ringkas() }}
 <p class="rv"><a class="more" href="{{ t.menu.utama[1].link }}">{{ u.jasa.semua }}</a></p></section>
+
+{{ cara_kerja() }}
 
 <section id="{{ u.contoh.anchor }}"><h2 class="rv">{{ u.contoh.judul }}</h2>
 <p class="lead rv">{{ u.contoh.lead }}</p>

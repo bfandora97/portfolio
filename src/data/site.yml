@@ -12,3 +12,6 @@ booking: "https://cal.com/kemangdata-pcij5n/30min"
 # Akun sosial untuk "Temukan kami". Kosong = tidak tampil. Toko Etsy diisi di produk.yml (toko).
 instagram: https://www.instagram.com/kemangdata/
 tiktok: https://www.tiktok.com/@kemangdata
+# Repo public pipeline demo (Kopi Senja, data fiktif) + ringkasan yang di-update tiap malam (dipakai Alur kerja).
+pipeline_repo: https://github.com/bfandora97/kemang-sales-pipeline
+pipeline_json: https://raw.githubusercontent.com/bfandora97/kemang-sales-pipeline/main/output/ringkasan.json

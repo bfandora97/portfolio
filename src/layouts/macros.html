@@ -157,12 +157,27 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 
 
 {#- ===== Bagian halaman utama, isi dari src/data/i18n/<bahasa>.yml (bagian utama) sesuai bahasa halaman ===== -#}
+{#- Alur kerja bergaya "meja pesan": 4 meja, tiket berjalan dari meja 1 ke 4 (animasi CSS, mulai saat terlihat).
+    Teks dari i18n utama.cara_kerja. link: "pipeline" = repo demo; tanggal jalan terakhir dibaca assets/js/alur-kerja.js. -#}
 {% macro cara_kerja() -%}
 {%- set c = i18n[page.lang].utama.cara_kerja -%}
 <section id="{{ c.anchor }}"><h2 class="rv">{{ c.judul }}</h2>
-<div class="steps">
-{% for l in c.langkah %}<div class="step rv"{% if not loop.first %} style="--d:.{{ loop.index0 }}s"{% endif %}><b>{{ loop.index }}</b><h3>{{ l.judul }}</h3><p>{{ l.isi }}</p></div>
-{% endfor %}</div></section>
+<p class="lead rv">{{ c.lead }}</p>
+<div class="ak rv">
+<div class="ak-jalur" aria-hidden="true"><span class="ak-isi"></span><span class="ak-tiket"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z" fill="currentColor" opacity=".18"/><path d="M6 2h9l5 5v15H6zM15 2v5h5M9 12h8M9 16h8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span></div>
+<ol class="ak-meja">
+{%- for l in c.langkah %}
+<li style="--i:{{ loop.index0 }}"><span class="ak-papan"><b>{{ loop.index }}</b>{{ l.papan }}</span>
+<h3>{{ l.judul }}</h3>
+<dl><dt>{{ c.label_anda }}</dt><dd>{{ l.anda }}</dd><dt>{{ c.label_saya }}</dt><dd>{{ l.saya }}</dd></dl>
+<p class="ak-waktu">{{ l.waktu }}</p>
+{%- if l.link %}
+<a class="more" href="{{ site.pipeline_repo if l.link == "pipeline" else l.link }}"{% if l.link == "pipeline" %} target="_blank" rel="noopener"{% endif %}>{{ l.link_teks }}</a>{% endif %}
+{%- if l.link == "pipeline" %}
+<p class="ak-live" data-live="{{ site.pipeline_json }}" hidden>{{ c.live }} <b></b></p>{% endif %}
+</li>
+{%- endfor %}
+</ol></div></section>
 {%- endmacro %}
 
 {% macro faq() -%}

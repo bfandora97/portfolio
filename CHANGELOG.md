@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-24
+- PR: "Alur kerja" bergaya meja pesan (Kirim di sini → Saya racik → Ambil di sini → Cek, lalu bayar), memisahkan tugas Anda/saya + waktu, tiket beranimasi berjalan antar meja. Di beranda & Tentang (menggantikan Cara kerja lama). Langkah 2 menautkan repo pipeline + tanggal jalan terakhir (live).
 - PR: Beranda lebih jelas dalam 5 detik: label "ini apa", judul manfaat, harga mulai + lama pengerjaan (otomatis dari paket.yml), "Dikerjakan langsung oleh Bobbi" + foto, contoh dashboard di kanan (ganti titik dekorasi), strip "Yang bisa saya bantu" (3 paket + template saat live). Urutan: hero → layanan → contoh → masalah.
 - PR: Ikon kecil satu warna (Simple Icons CC0 + Lucide) di kolom Hubungi & Temukan kami footer dan halaman Kontak. Data ikon di `src/data/ikon.yml`, macro `ikon()`.
 - PR: Footer: kolom Hubungi & Temukan kami urut A-Z otomatis, GitHub dihapus, WhatsApp ditambahkan di kolom Contact versi EN.
