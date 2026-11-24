@@ -9,3 +9,6 @@ github: https://github.com/bfandora97
 # Link booking konsultasi gratis 30 menit (Cal.com publik, contoh https://cal.com/kemangdata/konsultasi).
 # Kosong = tombol booking tidak tampil di mana pun.
 booking: "https://cal.com/kemangdata-pcij5n/30min"
+# Akun sosial untuk "Temukan kami". Kosong = tidak tampil. Toko Etsy diisi di produk.yml (toko).
+instagram: https://www.instagram.com/kemangdata/
+tiktok: https://www.tiktok.com/@kemangdata

@@ -1,0 +1,46 @@
+---
+# Layanan: /layanan/ (id) dan /en/services/ (en). Jasa + contoh hasil + studi kasus + produk digital.
+bahasa: {id: layanan/index.html, en: en/services/index.html}
+halaman: layanan
+og_type: "website"
+scripts: [/assets/js/home.js]
+---
+{%- set u = t.utama -%}
+<div class="wrap">
+{{ header() }}
+<main>
+{{ kepala_halaman() }}
+<section id="{{ u.jasa.anchor }}"><h2 class="rv">{{ u.jasa.judul }}</h2>
+<p class="lead rv">{{ u.jasa.lead }}</p>
+<div class="plans">
+{#- Kartu dibuat dari src/data/paket.yml -#}
+{% for p in paket if p.get("web" if page.lang == "id" else "web_en") %}
+{{ plan_card(p, page.lang) }}
+{% endfor %}
+</div></section>
+
+<section id="{{ u.contoh.hasil_anchor }}"><h2 class="rv">{{ u.contoh.hasil_judul }}</h2>
+{% for s in u.contoh.showcase %}<div class="showcase rv">
+{%- if s.link %}<a class="shot" href="{{ s.link }}">{% else %}<figure class="shot">{% endif %}<img src="{{ s.gambar }}" width="{{ s.lebar }}" height="{{ s.tinggi }}" alt="{{ s.alt }}" loading="lazy">{% if s.link %}</a>{% else %}</figure>{% endif %}
+<div><h3>{{ s.judul }}</h3><ul class="wins">
+{% for p in s.poin %}<li>{{ p }}</li>
+{% endfor %}</ul>
+{%- if s.link %}
+<a class="more" href="{{ s.link }}">{{ s.link_teks }}</a>{% endif %}</div></div>
+{% endfor %}</section>
+
+<section id="projects"><h2 class="rv">{{ u.proyek.judul }}</h2>
+<p class="lead rv">{{ u.proyek.lead }}</p>
+{{ daftar_proyek() }}</section>
+
+{% if produk.tampil -%}
+<section id="templates"><h2 class="rv">{{ u.template.judul }}</h2>
+<p class="lead rv">{{ u.template.lead }}</p>
+<div class="grid">{% for p in produk.tampil %}{{ template_card(p, "%.1fs" % (loop.index / 10)) }}{% endfor %}</div>
+{% if produk.toko %}<p class="rv"><a href="{{ produk.toko }}" target="_blank" rel="noopener">{{ u.template.toko }}</a></p>{% endif %}
+<p class="note">{{ u.template.catatan }}</p>
+</section>
+{%- endif %}
+</main></div>
+{{ kontak_utama() }}
+<div class="wrap">{{ footer() }}</div>

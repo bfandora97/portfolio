@@ -11,7 +11,7 @@
 {%- set lain = "en" if page.lang == "id" else "id" -%}
 {%- set alt = page.get("alternates", {}) -%}
 <header class="top"><a class="brand" href="{{ t.beranda }}">{{ logo() }}Kemang Data</a><nav>
-{%- for m in t.menu[page.get("menu", "kasus")] if not (m.get("syarat") == "produk" and not produk.tampil) %}<a href="{{ m.link }}"
+{%- for m in t.menu[page.get("menu", "kasus" if page.get("layout") == "kasus" else "utama")] if not (m.get("syarat") == "produk" and not produk.tampil) %}<a href="{{ m.link }}"
 {%- if m.get("hp") == false %} class="nhp"{% elif m.get("kecil") == false %} class="nkecil"{% endif %}>{{ m.teks }}</a>{% endfor -%}
 {%- if alt.get(lain) %}<a href="{{ alt[lain] }}" hreflang="{{ lain }}" lang="{{ lain }}">{{ i18n[lain].label_bahasa }}</a>{% endif -%}
 <button class="tg" id="tg" type="button" aria-label="{{ t.mode_gelap }}">☾</button></nav></header>
@@ -26,22 +26,31 @@
 {%- set kontak = {
   "whatsapp": ["WhatsApp", wa("Halo Kemang Data, saya mau tanya soal laporan usaha saya.")],
   "email": ["Email", "mailto:" ~ site.email],
-  "linkedin": ["LinkedIn", site.linkedin],
-  "upwork": ["Upwork", site.upwork],
-  "github": ["GitHub", site.github]} -%}
+  "booking": ["Booking meeting" if page.lang == "en" else "Booking konsultasi", site.booking],
+  "upwork": ["Upwork", site.upwork]} -%}
 <footer class="ft">
 <div class="ft-grid">
 <div class="ft-brand"><a class="brand" href="{{ t.beranda }}">{{ logo() }}Kemang Data</a><p>{{ f.tagline }}</p></div>
 <nav aria-label="{{ f.jelajahi }}"><p class="ft-h">{{ f.jelajahi }}</p><ul>
 {%- for l in f.link if not (l.get("syarat") == "produk" and not produk.tampil) %}<li><a href="{{ l.link }}">{{ l.teks }}</a></li>{% endfor -%}
 </ul></nav>
+{%- if page.get("halaman") != "kontak" %}{# di halaman Kontak isinya sudah ada di atas, jangan dobel #}
 <div><p class="ft-h">{{ f.hubungi }}</p><ul>
-{%- for k in f.kontak %}<li><a href="{{ kontak[k][1] }}">{{ kontak[k][0] }}</a></li>{% endfor -%}
+{%- for k in f.kontak if kontak[k][1] %}<li><a href="{{ kontak[k][1] }}">{{ kontak[k][0] }}</a></li>{% endfor -%}
 </ul></div>
+{%- set sosial = temukan_kami(f.temukan_link) %}{% if sosial %}
+<div><p class="ft-h">{{ f.temukan }}</p><ul>{{ sosial }}</ul></div>{% endif %}{% endif %}
 </div>
 <div class="ft-bottom"><span>&copy; {{ tahun }} Kemang Data · {{ f.lokasi }}</span>
 {%- if alt.get(lain) %}<a href="{{ alt[lain] }}" hreflang="{{ lain }}" lang="{{ lain }}">{{ i18n[lain].bahasa_ini }}</a>{% endif %}</div>
 </footer>
+{%- endmacro %}
+
+{#- Daftar akun "Temukan kami". Link kosong (belum punya akun) otomatis tidak tampil. -#}
+{% macro temukan_kami(daftar) -%}
+{%- set akun = {"etsy": ["Etsy", produk.toko], "instagram": ["Instagram", site.instagram], "tiktok": ["TikTok", site.tiktok],
+                "linkedin": ["LinkedIn", site.linkedin], "upwork": ["Upwork", site.upwork], "github": ["GitHub", site.github]} -%}
+{%- for k in daftar if akun[k][1] %}<li><a href="{{ akun[k][1] }}" target="_blank" rel="noopener">{{ akun[k][0] }}</a></li>{% endfor -%}
 {%- endmacro %}
 
 {#- Link WhatsApp dengan pesan otomatis -#}
@@ -168,4 +177,11 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 <p class="lead rv" style="--d:.15s">{{ k.lead }}</p>
 <div class="rv" style="--d:.3s">{{ tombol(k.tombol) }}</div>
 </div></div></section>
+{%- endmacro %}
+
+
+{#- Judul halaman (Tentang, Layanan, Kontak). Teks dari i18n halaman.<front matter halaman>. -#}
+{% macro kepala_halaman() -%}
+{%- set h = i18n[page.lang].halaman[page.halaman] -%}
+<div class="pagehead"><h1 class="rv">{{ h.judul }}</h1><p class="lead rv" style="--d:.1s">{{ h.lead }}</p></div>
 {%- endmacro %}

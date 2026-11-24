@@ -1,0 +1,23 @@
+---
+# Tentang: /tentang/ (id) dan /en/about/ (en). Teks: i18n halaman.tentang + utama.tentang/cara_kerja/faq.
+bahasa: {id: tentang/index.html, en: en/about/index.html}
+halaman: tentang
+og_type: "website"
+scripts: [/assets/js/home.js]
+---
+{%- set u = t.utama -%}
+<div class="wrap">
+{{ header() }}
+<main>
+{{ kepala_halaman() }}
+<section id="{{ u.tentang.anchor }}">
+<div class="about rv"><img class="avatar" src="/assets/img/bobbi.jpg" alt="{{ u.tentang.foto_alt }}" width="140" height="140"><div>
+{% for p in u.tentang.paragraf %}<p>{{ p }}</p>
+{% endfor %}</div></div></section>
+
+{{ cara_kerja() }}
+
+{{ faq() }}
+</main></div>
+{{ kontak_utama() }}
+<div class="wrap">{{ footer() }}</div>

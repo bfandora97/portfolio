@@ -14,28 +14,27 @@ label_bahasa: ID
 
 menu:
   utama:
-    - {teks: Contoh, link: "#contoh"}
-    - {teks: Jasa, link: "#jasa", hp: false}
-    - {teks: Proyek, link: "#projects", hp: false}
-    - {teks: Template, link: "#templates", hp: false, syarat: produk}
-    - {teks: Tentang, link: "#tentang", hp: false}
-    - {teks: Kontak, link: "#contact", kecil: false}
+    - {teks: Tentang, link: "/tentang/", hp: false}
+    - {teks: Layanan, link: "/layanan/"}
+    - {teks: Kontak, link: "/kontak/", kecil: false}
   kasus:
-    - {teks: Semua proyek, link: "/#projects"}
-    - {teks: Kontak, link: "#contact", kecil: false}
+    - {teks: Semua proyek, link: "/layanan/#projects"}
+    - {teks: Kontak, link: "/kontak/", kecil: false}
 
 footer:
   tagline: "Satu laporan otomatis dari semua channel jualan. Untung per produk dan per channel langsung kelihatan, tanpa rekap manual."
   jelajahi: Jelajahi
   hubungi: Hubungi
   link:
-    - {teks: Contoh hasil, link: "/#contoh"}
-    - {teks: Jasa & harga, link: "/#jasa"}
-    - {teks: Proyek, link: "/#projects"}
-    - {teks: Template, link: "/#templates", syarat: produk}
-    - {teks: Cara kerja, link: "/#cara-kerja"}
-    - {teks: Pertanyaan umum, link: "/#faq"}
-  kontak: [whatsapp, email, linkedin]
+    - {teks: Beranda, link: "/"}
+    - {teks: Tentang, link: "/tentang/", hp: false}
+    - {teks: Layanan, link: "/layanan/"}
+    - {teks: Contoh hasil, link: "/layanan/#contoh-hasil"}
+    - {teks: Produk digital, link: "/layanan/#templates", syarat: produk}
+    - {teks: Kontak, link: "/kontak/"}
+  kontak: [whatsapp, email, booking]
+  temukan: Temukan kami
+  temukan_link: [etsy, instagram, tiktok, linkedin]
   lokasi: Jakarta
 
 kasus:
@@ -47,12 +46,40 @@ kasus:
     - {teks: Jadwalkan konsultasi 30 menit, link: booking, kelas: btn}
     - {teks: Kirim email, link: email, kelas: btn alt}
 
-utama:
-  meta:
+halaman:
+  beranda:
     title: "Kemang Data | Laporan Penjualan Otomatis untuk UMKM"
     description: "Gabungkan laporan outlet, GoFood/GrabFood, dan Shopee jadi satu laporan otomatis di HP. Lihat untung sebenarnya per produk dan per channel. Konsultasi gratis via WhatsApp."
     og_image: /assets/img/og-image.png
+    judul: ""
+    lead: ""
+    tombol: []
+  tentang:
+    title: "Tentang Kemang Data | Bobbi, data analyst di Jakarta"
+    description: "Kemang Data dikerjakan langsung oleh Bobbi: 4 tahun menggabungkan, merapikan, dan mengotomatiskan laporan data. Cara kerja dan pertanyaan umum."
+    og_image: /assets/img/og-image.png
+    judul: Tentang Kemang Data
+    lead: "Siapa yang mengerjakan, bagaimana cara kerjanya, dan jawaban untuk pertanyaan yang paling sering ditanyakan."
+    tombol: []
+  layanan:
+    title: "Layanan & Harga | Kemang Data"
+    description: "Jasa rapikan data, laporan penjualan otomatis, dan dashboard untuk UMKM, lengkap dengan harga, contoh hasil, studi kasus, dan template spreadsheet."
+    og_image: /assets/img/og-image.png
+    judul: Layanan
+    lead: "Jasa yang dikerjakan langsung oleh saya, contoh hasilnya, dan produk digital yang bisa langsung dipakai."
+    tombol: []
+  kontak:
+    title: "Kontak | Kemang Data"
+    description: "Jadwalkan konsultasi gratis 30 menit, chat WhatsApp, atau kirim email ke Kemang Data."
+    og_image: /assets/img/og-image.png
+    judul: Kontak
+    lead: "Pilih cara yang paling nyaman. Konsultasi pertama gratis dan tanpa kewajiban. Saya balas sendiri, biasanya di hari yang sama."
+    tombol:
+      - {teks: Jadwalkan konsultasi 30 menit, link: booking, kelas: btn big}
+      - {teks: Chat WhatsApp, link: "wa:Halo Kemang Data, saya mau konsultasi soal laporan penjualan usaha saya.", kelas: btn}
+      - {teks: Kirim email, link: email, kelas: btn alt}
 
+utama:
   hero:
     judul: Jualan ramai, tapi untung sebenarnya tidak kelihatan?
     isi: "Untuk UMKM yang jualan di outlet, GoFood/GrabFood, dan Shopee. Semua laporan saya gabungkan jadi <b>satu laporan otomatis di HP</b>: untung per produk dan per channel langsung kelihatan, tanpa rekap manual."
@@ -75,6 +102,8 @@ utama:
     anchor: contoh
     judul: Contoh hasil
     lead: "Kopi Senja: kedai kopi dengan 2 outlet, GoFood/GrabFood, dan Shopee. Usaha dan angkanya fiktif, dibuat untuk menunjukkan hasil yang bisa Anda dapatkan."
+    hasil_anchor: contoh-hasil
+    hasil_judul: Contoh hasil
     alur: id
     showcase:
       - judul: Laporan penjualan otomatis
@@ -106,6 +135,7 @@ utama:
     anchor: jasa
     judul: "Jasa &amp; harga"
     lead: "Harga mulai dari angka di bawah. Harga final saya sampaikan setelah melihat contoh data Anda, sebelum pekerjaan dimulai. Semua paket termasuk 2x revisi."
+    semua: "Lihat semua layanan &rarr;"
     tanya: "Tanya paket ini &rarr;"
 
   proyek:
