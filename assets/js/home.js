@@ -78,6 +78,4 @@ var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(funct
 var els=[].slice.call(document.querySelectorAll('.rv'));
 if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});}
 else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.2});els.forEach(function(e){io.observe(e);});}
-var p2=document.querySelector('.page2'),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(p2&&!reduce){var tick=false;addEventListener('scroll',function(){if(tick)return;tick=true;requestAnimationFrame(function(){var r=p2.getBoundingClientRect();p2.style.setProperty('--py',(-r.top*.3)+'px');tick=false;});},{passive:true});}
 })();

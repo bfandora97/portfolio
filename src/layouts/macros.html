@@ -170,14 +170,6 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 {% endfor %}</section>
 {%- endmacro %}
 
-{% macro kontak_utama() -%}
-{%- set k = i18n[page.lang].utama.kontak -%}
-<section class="page2" id="contact"><div class="wrap"><div class="contact">
-<h2 class="rv">{{ k.judul }}</h2>
-<p class="lead rv" style="--d:.15s">{{ k.lead }}</p>
-<div class="rv" style="--d:.3s">{{ tombol(k.tombol) }}</div>
-</div></div></section>
-{%- endmacro %}
 
 
 {#- Judul halaman (Tentang, Layanan, Kontak). Teks dari i18n halaman.<front matter halaman>. -#}

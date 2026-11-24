@@ -26,7 +26,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 ROOT = Path(__file__).parent
 SRC, OUT = ROOT / "src", ROOT / "_site"
 MACROS = ("header", "logo", "wa", "rupiah", "plan_card", "lightbox", "alur", "template_card", "footer", "kasus_pembuka",
-          "kasus_kontak", "daftar_proyek", "tombol", "cara_kerja", "faq", "kontak_utama", "temukan_kami", "kepala_halaman")
+          "kasus_kontak", "daftar_proyek", "tombol", "cara_kerja", "faq", "temukan_kami", "kepala_halaman")
 BAHASA = ("id", "en")
 
 
