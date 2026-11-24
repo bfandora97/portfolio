@@ -49,7 +49,7 @@ scripts: [/assets/js/home.js]
 
 {% if produk.tampil -%}
 <section id="templates"><h2 class="rv">Ready-made templates</h2>
-<p class="lead rv">Not ready for a custom dashboard yet? Start with a spreadsheet template. Instant download, secure checkout on Etsy.</p>
+<p class="lead rv">Spreadsheet templates I build and sell on Etsy. Type in a few cells, the formulas do the rest. Instant download, secure checkout on Etsy.</p>
 <div class="grid">{% for p in produk.tampil %}{{ template_card(p, "%.1fs" % (loop.index / 10)) }}{% endfor %}</div>
 {% if produk.toko %}<p class="rv"><a href="{{ produk.toko }}" target="_blank" rel="noopener">See all templates in my Etsy shop &rarr;</a></p>{% endif %}
 </section>
