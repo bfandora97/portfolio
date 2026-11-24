@@ -77,9 +77,18 @@ footer a{color:var(--muted)}
 .ak{position:relative;margin-top:8px}
 .ak-jalur{position:relative;height:6px;margin:96px 6% 18px;border-radius:3px;background:var(--line)}
 .ak-isi{position:absolute;inset:0 100% 0 0;border-radius:3px;background:var(--teal)}
-.ak-barista{position:absolute;left:0;bottom:3px;width:56px;height:94px;transform:translateX(-50%);pointer-events:none}
+.ak-barista{position:absolute;left:0;bottom:3px;width:76px;height:95px;transform:translateX(-50%);pointer-events:none}
 .ak-barista svg{position:absolute;inset:0;width:100%;height:100%;display:none}
-.ak-barista[data-pose="depan"] .b-depan{display:block}
+.ak-barista[data-pose="aksi1"] .b-aksi1,.ak-barista[data-pose="aksi2"] .b-aksi2,.ak-barista[data-pose="aksi3"] .b-aksi3,.ak-barista[data-pose="aksi4"] .b-aksi4{display:block}
+.a1-kertas{animation:a1-naik 1.2s ease-in-out infinite}
+.a2-kiri{animation:a2-sortir .9s ease-in-out infinite}.a2-kanan{animation:a2-sortir .9s ease-in-out infinite .45s}
+.a3-bar{transform-box:fill-box;transform-origin:bottom;animation:a3-tumbuh 2.4s ease-out infinite}.a3-bar:nth-of-type(2){animation-delay:.15s}.a3-merah{animation-delay:.3s}
+.a4-pena{animation:a4-tulis .5s ease-in-out infinite alternate}.a4-centang{stroke-dasharray:16;animation:a4-centang 2s ease-out infinite}
+@keyframes a1-naik{50%{transform:translateY(-3px)}}
+@keyframes a2-sortir{50%{transform:translateY(-5px)}}
+@keyframes a3-tumbuh{0%{transform:scaleY(.15)}35%,100%{transform:scaleY(1)}}
+@keyframes a4-tulis{to{transform:translateX(-4px) translateY(1px)}}
+@keyframes a4-centang{0%,40%{stroke-dashoffset:16}70%,100%{stroke-dashoffset:0}}
 .ak-barista[data-pose="kiri"] .b-samping,.ak-barista[data-pose="kanan"] .b-samping{display:block}
 .ak-barista[data-pose="kanan"] .b-samping{transform:scaleX(-1)}
 .ak-barista .kaki-b{display:none}
@@ -100,9 +109,10 @@ footer a{color:var(--muted)}
 .ak{display:grid;grid-template-columns:52px 1fr;gap:10px}
 .ak-jalur{width:6px;height:auto;margin:40px 0 40px 23px}
 .ak-isi{inset:0 0 100% 0}
-.ak-barista{left:50%;bottom:auto;top:0;width:44px;height:74px;transform:translate(-50%,-50%)}
+.ak-barista{left:50%;bottom:auto;top:0;width:58px;height:72px;transform:translate(-50%,-50%)}
 .ak-meja{grid-template-columns:1fr}
 }
+@media (prefers-reduced-motion:reduce){.a1-kertas,.a2-kiri,.a2-kanan,.a3-bar,.a4-pena,.a4-centang{animation:none}}
 /* Strip "Yang bisa saya bantu" (macro layanan_ringkas) */
 .ringkas{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:16px}
 .rk{display:flex;flex-direction:column;gap:6px;padding:18px;background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:4px;text-decoration:none;color:var(--ink)}
