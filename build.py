@@ -9,6 +9,7 @@ Struktur:
     src/data/    site.yml (kontak, link) + paket.yml (harga) + alur.yml (isi animasi contoh) + produk.yml (template Etsy)
                  + teks.yml (menu, footer, label UI per bahasa)
                  + proyek.yml (kartu proyek / studi kasus)
+                 + konten.yml (cara kerja, FAQ, kontak halaman utama)
     assets/      css, js, gambar (disalin apa adanya)
     static/      file yang disalin ke root situs (CNAME, robots.txt)
 """
@@ -21,7 +22,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 ROOT = Path(__file__).parent
 SRC, OUT = ROOT / "src", ROOT / "_site"
-MACROS = ("header", "logo", "wa", "rupiah", "plan_card", "lightbox", "alur", "template_card", "footer", "kasus_pembuka", "kasus_kontak", "daftar_proyek")
+MACROS = ("header", "logo", "wa", "rupiah", "plan_card", "lightbox", "alur", "template_card", "footer", "kasus_pembuka", "kasus_kontak", "daftar_proyek", "tombol", "cara_kerja", "faq", "kontak_utama")
 
 
 def load_data():
@@ -55,7 +56,7 @@ def build():
     produk = data["produk"]
     produk["tampil"] = [p for p in produk["produk"] if p.get("etsy")]  # hanya yang sudah ada link Etsy
     env.globals.update(site=site, paket=data["paket"]["paket"], alur_data=data["alur"], produk=produk,
-                       teks=data["teks"], tahun=date.today().year, proyek=data["proyek"]["proyek"])
+                       teks=data["teks"], tahun=date.today().year, proyek=data["proyek"]["proyek"], konten=data["konten"])
     base = env.get_template("base.html")
     imports = "{% from 'macros.html' import " + ", ".join(MACROS) + " with context %}"
 

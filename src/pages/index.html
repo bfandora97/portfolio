@@ -53,12 +53,7 @@ scripts: [/assets/js/home.js, /assets/js/alur.js]
 {% endfor %}
 </div></section>
 
-<section id="cara-kerja"><h2 class="rv">Cara kerja</h2>
-<div class="steps">
-<div class="step rv"><b>1</b><h3>Kirim contoh data</h3><p>Chat WhatsApp, kirim 10&ndash;20 baris contoh (boleh disamarkan) dan ceritakan apa yang ingin dipantau.</p></div>
-<div class="step rv" style="--d:.1s"><b>2</b><h3>Estimasi gratis</h3><p>Saya kirim lingkup kerja, harga, dan waktu secara tertulis. Tidak ada biaya sebelum Anda setuju.</p></div>
-<div class="step rv" style="--d:.2s"><b>3</b><h3>Dikerjakan &amp; direvisi</h3><p>Hasil dikirim sesuai jadwal, termasuk 2x revisi. Untuk dashboard, saya ajari cara pakainya.</p></div>
-</div></section>
+{{ cara_kerja() }}
 
 <section id="tentang"><h2 class="rv">Tentang Kemang Data</h2>
 <div class="about rv"><img class="avatar" src="/assets/img/bobbi.jpg" alt="Foto Bobbi, pendiri Kemang Data" width="140" height="140"><div>
@@ -66,21 +61,11 @@ scripts: [/assets/js/home.js, /assets/js/alur.js]
 <p>Kemang Data saya dirikan di Jakarta untuk membawa cara kerja itu ke UMKM: laporan yang rapi, angka yang bisa dipercaya, dan keputusan yang lebih cepat. Saya sendiri yang mengerjakan dan membalas chat Anda.</p>
 </div></div></section>
 
-<section id="faq" class="faq"><h2 class="rv">Pertanyaan umum</h2>
-<details class="rv"><summary>Apakah data usaha saya aman?</summary><p>Ya. Data hanya dipakai untuk mengerjakan pesanan Anda, tidak dibagikan ke pihak lain, dan dihapus setelah proyek selesai kalau Anda minta. Saya mengikuti prinsip UU Pelindungan Data Pribadi.</p></details>
-<details class="rv"><summary>Saya tidak paham teknis. Apakah bisa?</summary><p>Bisa. Anda cukup cerita masalahnya dan kirim file yang biasa Anda pakai. Hasil akhirnya saya jelaskan dengan bahasa sederhana, dan dashboard bisa dibuka di HP.</p></details>
-<details class="rv"><summary>Perlu beli software?</summary><p>Tidak harus. Google Sheets dan Looker Studio gratis. Power BI hanya saya sarankan kalau tim Anda sudah memakainya.</p></details>
-<details class="rv"><summary>Bagaimana cara bayarnya?</summary><p>Transfer bank. Untuk proyek di atas Rp1 juta bisa DP 50% di awal dan pelunasan sebelum serah terima. Bisa juga lewat Fastwork atau Upwork.</p></details>
-<details class="rv"><summary>Kalau butuh tambahan di luar paket?</summary><p>Bisa. Saya sampaikan biaya dan waktunya dulu, dan dikerjakan setelah Anda setuju.</p></details>
-</section>
+{{ faq() }}
 
 <section id="projects"><h2 class="rv">Proyek</h2>
 <p class="lead rv">Studi kasus lengkap: masalahnya, apa yang dikerjakan, dan hasilnya.</p>
 {{ daftar_proyek() }}</section>
 </main></div>
-<section class="page2" id="contact"><div class="wrap"><div class="contact">
-<h2 class="rv">Mau tahu untung sebenarnya dari tiap channel?</h2>
-<p class="lead rv" style="--d:.15s">Chat saja dan ceritakan usaha Anda. Kalau ada, kirim contoh laporan yang biasa Anda pakai. Saya balas dengan apa yang bisa dibuat, harga, dan lama pengerjaannya. Gratis, tanpa kewajiban.</p>
-<div class="rv" style="--d:.3s"><a class="btn big" href="{{ wa('Halo Kemang Data, saya mau konsultasi soal laporan penjualan usaha saya.') }}">Chat WhatsApp</a><a class="btn" href="mailto:{{ site.email }}">Kirim email</a><a class="btn alt" href="{{ site.linkedin }}">LinkedIn</a></div>
-</div></div></section>
+{{ kontak_utama() }}
 <div class="wrap">{{ footer() }}</div>

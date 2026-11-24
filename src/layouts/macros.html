@@ -121,13 +121,17 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 </div>
 {%- endmacro %}
 
+{#- Deretan tombol dari data. link: url / upwork / email / linkedin / github (dari site.yml); wa: isi pesan WhatsApp -#}
+{% macro tombol(daftar) -%}
+{%- set dari_site = {"upwork": site.upwork, "email": "mailto:" ~ site.email, "linkedin": site.linkedin, "github": site.github} -%}
+{%- for b in daftar -%}
+<a class="{{ b.kelas }}" href="{{ wa(b.wa) if b.get("wa") else dari_site.get(b.link, b.link) }}">{{ b.teks }}</a>
+{%- endfor -%}
+{%- endmacro %}
+
 {% macro kasus_kontak() -%}
 {%- set k = page.kasus.kontak -%}
-<section class="contact" id="contact"><h2>{{ k.judul }}</h2><p class="lead">{{ k.lead }}</p>
-{%- for b in teks[page.lang].kasus.tombol -%}
-{%- set href = wa(b.wa) if b.get("wa") else (site.upwork if b.link == "upwork" else ("mailto:" ~ site.email if b.link == "email" else b.link)) -%}
-<a class="{{ b.kelas }}" href="{{ href }}">{{ b.teks }}</a>
-{%- endfor %}</section>
+<section class="contact" id="contact"><h2>{{ k.judul }}</h2><p class="lead">{{ k.lead }}</p>{{ tombol(teks[page.lang].kasus.tombol) }}</section>
 {%- endmacro %}
 
 {#- Kartu proyek untuk bagian Proyek / Projects. Data dari src/data/proyek.yml (hanya tampil: true). -#}
@@ -138,4 +142,30 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 <p>{{ x.ringkas }}</p>
 <ul class="tools">{% for t in x.tools %}<li>{{ t }}</li>{% endfor %}</ul></div></a>{% endfor -%}
 </div>
+{%- endmacro %}
+
+
+{#- ===== Bagian halaman utama, isi dari src/data/konten.yml sesuai bahasa halaman ===== -#}
+{% macro cara_kerja() -%}
+{%- set c = konten[page.lang].cara_kerja -%}
+<section id="{{ c.anchor }}"><h2 class="rv">{{ c.judul }}</h2>
+<div class="steps">
+{% for l in c.langkah %}<div class="step rv"{% if not loop.first %} style="--d:.{{ loop.index0 }}s"{% endif %}><b>{{ loop.index }}</b><h3>{{ l.judul }}</h3><p>{{ l.isi }}</p></div>
+{% endfor %}</div></section>
+{%- endmacro %}
+
+{% macro faq() -%}
+{%- set f = konten[page.lang].faq -%}
+<section id="faq" class="faq"><h2 class="rv">{{ f.judul }}</h2>
+{% for q in f.tanya %}<details class="rv"><summary>{{ q.t }}</summary><p>{{ q.j }}</p></details>
+{% endfor %}</section>
+{%- endmacro %}
+
+{% macro kontak_utama() -%}
+{%- set k = konten[page.lang].kontak -%}
+<section class="page2" id="contact"><div class="wrap"><div class="contact">
+<h2 class="rv">{{ k.judul }}</h2>
+<p class="lead rv" style="--d:.15s">{{ k.lead }}</p>
+<div class="rv" style="--d:.3s">{{ tombol(k.tombol) }}</div>
+</div></div></section>
 {%- endmacro %}
