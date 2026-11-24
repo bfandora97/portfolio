@@ -26,7 +26,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 ROOT = Path(__file__).parent
 SRC, OUT = ROOT / "src", ROOT / "_site"
 MACROS = ("header", "logo", "wa", "rupiah", "plan_card", "lightbox", "alur", "template_card", "footer", "kasus_pembuka",
-          "kasus_kontak", "daftar_proyek", "tombol", "cara_kerja", "faq", "temukan_kami", "kepala_halaman")
+          "kasus_kontak", "daftar_proyek", "tombol", "cara_kerja", "faq", "temukan_kami", "kepala_halaman", "ikon")
 BAHASA = ("id", "en")
 
 
@@ -89,7 +89,7 @@ def build():
     produk = data["produk"]
     produk["tampil"] = [p for p in produk["produk"] if p.get("etsy")]  # hanya yang sudah ada link Etsy
     env.globals.update(site=site, paket=data["paket"]["paket"], alur_data=data["alur"], produk=produk,
-                       i18n=data["i18n"], tahun=date.today().year, proyek=data["proyek"]["proyek"])
+                       i18n=data["i18n"], tahun=date.today().year, proyek=data["proyek"]["proyek"], ikon_data=data["ikon"])
     base = env.get_template("base.html")
     imports = "{% from 'macros.html' import " + ", ".join(MACROS) + " with context %}"
 

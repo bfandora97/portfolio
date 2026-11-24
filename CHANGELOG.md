@@ -3,6 +3,8 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-24
+- PR: Ikon kecil satu warna (Simple Icons CC0 + Lucide) di kolom Hubungi & Temukan kami footer dan halaman Kontak. Data ikon di `src/data/ikon.yml`, macro `ikon()`.
+- PR: Footer: kolom Hubungi & Temukan kami urut A-Z otomatis, GitHub dihapus, WhatsApp ditambahkan di kolom Contact versi EN.
 - PR: Bagian ajakan kontak besar di bawah Beranda/Tentang/Layanan dihapus (sudah ada halaman Kontak + footer). Macro `kontak_utama`, teks `utama.kontak`, CSS `.page2` dan parallax-nya ikut dihapus.
 - PR: Perbaikan footer jatuh jadi 1 kolom di desktop (aturan grid CSS tidak sah), sekarang 4 kolom.
 - PR: Website jadi beberapa halaman: Beranda (lebih pendek), Tentang (/tentang/, /en/about/), Layanan (/layanan/, /en/services/), Kontak (/kontak/, /en/contact/). Menu Tentang · Layanan · Kontak. "Temukan kami" (Etsy, Instagram, TikTok, LinkedIn, Upwork) di halaman Kontak + footer; akun kosong otomatis tersembunyi. build.py: URL beda per bahasa + meta per halaman dari i18n `halaman`. home.js aman di halaman tanpa kanvas.

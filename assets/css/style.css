@@ -31,7 +31,8 @@ footer a{color:var(--muted)}
 .kontak-tombol{display:grid;gap:12px;max-width:460px;margin:8px 0 40px}
 .kontak-tombol .btn{margin:0;text-align:center}
 .sosial{list-style:none;display:flex;flex-wrap:wrap;gap:10px;padding:0;margin:0}
-.sosial a{display:inline-block;padding:8px 16px;border:1px solid var(--line);border-radius:999px;text-decoration:none}
+.sosial a{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid var(--line);border-radius:999px;text-decoration:none}
+.sosial .ik{width:18px;height:18px}
 .sosial a:hover{border-color:var(--ink)}
 .ft .brand{display:inline-flex;align-items:center;gap:10px;color:var(--ink);font:700 20px "Familjen Grotesk",sans-serif;text-decoration:none}
 .ft-brand p{max-width:40ch;margin:12px 0 0;font-size:15px}
@@ -40,6 +41,8 @@ footer a{color:var(--muted)}
 .ft li{margin:0 0 8px}
 .ft li a{text-decoration:none}
 .ft li a:hover{color:var(--ink);text-decoration:underline}
+.ik{width:16px;height:16px;flex:none}
+.ft li a{display:inline-flex;align-items:center;gap:8px}
 .ft-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;margin-top:36px;padding-top:16px;border-top:1px solid var(--line)}
 @media(max-width:700px){.ft-grid{grid-template-columns:1fr 1fr}.ft-brand{grid-column:1/-1}}
 
