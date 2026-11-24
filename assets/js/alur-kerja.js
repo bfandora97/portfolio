@@ -1,6 +1,6 @@
 // Alur kerja: (1) Bobbi barista berjalan mengikuti kursor (desktop) atau scroll (HP), meja terdekat menyala;
 // (2) tampilkan kapan mesin demo (repo pipeline) terakhir jalan otomatis.
-// Gerak = ganti pose (depan / hadap kiri / hadap kanan) + posisi; kembali menghadap depan saat berhenti.
+// Gerak = ganti pose (hadap kiri / kanan) + posisi; saat berhenti Bobbi melakukan aksi meja terdekat (aksi1..aksi4).
 (function(){
 var ak=document.querySelector('.ak');
 if(ak){
@@ -8,12 +8,12 @@ if(ak){
   var meja=[].slice.call(ak.querySelectorAll('.ak-meja li'));
   var tegak=function(){return matchMedia('(max-width:860px)').matches;};
   var diam=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var akhir=null,t,jarak=0;
+  var akhir=null,t,jarak=0,meja_k=0;
   var taruh=function(p){
     p=Math.max(0,Math.min(1,p));
     if(tegak()){b.style.top=p*100+'%';b.style.left='';isi.style.bottom=(100-p*100)+'%';isi.style.right='';}
     else{b.style.left=p*100+'%';b.style.top='';isi.style.right=(100-p*100)+'%';isi.style.bottom='';}
-    var k=Math.round(p*(meja.length-1));
+    var k=Math.round(p*(meja.length-1));meja_k=k;
     meja.forEach(function(m,i){m.classList.toggle('aktif',i===k);});
     return p;
   };
@@ -24,7 +24,7 @@ if(ak){
       jarak+=Math.abs(p-akhir);if(jarak>0.03){jarak=0;b.classList.toggle('langkah');}
     }
     akhir=taruh(p);
-    clearTimeout(t);t=setTimeout(function(){b.dataset.pose='depan';b.classList.remove('langkah');},140);
+    clearTimeout(t);t=setTimeout(function(){b.dataset.pose='aksi'+(meja_k+1);b.classList.remove('langkah');},140);
   };
   akhir=taruh(0);
   if(!diam){
