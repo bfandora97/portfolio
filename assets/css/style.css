@@ -73,6 +73,40 @@ footer a{color:var(--muted)}
 .hero-shot .browser span{width:10px;height:10px;border-radius:50%;background:var(--line)}
 .hero-shot img{display:block;width:100%;height:auto}
 .hero-shot figcaption{padding:8px 12px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+/* Alur kerja "meja pesan" (macro cara_kerja): 4 meja, tiket berjalan 1 -> 4, siklus 10 detik, mulai saat .ak dapat .in */
+.ak{position:relative;margin-top:8px}
+.ak-jalur{position:relative;height:6px;margin:0 6% 18px;border-radius:3px;background:var(--line)}
+.ak-isi{position:absolute;inset:0 100% 0 0;border-radius:3px;background:var(--teal)}
+.ak-tiket{position:absolute;top:50%;left:0;width:34px;height:34px;margin:-17px 0 0 -17px;display:grid;place-items:center;border-radius:50%;background:var(--yellow);color:#101b2d;box-shadow:0 4px 12px rgba(16,27,45,.2)}
+.ak-tiket svg{width:20px;height:20px}
+.ak-meja{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ak-meja li{display:flex;flex-direction:column;gap:8px;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:6px;transition:border-color .3s,box-shadow .3s}
+.ak-papan{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:4px;background:var(--btn-bg);color:var(--btn-fg);font:700 13px "Familjen Grotesk",sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.ak-papan b{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--yellow);color:#101b2d;font-size:12px}
+.ak-meja h3{font-size:18px;margin:4px 0 0}
+.ak-meja dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:14px}
+.ak-meja dt{font-weight:600;color:var(--ink)}
+.ak-meja dd{margin:0;color:var(--muted)}
+.ak-waktu{margin:auto 0 0;padding-top:6px;font-size:13px;font-weight:600;color:var(--teal)}
+.ak-meja .more{font-size:14px}
+.ak-live{margin:0;font-size:12px;color:var(--muted)}
+.ak.in .ak-tiket{animation:ak-maju 10s ease-in-out infinite}
+.ak.in .ak-isi{animation:ak-isi 10s ease-in-out infinite}
+.ak.in .ak-meja li{animation:ak-nyala 10s ease-in-out infinite;animation-delay:calc(var(--i) * 2.5s)}
+@keyframes ak-maju{0%,8%{left:0}25%,33%{left:33.3%}50%,58%{left:66.6%}75%,92%{left:100%}100%{left:0;opacity:0}}
+@keyframes ak-isi{0%,8%{right:100%}25%,33%{right:66.7%}50%,58%{right:33.4%}75%,92%{right:0}100%{right:0;opacity:0}}
+@keyframes ak-nyala{0%,22%{border-color:var(--teal);box-shadow:0 0 0 3px rgba(14,124,123,.18)}28%,100%{border-color:var(--line);box-shadow:none}}
+@media(max-width:860px){
+.ak{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.ak-jalur{width:6px;height:auto;margin:6% 0 6% 14px}
+.ak-isi{inset:0 0 100% 0}
+.ak-tiket{left:50%;top:0}
+.ak-meja{grid-template-columns:1fr}
+.ak.in .ak-tiket{animation-name:ak-maju-v}.ak.in .ak-isi{animation-name:ak-isi-v}
+}
+@keyframes ak-maju-v{0%,8%{top:0}25%,33%{top:33.3%}50%,58%{top:66.6%}75%,92%{top:100%}100%{top:0;opacity:0}}
+@keyframes ak-isi-v{0%,8%{bottom:100%}25%,33%{bottom:66.7%}50%,58%{bottom:33.4%}75%,92%{bottom:0}100%{bottom:0;opacity:0}}
+@media (prefers-reduced-motion:reduce){.ak.in .ak-tiket,.ak.in .ak-isi,.ak.in .ak-meja li{animation:none}.ak-isi{right:0;bottom:0}.ak-tiket{display:none}}
 /* Strip "Yang bisa saya bantu" (macro layanan_ringkas) */
 .ringkas{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:16px}
 .rk{display:flex;flex-direction:column;gap:6px;padding:18px;background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:4px;text-decoration:none;color:var(--ink)}
@@ -258,11 +292,6 @@ pre{font:14px/1.55 ui-monospace,Consolas,monospace;background:var(--code);color:
 @media (prefers-reduced-motion:reduce){.alur *,.alur .sc{transition:none!important;animation:none!important}}
 
 /* ---- 8. Cara kerja, tentang, FAQ ---- */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px}
-.step{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:16px 18px}
-.step b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--btn-bg);color:var(--btn-fg);font:700 15px "Familjen Grotesk",sans-serif;margin:0 0 10px}
-.step h3{font-size:18px;margin:0 0 4px}
-.step p{margin:0;color:var(--muted);font-size:15px}
 .about{display:grid;grid-template-columns:140px minmax(0,1fr);gap:28px;align-items:center;max-width:880px}
 .about p{margin:0 0 10px}
 .avatar{width:140px;height:140px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font:700 56px "Familjen Grotesk",sans-serif;object-fit:cover}
