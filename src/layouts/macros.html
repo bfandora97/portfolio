@@ -21,6 +21,15 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 {%- else -%}Rp{{ (n // 1000) }} rb{%- endif -%}
 {%- endmacro %}
 
+{#- Kartu template Etsy. Data dari src/data/produk.yml; checkout di Etsy -#}
+{% macro template_card(p, d=".1s") -%}
+<a class="card tpl rv" style="--d:{{ d }}" href="{{ p.etsy }}" target="_blank" rel="noopener"><img src="{{ p.gambar }}" alt="{{ p.alt }}" loading="lazy"><div>
+<h3>{{ p.nama }}</h3>
+<p>{{ p.ringkas }}</p>
+<ul class="tools">{% for f in p.format %}<li>{{ f }}</li>{% endfor %}</ul>
+<span class="buy">Buy on Etsy &rarr;</span></div></a>
+{%- endmacro %}
+
 {#- Kartu paket di bagian Jasa & Harga. Data dari src/data/paket.yml -#}
 {% macro plan_card(p, lang="id") -%}
 {%- set en = lang == "en" -%}

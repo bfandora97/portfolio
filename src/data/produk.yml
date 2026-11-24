@@ -1,0 +1,12 @@
+# Template digital yang dijual di Etsy (checkout di Etsy, bukan di website ini).
+# Produk dengan `etsy: ""` (kosong) TIDAK tampil. Bagian "Templates" di /en/ baru muncul
+# kalau minimal 1 produk punya link Etsy. Harga tidak ditulis di sini: pembeli melihatnya di Etsy.
+toko: ""   # link toko Etsy (opsional), contoh https://www.etsy.com/shop/NamaToko
+
+produk:
+  - nama: Etsy Seller Profit Calculator
+    gambar: /assets/img/template-profit-calculator.png
+    alt: "Etsy Seller Profit Calculator spreadsheet: monthly summary and chart (fictional sample data)"
+    ringkas: "Your real profit per product and per order, after Etsy fees, shipping and your time. Shows the price you need to hit your target margin."
+    format: [Excel, Google Sheets, Instant download]
+    etsy: ""   # link listing Etsy, contoh https://www.etsy.com/listing/1234567890/...

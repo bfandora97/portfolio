@@ -2,6 +2,9 @@
 
 Paling baru di atas. Satu baris per PR.
 
+## 2026-11-24
+- PR: Bagian "Ready-made templates" di /en/ (kartu template, checkout langsung ke Etsy). Data di `src/data/produk.yml`; produk baru tampil setelah link Etsy diisi.
+
 ## 2026-11-21
 - PR #8: File verifikasi Google Search Console (`static/googlefdbe962ee824253f.html`). Jangan dihapus, atau verifikasi Google akan hilang.
 - PR #7: Pesan website diubah jadi berbasis masalah klien. ID untuk UMKM lokal (hero, "Masalah yang sering kami bantu", Contoh hasil, nama jasa = manfaat, proyek event dikecilkan). EN untuk toko online internasional (hero + "Problems I solve").

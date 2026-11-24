@@ -8,7 +8,7 @@ alternates: {id: /, en: /en/, x-default: /}
 scripts: [/assets/js/home.js]
 ---
 <div class="wrap">
-{{ header([["Problems", "#problems"], ["Services", "#services"], ["Projects", "#projects"], ["Contact", "#contact"], ["ID", "/", "id"]], home="/en/", toggle_label="Toggle dark mode") }}
+{{ header([["Problems", "#problems"], ["Services", "#services"], ["Projects", "#projects"]] + ([["Templates", "#templates"]] if produk.tampil else []) + [["Contact", "#contact"], ["ID", "/", "id"]], home="/en/", toggle_label="Toggle dark mode") }}
 <main>
 <div class="hero2"><div class="hero">
 <h1 class="rv">Selling on several channels but can&rsquo;t see your real profit?</h1>
@@ -46,6 +46,14 @@ scripts: [/assets/js/home.js]
 <h3>Visitor 360: 3 systems into 1 table</h3>
 <p>Data quality score from 75.5% to 99.0%. Registration gap vs the official report cut from +157 to 3 at most.</p>
 <ul class="tools"><li>BigQuery</li><li>SQL</li><li>Python</li></ul></div></a></div></section>
+
+{% if produk.tampil -%}
+<section id="templates"><h2 class="rv">Ready-made templates</h2>
+<p class="lead rv">Not ready for a custom dashboard yet? Start with a spreadsheet template. Instant download, secure checkout on Etsy.</p>
+<div class="grid">{% for p in produk.tampil %}{{ template_card(p, "%.1fs" % (loop.index / 10)) }}{% endfor %}</div>
+{% if produk.toko %}<p class="rv"><a href="{{ produk.toko }}" target="_blank" rel="noopener">See all templates in my Etsy shop &rarr;</a></p>{% endif %}
+</section>
+{%- endif %}
 
 <section id="how-i-work"><h2 class="rv">How I work</h2>
 <div class="steps">

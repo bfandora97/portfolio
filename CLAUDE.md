@@ -7,7 +7,7 @@ Website Kemang Data. Halaman dirakit oleh `build.py` (Python + Jinja2) ke `_site
 ```
 src/pages/        isi tiap halaman; path file = URL (src/pages/en/index.html -> /en/)
 src/layouts/      base.html (kerangka <head>, script) + macros.html (header, wa(), plan_card, lightbox, ...)
-src/data/         site.yml (WA, email, link) + paket.yml (HARGA, satu-satunya sumber)
+src/data/         site.yml (WA, email, link) + paket.yml (HARGA, satu-satunya sumber) + produk.yml (template Etsy, tampil kalau link Etsy diisi)
 assets/css/       style.css (dikelompokkan per bagian, lihat komentar di atasnya)
 assets/js/        theme.js (mode gelap + header), home.js (animasi halaman utama), case.js (tab gambar + layar penuh)
 assets/img/       semua gambar
