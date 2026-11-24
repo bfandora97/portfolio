@@ -1,5 +1,6 @@
 # Bagian halaman utama yang bentuknya sama di ID & EN (isi boleh beda per bahasa):
 # cara kerja, FAQ, dan bagian kontak besar di bawah. Dipanggil dengan {{ cara_kerja() }}, {{ faq() }}, {{ kontak_utama() }}.
+# Bagian kontak = ajakan bertindak: maksimal 2 tombol utama. Link lain (LinkedIn, GitHub, dll.) cukup di footer.
 # Tombol: link (url / upwork / email / linkedin / github = dari site.yml) atau wa (isi pesan WhatsApp); kelas = btn big / btn / btn alt.
 
 id:
@@ -23,8 +24,7 @@ id:
     lead: "Chat saja dan ceritakan usaha Anda. Kalau ada, kirim contoh laporan yang biasa Anda pakai. Saya balas dengan apa yang bisa dibuat, harga, dan lama pengerjaannya. Gratis, tanpa kewajiban."
     tombol:
       - {teks: Chat WhatsApp, wa: "Halo Kemang Data, saya mau konsultasi soal laporan penjualan usaha saya.", kelas: btn big}
-      - {teks: Kirim email, link: email, kelas: btn}
-      - {teks: LinkedIn, link: linkedin, kelas: btn alt}
+      - {teks: Kirim email, link: email, kelas: btn alt}
 
 en:
   cara_kerja:
@@ -46,8 +46,5 @@ en:
     judul: Need a dashboard or cleaner data?
     lead: "Send a sample of your data and what you want to track. I will tell you what I can build and how long it takes."
     tombol:
-      - {teks: Upwork profile, link: upwork, kelas: btn big}
-      - {teks: Email us, link: email, kelas: btn}
-      - {teks: WhatsApp, wa: "Hi Kemang Data, I want to ask about a dashboard.", kelas: btn alt}
-      - {teks: LinkedIn, link: linkedin, kelas: btn alt}
-      - {teks: GitHub, link: github, kelas: btn alt}
+      - {teks: Hire me on Upwork, link: upwork, kelas: btn big}
+      - {teks: Email me, link: email, kelas: btn alt}
