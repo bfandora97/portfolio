@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-24
+- PR: Garis hitam di leher Bobbi dihapus (leher digambar di atas kaos, menyambung dari dagu ke kerah).
 - PR: Wajah Bobbi v2 dari foto formal (pilihan A): wajah lonjong, rambut pendek dengan jambul disapu ke samping (2 lapis, tidak ada celah putih), alis tebal lurus, kumis tipis; tetap kaos hitam + lanyard. Berlaku di hero & Alur kerja.
 - PR: Hero tata letak B: judul kiri, panggung animasi kanan (HP: animasi di atas). 2 karakter original gaya kartun: Bobbi (analis data, mirip foto, kaos hitam + ID Kemang Data) & pemilik kedai; 4 adegan 12 detik (kirim berkas → laptop → poster laporan → tanda tangan). Bobbi di Alur kerja ikut gaya baru. Sumber: `tools/gen_karakter.py` (menggantikan gen_barista).
 - PR: Bobbi barista punya aksi berbeda di tiap meja saat berhenti: 1 terima berkas, 2 merapikan (menyortir), 3 poster laporan (batang grafik tumbuh), 4 tanda tangan (pena + centang).
