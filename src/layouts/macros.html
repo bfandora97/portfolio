@@ -4,22 +4,22 @@
 <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#0e7c7b"><circle cx="5" cy="19" r="2.6"/><circle cx="12" cy="19" r="2.6"/><circle cx="12" cy="12" r="2.6"/><circle cx="19" cy="19" r="2.6"/><circle cx="19" cy="12" r="2.6"/></g><circle cx="19" cy="5" r="2.6" fill="#f2c811"/></svg>
 {%- endmacro %}
 
-{#- Menu atas. Isi dari src/data/teks.yml (bahasa = page.lang, jenis = page.menu: utama / kasus).
+{#- Menu atas. Isi dari src/data/i18n/<bahasa>.yml (bahasa = page.lang, jenis = page.menu: utama / kasus).
     Tombol ganti bahasa otomatis dari page.alternates. Halaman cukup memanggil {{ header() }}. -#}
 {% macro header() -%}
-{%- set t = teks[page.lang] -%}
+{%- set t = i18n[page.lang] -%}
 {%- set lain = "en" if page.lang == "id" else "id" -%}
 {%- set alt = page.get("alternates", {}) -%}
 <header class="top"><a class="brand" href="{{ t.beranda }}">{{ logo() }}Kemang Data</a><nav>
 {%- for m in t.menu[page.get("menu", "kasus")] if not (m.get("syarat") == "produk" and not produk.tampil) %}<a href="{{ m.link }}"
 {%- if m.get("hp") == false %} class="nhp"{% elif m.get("kecil") == false %} class="nkecil"{% endif %}>{{ m.teks }}</a>{% endfor -%}
-{%- if alt.get(lain) %}<a href="{{ alt[lain] }}" hreflang="{{ lain }}" lang="{{ lain }}">{{ teks[lain].label_bahasa }}</a>{% endif -%}
+{%- if alt.get(lain) %}<a href="{{ alt[lain] }}" hreflang="{{ lain }}" lang="{{ lain }}">{{ i18n[lain].label_bahasa }}</a>{% endif -%}
 <button class="tg" id="tg" type="button" aria-label="{{ t.mode_gelap }}">☾</button></nav></header>
 {%- endmacro %}
 
-{#- Footer semua halaman. Isi dari src/data/teks.yml + kontak dari site.yml. Halaman cukup memanggil {{ footer() }}. -#}
+{#- Footer semua halaman. Isi dari src/data/i18n/<bahasa>.yml + kontak dari site.yml. Halaman cukup memanggil {{ footer() }}. -#}
 {% macro footer() -%}
-{%- set t = teks[page.lang] -%}
+{%- set t = i18n[page.lang] -%}
 {%- set f = t.footer -%}
 {%- set lain = "en" if page.lang == "id" else "id" -%}
 {%- set alt = page.get("alternates", {}) -%}
@@ -40,7 +40,7 @@
 </ul></div>
 </div>
 <div class="ft-bottom"><span>&copy; {{ tahun }} Kemang Data · {{ f.lokasi }}</span>
-{%- if alt.get(lain) %}<a href="{{ alt[lain] }}" hreflang="{{ lain }}" lang="{{ lain }}">{{ teks[lain].bahasa_ini }}</a>{% endif %}</div>
+{%- if alt.get(lain) %}<a href="{{ alt[lain] }}" hreflang="{{ lain }}" lang="{{ lain }}">{{ i18n[lain].bahasa_ini }}</a>{% endif %}</div>
 </footer>
 {%- endmacro %}
 
@@ -60,7 +60,7 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 <h3>{{ p.nama }}</h3>
 <p>{{ p.ringkas }}</p>
 <ul class="tools">{% for f in p.format %}<li>{{ f }}</li>{% endfor %}</ul>
-<span class="buy">Buy on Etsy &rarr;</span></div></a>
+<span class="buy">{{ i18n[page.lang].utama.template.beli }}</span></div></a>
 {%- endmacro %}
 
 {#- Kartu paket di bagian Jasa & Harga. Data dari src/data/paket.yml -#}
@@ -71,13 +71,13 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 {%- if p.get("unggulan") %}<span class="tag">{{ p.label_en if en else p.label }}</span>{% endif -%}
 <h3>{{ p.nama_en if en else p.nama }}</h3>{% set alat = p.get("alat_en") if en else p.get("alat") %}{% if alat %}<p class="via">{{ alat }}</p>{% endif %}<p class="price">{% if en %}${{ t.usd }}{% else %}{{ rupiah(t.harga) }}{% endif %}<small>{{ p.satuan_en if en else p.satuan }}</small></p>
 <ul>{% for i in (p.web_isi_en if en else p.web_isi) %}<li>{{ i }}</li>{% endfor %}</ul>
-{%- if not en %}<a class="ask" href="{{ wa(p.wa) }}">Tanya paket ini &rarr;</a>{% endif -%}
+<a class="ask" href="{{ site.upwork if en else wa(p.wa) }}">{{ i18n[lang].utama.jasa.tanya }}</a>
 </div>
 {%- endmacro %}
 
 {#- Jendela layar penuh untuk gambar dashboard di halaman studi kasus -#}
 {% macro lightbox() -%}
-{%- set l = teks[page.lang].kasus.lightbox -%}
+{%- set l = i18n[page.lang].kasus.lightbox -%}
 <dialog id="lb" class="lb" aria-label="{{ l[0] }}"><img alt=""><button type="button" class="nav prev" aria-label="{{ l[1] }}">‹</button><button type="button" class="nav next" aria-label="{{ l[2] }}">›</button><button type="button" class="x" aria-label="{{ l[3] }}">✕</button></dialog>
 {%- endmacro %}
 
@@ -101,7 +101,7 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 
 {#- ===== Halaman studi kasus (front matter `layout: kasus` + `kasus:`). build.py membungkus isi halaman dengan ini. ===== -#}
 {% macro kasus_pembuka() -%}
-{%- set k = page.kasus -%}{%- set t = teks[page.lang].kasus -%}
+{%- set k = page.kasus -%}{%- set t = i18n[page.lang].kasus -%}
 <div class="case">
 <div class="case-text">
 <p class="eyebrow">{{ k.eyebrow }}</p>
@@ -121,17 +121,17 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 </div>
 {%- endmacro %}
 
-{#- Deretan tombol dari data. link: url / upwork / email / linkedin / github (dari site.yml); wa: isi pesan WhatsApp -#}
+{#- Deretan tombol dari data. link: url / upwork / email / linkedin / github (dari site.yml) / "wa:isi pesan WhatsApp" -#}
 {% macro tombol(daftar) -%}
 {%- set dari_site = {"upwork": site.upwork, "email": "mailto:" ~ site.email, "linkedin": site.linkedin, "github": site.github} -%}
 {%- for b in daftar -%}
-<a class="{{ b.kelas }}" href="{{ wa(b.wa) if b.get("wa") else dari_site.get(b.link, b.link) }}">{{ b.teks }}</a>
+<a class="{{ b.kelas }}" href="{{ wa(b.link[3:]) if b.link.startswith("wa:") else dari_site.get(b.link, b.link) }}">{{ b.teks }}</a>
 {%- endfor -%}
 {%- endmacro %}
 
 {% macro kasus_kontak() -%}
 {%- set k = page.kasus.kontak -%}
-<section class="contact" id="contact"><h2>{{ k.judul }}</h2><p class="lead">{{ k.lead }}</p>{{ tombol(teks[page.lang].kasus.tombol) }}</section>
+<section class="contact" id="contact"><h2>{{ k.judul }}</h2><p class="lead">{{ k.lead }}</p>{{ tombol(i18n[page.lang].kasus.tombol) }}</section>
 {%- endmacro %}
 
 {#- Kartu proyek untuk bagian Proyek / Projects. Data dari src/data/proyek.yml (hanya tampil: true). -#}
@@ -145,9 +145,9 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 {%- endmacro %}
 
 
-{#- ===== Bagian halaman utama, isi dari src/data/konten.yml sesuai bahasa halaman ===== -#}
+{#- ===== Bagian halaman utama, isi dari src/data/i18n/<bahasa>.yml (bagian utama) sesuai bahasa halaman ===== -#}
 {% macro cara_kerja() -%}
-{%- set c = konten[page.lang].cara_kerja -%}
+{%- set c = i18n[page.lang].utama.cara_kerja -%}
 <section id="{{ c.anchor }}"><h2 class="rv">{{ c.judul }}</h2>
 <div class="steps">
 {% for l in c.langkah %}<div class="step rv"{% if not loop.first %} style="--d:.{{ loop.index0 }}s"{% endif %}><b>{{ loop.index }}</b><h3>{{ l.judul }}</h3><p>{{ l.isi }}</p></div>
@@ -155,14 +155,14 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 {%- endmacro %}
 
 {% macro faq() -%}
-{%- set f = konten[page.lang].faq -%}
+{%- set f = i18n[page.lang].utama.faq -%}
 <section id="faq" class="faq"><h2 class="rv">{{ f.judul }}</h2>
 {% for q in f.tanya %}<details class="rv"><summary>{{ q.t }}</summary><p>{{ q.j }}</p></details>
 {% endfor %}</section>
 {%- endmacro %}
 
 {% macro kontak_utama() -%}
-{%- set k = konten[page.lang].kontak -%}
+{%- set k = i18n[page.lang].utama.kontak -%}
 <section class="page2" id="contact"><div class="wrap"><div class="contact">
 <h2 class="rv">{{ k.judul }}</h2>
 <p class="lead rv" style="--d:.15s">{{ k.lead }}</p>

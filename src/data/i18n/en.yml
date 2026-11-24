@@ -1,0 +1,145 @@
+# ALL ENGLISH TEXT. Pair: id.yml with EXACTLY THE SAME KEYS (see the notes at the top of id.yml).
+# The build fails if a key or the number of list items differs from id.yml.
+
+beranda: /en/
+mode_gelap: Toggle dark mode
+bahasa_ini: English
+label_bahasa: EN
+
+menu:
+  utama:
+    - {teks: Examples, link: "#how"}
+    - {teks: Services, link: "#services", hp: false}
+    - {teks: Projects, link: "#projects", hp: false}
+    - {teks: Templates, link: "#templates", hp: false, syarat: produk}
+    - {teks: About, link: "#about", hp: false}
+    - {teks: Contact, link: "#contact", kecil: false}
+  kasus:
+    - {teks: All projects, link: "/en/#projects"}
+    - {teks: Contact, link: "#contact", kecil: false}
+
+footer:
+  tagline: "One auto-updating report from all your sales channels. Real profit per product and per channel, no more copy-pasting exports."
+  jelajahi: Explore
+  hubungi: Contact
+  link:
+    - {teks: Examples, link: "/en/#how"}
+    - {teks: Services & pricing, link: "/en/#services"}
+    - {teks: Projects, link: "/en/#projects"}
+    - {teks: Templates, link: "/en/#templates", syarat: produk}
+    - {teks: How I work, link: "/en/#how-i-work"}
+    - {teks: FAQ, link: "/en/#faq"}
+  kontak: [upwork, email, linkedin, github]
+  lokasi: Jakarta, Indonesia
+
+kasus:
+  langkah: Project steps
+  layar_penuh: Full screen
+  lightbox: [Full screen view, Previous image, Next image, Close]
+  tombol:
+    - {teks: Hire me on Upwork, link: upwork, kelas: btn big}
+    - {teks: Email me, link: email, kelas: btn alt}
+
+utama:
+  meta:
+    title: "Kemang Data | Multi-channel Sales Dashboards & Data Cleaning"
+    description: "See your real profit per product and channel. I merge Shopify, Amazon, Etsy and marketplace reports into one dashboard that updates itself. Data cleaning, Looker Studio and Power BI."
+    og_image: /assets/img/og-image-en.png
+
+  hero:
+    judul: "Selling on several channels but can&rsquo;t see your real profit?"
+    isi: "I merge your Shopify, Amazon, Etsy and marketplace reports into <b>one dashboard that updates itself</b>, so you see real profit per product and per channel, after fees. No more copy-pasting exports every week."
+    tombol:
+      - {teks: Hire me on Upwork, link: upwork, kelas: btn}
+      - {teks: See an example, link: "#how", kelas: btn alt}
+    cocok: "Made for:"
+    cocok_isi: [Online shops, Multi-channel sellers, Small brands]
+
+  masalah:
+    anchor: problems
+    judul: Problems I solve
+    daftar:
+      - {q: "I spend hours every week copying exports.", a: "Every channel lands in one dashboard that refreshes itself."}
+      - {q: "Sales are up, but where does the money go?", a: "Profit per channel after platform fees and commissions."}
+      - {q: "I don&rsquo;t know which products actually make money.", a: "Best sellers vs slow movers per product, on one screen."}
+      - {q: "My customer list is a mess.", a: "One clean, deduplicated list, ready for email or SMS campaigns."}
+
+  contoh:
+    anchor: how
+    judul: From messy exports to real profit
+    lead: "Juniper Candle Co. sells on Shopify, Amazon, Etsy and at a weekend market. The shop and its numbers are fictional; the process is exactly what I do for you."
+    alur: en_shop
+    showcase:
+      - judul: Automatic sales report
+        gambar: /assets/img/umkm-sales-dashboard.png
+        lebar: 1600
+        tinggi: 1000
+        alt: Example automatic sales dashboard for a fictional coffee shop
+        link: /en/small-business-sales-dashboard.html
+        link_teks: "See the full case study &rarr;"
+        poin:
+          - "<b>4-hour weekly recap &rarr; automatic.</b> The owner opens one link on their phone."
+          - "<b>Delivery-app margin was only 41%</b>, vs 61% in store, once commissions were counted."
+          - "<b>2 products were piling up stock</b> and were flagged to drop."
+          - "<b>Busiest hours 3&ndash;6 pm</b>: the right time to add staff or run a promo."
+      - judul: Customer data cleaned up
+        gambar: /assets/img/contoh-rapikan-data.png
+        lebar: 1280
+        tinggi: 960
+        alt: Example customer data before and after cleaning (fictional)
+        link: ""
+        link_teks: ""
+        poin:
+          - "<b>8 messy rows &rarr; 5 unique customers.</b> Duplicates removed."
+          - "<b>Phone numbers standardized</b> to one international format."
+          - "<b>Email typos fixed</b> (gmial, hotmial, .con) and city names unified."
+          - "<b>A short report</b> listing everything that was fixed."
+
+  jasa:
+    anchor: services
+    judul: "Services &amp; pricing"
+    lead: "Fixed-price packages, 2 rounds of revisions included. Final scope and price are confirmed in writing before work starts."
+    tanya: "Ask about this on Upwork &rarr;"
+
+  proyek:
+    judul: Projects
+    lead: "Full case studies: the problem, what I did, and the result."
+
+  template:
+    judul: Ready-made templates
+    lead: "Spreadsheet templates I build and sell on Etsy. Type in a few cells, the formulas do the rest. Instant download, secure checkout on Etsy."
+    beli: "Buy on Etsy &rarr;"
+    toko: "See all templates in my Etsy shop &rarr;"
+    catatan: "Etsy is a trademark of Etsy, Inc. These templates are not created or endorsed by Etsy, Inc."
+
+  cara_kerja:
+    anchor: how-i-work
+    judul: How I work
+    langkah:
+      - {judul: Share a sample, isi: "Send 10&ndash;20 rows of your data (anonymized is fine) and tell me what decisions it should support."}
+      - {judul: Fixed quote in writing, isi: "You get the scope, price and deadline before anything starts. No surprises, no hourly creep."}
+      - {judul: "Delivery &amp; revisions", isi: "Delivered on schedule with 2 rounds of revisions and a short walkthrough of how to use it."}
+
+  tentang:
+    anchor: about
+    judul: About
+    foto_alt: Photo of Bobbi, founder of Kemang Data
+    paragraf:
+      - "Hi, I&rsquo;m <b>Bobbi</b>, founder of Kemang Data in Jakarta. For 4 years I have worked hands-on with data: merging records from different systems, cleaning messy data, building dashboards in Power BI and Looker Studio, and automating reports that used to be done by hand."
+      - "What you can expect: a clear scope, fast and honest communication, and numbers you can trust. I do the work myself and reply to your messages myself."
+
+  faq:
+    judul: FAQ
+    tanya:
+      - {t: "How do we work together?", j: "Through Upwork. Fixed-price milestones, and your payment is held by Upwork until you approve the work. We talk in Upwork chat; calls can be arranged."}
+      - {t: "What is your time zone?", j: "Jakarta, GMT+7. I reply within 24 hours on weekdays, usually much sooner. My working hours overlap with European afternoons and US East Coast mornings."}
+      - {t: "Is my data safe?", j: "Yes. Your data is used only for your project, never shared, and deleted after delivery if you ask. I am happy to sign an NDA."}
+      - {t: "Do I need to buy software?", j: "Not necessarily. Google Sheets and Looker Studio are free. Power BI is free to build in, but sharing reports privately usually needs a Power BI Pro licence."}
+      - {t: "What if I need changes later?", j: "Every package includes 2 rounds of revisions. For ongoing updates, the monthly reporting plan keeps your dashboard current."}
+
+  kontak:
+    judul: Need a dashboard or cleaner data?
+    lead: "Send a sample of your data and what you want to track. I will tell you what I can build and how long it takes."
+    tombol:
+      - {teks: Hire me on Upwork, link: upwork, kelas: btn big}
+      - {teks: Email me, link: email, kelas: btn alt}
