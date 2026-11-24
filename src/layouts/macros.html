@@ -36,8 +36,8 @@
 </ul></nav>
 {%- if page.get("halaman") != "kontak" %}{# di halaman Kontak isinya sudah ada di atas, jangan dobel #}
 <div><p class="ft-h">{{ f.hubungi }}</p><ul>
-{%- set daftar = [] %}{% for k in f.kontak if kontak[k][1] %}{% set _ = daftar.append(kontak[k]) %}{% endfor -%}
-{%- for x in daftar|sort(attribute="0", case_sensitive=false) %}<li><a href="{{ x[1] }}">{{ x[0] }}</a></li>{% endfor -%}
+{%- set daftar = [] %}{% for k in f.kontak if kontak[k][1] %}{% set _ = daftar.append(kontak[k] + [k]) %}{% endfor -%}
+{%- for x in daftar|sort(attribute="0", case_sensitive=false) %}<li><a href="{{ x[1] }}">{{ ikon(x[2]) }}{{ x[0] }}</a></li>{% endfor -%}
 </ul></div>
 {%- set sosial = temukan_kami(f.temukan_link) %}{% if sosial %}
 <div><p class="ft-h">{{ f.temukan }}</p><ul>{{ sosial }}</ul></div>{% endif %}{% endif %}
@@ -51,8 +51,8 @@
 {% macro temukan_kami(daftar) -%}
 {%- set akun = {"etsy": ["Etsy", produk.toko], "instagram": ["Instagram", site.instagram], "tiktok": ["TikTok", site.tiktok],
                 "linkedin": ["LinkedIn", site.linkedin], "upwork": ["Upwork", site.upwork], "github": ["GitHub", site.github]} -%}
-{%- set ada = [] %}{% for k in daftar if akun[k][1] %}{% set _ = ada.append(akun[k]) %}{% endfor -%}
-{%- for x in ada|sort(attribute="0", case_sensitive=false) %}<li><a href="{{ x[1] }}" target="_blank" rel="noopener">{{ x[0] }}</a></li>{% endfor -%}
+{%- set ada = [] %}{% for k in daftar if akun[k][1] %}{% set _ = ada.append(akun[k] + [k]) %}{% endfor -%}
+{%- for x in ada|sort(attribute="0", case_sensitive=false) %}<li><a href="{{ x[1] }}" target="_blank" rel="noopener">{{ ikon(x[2]) }}{{ x[0] }}</a></li>{% endfor -%}
 {%- endmacro %}
 
 {#- Link WhatsApp dengan pesan otomatis -#}
@@ -178,4 +178,11 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 {% macro kepala_halaman() -%}
 {%- set h = i18n[page.lang].halaman[page.halaman] -%}
 <div class="pagehead"><h1 class="rv">{{ h.judul }}</h1><p class="lead rv" style="--d:.1s">{{ h.lead }}</p></div>
+{%- endmacro %}
+
+
+{#- Ikon kecil satu warna dari src/data/ikon.yml. Selalu dipakai bersama tulisan (bukan ikon saja). -#}
+{% macro ikon(nama) -%}
+{%- set i = ikon_data.ikon.get(nama) -%}
+{%- if i %}<svg class="ik" viewBox="0 0 24 24" aria-hidden="true" focusable="false"{% if i.garis %} fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"{% else %} fill="currentColor"{% endif %}>{{ i.svg }}</svg>{% endif -%}
 {%- endmacro %}
