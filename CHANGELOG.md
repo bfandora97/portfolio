@@ -3,7 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-24
-- PR: Bagian kontak halaman utama dirampingkan: 2 tombol utama (ID: WhatsApp + Email, EN: Upwork + Email), LinkedIn/GitHub cukup di footer, tidak lagi setinggi 1 layar penuh.
+- PR #15: Menu EN jadi Services · Projects · About · Contact (Problems dihapus), ID jadi Contoh · Jasa · Tentang · Kontak. Bagian kontak halaman utama dirampingkan: 2 tombol utama (ID: WhatsApp + Email, EN: Upwork + Email), LinkedIn/GitHub cukup di footer, tidak lagi setinggi 1 layar penuh.
 - PR C (refactor 3/3): Cara kerja, FAQ dan kontak halaman utama dari `src/data/konten.yml` (macro `cara_kerja()`, `faq()`, `kontak_utama()`, `tombol()`). `check_site.py` sekarang juga menolak inline style selain variabel CSS, link kontak yang ditulis manual, dan halaman tanpa header/footer macro. HTML hasil build identik dengan sebelumnya.
 - PR B (refactor 2/3): Kartu proyek dari `src/data/proyek.yml` (ID & EN), 4 halaman studi kasus pakai layout `kasus` (pembuka, kontak, layar penuh dari data; isi unik tetap di halaman). Proyek event `tampil: false` (tidak dipromosikan, halaman tetap ada). Tombol kontak studi kasus EN diseragamkan (Upwork, Email, WhatsApp). Inline style catatan demo jadi class `.note.demo`.
 - PR A (refactor 1/3): Menu & footer dari data (`src/data/teks.yml`), halaman cukup `{{ header() }}` + `{{ footer() }}`. Footer baru 3 kolom (Jelajahi, Hubungi) di semua halaman. Menu Proyek di halaman ID (desktop). Aturan HP pakai class `nhp`/`nkecil`. Isi halaman lain identik (dicek per halaman).

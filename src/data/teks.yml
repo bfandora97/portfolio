@@ -2,6 +2,7 @@
 # Bahasa halaman diambil dari front matter `lang`. Jenis menu dari front matter `menu` (utama / kasus; default kasus).
 #
 # Item menu: teks, link, dan opsional:
+# Urutan menu = urutan bagian di halaman. Desktop maks 5 link (+ Templates kalau ada produk).
 #   hp: false        -> disembunyikan di layar HP (<= 520px). Aturan: di HP maksimal 3 link + tombol mode gelap.
 #   kecil: false     -> disembunyikan di HP sangat kecil (<= 380px)
 #   syarat: produk   -> hanya tampil kalau ada template Etsy yang live (src/data/produk.yml)
@@ -17,7 +18,7 @@ id:
     utama:
       - {teks: Contoh, link: "#contoh"}
       - {teks: Jasa, link: "#jasa", hp: false}
-      - {teks: Proyek, link: "#projects", hp: false}
+      - {teks: Tentang, link: "#tentang", hp: false}
       - {teks: Kontak, link: "#contact", kecil: false}
     kasus:
       - {teks: Semua proyek, link: "/#projects"}
@@ -49,10 +50,10 @@ en:
   label_bahasa: EN
   menu:
     utama:
-      - {teks: Problems, link: "#problems", hp: false}
       - {teks: Services, link: "#services", hp: false}
       - {teks: Projects, link: "#projects"}
       - {teks: Templates, link: "#templates", hp: false, syarat: produk}
+      - {teks: About, link: "#about", hp: false}
       - {teks: Contact, link: "#contact", kecil: false}
     kasus:
       - {teks: All projects, link: "/en/#projects"}
