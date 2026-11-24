@@ -10,31 +10,27 @@ scripts: [/assets/js/home.js, /assets/js/alur.js]
 {{ header() }}
 <main>
 <div class="hero2"><div class="hero">
+<p class="eyebrow rv">{{ u.hero.label }}</p>
 <h1 class="rv">{{ u.hero.judul }}</h1>
 <p class="rv" style="--d:.15s">{{ u.hero.isi }}</p>
 <div class="cta rv" style="--d:.3s">{{ tombol(u.hero.tombol) }}</div>
-<p class="fit rv" style="--d:.45s"><span>{{ u.hero.cocok }}</span>{% for c in u.hero.cocok_isi %} <b>{{ c }}</b>{% endfor %}</p>
+<p class="harga rv" style="--d:.4s">{{ hero_harga() }}</p>
+<p class="oleh rv" style="--d:.5s"><img src="/assets/img/bobbi.jpg" alt="" width="40" height="40"><span>{{ u.hero.oleh }}</span></p>
 </div>
-<canvas id="dots" aria-hidden="true"></canvas></div>
+<figure class="hero-shot rv" style="--d:.2s"><div class="browser"><span></span><span></span><span></span></div><img src="/assets/img/umkm-sales-dashboard.png" width="1600" height="1000" alt="{{ u.hero.gambar_alt }}"><figcaption>{{ u.hero.gambar_label }}</figcaption></figure></div>
 
-<section id="{{ u.masalah.anchor }}"><h2 class="rv">{{ u.masalah.judul }}</h2>
-<div class="probs">
-{% for m in u.masalah.daftar %}<div class="prob rv"{% if not loop.first %} style="--d:.{{ loop.index0 }}s"{% endif %}><q>{{ m.q }}</q><p>&rarr; {{ m.a }}</p></div>
-{% endfor %}</div></section>
+<section id="{{ u.jasa.anchor }}"><h2 class="rv">{{ u.layanan_ringkas.judul }}</h2>
+{{ layanan_ringkas() }}
+<p class="rv"><a class="more" href="{{ t.menu.utama[1].link }}">{{ u.jasa.semua }}</a></p></section>
 
 <section id="{{ u.contoh.anchor }}"><h2 class="rv">{{ u.contoh.judul }}</h2>
 <p class="lead rv">{{ u.contoh.lead }}</p>
 {{ alur(alur_data[u.contoh.alur]) }}
 </section>
 
-<section id="{{ u.jasa.anchor }}"><h2 class="rv">{{ u.jasa.judul }}</h2>
-<p class="lead rv">{{ u.jasa.lead }}</p>
-<div class="plans">
-{#- 3 paket pertama dari src/data/paket.yml; semua paket di halaman Layanan -#}
-{% for p in paket if p.get("web" if page.lang == "id" else "web_en") %}{% if loop.index <= 3 %}
-{{ plan_card(p, page.lang) }}
-{% endif %}{% endfor %}
-</div>
-<p class="rv"><a class="more" href="{{ t.menu.utama[1].link }}">{{ u.jasa.semua }}</a></p></section>
+<section id="{{ u.masalah.anchor }}"><h2 class="rv">{{ u.masalah.judul }}</h2>
+<div class="probs">
+{% for m in u.masalah.daftar %}<div class="prob rv"{% if not loop.first %} style="--d:.{{ loop.index0 }}s"{% endif %}><q>{{ m.q }}</q><p>&rarr; {{ m.a }}</p></div>
+{% endfor %}</div></section>
 </main></div>
 <div class="wrap">{{ footer() }}</div>
