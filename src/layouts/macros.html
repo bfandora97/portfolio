@@ -24,7 +24,7 @@
 {%- set lain = "en" if page.lang == "id" else "id" -%}
 {%- set alt = page.get("alternates", {}) -%}
 {%- set kontak = {
-  "whatsapp": ["WhatsApp", wa("Halo Kemang Data, saya mau tanya soal laporan usaha saya.")],
+  "whatsapp": ["WhatsApp", wa("Hi Kemang Data, I have a question about my sales reports." if page.lang == "en" else "Halo Kemang Data, saya mau tanya soal laporan usaha saya.")],
   "email": ["Email", "mailto:" ~ site.email],
   "booking": ["Booking meeting" if page.lang == "en" else "Booking konsultasi", site.booking],
   "upwork": ["Upwork", site.upwork]} -%}
@@ -36,7 +36,8 @@
 </ul></nav>
 {%- if page.get("halaman") != "kontak" %}{# di halaman Kontak isinya sudah ada di atas, jangan dobel #}
 <div><p class="ft-h">{{ f.hubungi }}</p><ul>
-{%- for k in f.kontak if kontak[k][1] %}<li><a href="{{ kontak[k][1] }}">{{ kontak[k][0] }}</a></li>{% endfor -%}
+{%- set daftar = [] %}{% for k in f.kontak if kontak[k][1] %}{% set _ = daftar.append(kontak[k]) %}{% endfor -%}
+{%- for x in daftar|sort(attribute="0", case_sensitive=false) %}<li><a href="{{ x[1] }}">{{ x[0] }}</a></li>{% endfor -%}
 </ul></div>
 {%- set sosial = temukan_kami(f.temukan_link) %}{% if sosial %}
 <div><p class="ft-h">{{ f.temukan }}</p><ul>{{ sosial }}</ul></div>{% endif %}{% endif %}
@@ -46,11 +47,12 @@
 </footer>
 {%- endmacro %}
 
-{#- Daftar akun "Temukan kami". Link kosong (belum punya akun) otomatis tidak tampil. -#}
+{#- Daftar akun "Temukan kami", urut A-Z. Link kosong (belum punya akun) otomatis tidak tampil. -#}
 {% macro temukan_kami(daftar) -%}
 {%- set akun = {"etsy": ["Etsy", produk.toko], "instagram": ["Instagram", site.instagram], "tiktok": ["TikTok", site.tiktok],
                 "linkedin": ["LinkedIn", site.linkedin], "upwork": ["Upwork", site.upwork], "github": ["GitHub", site.github]} -%}
-{%- for k in daftar if akun[k][1] %}<li><a href="{{ akun[k][1] }}" target="_blank" rel="noopener">{{ akun[k][0] }}</a></li>{% endfor -%}
+{%- set ada = [] %}{% for k in daftar if akun[k][1] %}{% set _ = ada.append(akun[k]) %}{% endfor -%}
+{%- for x in ada|sort(attribute="0", case_sensitive=false) %}<li><a href="{{ x[1] }}" target="_blank" rel="noopener">{{ x[0] }}</a></li>{% endfor -%}
 {%- endmacro %}
 
 {#- Link WhatsApp dengan pesan otomatis -#}

@@ -26,9 +26,9 @@ footer:
     - {teks: Example results, link: "/en/services/#examples"}
     - {teks: Digital products, link: "/en/services/#templates", syarat: produk}
     - {teks: Contact, link: "/en/contact/"}
-  kontak: [upwork, email, booking]
+  kontak: [upwork, email, booking, whatsapp]
   temukan: Find us
-  temukan_link: [etsy, instagram, tiktok, linkedin, github]
+  temukan_link: [etsy, instagram, tiktok, linkedin]
   lokasi: Jakarta, Indonesia
 
 kasus:
