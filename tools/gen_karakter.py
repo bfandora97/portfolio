@@ -98,7 +98,8 @@ def badan(o, siapa):
     s = [f'<rect x="44" y="78" width="12" height="12" rx="3" fill="{o["kulit2"]}"/>',
          f'<rect x="28" y="86" width="44" height="52" rx="16" fill="{o["baju"]}"/>']
     if siapa == "bobbi":  # kaos hitam + lanyard kuning + ID card logo Kemang Data
-        s.append(f'<path d="M42 87q8 7 16 0" fill="{o["kulit2"]}"/>')
+        # leher digambar DI ATAS kaos (menyambung dari dagu ke kerah, tanpa garis hitam di antaranya)
+        s.append(f'<path d="M44 78h12v9q-6 6-12 0z" fill="{o["kulit2"]}"/><path d="M42 86.5q8 8 16 0z" fill="{o["kulit2"]}"/>')
         s.append(f'<path d="M40 89l10 25 10-25" fill="none" stroke="{YEL}" stroke-width="2.6"/>')
         s.append('<rect x="43" y="112" width="14" height="18" rx="2" fill="#fff"/>')
         for cx, cy, c in ((47, 125, TEAL), (50.5, 125, TEAL), (50.5, 121.5, TEAL), (54, 125, TEAL), (54, 121.5, TEAL), (54, 118, YEL)):
