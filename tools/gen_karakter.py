@@ -1,5 +1,5 @@
-"""Karakter ORIGINAL Kemang Data (gaya kartun lembut): Bobbi (analis data, mirip foto: rambut hitam bervolume,
-kulit sawo matang, kaos hitam + lanyard ID Kemang Data) dan pemilik kedai (celemek). Satu sumber untuk:
+"""Karakter ORIGINAL Kemang Data (gaya kartun lembut): Bobbi (analis data, dari foto: wajah lonjong, jambul samping,
+alis tebal, kulit sawo matang, kaos hitam + lanyard ID Kemang Data) dan pemilik kedai (celemek). Satu sumber untuk:
   - panggung animasi hero (4 adegan, 12 detik)     -> macro panggung_hero() di src/layouts/macros.html
   - Bobbi di bagian Alur kerja (aksi meja 1-4 + jalan) -> blok KARAKTER:ALUR di macro cara_kerja
   - CSS animasinya                                  -> blok KARAKTER:CSS di assets/css/style.css
@@ -26,22 +26,47 @@ TEAL, YEL = "#0E7C7B", "#F2C811"
 
 
 # ---------------------------------------------------------------- bagian tubuh
+def kepala_bobbi(o, ekspresi="senyum"):
+    """Bobbi (dari foto formal): wajah lonjong, rambut pendek rapi dengan jambul disapu ke samping, alis tebal lurus,
+    kumis tipis samar. Rambut 2 lapis (belakang di balik wajah + jambul depan) supaya tidak ada celah."""
+    r, s = o["rambut"], []
+    s.append(f'<path d="M24 57c-2-15 2-26 11-32h30c9 6 13 17 11 32-1-3-3-6-5-7H29c-2 1-4 4-5 7z" fill="{r}"/>')
+    s.append(f'<ellipse cx="25.5" cy="58" rx="5" ry="7" fill="{o["kulit2"]}"/><ellipse cx="74.5" cy="58" rx="5" ry="7" fill="{o["kulit2"]}"/>')
+    s.append(f'<path d="M50 26c15 0 25 11 25 27 0 19-11 33-25 33S25 72 25 53c0-16 10-27 25-27z" fill="{o["kulit"]}"/>')
+    s.append(f'<path d="M26 48C26 36 32 27 42 22C46 15 55 12 62 14C69 16 74 22 75 30C76 35 75 41 74 46C70 40 63 37 56 37C49 37 43 39 38 41C33 43 29 45 26 48Z" fill="{r}"/>')
+    s.append('<path d="M37 31c6-6 15-10 24-9M42 36c6-5 14-8 22-7M32 40c5-5 11-8 17-9" fill="none" stroke="#45434c" stroke-width="1.5" stroke-linecap="round"/>')
+    s.append(f'<path d="M35 48.5l11-1.6M54 46.9l11 1.6" fill="none" stroke="{r}" stroke-width="3.8" stroke-linecap="round"/>')
+    if ekspresi == "senang":
+        s.append(f'<path d="M36 58q4.5-5 9 0M55 58q4.5-5 9 0" fill="none" stroke="{INK}" stroke-width="2.6" stroke-linecap="round"/>')
+    else:
+        dy = 1.6 if ekspresi == "fokus" else 0
+        for x in (40.5, 59.5):
+            s.append(f'<ellipse cx="{x}" cy="57" rx="4.2" ry="4.8" fill="#fff"/><circle cx="{x + .4}" cy="{58 + dy}" r="3" fill="{INK}"/>'
+                     f'<circle cx="{x + 1.4}" cy="{56.7 + dy}" r="1" fill="#fff"/>')
+    s.append(f'<path d="M50 60q-2.2 7 1.2 8" fill="none" stroke="{o["hidung"]}" stroke-width="2" stroke-linecap="round"/>')
+    s.append(f'<path d="M44 72.5q6 1.6 12 0" fill="none" stroke="{r}" stroke-width="1.3" opacity=".22" stroke-linecap="round"/>')
+    if ekspresi == "senang":
+        s.append('<path d="M42 75q8 11 16 0z" fill="#8C2F39"/><path d="M45 78q5 4 10 0z" fill="#E9787A"/>')
+    elif ekspresi == "fokus":
+        s.append('<path d="M45.5 76q4.5 2 9 0" fill="none" stroke="#8C2F39" stroke-width="2.2" stroke-linecap="round"/>')
+    else:
+        s.append('<path d="M44 75q6 6.5 12 0z" fill="#8C2F39"/><path d="M46 76.8q4 2.6 8 0z" fill="#E9787A"/>')
+    s.append(f'<ellipse cx="33" cy="68" rx="4" ry="2.4" fill="{o["pipi"]}" opacity=".3"/><ellipse cx="67" cy="68" rx="4" ry="2.4" fill="{o["pipi"]}" opacity=".3"/>')
+    return "".join(s)
+
+
 def kepala(o, siapa, ekspresi="senyum"):
+    if siapa == "bobbi":
+        return kepala_bobbi(o, ekspresi)
     s = []
-    if siapa == "klien":  # sanggul + rambut samping
-        s.append(f'<circle cx="50" cy="20" r="11" fill="{o["rambut"]}"/>')
-        s.append(f'<path d="M21 60c-4-26 10-38 29-38s33 12 29 38c-3 6-6 9-9 10l1-14c-6-8-16-11-21-11s-15 3-21 11l1 14c-3-1-6-4-9-10z" fill="{o["rambut"]}"/>')
+    # pemilik kedai: sanggul + rambut samping
+    s.append(f'<circle cx="50" cy="20" r="11" fill="{o["rambut"]}"/>')
+    s.append(f'<path d="M21 60c-4-26 10-38 29-38s33 12 29 38c-3 6-6 9-9 10l1-14c-6-8-16-11-21-11s-15 3-21 11l1 14c-3-1-6-4-9-10z" fill="{o["rambut"]}"/>')
     s.append(f'<ellipse cx="24" cy="56" rx="5.5" ry="7.5" fill="{o["kulit2"]}"/><ellipse cx="76" cy="56" rx="5.5" ry="7.5" fill="{o["kulit2"]}"/>')
     s.append(f'<ellipse cx="50" cy="55" rx="27" ry="29" fill="{o["kulit"]}"/>')
-    if siapa == "bobbi":  # rambut hitam bervolume, bergelombang di atas
-        s.append(f'<path d="M22 54c-5-21 6-37 27-38 5-5 14-5 19 0 10 2 15 13 12 28-2-6-6-10-11-12 0 4-4 7-9 6-3 4-10 6-17 5-8 1-15 4-21 11z" fill="{o["rambut"]}"/>')
-        s.append(f'<circle cx="36" cy="21" r="6" fill="{o["rambut"]}"/><circle cx="47" cy="16" r="6.5" fill="{o["rambut"]}"/>'
-                 f'<circle cx="59" cy="17" r="6" fill="{o["rambut"]}"/><circle cx="69" cy="24" r="5" fill="{o["rambut"]}"/>')
-    else:
-        s.append(f'<path d="M23 55c-2-19 10-31 27-31s29 12 27 31c-4-8-11-13-19-15-3 5-10 7-17 7-8 0-14 3-18 8z" fill="{o["rambut"]}"/>')
-    tebal = 3.4 if siapa == "bobbi" else 2.8
+    s.append(f'<path d="M23 55c-2-19 10-31 27-31s29 12 27 31c-4-8-11-13-19-15-3 5-10 7-17 7-8 0-14 3-18 8z" fill="{o["rambut"]}"/>')
     alis_y = 43 if ekspresi == "senang" else 45
-    s.append(f'<path d="M34 {alis_y}q6-4 12 0M54 {alis_y}q6-4 12 0" fill="none" stroke="{o["rambut"]}" stroke-width="{tebal}" stroke-linecap="round"/>')
+    s.append(f'<path d="M34 {alis_y}q6-4 12 0M54 {alis_y}q6-4 12 0" fill="none" stroke="{o["rambut"]}" stroke-width="2.8" stroke-linecap="round"/>')
     if ekspresi == "senang":  # mata tersenyum ^^
         s.append(f'<path d="M35.5 56q4.5-5 9 0M55.5 56q4.5-5 9 0" fill="none" stroke="{INK}" stroke-width="2.6" stroke-linecap="round"/>')
     else:
