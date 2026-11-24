@@ -5,25 +5,45 @@ lang: "en"
 og_type: "article"
 og_image: /assets/img/exhibition-360.png
 scripts: [/assets/js/case.js]
+layout: kasus
+kasus:
+  eyebrow: SQL · BigQuery · Data quality
+  judul: Exhibition Visitor 360
+  sub: An exhibition organizer kept visitor data in 3 separate systems, and the numbers never matched. We cleaned and merged them in BigQuery into one table with one row per person, then checked the result against the official reports.
+  langkah:
+  - judul: Load
+    ket: 3 systems + official report, 5 editions
+  - judul: Clean
+    link: '#cleaning'
+    ket: emails, phones, company names, duplicates
+  - judul: Match people
+    link: '#identity'
+    ket: same email or phone = same person
+  - judul: Check
+    link: '#recon'
+    ket: compare with official numbers &rarr;
+  kpi:
+  - - 6,061
+    - unique people
+  - - 99.0%
+    - data quality
+  - - '&le; 3'
+    - registration gap
+  galeri:
+    label: Project views
+    gambar:
+    - tab: 1 &middot; Dashboard
+      src: /assets/img/exhibition-360-dashboard.png
+      alt: 'Exhibition Visitor 360 dashboard: 6,061 unique people split into four segments, with show-up rate per segment'
+      teks: <b>Dashboard.</b> 6,061 unique people in 4 segments. Loyal visitors show up 93% of the time.
+    - tab: 2 &middot; Reconciliation
+      src: /assets/img/exhibition-360-reconciliation.png
+      alt: Reconciliation table comparing raw and clean counts with the official report for each of 5 editions
+      teks: <b>Reconciliation.</b> Our counts vs the official report, per edition, before and after cleaning.
+  kontak:
+    judul: Need a dashboard or cleaner data?
+    lead: Send us a sample of your data and what you want to track. We will tell you what we can build and how long it takes.
 ---
-<div class="wrap">
-{{ header() }}
-<main>
-<div class="case">
-<div class="case-text">
-<p class="eyebrow">SQL · BigQuery · Data quality</p>
-<h1>Exhibition Visitor 360</h1>
-<p class="sub">An exhibition organizer kept visitor data in 3 separate systems, and the numbers never matched. We cleaned and merged them in BigQuery into one table with one row per person, then checked the result against the official reports.</p>
-<ol class="flow" aria-label="Project steps">
-<li><b>1</b><div><strong>Load</strong><span>3 systems + official report, 5 editions</span></div></li>
-<li><b>2</b><div><strong><a href="#cleaning">Clean</a></strong><span>emails, phones, company names, duplicates</span></div></li>
-<li><b>3</b><div><strong><a href="#identity">Match people</a></strong><span>same email or phone = same person</span></div></li>
-<li><b>4</b><div><strong><a href="#recon">Check</a></strong><span>compare with official numbers &rarr;</span></div></li>
-</ol>
-<div class="kpis"><div><strong>6,061</strong><span>unique people</span></div><div><strong>99.0%</strong><span>data quality</span></div><div><strong>&le; 3</strong><span>registration gap</span></div></div>
-</div>
-<div class="views" id="views"><div class="vtabs" role="tablist" aria-label="Project views"><button type="button" role="tab" aria-selected="true">1 &middot; Dashboard</button><button type="button" role="tab" aria-selected="false">2 &middot; Reconciliation</button><button type="button" class="fs" id="fs">&#10530; Full screen</button></div><figure class="shot"><img src="/assets/img/exhibition-360-dashboard.png" alt="Exhibition Visitor 360 dashboard: 6,061 unique people split into four segments, with show-up rate per segment"><figcaption><b>Dashboard.</b> 6,061 unique people in 4 segments. Loyal visitors show up 93% of the time.</figcaption></figure><figure class="shot"><img src="/assets/img/exhibition-360-reconciliation.png" alt="Reconciliation table comparing raw and clean counts with the official report for each of 5 editions" loading="lazy"><figcaption><b>Reconciliation.</b> Our counts vs the official report, per edition, before and after cleaning.</figcaption></figure></div>
-</div>
 <section><h2>The problem</h2>
 <div class="cols">
 <div><h3>What was wrong</h3><ul>
@@ -82,5 +102,3 @@ WITH dedup AS (
 <section><h2>Tools</h2>
 <p class="lead">BigQuery (sandbox, free), SQL with CTEs, window functions, user-defined functions and nested JSON, Python (pandas) for the first version of the pipeline, and Data Studio for the dashboard.</p>
 <a class="btn big" href="https://github.com/bfandora97/exhibition-cdp">See the code on GitHub</a></section>
-<section class="contact" id="contact"><h2>Need a dashboard or cleaner data?</h2><p class="lead">Send us a sample of your data and what you want to track. We will tell you what we can build and how long it takes.</p>{{ contact_buttons_en() }}</section>
-</main>{{ footer() }}</div>{{ lightbox("Full screen view", "Previous image", "Next image", "Close") }}

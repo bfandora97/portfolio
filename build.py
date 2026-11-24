@@ -8,6 +8,7 @@ Struktur:
     src/layouts/ base.html (kerangka) + macros.html (header, tombol WA, kartu paket, dll.)
     src/data/    site.yml (kontak, link) + paket.yml (harga) + alur.yml (isi animasi contoh) + produk.yml (template Etsy)
                  + teks.yml (menu, footer, label UI per bahasa)
+                 + proyek.yml (kartu proyek / studi kasus)
     assets/      css, js, gambar (disalin apa adanya)
     static/      file yang disalin ke root situs (CNAME, robots.txt)
 """
@@ -20,7 +21,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 ROOT = Path(__file__).parent
 SRC, OUT = ROOT / "src", ROOT / "_site"
-MACROS = ("header", "logo", "wa", "rupiah", "plan_card", "lightbox", "contact_buttons_en", "alur", "template_card", "footer")
+MACROS = ("header", "logo", "wa", "rupiah", "plan_card", "lightbox", "alur", "template_card", "footer", "kasus_pembuka", "kasus_kontak", "daftar_proyek")
 
 
 def load_data():
@@ -54,7 +55,7 @@ def build():
     produk = data["produk"]
     produk["tampil"] = [p for p in produk["produk"] if p.get("etsy")]  # hanya yang sudah ada link Etsy
     env.globals.update(site=site, paket=data["paket"]["paket"], alur_data=data["alur"], produk=produk,
-                       teks=data["teks"], tahun=date.today().year)
+                       teks=data["teks"], tahun=date.today().year, proyek=data["proyek"]["proyek"])
     base = env.get_template("base.html")
     imports = "{% from 'macros.html' import " + ", ".join(MACROS) + " with context %}"
 
@@ -73,6 +74,9 @@ def build():
             if not meta.get(key):
                 raise SystemExit(f"{rel}: front matter wajib punya '{key}'")
         meta["url"] = page_url(site["url"], rel)
+        if meta.get("layout") == "kasus":  # halaman studi kasus: kerangka dari macros.html, isi unik dari halaman
+            body = ("<div class=\"wrap\">\n{{ header() }}\n<main>\n{{ kasus_pembuka() }}\n" + body.strip("\n")
+                    + "\n{{ kasus_kontak() }}\n</main>{{ footer() }}</div>{{ lightbox() }}")
         content = env.from_string(imports + body).render(page=meta)
         html = base.render(page=meta, content=content.strip("\n"))
         dest = OUT / rel

@@ -5,25 +5,48 @@ lang: "en"
 og_type: "article"
 og_image: /assets/img/dashboard.png
 scripts: [/assets/js/case.js]
+layout: kasus
+kasus:
+  eyebrow: Power BI · Data cleaning
+  judul: Event Visitor Registration Dashboard
+  sub: An event organizer sent visitor registrations as 3 messy files. We merged and cleaned them, then built one dashboard to track registrations, attendance and channels.
+  langkah:
+  - judul: Combine
+    ket: 3 files, 6,060 rows
+  - judul: Clean
+    link: '#cleaning'
+    ket: duplicates, phones, emails, names
+  - judul: Measure
+    link: '#dax'
+    ket: DAX for the 3 KPIs
+  - judul: Dashboard
+    ket: 6,000 clean rows, 3 views &rarr;
+  kpi:
+  - - 6,000
+    - registrations
+  - - 57.53%
+    - attendance
+  - - 47.15%
+    - Jabodetabek
+  galeri:
+    label: Dashboard views
+    gambar:
+    - tab: 1 &middot; Overview
+      src: /assets/img/dashboard-1.png
+      alt: Dashboard overview with all 6,000 registrations
+      teks: <b>Overview.</b> All 6,000 registrations by day, hour, business, job and channel.
+    - tab: 2 &middot; Filter by region
+      src: /assets/img/dashboard-2.png
+      alt: Dashboard filtered to Jabodetabek, showing 2,829 registrations
+      teks: '<b>Region filter.</b> Jabodetabek selected: every chart recalculates to 2,829 registrations.'
+    - tab: 3 &middot; Click a bar
+      src: /assets/img/dashboard-3.png
+      alt: Dashboard with the Restaurant &amp; Cafe bar selected, highlighting its share in every chart
+      teks: <b>Cross-filter.</b> Click Restaurant &amp; Cafe and its 1,236 registrations highlight in every chart.
+  kontak:
+    judul: Need a dashboard or cleaner data?
+    lead: Send us a sample of your data and what you want to track. We will tell you what we can build and how long it takes.
 ---
-<div class="wrap">
-{{ header() }}
-<main>
-<div class="case">
-<div class="case-text">
-<p class="eyebrow">Power BI · Data cleaning</p>
-<h1>Event Visitor Registration Dashboard</h1>
-<p class="sub">An event organizer sent visitor registrations as 3 messy files. We merged and cleaned them, then built one dashboard to track registrations, attendance and channels.</p>
-<ol class="flow" aria-label="Project steps">
-<li><b>1</b><div><strong>Combine</strong><span>3 files, 6,060 rows</span></div></li>
-<li><b>2</b><div><strong><a href="#cleaning">Clean</a></strong><span>duplicates, phones, emails, names</span></div></li>
-<li><b>3</b><div><strong><a href="#dax">Measure</a></strong><span>DAX for the 3 KPIs</span></div></li>
-<li><b>4</b><div><strong>Dashboard</strong><span>6,000 clean rows, 3 views &rarr;</span></div></li>
-</ol>
-<div class="kpis"><div><strong>6,000</strong><span>registrations</span></div><div><strong>57.53%</strong><span>attendance</span></div><div><strong>47.15%</strong><span>Jabodetabek</span></div></div>
-</div>
-<div class="views" id="views"><div class="vtabs" role="tablist" aria-label="Dashboard views"><button type="button" role="tab" aria-selected="true">1 &middot; Overview</button><button type="button" role="tab" aria-selected="false">2 &middot; Filter by region</button><button type="button" role="tab" aria-selected="false">3 &middot; Click a bar</button><button type="button" class="fs" id="fs">&#10530; Full screen</button></div><figure class="shot"><img src="/assets/img/dashboard-1.png" alt="Dashboard overview with all 6,000 registrations"><figcaption><b>Overview.</b> All 6,000 registrations by day, hour, business, job and channel.</figcaption></figure><figure class="shot"><img src="/assets/img/dashboard-2.png" alt="Dashboard filtered to Jabodetabek, showing 2,829 registrations" loading="lazy"><figcaption><b>Region filter.</b> Jabodetabek selected: every chart recalculates to 2,829 registrations.</figcaption></figure><figure class="shot"><img src="/assets/img/dashboard-3.png" alt="Dashboard with the Restaurant &amp; Cafe bar selected, highlighting its share in every chart" loading="lazy"><figcaption><b>Cross-filter.</b> Click Restaurant &amp; Cafe and its 1,236 registrations highlight in every chart.</figcaption></figure></div>
-</div>
 <section><h2>What we did</h2>
 <div class="cols">
 <div><h3>Cleaning and modeling</h3><ul>
@@ -63,5 +86,3 @@ DIVIDE (
     CALCULATE ( [Total Registrations], Registrations[Region Group] = "Jabodetabek" ),
     [Total Registrations]
 )</pre></section>
-<section class="contact" id="contact"><h2>Need a dashboard or cleaner data?</h2><p class="lead">Send us a sample of your data and what you want to track. We will tell you what we can build and how long it takes.</p>{{ contact_buttons_en() }}</section>
-</main>{{ footer() }}</div>{{ lightbox("Dashboard full screen", "Previous image", "Next image", "Close") }}

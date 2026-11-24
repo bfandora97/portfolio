@@ -76,14 +76,13 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 {%- endmacro %}
 
 {#- Jendela layar penuh untuk gambar dashboard di halaman studi kasus -#}
-{% macro lightbox(label="Full screen view", prev="Previous image", next="Next image", close="Close") -%}
-<dialog id="lb" class="lb" aria-label="{{ label }}"><img alt=""><button type="button" class="nav prev" aria-label="{{ prev }}">‹</button><button type="button" class="nav next" aria-label="{{ next }}">›</button><button type="button" class="x" aria-label="{{ close }}">✕</button></dialog>
+{% macro lightbox() -%}
+{%- set l = teks[page.lang].kasus.lightbox -%}
+<dialog id="lb" class="lb" aria-label="{{ l[0] }}"><img alt=""><button type="button" class="nav prev" aria-label="{{ l[1] }}">‹</button><button type="button" class="nav next" aria-label="{{ l[2] }}">›</button><button type="button" class="x" aria-label="{{ l[3] }}">✕</button></dialog>
 {%- endmacro %}
 
 {#- Tombol kontak standar (bahasa Inggris) untuk halaman studi kasus -#}
-{% macro contact_buttons_en() -%}
-<a class="btn big" href="{{ wa('Hi Kemang Data, I want to ask about a dashboard.') }}">Chat me on WhatsApp</a><a class="btn" href="mailto:{{ site.email }}">Email us</a><a class="btn alt" href="{{ site.upwork }}">Upwork profile</a><a class="btn alt" href="{{ site.github }}">GitHub</a><a class="btn alt" href="{{ site.linkedin }}">LinkedIn</a>
-{%- endmacro %}
+
 
 {#- Animasi 3 adegan "berantakan -> digabung -> laporan di HP". a = satu versi dari src/data/alur.yml.
     Gerakannya diatur assets/js/alur.js + CSS bagian 7c. Tanpa JS / reduced motion: adegan 3 tampil diam. -#}
@@ -97,4 +96,46 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 </div>
 <figcaption><span data-c="1">{{ a.cap1 }}</span><span data-c="2">{{ a.cap2 }}</span><span data-c="3">{{ a.cap3 }}</span></figcaption>
 </figure>
+{%- endmacro %}
+
+
+{#- ===== Halaman studi kasus (front matter `layout: kasus` + `kasus:`). build.py membungkus isi halaman dengan ini. ===== -#}
+{% macro kasus_pembuka() -%}
+{%- set k = page.kasus -%}{%- set t = teks[page.lang].kasus -%}
+<div class="case">
+<div class="case-text">
+<p class="eyebrow">{{ k.eyebrow }}</p>
+<h1>{{ k.judul }}</h1>
+<p class="sub">{{ k.sub }}</p>
+{% if k.get("demo") %}<p class="note demo">{{ k.demo }}</p>
+{% endif %}<ol class="flow" aria-label="{{ t.langkah }}">
+{% for l in k.langkah %}<li><b>{{ loop.index }}</b><div><strong>{% if l.get("link") %}<a href="{{ l.link }}">{{ l.judul }}</a>{% else %}{{ l.judul }}{% endif %}</strong><span>{{ l.ket }}</span></div></li>
+{% endfor %}</ol>
+<div class="kpis">{% for x in k.kpi %}<div><strong>{{ x[0] }}</strong><span>{{ x[1] }}</span></div>{% endfor %}</div>
+</div>
+<div class="views" id="views"><div class="vtabs" role="tablist" aria-label="{{ k.galeri.label }}">
+{%- for g in k.galeri.gambar %}<button type="button" role="tab" aria-selected="{{ 'true' if loop.first else 'false' }}">{{ g.tab }}</button>{% endfor -%}
+<button type="button" class="fs" id="fs">&#10530; {{ t.layar_penuh }}</button></div>
+{%- for g in k.galeri.gambar %}<figure class="shot"><img src="{{ g.src }}"{% if g.get("width") %} width="{{ g.width }}" height="{{ g.height }}"{% endif %} alt="{{ g.alt }}"{% if not loop.first %} loading="lazy"{% endif %}><figcaption>{{ g.teks }}</figcaption></figure>{% endfor -%}
+</div>
+</div>
+{%- endmacro %}
+
+{% macro kasus_kontak() -%}
+{%- set k = page.kasus.kontak -%}
+<section class="contact" id="contact"><h2>{{ k.judul }}</h2><p class="lead">{{ k.lead }}</p>
+{%- for b in teks[page.lang].kasus.tombol -%}
+{%- set href = wa(b.wa) if b.get("wa") else (site.upwork if b.link == "upwork" else ("mailto:" ~ site.email if b.link == "email" else b.link)) -%}
+<a class="{{ b.kelas }}" href="{{ href }}">{{ b.teks }}</a>
+{%- endfor %}</section>
+{%- endmacro %}
+
+{#- Kartu proyek untuk bagian Proyek / Projects. Data dari src/data/proyek.yml (hanya tampil: true). -#}
+{% macro daftar_proyek() -%}
+<div class="grid">
+{%- for p in proyek if p.tampil and p.get(page.lang) %}{% set x = p[page.lang] %}<a class="card rv" style="--d:.{{ loop.index }}s" href="{{ x.url }}"><img src="{{ x.gambar }}" alt="{{ x.alt }}" loading="lazy"><div>
+<h3>{{ x.judul }}</h3>
+<p>{{ x.ringkas }}</p>
+<ul class="tools">{% for t in x.tools %}<li>{{ t }}</li>{% endfor %}</ul></div></a>{% endfor -%}
+</div>
 {%- endmacro %}

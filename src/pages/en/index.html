@@ -42,16 +42,7 @@ scripts: [/assets/js/home.js, /assets/js/alur.js]
 </div></section>
 
 <section id="projects"><h2 class="rv">Projects</h2>
-<div class="grid"><a class="card rv" style="--d:.1s" href="/en/small-business-sales-dashboard.html"><img src="/assets/img/umkm-sales-dashboard-thumb.png" alt="Small business sales dashboard preview"><div>
-<h3>Multi-channel sales dashboard</h3>
-<p>Demo case: in-store POS, food-delivery apps and a marketplace merged into one auto-updating dashboard. Weekly recap time: ~4 hours to zero.</p>
-<ul class="tools"><li>Google Sheets</li><li>Looker Studio</li><li>Excel</li></ul></div></a><a class="card rv" style="--d:.2s" href="/powerbi-visitor-dashboard.html"><img src="/assets/img/dashboard.png" alt="Event Visitor Registration Dashboard preview"><div>
-<h3>Event Visitor Registration Dashboard</h3>
-<p>Combined 3 messy registration files, cleaned them, and built a dashboard for attendance and channel performance.</p>
-<ul class="tools"><li>Power BI</li><li>Power Query</li><li>DAX</li></ul></div></a><a class="card rv" style="--d:.3s" href="/exhibition-visitor-360.html"><img src="/assets/img/exhibition-360.png" alt="Exhibition Visitor 360 dashboard preview"><div>
-<h3>Visitor 360: 3 systems into 1 table</h3>
-<p>Data quality score from 75.5% to 99.0%. Registration gap vs the official report cut from +157 to 3 at most.</p>
-<ul class="tools"><li>BigQuery</li><li>SQL</li><li>Python</li></ul></div></a></div></section>
+{{ daftar_proyek() }}</section>
 
 {% if produk.tampil -%}
 <section id="templates"><h2 class="rv">Ready-made templates</h2>
