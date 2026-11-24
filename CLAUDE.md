@@ -18,7 +18,8 @@ assets/css/       style.css (dikelompokkan per bagian, lihat komentar di atasnya
 assets/js/        theme.js (mode gelap + header), home.js (animasi halaman utama), case.js (tab gambar + layar penuh), alur.js (animasi contoh 3 adegan)
 assets/img/       semua gambar
 static/           disalin ke root situs (CNAME, robots.txt)
-tools/            check_site.py (cek link/gambar/anchor/sitemap), gen_umkm.py (gambar dashboard demo UMKM)
+tools/            check_site.py (cek link/gambar/anchor/sitemap), gen_umkm.py (gambar dashboard demo UMKM),
+                  gen_barista.py (gambar Bobbi barista di Alur kerja; JANGAN edit SVG-nya langsung di macros.html)
 build.py          merakit _site/ + sitemap.xml otomatis
 ```
 
