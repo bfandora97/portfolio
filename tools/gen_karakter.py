@@ -1,0 +1,254 @@
+"""Karakter ORIGINAL Kemang Data (gaya kartun lembut): Bobbi (analis data, mirip foto: rambut hitam bervolume,
+kulit sawo matang, kaos hitam + lanyard ID Kemang Data) dan pemilik kedai (celemek). Satu sumber untuk:
+  - panggung animasi hero (4 adegan, 12 detik)     -> macro panggung_hero() di src/layouts/macros.html
+  - Bobbi di bagian Alur kerja (aksi meja 1-4 + jalan) -> blok KARAKTER:ALUR di macro cara_kerja
+  - CSS animasinya                                  -> blok KARAKTER:CSS di assets/css/style.css
+
+    python tools/gen_karakter.py && python build.py
+
+Ubah warna/bentuk di sini, JANGAN edit SVG di macros.html langsung. Teks (papan adegan, nama tokoh, aria-label)
+diambil dari i18n: utama.cara_kerja.langkah[].papan dan utama.hero.tokoh_klien / tokoh_bobbi / animasi_alt.
+viewBox semua pose "0 0 100 160". Kelas animasi diawali "k-" (karakter) dan "pg-" (panggung) supaya tidak bentrok.
+"""
+import re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+MACROS = ROOT / "src" / "layouts" / "macros.html"
+STYLE = ROOT / "assets" / "css" / "style.css"
+
+INK = "#23262E"
+BOBBI = dict(kulit="#C68B62", kulit2="#B57A53", hidung="#9E6440", rambut="#1E1C1F", pipi="#E0715C",
+             baju="#1F2124", celana="#3A4358", sepatu="#15171B")
+KLIEN = dict(kulit="#D9A07A", kulit2="#C98E68", hidung="#B9805C", rambut="#3B2A22", pipi="#E0715C",
+             baju="#E07A3F", celana="#2E3A52", sepatu="#1B2130")
+TEAL, YEL = "#0E7C7B", "#F2C811"
+
+
+# ---------------------------------------------------------------- bagian tubuh
+def kepala(o, siapa, ekspresi="senyum"):
+    s = []
+    if siapa == "klien":  # sanggul + rambut samping
+        s.append(f'<circle cx="50" cy="20" r="11" fill="{o["rambut"]}"/>')
+        s.append(f'<path d="M21 60c-4-26 10-38 29-38s33 12 29 38c-3 6-6 9-9 10l1-14c-6-8-16-11-21-11s-15 3-21 11l1 14c-3-1-6-4-9-10z" fill="{o["rambut"]}"/>')
+    s.append(f'<ellipse cx="24" cy="56" rx="5.5" ry="7.5" fill="{o["kulit2"]}"/><ellipse cx="76" cy="56" rx="5.5" ry="7.5" fill="{o["kulit2"]}"/>')
+    s.append(f'<ellipse cx="50" cy="55" rx="27" ry="29" fill="{o["kulit"]}"/>')
+    if siapa == "bobbi":  # rambut hitam bervolume, bergelombang di atas
+        s.append(f'<path d="M22 54c-5-21 6-37 27-38 5-5 14-5 19 0 10 2 15 13 12 28-2-6-6-10-11-12 0 4-4 7-9 6-3 4-10 6-17 5-8 1-15 4-21 11z" fill="{o["rambut"]}"/>')
+        s.append(f'<circle cx="36" cy="21" r="6" fill="{o["rambut"]}"/><circle cx="47" cy="16" r="6.5" fill="{o["rambut"]}"/>'
+                 f'<circle cx="59" cy="17" r="6" fill="{o["rambut"]}"/><circle cx="69" cy="24" r="5" fill="{o["rambut"]}"/>')
+    else:
+        s.append(f'<path d="M23 55c-2-19 10-31 27-31s29 12 27 31c-4-8-11-13-19-15-3 5-10 7-17 7-8 0-14 3-18 8z" fill="{o["rambut"]}"/>')
+    tebal = 3.4 if siapa == "bobbi" else 2.8
+    alis_y = 43 if ekspresi == "senang" else 45
+    s.append(f'<path d="M34 {alis_y}q6-4 12 0M54 {alis_y}q6-4 12 0" fill="none" stroke="{o["rambut"]}" stroke-width="{tebal}" stroke-linecap="round"/>')
+    if ekspresi == "senang":  # mata tersenyum ^^
+        s.append(f'<path d="M35.5 56q4.5-5 9 0M55.5 56q4.5-5 9 0" fill="none" stroke="{INK}" stroke-width="2.6" stroke-linecap="round"/>')
+    else:
+        dy = 1.6 if ekspresi == "fokus" else 0
+        for x in (40, 60):
+            s.append(f'<ellipse cx="{x}" cy="55" rx="4.4" ry="5.2" fill="#fff"/><circle cx="{x + .5}" cy="{56 + dy}" r="3.1" fill="{INK}"/>'
+                     f'<circle cx="{x + 1.6}" cy="{54.6 + dy}" r="1.1" fill="#fff"/>')
+        if siapa == "klien":
+            s.append(f'<path d="M35 52l-2.5-2M65 52l2.5-2" stroke="{INK}" stroke-width="1.6" stroke-linecap="round"/>')
+    s.append(f'<path d="M50 59q-2.5 5 1 6" fill="none" stroke="{o["hidung"]}" stroke-width="2" stroke-linecap="round"/>')
+    if ekspresi == "senang":
+        s.append('<path d="M40 67q10 13 20 0z" fill="#8C2F39"/><path d="M43 71q7 6 14 0z" fill="#E9787A"/>')
+    elif ekspresi == "fokus":
+        s.append('<path d="M45 70q5 3 10 0" fill="none" stroke="#8C2F39" stroke-width="2.2" stroke-linecap="round"/>')
+    else:
+        s.append('<path d="M42 68q8 9 16 0z" fill="#8C2F39"/><path d="M44.5 70.5q5.5 4 11 0z" fill="#E9787A"/>')
+    s.append(f'<ellipse cx="32" cy="65" rx="4.5" ry="2.8" fill="{o["pipi"]}" opacity=".4"/><ellipse cx="68" cy="65" rx="4.5" ry="2.8" fill="{o["pipi"]}" opacity=".4"/>')
+    if siapa == "klien":
+        s.append(f'<circle cx="23" cy="66" r="2" fill="{YEL}"/><circle cx="77" cy="66" r="2" fill="{YEL}"/>')
+    return "".join(s)
+
+
+def kaki(o):
+    return (f'<rect x="37" y="132" width="11" height="20" rx="4" fill="{o["celana"]}"/><rect x="52" y="132" width="11" height="20" rx="4" fill="{o["celana"]}"/>'
+            f'<rect x="33" y="148" width="16" height="7" rx="3.5" fill="{o["sepatu"]}"/><rect x="51" y="148" width="16" height="7" rx="3.5" fill="{o["sepatu"]}"/>')
+
+
+def badan(o, siapa):
+    s = [f'<rect x="44" y="78" width="12" height="12" rx="3" fill="{o["kulit2"]}"/>',
+         f'<rect x="28" y="86" width="44" height="52" rx="16" fill="{o["baju"]}"/>']
+    if siapa == "bobbi":  # kaos hitam + lanyard kuning + ID card logo Kemang Data
+        s.append(f'<path d="M42 87q8 7 16 0" fill="{o["kulit2"]}"/>')
+        s.append(f'<path d="M40 89l10 25 10-25" fill="none" stroke="{YEL}" stroke-width="2.6"/>')
+        s.append('<rect x="43" y="112" width="14" height="18" rx="2" fill="#fff"/>')
+        for cx, cy, c in ((47, 125, TEAL), (50.5, 125, TEAL), (50.5, 121.5, TEAL), (54, 125, TEAL), (54, 121.5, TEAL), (54, 118, YEL)):
+            s.append(f'<circle cx="{cx}" cy="{cy}" r="1.5" fill="{c}"/>')
+    else:  # celemek krem pemilik kedai
+        s.append('<path d="M35 98h30v34a6 6 0 0 1-6 6H41a6 6 0 0 1-6-6z" fill="#EADBB9"/>'
+                 '<path d="M35 98l-4-9M65 98l4-9" stroke="#EADBB9" stroke-width="3.4" stroke-linecap="round"/>'
+                 '<rect x="42" y="112" width="16" height="10" rx="2" fill="#DCCBA4"/>')
+    return "".join(s)
+
+
+def lengan(o, x1, y1, x2, y2):
+    return f'<path d="M{x1} {y1}L{x2} {y2}" stroke="{o["baju"]}" stroke-width="11" stroke-linecap="round"/>'
+
+
+def tangan(o, x, y):
+    return f'<circle cx="{x}" cy="{y}" r="5.5" fill="{o["kulit2"]}"/>'
+
+
+def kertas(x, y, w, h, warna, rot=0):
+    return (f'<g transform="rotate({rot} {x + w / 2} {y + h / 2})"><rect x="{x}" y="{y}" width="{w}" height="{h}" rx="2" fill="#fff" stroke="#C9D1DC"/>'
+            f'<rect x="{x}" y="{y}" width="{w}" height="4.5" rx="2" fill="{warna}"/>'
+            f'<path d="M{x + 4} {y + 10}h{w - 8}M{x + 4} {y + 15}h{w - 12}" stroke="#C9D1DC" stroke-width="1.6"/></g>')
+
+
+def svg(isi, cls=""):
+    c = f' class="{cls}"' if cls else ""
+    return f'<svg{c} viewBox="0 0 100 160" aria-hidden="true" focusable="false">{isi}</svg>'
+
+
+# ---------------------------------------------------------------- pose
+def pose(o, siapa, aksi, cls=""):
+    k, B = kaki(o), badan(o, siapa)
+    if aksi == "lambai":
+        isi = (k + B + lengan(o, 31, 94, 26, 126) + tangan(o, 26, 128)
+               + kepala(o, siapa) + '<g class="k-lambai">' + lengan(o, 69, 94, 92, 80) + tangan(o, 96, 76) + '</g>')
+    elif aksi == "berkas":
+        isi = (k + B + lengan(o, 31, 94, 36, 118) + lengan(o, 69, 94, 64, 118)
+               + '<g class="k-naik">' + kertas(27, 100, 36, 26, TEAL, -8) + kertas(37, 98, 36, 26, "#E07A3F", 6) + kertas(32, 103, 36, 26, YEL, -1) + '</g>'
+               + tangan(o, 34, 120) + tangan(o, 66, 120) + kepala(o, siapa))
+    elif aksi == "laptop":
+        isi = (k + B + '<g class="k-ketik">' + lengan(o, 31, 94, 38, 120) + lengan(o, 69, 94, 62, 120) + '</g>'
+               + '<rect x="18" y="96" width="64" height="34" rx="3" fill="#2b3446"/><rect x="21.5" y="99.5" width="57" height="27" rx="1.5" fill="#e8f3f1"/>'
+               + f'<rect class="k-baris" x="26" y="104" width="30" height="3.6" fill="{TEAL}"/><rect class="k-baris k-b2" x="26" y="110" width="42" height="3.6" fill="#7FC4C0"/>'
+               + f'<rect class="k-baris k-b3" x="26" y="116" width="24" height="3.6" fill="{YEL}"/>'
+               + '<path d="M12 130h76l-6 7H18z" fill="#3a4358"/>' + tangan(o, 38, 128) + tangan(o, 62, 128) + kepala(o, siapa, "fokus"))
+    elif aksi == "kopi":
+        isi = (k + B + lengan(o, 31, 94, 40, 116) + lengan(o, 69, 94, 60, 116)
+               + '<rect x="41" y="104" width="18" height="20" rx="3" fill="#fff" stroke="#C9D1DC"/><path d="M59 108h4a4 4 0 0 1 0 9h-4" fill="none" stroke="#C9D1DC" stroke-width="2"/>'
+               + '<path class="k-uap" d="M46 100c-3-4 3-6 0-10M54 100c-3-4 3-6 0-10" fill="none" stroke="#9AA8BF" stroke-width="1.8" stroke-linecap="round"/>'
+               + tangan(o, 41, 117) + tangan(o, 59, 117) + kepala(o, siapa))
+    elif aksi == "poster":
+        isi = (k + B + lengan(o, 31, 94, 18, 100) + lengan(o, 69, 94, 82, 100)
+               + '<rect x="10" y="94" width="80" height="52" rx="4" fill="#fff" stroke="#C9D1DC" stroke-width="1.4"/>'
+               + f'<rect x="10" y="94" width="80" height="7" rx="3" fill="{TEAL}"/><path d="M18 139h64" stroke="#C9D1DC" stroke-width="1.4"/>'
+               + f'<rect class="k-bar" x="22" y="108" width="13" height="31" fill="{TEAL}"/><rect class="k-bar" x="43" y="116" width="13" height="23" fill="#7FC4C0"/>'
+               + '<rect class="k-bar k-merah" x="64" y="124" width="13" height="15" fill="#D9534F"/>'
+               + tangan(o, 15, 100) + tangan(o, 85, 100) + kepala(o, siapa))
+    elif aksi == "senang":
+        isi = (k + B + lengan(o, 31, 94, 16, 66) + tangan(o, 14, 62) + lengan(o, 69, 94, 84, 66) + tangan(o, 86, 62)
+               + '<text x="50" y="12" text-anchor="middle" font-size="14">✨</text>' + kepala(o, siapa, "senang"))
+    elif aksi == "ttd":
+        isi = (k + B + lengan(o, 31, 94, 30, 120)
+               + '<rect x="22" y="98" width="38" height="44" rx="3" fill="#8A6A4A"/><rect x="26" y="104" width="30" height="34" rx="1.5" fill="#fff"/>'
+               + '<rect x="34" y="96" width="14" height="6" rx="2" fill="#B8BFC9"/><path d="M30 111h22M30 116h16" stroke="#C9D1DC" stroke-width="1.6"/>'
+               + f'<path class="k-centang" d="M32 128l5 5 10-10" fill="none" stroke="{TEAL}" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>'
+               + tangan(o, 30, 122) + '<g class="k-pena">' + lengan(o, 69, 94, 56, 122)
+               + '<path d="M50 136l9-14" stroke="#101B2D" stroke-width="3" stroke-linecap="round"/>' + tangan(o, 57, 123) + '</g>'
+               + kepala(o, siapa, "fokus"))
+    elif aksi == "jempol":
+        isi = (k + B + lengan(o, 31, 94, 26, 126) + tangan(o, 26, 128)
+               + kepala(o, siapa, "senang") + lengan(o, 69, 94, 90, 84) + tangan(o, 93, 80)
+               + f'<path d="M93 75v-8" stroke="{o["kulit2"]}" stroke-width="4.5" stroke-linecap="round"/>')
+    elif aksi == "jalan":  # menghadap depan, 2 variasi kaki (kaki-a / kaki-b) diganti JS saat melangkah
+        isi = (f'<g class="kaki-a"><rect x="36" y="132" width="11" height="20" rx="4" fill="{o["celana"]}" transform="rotate(10 42 132)"/>'
+               f'<rect x="31" y="148" width="16" height="7" rx="3.5" fill="{o["sepatu"]}" transform="rotate(10 42 132)"/>'
+               f'<rect x="52" y="132" width="11" height="18" rx="4" fill="{o["celana"]}"/><rect x="51" y="146" width="16" height="7" rx="3.5" fill="{o["sepatu"]}"/></g>'
+               f'<g class="kaki-b"><rect x="37" y="132" width="11" height="18" rx="4" fill="{o["celana"]}"/><rect x="33" y="146" width="16" height="7" rx="3.5" fill="{o["sepatu"]}"/>'
+               f'<rect x="53" y="132" width="11" height="20" rx="4" fill="{o["celana"]}" transform="rotate(-10 58 132)"/>'
+               f'<rect x="53" y="148" width="16" height="7" rx="3.5" fill="{o["sepatu"]}" transform="rotate(-10 58 132)"/></g>'
+               + B + lengan(o, 31, 94, 24, 124) + tangan(o, 23, 126) + lengan(o, 69, 94, 76, 124) + tangan(o, 77, 126) + kepala(o, siapa))
+    else:
+        raise ValueError(aksi)
+    return svg(isi, cls)
+
+
+# ---------------------------------------------------------------- keluaran
+def blok_alur():
+    """Bobbi di Alur kerja: aksi1 terima berkas, aksi2 laptop, aksi3 poster, aksi4 jempol, b-samping = jalan."""
+    poses = [pose(BOBBI, "bobbi", a, f"b-aksi{i}") for i, a in enumerate(("berkas", "laptop", "poster", "jempol"), 1)]
+    poses.append(pose(BOBBI, "bobbi", "jalan", "b-samping"))
+    return '<div class="ak-barista" data-pose="aksi1">' + "".join(poses) + "</div>"
+
+
+def macro_hero():
+    def slot(o, siapa, aksi):
+        return "".join(f'<div class="pose pg{i}">{pose(o, siapa, a)}</div>' for i, a in enumerate(aksi, 1))
+    terbang = f'<svg viewBox="-2 -2 40 30" aria-hidden="true">{kertas(0, 0, 36, 26, TEAL)}</svg>'
+    return ("{% macro panggung_hero() -%}\n"
+            "{%- set h = i18n[page.lang].utama.hero -%}{%- set l = i18n[page.lang].utama.cara_kerja.langkah -%}\n"
+            '<div class="panggung rv" role="img" aria-label="{{ h.animasi_alt }}">\n'
+            '<div class="pg-papan">{% for x in l %}<span class="pg{{ loop.index }}"><b>{{ loop.index }}</b>{{ x.papan }}</span>{% endfor %}</div>\n'
+            f'<div class="tokoh klien">{slot(KLIEN, "klien", ("berkas", "kopi", "senang", "ttd"))}<span class="nama">{{{{ h.tokoh_klien }}}}</span></div>\n'
+            f'<div class="pg-terbang">{terbang}</div>\n'
+            f'<div class="tokoh bobbi">{slot(BOBBI, "bobbi", ("lambai", "laptop", "poster", "jempol"))}<span class="nama">{{{{ h.tokoh_bobbi }}}}</span></div>\n'
+            '<div class="pg-lantai"></div><div class="pg-titik"><i class="pg1"></i><i class="pg2"></i><i class="pg3"></i><i class="pg4"></i></div>\n'
+            "</div>\n{%- endmacro %}")
+
+
+CSS = """/* Gerak kecil karakter (k-*) */
+.k-lambai{transform-box:view-box;transform-origin:69px 94px;animation:k-lambai .6s ease-in-out infinite alternate}
+@keyframes k-lambai{to{transform:rotate(-14deg)}}
+.k-naik{animation:k-naik 1.2s ease-in-out infinite}@keyframes k-naik{50%{transform:translateY(-4px)}}
+.k-ketik{animation:k-ketik .35s ease-in-out infinite alternate}@keyframes k-ketik{to{transform:translateY(2px)}}
+.k-baris{transform-box:fill-box;transform-origin:left;animation:k-baris 3s steps(6) infinite}.k-b2{animation-delay:.4s}.k-b3{animation-delay:.8s}
+@keyframes k-baris{0%{transform:scaleX(.2)}60%,100%{transform:scaleX(1)}}
+.k-uap{animation:k-uap 1.6s ease-in-out infinite}@keyframes k-uap{50%{transform:translateY(-3px);opacity:.4}}
+.k-bar{transform-box:fill-box;transform-origin:bottom;animation:k-bar 3s ease-out infinite}.k-merah{animation-delay:.3s}
+@keyframes k-bar{0%{transform:scaleY(.15)}35%,100%{transform:scaleY(1)}}
+.k-pena{animation:k-pena .5s ease-in-out infinite alternate}@keyframes k-pena{to{transform:translate(-5px,1px)}}
+.k-centang{stroke-dasharray:24;animation:k-centang 3s ease-out infinite}@keyframes k-centang{0%,40%{stroke-dashoffset:24}70%,100%{stroke-dashoffset:0}}
+/* Panggung hero: 4 adegan x 3 detik (pg1..pg4); pemilik kedai masuk dari kiri, berkas terbang ke Bobbi */
+.panggung{position:relative;height:470px;background:radial-gradient(ellipse at 50% 100%,rgba(14,124,123,.13) 0,var(--panel) 70%);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.pg-lantai{position:absolute;left:0;right:0;bottom:0;height:46px;background:var(--p2);border-top:2px solid var(--line)}
+.panggung .tokoh{position:absolute;bottom:30px;width:192px;height:307px;z-index:2}
+.panggung .pose{position:absolute;inset:0;opacity:0}.panggung .tokoh svg{width:100%;height:100%;overflow:visible}
+.panggung .nama{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:600;color:var(--muted);z-index:3}
+.panggung .klien{left:4%;animation:pg-datang 12s infinite}.panggung .bobbi{right:4%}
+.pg-papan{position:absolute;top:18px;left:0;right:0;height:40px}
+.pg-papan span{position:absolute;left:50%;transform:translateX(-50%);opacity:0;display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:6px;background:#101b2d;color:#fff;font:700 16px "Familjen Grotesk",sans-serif;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.pg-papan b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--yellow);color:#101b2d;font-size:14px}
+.pg-titik{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:3}.pg-titik i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.pg-terbang{position:absolute;width:56px;height:42px;left:36%;bottom:220px;opacity:0;z-index:3;animation:pg-lempar 12s infinite}.pg-terbang svg{width:100%;height:100%}
+.panggung .pg1{animation:pg-tampil 12s infinite 0s}.panggung .pg2{animation:pg-tampil 12s infinite -9s}
+.panggung .pg3{animation:pg-tampil 12s infinite -6s}.panggung .pg4{animation:pg-tampil 12s infinite -3s}
+.pg-titik i.pg1,.pg-titik i.pg2,.pg-titik i.pg3,.pg-titik i.pg4{animation-name:pg-titik}
+@keyframes pg-tampil{0%,24.5%{opacity:1}25%,100%{opacity:0}}
+@keyframes pg-titik{0%,24.5%{background:var(--teal);transform:scale(1.3)}25%,100%{background:var(--line);transform:none}}
+@keyframes pg-datang{0%{transform:translateX(-170%)}12%,100%{transform:none}}
+@keyframes pg-lempar{0%,18%{opacity:0;transform:none}20%{opacity:1}26%{opacity:1;transform:translate(300%,-30%) rotate(20deg)}28%,100%{opacity:0}}
+@media(max-width:760px){.hero2 .panggung{order:-1;height:310px}.panggung .tokoh{width:124px;height:198px}.panggung .klien{left:3%}.panggung .bobbi{right:3%}
+.pg-papan span{font-size:13px;padding:6px 10px}.panggung .nama{font-size:11px}.pg-terbang{bottom:140px;width:36px}}
+/* Bobbi di Alur kerja (viewBox 100x160) */
+.ak-barista{width:70px;height:112px}
+@media(max-width:860px){.ak-barista{width:50px;height:80px}}
+[data-theme="dark"] .tokoh svg,[data-theme="dark"] .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tokoh svg,:root:not([data-theme="light"]) .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}}
+@media (prefers-reduced-motion:reduce){.k-lambai,.k-naik,.k-ketik,.k-baris,.k-uap,.k-bar,.k-pena,.k-centang,.panggung .pose,.pg-papan span,.panggung .klien,.pg-terbang,.pg-titik i{animation:none}
+.panggung .pg3,.pg-papan .pg3{opacity:1}}"""
+
+
+def ganti(teks, mulai, selesai, isi, pertama):
+    if mulai in teks:
+        return re.sub(re.escape(mulai) + ".*?" + re.escape(selesai), lambda m: mulai + isi + selesai, teks, count=1, flags=re.S)
+    return pertama(teks, mulai + isi + selesai)
+
+
+def main():
+    m = MACROS.read_text(encoding="utf-8")
+
+    def alur_pertama(s, blok):  # pertama kali: ganti div Bobbi lama di macro cara_kerja
+        i = s.index('<div class="ak-barista"')
+        j = s.index("</div></div>", i) + len("</div>")
+        return s[:i] + blok + s[j:]
+
+    m = ganti(m, "{#- KARAKTER:ALUR:MULAI -#}", "{#- KARAKTER:ALUR:SELESAI -#}", blok_alur(), alur_pertama)
+    m = ganti(m, "{#- KARAKTER:HERO:MULAI (dibuat tools/gen_karakter.py) -#}\n", "\n{#- KARAKTER:HERO:SELESAI -#}", macro_hero(),
+              lambda s, blok: s.rstrip("\n") + "\n\n" + blok + "\n")
+    MACROS.write_text(m, encoding="utf-8")
+    c = STYLE.read_text(encoding="utf-8")
+    c = ganti(c, "/* KARAKTER:CSS:MULAI (dibuat tools/gen_karakter.py) */\n", "\n/* KARAKTER:CSS:SELESAI */", CSS,
+              lambda s, blok: s.rstrip("\n") + "\n" + blok + "\n")
+    STYLE.write_text(c, encoding="utf-8")
+    print("OK: karakter ditulis ke macros.html (hero + alur kerja) dan style.css -> jalankan python build.py")
+
+
+if __name__ == "__main__":
+    main()

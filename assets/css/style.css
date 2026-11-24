@@ -68,27 +68,13 @@ footer a{color:var(--muted)}
 .hero .oleh{display:flex;align-items:center;gap:10px;font-size:15px;margin-top:18px}
 .hero .oleh img{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none}
 .hero .oleh b{color:var(--ink)}
-.hero-shot{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 18px 40px rgba(16,27,45,.12)}
-.hero-shot .browser{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line)}
-.hero-shot .browser span{width:10px;height:10px;border-radius:50%;background:var(--line)}
-.hero-shot img{display:block;width:100%;height:auto}
-.hero-shot figcaption{padding:8px 12px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
 /* Alur kerja "meja pesan" (macro cara_kerja) + Bobbi barista (karakter original, SVG). Gerak di assets/js/alur-kerja.js */
 .ak{position:relative;margin-top:8px}
-.ak-jalur{position:relative;height:6px;margin:96px 6% 18px;border-radius:3px;background:var(--line)}
+.ak-jalur{position:relative;height:6px;margin:116px 6% 18px;border-radius:3px;background:var(--line)}
 .ak-isi{position:absolute;inset:0 100% 0 0;border-radius:3px;background:var(--teal)}
-.ak-barista{position:absolute;left:0;bottom:3px;width:76px;height:95px;transform:translateX(-50%);pointer-events:none}
+.ak-barista{position:absolute;left:0;bottom:3px;transform:translateX(-50%);pointer-events:none}
 .ak-barista svg{position:absolute;inset:0;width:100%;height:100%;display:none}
 .ak-barista[data-pose="aksi1"] .b-aksi1,.ak-barista[data-pose="aksi2"] .b-aksi2,.ak-barista[data-pose="aksi3"] .b-aksi3,.ak-barista[data-pose="aksi4"] .b-aksi4{display:block}
-.a1-kertas{animation:a1-naik 1.2s ease-in-out infinite}
-.a2-kiri{animation:a2-sortir .9s ease-in-out infinite}.a2-kanan{animation:a2-sortir .9s ease-in-out infinite .45s}
-.a3-bar{transform-box:fill-box;transform-origin:bottom;animation:a3-tumbuh 2.4s ease-out infinite}.a3-bar:nth-of-type(2){animation-delay:.15s}.a3-merah{animation-delay:.3s}
-.a4-pena{animation:a4-tulis .5s ease-in-out infinite alternate}.a4-centang{stroke-dasharray:16;animation:a4-centang 2s ease-out infinite}
-@keyframes a1-naik{50%{transform:translateY(-3px)}}
-@keyframes a2-sortir{50%{transform:translateY(-5px)}}
-@keyframes a3-tumbuh{0%{transform:scaleY(.15)}35%,100%{transform:scaleY(1)}}
-@keyframes a4-tulis{to{transform:translateX(-4px) translateY(1px)}}
-@keyframes a4-centang{0%,40%{stroke-dashoffset:16}70%,100%{stroke-dashoffset:0}}
 .ak-barista[data-pose="kiri"] .b-samping,.ak-barista[data-pose="kanan"] .b-samping{display:block}
 .ak-barista[data-pose="kanan"] .b-samping{transform:scaleX(-1)}
 .ak-barista .kaki-b{display:none}
@@ -109,10 +95,9 @@ footer a{color:var(--muted)}
 .ak{display:grid;grid-template-columns:52px 1fr;gap:10px}
 .ak-jalur{width:6px;height:auto;margin:40px 0 40px 23px}
 .ak-isi{inset:0 0 100% 0}
-.ak-barista{left:50%;bottom:auto;top:0;width:58px;height:72px;transform:translate(-50%,-50%)}
+.ak-barista{left:50%;bottom:auto;top:0;transform:translate(-50%,-50%)}
 .ak-meja{grid-template-columns:1fr}
 }
-@media (prefers-reduced-motion:reduce){.a1-kertas,.a2-kiri,.a2-kanan,.a3-bar,.a4-pena,.a4-centang{animation:none}}
 /* Strip "Yang bisa saya bantu" (macro layanan_ringkas) */
 .ringkas{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:16px}
 .rk{display:flex;flex-direction:column;gap:6px;padding:18px;background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:4px;text-decoration:none;color:var(--ink)}
@@ -371,7 +356,49 @@ a.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 .hero2{min-height:calc(100vh - 70px)}
 }
 @media(max-width:1000px){.case{grid-template-columns:1fr;min-height:0}.case h1{max-width:none}.case .views .shot img{max-height:none}}
-@media(max-width:760px){.hero2{grid-template-columns:1fr}.hero2 canvas{height:230px}.hero-shot{order:2}}
+@media(max-width:760px){.hero2{grid-template-columns:1fr}.hero2 canvas{height:230px}}
 @media(max-width:600px){.about{grid-template-columns:1fr}.avatar{width:110px;height:110px;font-size:44px}}
 @media(max-width:520px){.top{padding:14px 16px}.top a{margin-left:12px;font-size:15px}.top a.brand{font-size:18px;gap:8px}.tg{margin-left:12px}.wrap{padding:0 16px}.top nav a.nhp{display:none}}
 @media(max-width:380px){.top nav a.nkecil{display:none}}
+/* KARAKTER:CSS:MULAI (dibuat tools/gen_karakter.py) */
+/* Gerak kecil karakter (k-*) */
+.k-lambai{transform-box:view-box;transform-origin:69px 94px;animation:k-lambai .6s ease-in-out infinite alternate}
+@keyframes k-lambai{to{transform:rotate(-14deg)}}
+.k-naik{animation:k-naik 1.2s ease-in-out infinite}@keyframes k-naik{50%{transform:translateY(-4px)}}
+.k-ketik{animation:k-ketik .35s ease-in-out infinite alternate}@keyframes k-ketik{to{transform:translateY(2px)}}
+.k-baris{transform-box:fill-box;transform-origin:left;animation:k-baris 3s steps(6) infinite}.k-b2{animation-delay:.4s}.k-b3{animation-delay:.8s}
+@keyframes k-baris{0%{transform:scaleX(.2)}60%,100%{transform:scaleX(1)}}
+.k-uap{animation:k-uap 1.6s ease-in-out infinite}@keyframes k-uap{50%{transform:translateY(-3px);opacity:.4}}
+.k-bar{transform-box:fill-box;transform-origin:bottom;animation:k-bar 3s ease-out infinite}.k-merah{animation-delay:.3s}
+@keyframes k-bar{0%{transform:scaleY(.15)}35%,100%{transform:scaleY(1)}}
+.k-pena{animation:k-pena .5s ease-in-out infinite alternate}@keyframes k-pena{to{transform:translate(-5px,1px)}}
+.k-centang{stroke-dasharray:24;animation:k-centang 3s ease-out infinite}@keyframes k-centang{0%,40%{stroke-dashoffset:24}70%,100%{stroke-dashoffset:0}}
+/* Panggung hero: 4 adegan x 3 detik (pg1..pg4); pemilik kedai masuk dari kiri, berkas terbang ke Bobbi */
+.panggung{position:relative;height:470px;background:radial-gradient(ellipse at 50% 100%,rgba(14,124,123,.13) 0,var(--panel) 70%);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.pg-lantai{position:absolute;left:0;right:0;bottom:0;height:46px;background:var(--p2);border-top:2px solid var(--line)}
+.panggung .tokoh{position:absolute;bottom:30px;width:192px;height:307px;z-index:2}
+.panggung .pose{position:absolute;inset:0;opacity:0}.panggung .tokoh svg{width:100%;height:100%;overflow:visible}
+.panggung .nama{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:600;color:var(--muted);z-index:3}
+.panggung .klien{left:4%;animation:pg-datang 12s infinite}.panggung .bobbi{right:4%}
+.pg-papan{position:absolute;top:18px;left:0;right:0;height:40px}
+.pg-papan span{position:absolute;left:50%;transform:translateX(-50%);opacity:0;display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:6px;background:#101b2d;color:#fff;font:700 16px "Familjen Grotesk",sans-serif;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.pg-papan b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--yellow);color:#101b2d;font-size:14px}
+.pg-titik{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:3}.pg-titik i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.pg-terbang{position:absolute;width:56px;height:42px;left:36%;bottom:220px;opacity:0;z-index:3;animation:pg-lempar 12s infinite}.pg-terbang svg{width:100%;height:100%}
+.panggung .pg1{animation:pg-tampil 12s infinite 0s}.panggung .pg2{animation:pg-tampil 12s infinite -9s}
+.panggung .pg3{animation:pg-tampil 12s infinite -6s}.panggung .pg4{animation:pg-tampil 12s infinite -3s}
+.pg-titik i.pg1,.pg-titik i.pg2,.pg-titik i.pg3,.pg-titik i.pg4{animation-name:pg-titik}
+@keyframes pg-tampil{0%,24.5%{opacity:1}25%,100%{opacity:0}}
+@keyframes pg-titik{0%,24.5%{background:var(--teal);transform:scale(1.3)}25%,100%{background:var(--line);transform:none}}
+@keyframes pg-datang{0%{transform:translateX(-170%)}12%,100%{transform:none}}
+@keyframes pg-lempar{0%,18%{opacity:0;transform:none}20%{opacity:1}26%{opacity:1;transform:translate(300%,-30%) rotate(20deg)}28%,100%{opacity:0}}
+@media(max-width:760px){.hero2 .panggung{order:-1;height:310px}.panggung .tokoh{width:124px;height:198px}.panggung .klien{left:3%}.panggung .bobbi{right:3%}
+.pg-papan span{font-size:13px;padding:6px 10px}.panggung .nama{font-size:11px}.pg-terbang{bottom:140px;width:36px}}
+/* Bobbi di Alur kerja (viewBox 100x160) */
+.ak-barista{width:70px;height:112px}
+@media(max-width:860px){.ak-barista{width:50px;height:80px}}
+[data-theme="dark"] .tokoh svg,[data-theme="dark"] .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tokoh svg,:root:not([data-theme="light"]) .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}}
+@media (prefers-reduced-motion:reduce){.k-lambai,.k-naik,.k-ketik,.k-baris,.k-uap,.k-bar,.k-pena,.k-centang,.panggung .pose,.pg-papan span,.panggung .klien,.pg-terbang,.pg-titik i{animation:none}
+.panggung .pg3,.pg-papan .pg3{opacity:1}}
+/* KARAKTER:CSS:SELESAI */
