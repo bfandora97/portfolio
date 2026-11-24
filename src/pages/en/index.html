@@ -1,6 +1,7 @@
 ---
 title: "Kemang Data | Multi-channel Sales Dashboards & Data Cleaning"
 description: "See your real profit per product and channel. I merge Shopify, Amazon, Etsy and marketplace reports into one dashboard that updates itself. Data cleaning, Looker Studio and Power BI."
+menu: utama
 lang: "en"
 og_type: "website"
 og_image: /assets/img/og-image-en.png
@@ -8,7 +9,7 @@ alternates: {id: /, en: /en/, x-default: /}
 scripts: [/assets/js/home.js, /assets/js/alur.js]
 ---
 <div class="wrap">
-{{ header([["Problems", "#problems"], ["Services", "#services"], ["Projects", "#projects"]] + ([["Templates", "#templates"]] if produk.tampil else []) + [["Contact", "#contact"], ["ID", "/", "id"]], home="/en/", toggle_label="Toggle dark mode") }}
+{{ header() }}
 <main>
 <div class="hero2"><div class="hero">
 <h1 class="rv">Selling on several channels but can&rsquo;t see your real profit?</h1>
@@ -87,4 +88,4 @@ scripts: [/assets/js/home.js, /assets/js/alur.js]
 <p class="lead rv" style="--d:.15s">Send a sample of your data and what you want to track. I will tell you what I can build and how long it takes.</p>
 <div class="rv" style="--d:.3s"><a class="btn big" href="{{ site.upwork }}">Upwork profile</a><a class="btn" href="mailto:{{ site.email }}">Email us</a><a class="btn alt" href="{{ wa('Hi Kemang Data, I want to ask about a dashboard.') }}">WhatsApp</a><a class="btn alt" href="{{ site.linkedin }}">LinkedIn</a><a class="btn alt" href="{{ site.github }}">GitHub</a></div>
 </div></div></section>
-<div class="wrap"><footer>Kemang Data · Jakarta · kemangdata.my.id · <a href="/" hreflang="id" lang="id">Bahasa Indonesia</a></footer></div>
+<div class="wrap">{{ footer() }}</div>

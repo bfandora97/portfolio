@@ -8,7 +8,7 @@ alternates: {id: /umkm-sales-dashboard.html, en: /en/small-business-sales-dashbo
 scripts: [/assets/js/case.js, /assets/js/alur.js]
 ---
 <div class="wrap">
-{{ header([["Semua proyek", "/#projects"], ["Kontak", "#contact"], ["EN", "/en/small-business-sales-dashboard.html", "en"]], home="/", toggle_label="Ganti mode gelap") }}
+{{ header() }}
 <main>
 <div class="case">
 <div class="case-text">
@@ -66,4 +66,4 @@ scripts: [/assets/js/case.js, /assets/js/alur.js]
 <section id="tools"><h2>Tools</h2>
 <ul class="tools"><li>Google Sheets</li><li>Looker Studio</li><li>Excel</li></ul></section>
 <section class="contact" id="contact"><h2>Mau dashboard seperti ini untuk usaha Anda?</h2><p class="lead">Kirim contoh data penjualan Anda dan apa yang ingin dipantau. Kami jelaskan apa yang bisa dibuat dan berapa lama pengerjaannya.</p><a class="btn big" href="/#contact">Hubungi Kemang Data</a><a class="btn alt" href="{{ wa('Halo Kemang Data, saya mau tanya soal dashboard penjualan.') }}">Chat via WhatsApp</a></section>
-</main><footer><a href="/">← Kembali ke semua proyek</a> · Kemang Data</footer></div>{{ lightbox("Dashboard layar penuh", "Gambar sebelumnya", "Gambar berikutnya", "Tutup") }}
+</main>{{ footer() }}</div>{{ lightbox("Dashboard layar penuh", "Gambar sebelumnya", "Gambar berikutnya", "Tutup") }}

@@ -7,7 +7,7 @@ og_image: /assets/img/dashboard.png
 scripts: [/assets/js/case.js]
 ---
 <div class="wrap">
-{{ header([["All projects", "/#projects"], ["Contact", "#contact"]], home="/", toggle_label="Toggle dark mode") }}
+{{ header() }}
 <main>
 <div class="case">
 <div class="case-text">
@@ -64,4 +64,4 @@ DIVIDE (
     [Total Registrations]
 )</pre></section>
 <section class="contact" id="contact"><h2>Need a dashboard or cleaner data?</h2><p class="lead">Send us a sample of your data and what you want to track. We will tell you what we can build and how long it takes.</p>{{ contact_buttons_en() }}</section>
-</main><footer><a href="/">← Back to all projects</a> · Kemang Data</footer></div>{{ lightbox("Dashboard full screen", "Previous image", "Next image", "Close") }}
+</main>{{ footer() }}</div>{{ lightbox("Dashboard full screen", "Previous image", "Next image", "Close") }}
