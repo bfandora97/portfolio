@@ -1,0 +1,57 @@
+# Semua proyek / studi kasus. Kartu di bagian "Proyek" (ID) dan "Projects" (EN) dibuat dari sini.
+# tampil: false  -> kartu tidak muncul di daftar (halaman studi kasusnya tetap ada di URL yang sama).
+# Isi halaman studi kasus ada di src/pages/<url> (front matter `kasus:` + bagian unik).
+#
+# Proyek industri event/pameran: tampil: false selama Bobbi masih bekerja (aturan di CLAUDE.md).
+
+proyek:
+  - kode: umkm-sales
+    tampil: true
+    id:
+      url: /umkm-sales-dashboard.html
+      judul: Dashboard penjualan multi-channel
+      ringkas: "Studi kasus demo: kasir 2 outlet, GoFood/GrabFood dan Shopee digabung jadi satu dashboard otomatis. Rekap mingguan &plusmn;4 jam jadi nol."
+      gambar: /assets/img/umkm-sales-dashboard-thumb.png
+      alt: Pratinjau dashboard penjualan UMKM (data fiktif)
+      tools: [Google Sheets, Looker Studio, Excel]
+    en:
+      url: /en/small-business-sales-dashboard.html
+      judul: Multi-channel sales dashboard
+      ringkas: "Demo case: in-store POS, food-delivery apps and a marketplace merged into one auto-updating dashboard. Weekly recap time: ~4 hours to zero."
+      gambar: /assets/img/umkm-sales-dashboard-thumb.png
+      alt: Small business sales dashboard preview
+      tools: [Google Sheets, Looker Studio, Excel]
+
+  - kode: powerbi-visitor
+    tampil: false
+    id:
+      url: /powerbi-visitor-dashboard.html
+      judul: 3 file pendaftaran berantakan jadi 1 laporan rapi
+      ringkas: "6.060 baris dari 3 file digabung, data dobel dibuang, lalu dibuat laporan kehadiran dan channel."
+      gambar: /assets/img/dashboard.png
+      alt: Pratinjau dashboard registrasi pengunjung
+      tools: [Power BI]
+    en:
+      url: /powerbi-visitor-dashboard.html
+      judul: Event Visitor Registration Dashboard
+      ringkas: "Combined 3 messy registration files, cleaned them, and built a dashboard for attendance and channel performance."
+      gambar: /assets/img/dashboard.png
+      alt: Event Visitor Registration Dashboard preview
+      tools: [Power BI, Power Query, DAX]
+
+  - kode: exhibition-360
+    tampil: false
+    id:
+      url: /exhibition-visitor-360.html
+      judul: Data dari 3 sistem disatukan, akurasi naik jadi 99%
+      ringkas: "Skor kualitas data dari 75,5% ke 99,0%. Selisih dengan laporan resmi dari +157 jadi maksimal 3."
+      gambar: /assets/img/exhibition-360.png
+      alt: Pratinjau dashboard Visitor 360
+      tools: [SQL, BigQuery]
+    en:
+      url: /exhibition-visitor-360.html
+      judul: "Visitor 360: 3 systems into 1 table"
+      ringkas: "Data quality score from 75.5% to 99.0%. Registration gap vs the official report cut from +157 to 3 at most."
+      gambar: /assets/img/exhibition-360.png
+      alt: Exhibition Visitor 360 dashboard preview
+      tools: [BigQuery, SQL, Python]

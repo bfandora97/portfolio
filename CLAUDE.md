@@ -7,7 +7,7 @@ Website Kemang Data. Halaman dirakit oleh `build.py` (Python + Jinja2) ke `_site
 ```
 src/pages/        isi tiap halaman; path file = URL (src/pages/en/index.html -> /en/)
 src/layouts/      base.html (kerangka <head>, script) + macros.html (header, wa(), plan_card, lightbox, ...)
-src/data/         site.yml (WA, email, link) + paket.yml (HARGA, satu-satunya sumber) + alur.yml (isi animasi contoh, data fiktif) + teks.yml (MENU, FOOTER, label UI per bahasa) + produk.yml (template Etsy, DIBUAT OTOMATIS dari repo ops: `python produk/kd.py katalog`, jangan diedit manual)
+src/data/         site.yml (WA, email, link) + paket.yml (HARGA, satu-satunya sumber) + alur.yml (isi animasi contoh, data fiktif) + teks.yml (MENU, FOOTER, label UI per bahasa) + proyek.yml (kartu proyek, tampil ya/tidak) + produk.yml (template Etsy, DIBUAT OTOMATIS dari repo ops: `python produk/kd.py katalog`, jangan diedit manual)
 assets/css/       style.css (dikelompokkan per bagian, lihat komentar di atasnya)
 assets/js/        theme.js (mode gelap + header), home.js (animasi halaman utama), case.js (tab gambar + layar penuh), alur.js (animasi contoh 3 adegan)
 assets/img/       semua gambar
@@ -34,6 +34,7 @@ python -m http.server -d _site 8000      # http://localhost:8000
 - **Harga hanya diubah di `src/data/paket.yml`.** Setelah itu, di repo ops (`kemang-data-ops`, folder induk) jalankan `tools/sync_marketplace.py` dan `tools/build_fastwork.py` supaya marketplace ikut.
 - Nomor WA, email, link profil: hanya di `src/data/site.yml`. Link WA dibuat dengan `{{ wa("pesan") }}`.
 - Menu & footer: JANGAN ditulis di halaman. Halaman cukup memanggil `{{ header() }}` dan `{{ footer() }}`; isinya dari `src/data/teks.yml` sesuai `lang` + `menu` (utama/kasus) di front matter. Tombol ganti bahasa otomatis dari `alternates`. Di HP maksimal 3 link (`hp: false` untuk sisanya), tanpa burger menu.
+- Studi kasus: front matter `layout: kasus` + `kasus:` (judul, langkah, kpi, galeri, kontak); pembuka, tombol kontak, galeri layar penuh dan footer dibuat otomatis. Halaman hanya berisi bagian unik. Tambahkan juga kartunya di `src/data/proyek.yml`.
 - Halaman baru: buat file di `src/pages/` dengan front matter (`title`, `description`, `lang` wajib; `menu: utama` untuk halaman utama, `og_image`, `og_type`, `scripts`, `alternates`, `sitemap: false` opsional). Sitemap otomatis.
 - Link internal & gambar pakai path absolut (`/assets/img/x.png`, `/#contact`).
 - **Repo ini public**: tidak boleh ada data kantor, data klien asli, nama perusahaan asli dari pekerjaan kantor, atau catatan internal. Data demo harus fiktif dan diberi label.
