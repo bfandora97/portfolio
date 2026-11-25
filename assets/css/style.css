@@ -373,27 +373,29 @@ a.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 @keyframes k-bar{0%{transform:scaleY(.15)}35%,100%{transform:scaleY(1)}}
 .k-pena{animation:k-pena .5s ease-in-out infinite alternate}@keyframes k-pena{to{transform:translate(-5px,1px)}}
 .k-centang{stroke-dasharray:24;animation:k-centang 3s ease-out infinite}@keyframes k-centang{0%,40%{stroke-dashoffset:24}70%,100%{stroke-dashoffset:0}}
-/* Panggung hero: 4 adegan x 3 detik (pg1..pg4); pemilik kedai masuk dari kiri, berkas terbang ke Bobbi */
+/* Panggung hero: 4 adegan x 3 detik (pg1..pg4); pemilik kedai masuk dari kiri, berkas terbang ke Bobbi.
+   Bilah 4 langkah di bawah: semua langkah selalu terlihat, yang sedang dimainkan menyala. */
 .panggung{position:relative;height:470px;background:radial-gradient(ellipse at 50% 100%,rgba(14,124,123,.13) 0,var(--panel) 70%);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.pg-lantai{position:absolute;left:0;right:0;bottom:0;height:46px;background:var(--p2);border-top:2px solid var(--line)}
-.panggung .tokoh{position:absolute;bottom:30px;width:192px;height:307px;z-index:2}
+.pg-lantai{position:absolute;left:0;right:0;bottom:52px;height:46px;background:var(--p2);border-top:2px solid var(--line)}
+.panggung .tokoh{position:absolute;bottom:82px;width:192px;height:307px;z-index:2}
 .panggung .pose{position:absolute;inset:0;opacity:0}.panggung .tokoh svg{width:100%;height:100%;overflow:visible}
 .panggung .nama{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:600;color:var(--muted);z-index:3}
 .panggung .klien{left:4%;animation:pg-datang 12s infinite}.panggung .bobbi{right:4%}
-.pg-papan{position:absolute;top:18px;left:0;right:0;height:40px}
-.pg-papan span{position:absolute;left:50%;transform:translateX(-50%);opacity:0;display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:6px;background:#101b2d;color:#fff;font:700 16px "Familjen Grotesk",sans-serif;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
-.pg-papan b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--yellow);color:#101b2d;font-size:14px}
-.pg-titik{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:3}.pg-titik i{width:9px;height:9px;border-radius:50%;background:var(--line)}
-.pg-terbang{position:absolute;width:56px;height:42px;left:36%;bottom:220px;opacity:0;z-index:3;animation:pg-lempar 12s infinite}.pg-terbang svg{width:100%;height:100%}
+.pg-langkah{position:absolute;left:0;right:0;bottom:0;height:52px;margin:0;padding:6px;list-style:none;display:flex;gap:6px;background:var(--panel);border-top:1px solid var(--line);z-index:3}
+.pg-langkah li{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;border-radius:8px;font:600 14px/1.15 "Familjen Grotesk",sans-serif;color:var(--muted);text-align:center}
+.pg-langkah b{display:grid;place-items:center;flex:none;width:22px;height:22px;border-radius:50%;background:rgba(128,128,128,.2);color:inherit;font-size:12px}
+.pg-terbang{position:absolute;width:56px;height:42px;left:36%;bottom:272px;opacity:0;z-index:3;animation:pg-lempar 12s infinite}.pg-terbang svg{width:100%;height:100%}
 .panggung .pg1{animation:pg-tampil 12s infinite 0s}.panggung .pg2{animation:pg-tampil 12s infinite -9s}
 .panggung .pg3{animation:pg-tampil 12s infinite -6s}.panggung .pg4{animation:pg-tampil 12s infinite -3s}
-.pg-titik i.pg1,.pg-titik i.pg2,.pg-titik i.pg3,.pg-titik i.pg4{animation-name:pg-titik}
+.pg-langkah li.pg1,.pg-langkah li.pg2,.pg-langkah li.pg3,.pg-langkah li.pg4{animation-name:pg-aktif}
 @keyframes pg-tampil{0%,24.5%{opacity:1}25%,100%{opacity:0}}
-@keyframes pg-titik{0%,24.5%{background:var(--teal);transform:scale(1.3)}25%,100%{background:var(--line);transform:none}}
+@keyframes pg-aktif{0%,24.5%{background:var(--teal);color:#fff}25%,100%{background:transparent;color:var(--muted)}}
 @keyframes pg-datang{0%{transform:translateX(-170%)}12%,100%{transform:none}}
-@keyframes pg-lempar{0%,18%{opacity:0;transform:none}20%{opacity:1}26%{opacity:1;transform:translate(300%,-30%) rotate(20deg)}28%,100%{opacity:0}}
-@media(max-width:760px){.hero2 .panggung{order:-1;height:310px}.panggung .tokoh{width:124px;height:198px}.panggung .klien{left:3%}.panggung .bobbi{right:3%}
-.pg-papan span{font-size:13px;padding:6px 10px}.panggung .nama{font-size:11px}.pg-terbang{bottom:140px;width:36px}}
+@keyframes pg-lempar{0%,18%{opacity:0;transform:none}20%{opacity:1}26%{opacity:1;transform:translate(385%,290%) rotate(8deg) scale(.6)}28%,100%{opacity:0}}
+@media(max-width:760px){.hero2 .panggung{order:-1;height:340px}.panggung .tokoh{width:124px;height:198px}.panggung .klien{left:3%}.panggung .bobbi{right:3%}
+.pg-langkah{gap:3px;padding:5px 4px}.pg-langkah li{flex-direction:column;gap:2px;font-size:10.5px}.pg-langkah b{width:17px;height:17px;font-size:10px}
+.panggung .nama{font-size:11px}.pg-terbang{bottom:192px;width:36px;animation-name:pg-lempar-hp}}
+@keyframes pg-lempar-hp{0%,18%{opacity:0;transform:none}20%{opacity:1}26%{opacity:1;transform:translate(385%,183%) rotate(8deg) scale(.6)}28%,100%{opacity:0}}
 /* Bobbi di Alur kerja (viewBox 100x160) */
 .ak-barista{width:70px;height:112px}
 @media(max-width:860px){.ak-barista{width:50px;height:80px}}
@@ -402,6 +404,6 @@ a.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rb{fill:#3B3943}:root:not([data-theme="light"]) .rh{fill:#6A6772}}
 [data-theme="dark"] .tokoh svg,[data-theme="dark"] .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tokoh svg,:root:not([data-theme="light"]) .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}}
-@media (prefers-reduced-motion:reduce){.k-lambai,.k-naik,.k-ketik,.k-baris,.k-uap,.k-bar,.k-pena,.k-centang,.panggung .pose,.pg-papan span,.panggung .klien,.pg-terbang,.pg-titik i{animation:none}
-.panggung .pg3,.pg-papan .pg3{opacity:1}}
+@media (prefers-reduced-motion:reduce){.k-lambai,.k-naik,.k-ketik,.k-baris,.k-uap,.k-bar,.k-pena,.k-centang,.panggung .pose,.pg-langkah li,.panggung .klien,.pg-terbang{animation:none}
+.panggung .pg3{opacity:1}.pg-langkah li.pg3{background:var(--teal);color:#fff}}
 /* KARAKTER:CSS:SELESAI */

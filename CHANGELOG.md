@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-25
+- PR: hero: papan langkah atas diganti bilah 4 langkah di bawah (yang aktif menyala), teks langkah lebih jelas (Kirim data, Saya rapikan, Laporan jadi, Cek & bayar), berkas terbang mendarat di tangan Bobbi.
 - PR: Bobbi rambut side part disapu ke kanan + undercut, dahi proporsional + ujung rambut jatuh, helaian meruncing, rambut abu-abu arang di mode gelap, alis melengkung halus, kulit lebih terang (permintaan Bobbi).
 
 ## 2026-11-24
