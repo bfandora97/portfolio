@@ -16,6 +16,7 @@ Struktur:
     assets/      css, js, gambar (disalin apa adanya)
     static/      file yang disalin ke root situs (CNAME, robots.txt)
 """
+import hashlib
 import shutil
 from datetime import date
 from pathlib import Path
@@ -88,6 +89,12 @@ def build():
                       undefined=StrictUndefined, autoescape=False, keep_trailing_newline=True)
     produk = data["produk"]
     produk["tampil"] = [p for p in produk["produk"] if p.get("etsy")]  # hanya yang sudah ada link Etsy
+    # versi aset: berubah kalau isi CSS/JS berubah -> browser pengunjung tidak memakai file lama dari cache
+    h = hashlib.sha1()
+    for f in sorted((ROOT / "assets").rglob("*")):
+        if f.suffix in (".css", ".js"):
+            h.update(f.read_bytes())
+    env.globals["versi"] = h.hexdigest()[:8]
     env.globals.update(site=site, paket=data["paket"]["paket"], alur_data=data["alur"], produk=produk,
                        i18n=data["i18n"], tahun=date.today().year, proyek=data["proyek"]["proyek"], ikon_data=data["ikon"])
     base = env.get_template("base.html")

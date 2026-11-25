@@ -89,9 +89,13 @@ utama:
       - {teks: Jadwalkan call 30 menit, link: booking, kelas: btn alt}
     harga: "Mulai <b>{harga}</b> · selesai {hari} hari · 2x revisi"
     oleh: "Dikerjakan langsung oleh <b>Bobbi</b> · 4 tahun di bidang data"
-    animasi_alt: "Animasi alur kerja: pemilik kedai bingung berapa untung sebenarnya, lalu mengirim berkas, Bobbi merapikan di laptop, menunjukkan laporan, lalu pemilik kedai tanda tangan."
+    animasi_alt: "Animasi perjalanan: pemilik kedai bingung berapa untung sebenarnya, berjalan ke Bobbi dan menyerahkan berkas, Bobbi merapikan di laptop, menunjukkan laporan, lalu pemilik kedai tanda tangan."
     balon_masalah: "Untung saya sebenarnya berapa, ya?"
     balon_hasil: "Ternyata GoFood paling untung!"
+    lokasi: ["📍 Kedai Anda", "📍 Kantor Kemang Data", "📍 Meja kerja Bobbi", "📍 Ruang presentasi", "📍 Kedai Anda · seminggu kemudian"]
+    papan_buka: BUKA
+    layar: {judul: "Untung per channel (data fiktif)", channel: [GoFood, Outlet, Shopee]}
+    label_hp: Laporan di HP
     tokoh_klien: Pemilik kedai
     tokoh_bobbi: Bobbi · Kemang Data
 

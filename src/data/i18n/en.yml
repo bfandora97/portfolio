@@ -83,9 +83,13 @@ utama:
       - {teks: Book a free 30-min call, link: booking, kelas: btn alt}
     harga: "From <b>{harga}</b> · delivered in {hari} days · 2 revisions"
     oleh: "Done by <b>Bobbi</b> myself · 4 years in data"
-    animasi_alt: "Animation of how it works: a shop owner is unsure of their real profit, sends files, Bobbi cleans them on a laptop, shows the report, and the owner signs off."
+    animasi_alt: "Journey animation: a shop owner unsure of their real profit walks to Bobbi and hands over the files, Bobbi cleans them on a laptop, shows the report, and the owner signs off."
     balon_masalah: "What is my real profit?"
     balon_hasil: "So Etsy earns me the most!"
+    lokasi: ["📍 Your shop", "📍 Kemang Data office", "📍 Bobbi's desk", "📍 Presentation room", "📍 Your shop · a week later"]
+    papan_buka: OPEN
+    layar: {judul: "Profit per channel (sample data)", channel: [Etsy, Shopify, Amazon]}
+    label_hp: Report on your phone
     tokoh_klien: Shop owner
     tokoh_bobbi: Bobbi · Kemang Data
 
