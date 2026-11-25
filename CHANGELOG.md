@@ -3,6 +3,8 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-25
+- PR: langkah berjalan tampak samping: 2 fase yang beda bentuk (melangkah / melintas) supaya kaki terlihat bergerak; kuncir rapat ke kepala.
+- PR: pemilik kedai: sanggul diganti kuncir kuda (depan & samping, helaian menyatu ke ikatan); salaman dengan pergelangan tangan.
 - PR: alur hero sesuai Bobbi: pemilik kedai serahkan data -> Bobbi jalan ke ruang kerja -> Bobbi jalan ke kedai bawa laporan -> salaman; sanggul tampak samping lebih detail.
 - PR: cerita hero: tanpa papan lokasi; Bobbi berjalan (tampak samping) datang ke kedai membawa laporan, kedai lalu ramai (ruang presentasi & HP dihapus).
 - PR: pemilik kedai berjalan tampak samping (berbalik saat kursor mundur); di meja kerja Bobbi duduk dengan laptop di meja, pemilik kedai duduk di sofa.

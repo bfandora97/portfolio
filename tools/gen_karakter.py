@@ -111,7 +111,10 @@ def kepala(o, siapa, ekspresi="senyum"):
         return kepala_bobbi(o, ekspresi)
     s = []
     # pemilik kedai: sanggul + rambut samping
-    s.append(f'<circle cx="50" cy="20" r="11" fill="{o["rambut"]}"/>')
+    # kuncir kuda di belakang kepala (terlihat di sisi kanan) + ikat rambut
+    s.append(f'<path d="M66 28C80 18 94 28 93 46C92 60 86 70 80 76C83 64 83 54 78 46C75 41 71 38 67 37Z" fill="{o["rambut"]}"/>'
+             '<path d="M80 30C87 34 89 44 87 54" fill="none" stroke="#5A4336" stroke-width="1.3" stroke-linecap="round"/>'
+             f'<ellipse cx="68" cy="31" rx="3.4" ry="4.6" fill="{TEAL}" transform="rotate(35 68 31)"/>')
     s.append(f'<path d="M21 60c-4-26 10-38 29-38s33 12 29 38c-3 6-6 9-9 10l1-14c-6-8-16-11-21-11s-15 3-21 11l1 14c-3-1-6-4-9-10z" fill="{o["rambut"]}"/>')
     s.append(f'<ellipse cx="24" cy="56" rx="5.5" ry="7.5" fill="{o["kulit2"]}"/><ellipse cx="76" cy="56" rx="5.5" ry="7.5" fill="{o["kulit2"]}"/>')
     s.append(f'<ellipse cx="50" cy="55" rx="27" ry="29" fill="{o["kulit"]}"/>')
@@ -195,13 +198,13 @@ def kepala_samping(o, siapa):
     else:
         # rambut turun sampai tengkuk + garis helaian disisir ke belakang
         rambut = (f'<path d="M26 64C21 38 34 24 54 24C68 24 77 33 78 45C72 40 64 38 56 39C50 40 46 44 45 50C44 58 41 66 37 74C33 75 29 71 26 64Z" fill="{r}"/>'
-                  '<path d="M66 30C56 26 44 28 36 36M60 34C50 32 42 36 37 44" fill="none" stroke="#5A4336" stroke-width="1.4" stroke-linecap="round"/>')
+                  '<path d="M70 33C58 26 44 27 33 33M66 38C56 34 44 34 34 36M58 43C50 40 42 39 35 39" fill="none" stroke="#5A4336" stroke-width="1.3" stroke-linecap="round"/>')
         alis, hiasan = 2.8, f'<circle cx="45" cy="67" r="2" fill="{YEL}"/>'
     # sanggul: dua gulungan + ikat rambut + helaian (tampak samping, di belakang atas kepala)
-    sanggul = (f'<ellipse cx="28" cy="30" rx="11" ry="9" fill="{r}" transform="rotate(-28 28 30)"/>'
-               f'<path d="M19 27C13 20 17 12 25 14C29 15 30 20 28 24Z" fill="{r}"/>'
-               '<path d="M21 31C25 26 31 25 35 28M23 36C27 32 32 32 36 34M20 21C22 18 25 18 27 20" fill="none" stroke="#5A4336" stroke-width="1.3" stroke-linecap="round"/>'
-               f'<path d="M33 38L39 33" stroke="{TEAL}" stroke-width="3.4" stroke-linecap="round"/>') if siapa != "bobbi" else ""
+    # kuncir kuda: diikat di belakang atas kepala, melengkung lalu jatuh ke bawah (dengan helaian)
+    sanggul = (f'<path d="M33 31C24 20 9 22 6 36C3 50 9 64 19 74C18 64 19 53 23 46C26 41 29 38 33 37Z" fill="{r}"/>'
+               '<path d="M27 29C17 28 11 37 11 48M28 34C21 36 17 44 17 54" fill="none" stroke="#5A4336" stroke-width="1.3" stroke-linecap="round"/>'
+               f'<ellipse cx="32" cy="34" rx="3.4" ry="5" fill="{TEAL}" transform="rotate(-20 32 34)"/>') if siapa != "bobbi" else ""
     return (sanggul + f'<ellipse cx="52" cy="55" rx="25" ry="29" fill="{o["kulit"]}"/><path d="M77 55q5.5 4 .6 9.5" fill="{o["kulit"]}"/>' + rambut
             + f'<ellipse cx="45" cy="58" rx="4.6" ry="6.6" fill="{o["kulit2"]}"/>' + hiasan
             + f'<path d="M60 47q5.5-3.6 11 0" fill="none" stroke="{r}" stroke-width="{alis}" stroke-linecap="round"/>'
@@ -220,13 +223,15 @@ def badan_samping(o, siapa):
 
 
 def langkah_samping(o, maju):
-    """Satu fase langkah: kaki depan/belakang (diputar dari pinggul) + tangan berayun berlawanan."""
-    def kaki_(sudut):
-        return (f'<g transform="rotate({sudut} 51.5 131)"><rect x="46" y="130" width="11" height="19" rx="4" fill="{o["celana"]}"/>'
+    """Satu fase langkah tampak samping. maju=True: fase MELANGKAH (kaki terbuka lebar, tangan ke depan).
+    maju=False: fase MELINTAS (kaki rapat, satu kaki terangkat, tangan ke belakang). Dua fase harus beda bentuk,
+    karena kedua kaki sewarna: menukar kaki depan/belakang saja tidak terlihat bergerak."""
+    def kaki_(sudut, angkat=0):
+        return (f'<g transform="translate(0 {-angkat}) rotate({sudut} 51.5 131)"><rect x="46" y="130" width="11" height="19" rx="4" fill="{o["celana"]}"/>'
                 f'<rect x="45" y="145" width="18" height="7" rx="3.5" fill="{o["sepatu"]}"/></g>')
-    a, b = (-22, 20) if maju else (20, -22)
-    tgn = (lengan(o, 52, 95, 66, 121) + tangan(o, 67, 123)) if maju else (lengan(o, 52, 95, 38, 121) + tangan(o, 37, 123))
-    return kaki_(b) + kaki_(a), tgn
+    if maju:
+        return kaki_(24) + kaki_(-26), lengan(o, 52, 95, 66, 121) + tangan(o, 67, 123)
+    return kaki_(3) + kaki_(-10, 5), lengan(o, 52, 95, 42, 122) + tangan(o, 41, 124)
 
 
 def pose(o, siapa, aksi, cls=""):
@@ -310,10 +315,12 @@ def pose(o, siapa, aksi, cls=""):
     elif aksi == "salam":  # bersalaman: pemilik kedai menjulurkan tangan kanan ke kanan, Bobbi tangan kiri ke kiri
         if siapa == "bobbi":
             isi = (k + B + lengan(o, 69, 94, 74, 126) + tangan(o, 74, 128) + kepala(o, siapa, "senang")
-                   + '<g class="k-salam">' + lengan(o, 31, 94, 6, 108) + tangan(o, 1, 108) + '</g>')
+                   + '<g class="k-salam">' + lengan(o, 31, 94, 14, 104) + f'<path d="M14 104L3 108" stroke="{o["kulit2"]}" stroke-width="7.5" stroke-linecap="round"/>'
+                   + tangan(o, 1, 108.5) + '</g>')
         else:
             isi = (k + B + lengan(o, 31, 94, 26, 126) + tangan(o, 26, 128) + kepala(o, siapa, "senang")
-                   + '<g class="k-salam">' + lengan(o, 69, 94, 94, 108) + tangan(o, 99, 108) + '</g>')
+                   + '<g class="k-salam">' + lengan(o, 69, 94, 86, 104) + f'<path d="M86 104L97 108" stroke="{o["kulit2"]}" stroke-width="7.5" stroke-linecap="round"/>'
+                   + tangan(o, 99, 108.5) + '</g>')
     elif aksi == "diri":  # berdiri santai, tangan di samping
         isi = (k + B + lengan(o, 31, 94, 26, 126) + tangan(o, 26, 128) + lengan(o, 69, 94, 74, 126) + tangan(o, 74, 128) + kepala(o, siapa))
     else:
