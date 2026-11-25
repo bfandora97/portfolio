@@ -5,7 +5,7 @@
 
 Struktur:
     src/pages/   isi tiap halaman (path file = path URL), diawali "front matter" YAML
-                 - `bahasa: [id, en]`  = SATU kerangka dibuat jadi 2 halaman: /<path> (id) dan /en/<path> (en)
+                 - `bahasa: [id, en]`  = SATU kerangka dibuat jadi 2 halaman: /<path> (en, bahasa utama) dan /id/<path> (id)
                  - `bahasa: {id: tentang/index.html, en: en/about/index.html}` = URL beda per bahasa
                  - `halaman: tentang`  = title/description/og_image/judul dari i18n `halaman.tentang` (default beranda)
                  - `layout: kasus`     = halaman studi kasus (pembuka, kontak, footer otomatis)
@@ -113,11 +113,11 @@ def build():
         rel = src.relative_to(SRC / "pages")
         meta, body = split_front_matter(src.read_text(encoding="utf-8"), rel)
         if meta.get("bahasa"):  # satu kerangka, beberapa bahasa
-            bh = meta["bahasa"]  # [id, en] (path sama, en di bawah /en/) atau {id: tentang/index.html, en: en/about/index.html}
+            bh = meta["bahasa"]  # [id, en] (path sama, id di bawah /id/) atau {id: id/tentang/index.html, en: about/index.html}
             hasil = ({b: Path(p) for b, p in bh.items()} if isinstance(bh, dict)
-                     else {b: (rel if b == "id" else Path(b) / rel) for b in bh})
+                     else {b: (rel if b == "en" else Path(b) / rel) for b in bh})
             alternates = {b: url_path(r) for b, r in hasil.items()}
-            alternates["x-default"] = alternates["id"]
+            alternates["x-default"] = alternates["en"]  # bahasa utama = Inggris
             for b, r in hasil.items():
                 h = data["i18n"][b]["halaman"][meta.get("halaman", "beranda")]
                 m = dict(meta, lang=b, alternates=alternates, title=h["title"], description=h["description"], og_image=h["og_image"])
@@ -147,6 +147,19 @@ def build():
         if meta.get("sitemap", True):
             pages.append(meta["url"])
         print("  ", out_rel.as_posix())
+
+    # alamat lama (sebelum bahasa utama jadi Inggris) -> halaman pengalihan, supaya link lama tidak rusak
+    for lama, baru in data["pengalihan"]["pengalihan"].items():
+        out_rel = Path(lama.strip("/")) / "index.html" if lama.endswith("/") else Path(lama.lstrip("/"))
+        if out_rel in dibuat:
+            raise SystemExit(f"pengalihan.yml: {lama} bentrok dengan halaman yang ada")
+        tujuan = site["url"] + baru
+        dest = OUT / out_rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Moved</title>'
+                        f'<meta name="robots" content="noindex"><link rel="canonical" href="{tujuan}">'
+                        f'<meta http-equiv="refresh" content="0; url={baru}"><script>location.replace("{baru}"+location.hash)</script></head>'
+                        f'<body><a href="{baru}">{tujuan}</a></body></html>\n', encoding="utf-8", newline="\n")
 
     urls = "\n".join(f"  <url><loc>{u}</loc></url>" for u in pages)
     (OUT / "sitemap.xml").write_text(

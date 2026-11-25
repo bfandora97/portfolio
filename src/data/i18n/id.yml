@@ -2,24 +2,24 @@
 # build.py gagal kalau ada kunci (atau jumlah item daftar) yang tidak sama di id.yml dan en.yml,
 # jadi versi ID dan EN tidak bisa beda bentuk. Isi boleh menyesuaikan pasar (contoh & harga), bentuknya tidak.
 #
-# Halaman utama: SATU kerangka (src/pages/index.html) dibuat jadi / (id) dan /en/ (en). Teksnya di `utama`.
+# Halaman utama: SATU kerangka (src/pages/index.html) dibuat jadi / (en, bahasa utama) dan /id/ (id). Teksnya di `utama`.
 # Menu: urutan = urutan bagian di halaman. hp: false = sembunyi di HP (maks 3 link di HP), kecil: false = sembunyi di HP <= 380px,
 #       syarat: produk = hanya tampil kalau ada template Etsy live (src/data/produk.yml).
 # Tombol: link = url / upwork / email / linkedin / github / booking (dari site.yml; booking kosong = tombol disembunyikan) / "wa:isi pesan WhatsApp"; kelas = btn big / btn / btn alt.
 
-beranda: /
+beranda: /id/
 mode_gelap: Ganti mode gelap
 bahasa_ini: Bahasa Indonesia
 label_bahasa: ID
 
 menu:
   utama:
-    - {teks: Tentang, link: "/tentang/", hp: false}
-    - {teks: Layanan, link: "/layanan/"}
-    - {teks: Kontak, link: "/kontak/", kecil: false}
+    - {teks: Tentang, link: "/id/tentang/", hp: false}
+    - {teks: Layanan, link: "/id/layanan/"}
+    - {teks: Kontak, link: "/id/kontak/", kecil: false}
   kasus:
-    - {teks: Semua proyek, link: "/layanan/#projects"}
-    - {teks: Kontak, link: "/kontak/", kecil: false}
+    - {teks: Semua proyek, link: "/id/layanan/#projects"}
+    - {teks: Kontak, link: "/id/kontak/", kecil: false}
 
 footer:
   tagline: "Satu laporan otomatis dari semua channel jualan. Untung per produk dan per channel langsung kelihatan, tanpa rekap manual."
@@ -27,11 +27,11 @@ footer:
   hubungi: Hubungi
   link:
     - {teks: Beranda, link: "/"}
-    - {teks: Tentang, link: "/tentang/", hp: false}
-    - {teks: Layanan, link: "/layanan/"}
-    - {teks: Contoh hasil, link: "/layanan/#contoh-hasil"}
-    - {teks: Produk digital, link: "/layanan/#templates", syarat: produk}
-    - {teks: Kontak, link: "/kontak/"}
+    - {teks: Tentang, link: "/id/tentang/", hp: false}
+    - {teks: Layanan, link: "/id/layanan/"}
+    - {teks: Contoh hasil, link: "/id/layanan/#contoh-hasil"}
+    - {teks: Produk digital, link: "/id/layanan/#templates", syarat: produk}
+    - {teks: Kontak, link: "/id/kontak/"}
   kontak: [whatsapp, email, booking]
   temukan: Temukan kami
   temukan_link: [etsy, instagram, tiktok, linkedin]
@@ -125,7 +125,7 @@ utama:
         lebar: 1600
         tinggi: 1000
         alt: Contoh laporan penjualan otomatis Kopi Senja (fiktif)
-        link: /umkm-sales-dashboard.html
+        link: /id/umkm-sales-dashboard.html
         link_teks: "Lihat studi kasus lengkap &rarr;"
         poin:
           - "<b>Rekap 4 jam per minggu &rarr; otomatis.</b> Pemilik cukup buka 1 link di HP."
@@ -190,7 +190,7 @@ utama:
         anda: Buka 1 link, kapan saja.
         saya: Laporan ter-update otomatis, dan saya jelaskan cara membacanya.
         waktu: Hari 5
-        link: /umkm-sales-dashboard.html
+        link: /id/umkm-sales-dashboard.html
         link_teks: "Contoh: Kopi Senja (fiktif) &rarr;"
       - papan: Cek &amp; bayar
         judul: Revisi &amp; bayar

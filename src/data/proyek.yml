@@ -8,14 +8,14 @@ proyek:
   - kode: umkm-sales
     tampil: true
     id:
-      url: /umkm-sales-dashboard.html
+      url: /id/umkm-sales-dashboard.html
       judul: Dashboard penjualan multi-channel
       ringkas: "Studi kasus demo: kasir 2 outlet, GoFood/GrabFood dan Shopee digabung jadi satu dashboard otomatis. Rekap mingguan &plusmn;4 jam jadi nol."
       gambar: /assets/img/umkm-sales-dashboard-thumb.png
       alt: Pratinjau dashboard penjualan UMKM (data fiktif)
       tools: [Google Sheets, Looker Studio, Excel]
     en:
-      url: /en/small-business-sales-dashboard.html
+      url: /small-business-sales-dashboard.html
       judul: Multi-channel sales dashboard
       ringkas: "Demo case: in-store POS, food-delivery apps and a marketplace merged into one auto-updating dashboard. Weekly recap time: ~4 hours to zero."
       gambar: /assets/img/umkm-sales-dashboard-thumb.png
