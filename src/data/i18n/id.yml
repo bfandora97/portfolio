@@ -168,28 +168,28 @@ utama:
     label_saya: Saya
     live: "Mesin demo terakhir jalan otomatis:"
     langkah:
-      - papan: Kirim di sini
+      - papan: Kirim data
         judul: Kirim data penjualan
         anda: "Kirim export kasir, GoFood/GrabFood, dan Shopee lewat WhatsApp. Belum tahu caranya? Saya pandu."
         saya: Cek data, lalu kirim penawaran tertulis (harga &amp; waktu).
         waktu: "Hari 1 · ± 10 menit untuk Anda"
         link: ""
         link_teks: ""
-      - papan: Saya racik
+      - papan: Saya rapikan
         judul: Dirapikan &amp; digabung
         anda: Tidak perlu apa-apa.
         saya: Samakan nama produk, buang data dobel, hitung komisi dan untung asli per channel.
         waktu: Hari 2&ndash;4
         link: pipeline
         link_teks: "Lihat mesinnya &rarr;"
-      - papan: Ambil di sini
+      - papan: Laporan jadi
         judul: Laporan di HP
         anda: Buka 1 link, kapan saja.
         saya: Laporan ter-update otomatis, dan saya jelaskan cara membacanya.
         waktu: Hari 5
         link: /umkm-sales-dashboard.html
         link_teks: "Contoh: Kopi Senja (fiktif) &rarr;"
-      - papan: Cek, lalu bayar
+      - papan: Cek &amp; bayar
         judul: Revisi &amp; bayar
         anda: Cek hasilnya, minta revisi kalau perlu, lalu bayar.
         saya: "2x revisi sudah termasuk. Proyek di atas Rp1 juta: DP 50% di awal."

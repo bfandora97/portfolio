@@ -26,17 +26,67 @@ TEAL, YEL = "#0E7C7B", "#F2C811"
 
 
 # ---------------------------------------------------------------- bagian tubuh
+def rambut_bobbi():
+    """Quiff (referensi Bobbi): rambut depan naik & tersapu ke kanan Bobbi (= kiri layar), ujung bergumpal bulat,
+    sejumput jatuh di dahi, cambang pendek meruncing di dalam garis wajah. Digambar menghadap kanan layar lalu dicerminkan.
+    TURUN = puncak diturunkan dari tinggi referensi (lebih kalem). Kelas rb/rh = warna mode gelap."""
+    TURUN = 6
+
+    def y(v):
+        return round(v + TURUN * (26 - v) / 17, 2) if v < 26 else v
+    r = BOBBI["rambut"]
+    cermin = '<g transform="matrix(-1 0 0 1 100 0)">'
+    belakang = f'{cermin}<path class="rb" d="M27 44C25.5 33 32 {y(23)} 50 {y(21)}C68 {y(23)} 74.5 33 73 44Z" fill="{r}"/></g>'
+    quiff = (f'<path class="rb" d="M28.6 46.2L26.4 45.8C26 40.5 26.5 35 28.2 31C29.8 {y(27)} 32.4 {y(23.4)} 36 {y(21)}'
+             f'C39 {y(15)} 48 {y(11.5)} 56 {y(13)}C60 {y(13.8)} 63 {y(15.5)} 64 {y(18.5)}C61.5 {y(17)} 59 {y(16.8)} 57 {y(17.5)}'
+             f'C62 {y(14.5)} 67.5 {y(15.5)} 69.6 {y(19.5)}C71.6 {y(22.5)} 72.8 27 73.2 31C73.6 35.5 73.9 40 73.6 45.8L71.4 46.2'
+             f'C71.4 43.6 71.2 41.4 70.6 39.8C68.6 37 64 35.6 58 35.8C52 36 47 37 44 38.5C42 39.5 41 41 41.2 43'
+             f'C39.6 41.8 39 40 38.6 38.8C35 39 31.4 39.6 29.4 40.4C28.9 42.2 28.6 44.2 28.6 46.2Z" fill="{r}"/>')
+    kilap = (f'<path class="rh" d="M39.5 28.5C41.5 {y(22.5)} 45.5 {y(18.5)} 50.5 {y(16.8)}C46.2 {y(19.6)} 42.8 {y(23.2)} 40.2 28.8Z'
+             f'M55.5 27C57.5 {y(23)} 60.5 {y(20.4)} 64.5 {y(19.4)}C61.2 {y(21.4)} 58.6 {y(24)} 56.2 27.3Z" fill="#55525C"/>')
+    return belakang, f"{cermin}{quiff}{kilap}</g>"
+
+
+def latar_kantor():
+    """Latar kantor ORIGINAL di belakang panggung hero (pucat supaya karakter menonjol; area di belakang kepala tenang).
+    viewBox 560x372 = dinding di atas lantai. Warna lewat class lk-* (ada versi mode gelap di CSS)."""
+    s = ['<svg class="pg-latar" viewBox="0 0 560 372" preserveAspectRatio="xMidYMax slice" aria-hidden="true">']
+    s.append('<rect class="lk-kaca" x="170" y="34" width="220" height="230" rx="4"/>')
+    for x, w, h in ((178, 26, 110), (206, 22, 150), (230, 30, 90), (262, 24, 175), (288, 34, 125), (324, 22, 160), (348, 30, 100), (380, 10, 135)):
+        s.append(f'<rect class="lk-gedung" x="{x}" y="{264 - h}" width="{w}" height="{h}"/>')
+    s.append('<path class="lk-bingkai" d="M170 34h220v230H170zM243 34v230M317 34v230M170 110h220M170 188h220" fill="none" stroke-width="5"/>')
+    for x in (215, 345):  # lampu gantung
+        s.append(f'<path class="lk-tali" d="M{x} 0v24" stroke-width="2"/><path class="lk-gelap" d="M{x - 13} 42q13-20 26 0z"/>'
+                 f'<circle cx="{x}" cy="43" r="3" fill="{YEL}" opacity=".7"/>')
+    s.append('<circle class="lk-jam" cx="470" cy="44" r="20" stroke-width="3.5"/><path class="lk-jarum" d="M470 32v12l8 5" fill="none" stroke-width="2.6" stroke-linecap="round"/>')
+    s.append('<rect class="lk-gelap" x="8" y="150" width="56" height="222" rx="2"/>')
+    for y in (205, 262, 318):
+        s.append(f'<rect class="lk-rak" x="11" y="{y}" width="50" height="4"/>')
+    s.append(f'<rect x="16" y="186" width="7" height="19" fill="{TEAL}" opacity=".45"/><rect x="25" y="190" width="6" height="15" fill="{YEL}" opacity=".5"/>'
+             '<rect class="lk-sedang" x="33" y="184" width="8" height="21"/><rect class="lk-sedang" x="20" y="298" width="26" height="20"/>'
+             f'<rect x="45" y="246" width="10" height="16" fill="{TEAL}" opacity=".35"/>')
+    s.append('<rect class="lk-bingkai2" x="70" y="40" width="74" height="46" rx="2" stroke-width="3"/>')
+    s.append(f'<path d="M78 76l14-12 12 7 14-14 18-4" fill="none" stroke="{TEAL}" stroke-width="2.6" opacity=".55" stroke-linecap="round" stroke-linejoin="round"/>')
+    s.append('<rect class="lk-sedang" x="205" y="318" width="150" height="9" rx="2"/><rect class="lk-gelap" x="214" y="327" width="9" height="45"/><rect class="lk-gelap" x="337" y="327" width="9" height="45"/>'
+             '<rect class="lk-gelap" x="246" y="264" width="66" height="44" rx="3"/><rect class="lk-layar" x="250" y="268" width="58" height="36" rx="2"/>'
+             f'<rect x="257" y="285" width="8" height="15" fill="{TEAL}" opacity=".7"/><rect x="268" y="277" width="8" height="23" fill="{TEAL}" opacity=".7"/>'
+             f'<rect x="279" y="289" width="8" height="11" fill="{YEL}" opacity=".8"/><rect x="290" y="281" width="8" height="19" fill="{TEAL}" opacity=".5"/>'
+             '<rect class="lk-gelap" x="275" y="308" width="8" height="10"/>'
+             f'<rect class="lk-sedang" x="326" y="300" width="13" height="18" rx="2"/><path d="M332 300c-8-10-4-20 1-22 3 9 2 16-1 22zm1 0c4-10 10-13 14-11-2 7-8 11-14 11z" fill="{TEAL}" opacity=".55"/>')
+    s.append("</svg>")
+    return "".join(s)
+
+
 def kepala_bobbi(o, ekspresi="senyum"):
-    """Bobbi (dari foto formal): wajah lonjong, rambut pendek rapi belahan samping (tanpa jambul), alis tebal lurus,
-    kumis tipis samar. Rambut 2 lapis (belakang di balik wajah + jambul depan) supaya tidak ada celah."""
+    """Bobbi (dari foto formal): wajah lonjong, rambut side part disapu ke kanan + undercut, alis melengkung halus,
+    kumis tipis samar. Rambut 2 lapis (isi kubah di balik wajah + sapuan depan) supaya tidak ada celah."""
     r, s = o["rambut"], []
-    s.append(f'<path d="M25 55c-2-14 2-25 11-30h28c9 5 13 16 11 30-1-3-3-5-5-6H30c-2 1-4 3-5 6z" fill="{r}"/>')
+    belakang, depan = rambut_bobbi()
+    s.append(belakang)
     s.append(f'<ellipse cx="25.5" cy="58" rx="5" ry="7" fill="{o["kulit2"]}"/><ellipse cx="74.5" cy="58" rx="5" ry="7" fill="{o["kulit2"]}"/>')
     s.append(f'<path d="M50 26c15 0 25 11 25 27 0 19-11 33-25 33S25 72 25 53c0-16 10-27 25-27z" fill="{o["kulit"]}"/>')
-    # rambut pendek rapi, belahan samping (tanpa jambul)
-    s.append(f'<path d="M26 47c0-12 10-20 24-20 14 0 24 8 24 19-6-5-14-7-22-7-6 0-12 1-17 3-3 1-6 3-9 5z" fill="{r}"/>')
-    s.append('<path d="M37 30c-1 3-1 6 0 9M41 31c7-2 15-1 22 3M40 36c7-2 15-1 22 2" fill="none" stroke="#45434c" stroke-width="1.3" stroke-linecap="round"/>')
-    s.append(f'<path d="M35 48.5l11-1.6M54 46.9l11 1.6" fill="none" stroke="{r}" stroke-width="3.8" stroke-linecap="round"/>')
+    s.append(depan)
+    s.append(f'<path d="M35 47.8q5.5-1.6 11 0M54 47.8q5.5-1.6 11 0" fill="none" stroke="{r}" stroke-width="3.2" stroke-linecap="round"/>')
     if ekspresi == "senang":
         s.append(f'<path d="M36 58q4.5-5 9 0M55 58q4.5-5 9 0" fill="none" stroke="{INK}" stroke-width="2.6" stroke-linecap="round"/>')
     else:
@@ -202,11 +252,12 @@ def macro_hero():
     return ("{% macro panggung_hero() -%}\n"
             "{%- set h = i18n[page.lang].utama.hero -%}{%- set l = i18n[page.lang].utama.cara_kerja.langkah -%}\n"
             '<div class="panggung rv" role="img" aria-label="{{ h.animasi_alt }}">\n'
-            '<div class="pg-papan">{% for x in l %}<span class="pg{{ loop.index }}"><b>{{ loop.index }}</b>{{ x.papan }}</span>{% endfor %}</div>\n'
+            f'{latar_kantor()}\n'
             f'<div class="tokoh klien">{slot(KLIEN, "klien", ("berkas", "kopi", "senang", "ttd"))}<span class="nama">{{{{ h.tokoh_klien }}}}</span></div>\n'
             f'<div class="pg-terbang">{terbang}</div>\n'
             f'<div class="tokoh bobbi">{slot(BOBBI, "bobbi", ("lambai", "laptop", "poster", "jempol"))}<span class="nama">{{{{ h.tokoh_bobbi }}}}</span></div>\n'
-            '<div class="pg-lantai"></div><div class="pg-titik"><i class="pg1"></i><i class="pg2"></i><i class="pg3"></i><i class="pg4"></i></div>\n'
+            '<div class="pg-lantai"></div>\n'
+            '<ol class="pg-langkah">{% for x in l %}<li class="pg{{ loop.index }}"><b>{{ loop.index }}</b>{{ x.papan }}</li>{% endfor %}</ol>\n'
             "</div>\n{%- endmacro %}")
 
 
@@ -222,34 +273,50 @@ CSS = """/* Gerak kecil karakter (k-*) */
 @keyframes k-bar{0%{transform:scaleY(.15)}35%,100%{transform:scaleY(1)}}
 .k-pena{animation:k-pena .5s ease-in-out infinite alternate}@keyframes k-pena{to{transform:translate(-5px,1px)}}
 .k-centang{stroke-dasharray:24;animation:k-centang 3s ease-out infinite}@keyframes k-centang{0%,40%{stroke-dashoffset:24}70%,100%{stroke-dashoffset:0}}
-/* Panggung hero: 4 adegan x 3 detik (pg1..pg4); pemilik kedai masuk dari kiri, berkas terbang ke Bobbi */
+/* Panggung hero: 4 adegan x 3 detik (pg1..pg4); pemilik kedai masuk dari kiri, berkas terbang ke Bobbi.
+   Bilah 4 langkah di bawah: semua langkah selalu terlihat, yang sedang dimainkan menyala. */
 .panggung{position:relative;height:470px;background:radial-gradient(ellipse at 50% 100%,rgba(14,124,123,.13) 0,var(--panel) 70%);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.pg-lantai{position:absolute;left:0;right:0;bottom:0;height:46px;background:var(--p2);border-top:2px solid var(--line)}
-.panggung .tokoh{position:absolute;bottom:30px;width:192px;height:307px;z-index:2}
+.pg-lantai{position:absolute;left:0;right:0;bottom:52px;height:46px;background:var(--p2);border-top:2px solid var(--line)}
+.panggung .tokoh{position:absolute;bottom:82px;width:192px;height:307px;z-index:2}
 .panggung .pose{position:absolute;inset:0;opacity:0}.panggung .tokoh svg{width:100%;height:100%;overflow:visible}
 .panggung .nama{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:600;color:var(--muted);z-index:3}
 .panggung .klien{left:4%;animation:pg-datang 12s infinite}.panggung .bobbi{right:4%}
-.pg-papan{position:absolute;top:18px;left:0;right:0;height:40px}
-.pg-papan span{position:absolute;left:50%;transform:translateX(-50%);opacity:0;display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:6px;background:#101b2d;color:#fff;font:700 16px "Familjen Grotesk",sans-serif;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
-.pg-papan b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--yellow);color:#101b2d;font-size:14px}
-.pg-titik{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:3}.pg-titik i{width:9px;height:9px;border-radius:50%;background:var(--line)}
-.pg-terbang{position:absolute;width:56px;height:42px;left:36%;bottom:220px;opacity:0;z-index:3;animation:pg-lempar 12s infinite}.pg-terbang svg{width:100%;height:100%}
+.pg-langkah{position:absolute;left:0;right:0;bottom:0;height:52px;margin:0;padding:6px;list-style:none;display:flex;gap:6px;background:var(--panel);border-top:1px solid var(--line);z-index:3}
+.pg-langkah li{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;border-radius:8px;font:600 14px/1.15 "Familjen Grotesk",sans-serif;color:var(--muted);text-align:center}
+.pg-langkah b{display:grid;place-items:center;flex:none;width:22px;height:22px;border-radius:50%;background:rgba(128,128,128,.2);color:inherit;font-size:12px}
+.pg-terbang{position:absolute;width:56px;height:42px;left:36%;bottom:272px;opacity:0;z-index:3;animation:pg-lempar 12s infinite}.pg-terbang svg{width:100%;height:100%}
 .panggung .pg1{animation:pg-tampil 12s infinite 0s}.panggung .pg2{animation:pg-tampil 12s infinite -9s}
 .panggung .pg3{animation:pg-tampil 12s infinite -6s}.panggung .pg4{animation:pg-tampil 12s infinite -3s}
-.pg-titik i.pg1,.pg-titik i.pg2,.pg-titik i.pg3,.pg-titik i.pg4{animation-name:pg-titik}
+.pg-langkah li.pg1,.pg-langkah li.pg2,.pg-langkah li.pg3,.pg-langkah li.pg4{animation-name:pg-aktif}
 @keyframes pg-tampil{0%,24.5%{opacity:1}25%,100%{opacity:0}}
-@keyframes pg-titik{0%,24.5%{background:var(--teal);transform:scale(1.3)}25%,100%{background:var(--line);transform:none}}
+@keyframes pg-aktif{0%,24.5%{background:var(--teal);color:#fff}25%,100%{background:transparent;color:var(--muted)}}
 @keyframes pg-datang{0%{transform:translateX(-170%)}12%,100%{transform:none}}
-@keyframes pg-lempar{0%,18%{opacity:0;transform:none}20%{opacity:1}26%{opacity:1;transform:translate(300%,-30%) rotate(20deg)}28%,100%{opacity:0}}
-@media(max-width:760px){.hero2 .panggung{order:-1;height:310px}.panggung .tokoh{width:124px;height:198px}.panggung .klien{left:3%}.panggung .bobbi{right:3%}
-.pg-papan span{font-size:13px;padding:6px 10px}.panggung .nama{font-size:11px}.pg-terbang{bottom:140px;width:36px}}
+@keyframes pg-lempar{0%,18%{opacity:0;transform:none}20%{opacity:1}26%{opacity:1;transform:translate(385%,290%) rotate(8deg) scale(.6)}28%,100%{opacity:0}}
+@media(max-width:760px){.hero2 .panggung{order:-1;height:340px}.panggung .tokoh{width:124px;height:198px}.panggung .klien{left:3%}.panggung .bobbi{right:3%}
+.pg-langkah{gap:3px;padding:5px 4px}.pg-langkah li{flex-direction:column;gap:2px;font-size:10.5px}.pg-langkah b{width:17px;height:17px;font-size:10px}
+.panggung .nama{font-size:11px}.pg-terbang{bottom:192px;width:36px;animation-name:pg-lempar-hp}}
+@keyframes pg-lempar-hp{0%,18%{opacity:0;transform:none}20%{opacity:1}26%{opacity:1;transform:translate(385%,183%) rotate(8deg) scale(.6)}28%,100%{opacity:0}}
+/* Latar kantor di belakang panggung (dibuat latar_kantor()) */
+.pg-latar{position:absolute;left:0;top:0;width:100%;height:calc(100% - 98px);z-index:0}
+.lk-kaca{fill:#EAF2F6}.lk-gedung{fill:#DCE5EC}.lk-bingkai{stroke:#D3DBE4}.lk-bingkai2{fill:#F7F9FB;stroke:#C9D1DC}
+.lk-tali{stroke:#B8C1CD}.lk-gelap{fill:#C9D1DC}.lk-sedang{fill:#DCE2EA}.lk-rak{fill:#B8C1CD}.lk-layar{fill:#F4F8FA}.lk-jam{fill:#F7F9FB;stroke:#B8C1CD}.lk-jarum{stroke:#8E99A8}
+[data-theme="dark"] .lk-kaca{fill:#1B2A40}[data-theme="dark"] .lk-gedung{fill:#22344D}[data-theme="dark"] .lk-bingkai{stroke:#2A3A52}[data-theme="dark"] .lk-bingkai2{fill:#1A2638;stroke:#2F405A}
+[data-theme="dark"] .lk-tali{stroke:#33445E}[data-theme="dark"] .lk-gelap{fill:#2A3A52}[data-theme="dark"] .lk-sedang{fill:#223047}[data-theme="dark"] .lk-rak{fill:#33445E}
+[data-theme="dark"] .lk-layar{fill:#1F2D42}[data-theme="dark"] .lk-jam{fill:#1A2638;stroke:#33445E}[data-theme="dark"] .lk-jarum{stroke:#6D7C92}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lk-kaca{fill:#1B2A40}:root:not([data-theme="light"]) .lk-gedung{fill:#22344D}:root:not([data-theme="light"]) .lk-bingkai{stroke:#2A3A52}
+:root:not([data-theme="light"]) .lk-bingkai2{fill:#1A2638;stroke:#2F405A}:root:not([data-theme="light"]) .lk-tali{stroke:#33445E}:root:not([data-theme="light"]) .lk-gelap{fill:#2A3A52}
+:root:not([data-theme="light"]) .lk-sedang{fill:#223047}:root:not([data-theme="light"]) .lk-rak{fill:#33445E}:root:not([data-theme="light"]) .lk-layar{fill:#1F2D42}
+:root:not([data-theme="light"]) .lk-jam{fill:#1A2638;stroke:#33445E}:root:not([data-theme="light"]) .lk-jarum{stroke:#6D7C92}}
 /* Bobbi di Alur kerja (viewBox 100x160) */
 .ak-barista{width:70px;height:112px}
 @media(max-width:860px){.ak-barista{width:50px;height:80px}}
+/* mode gelap: rambut abu-abu arang supaya siluet tidak tenggelam di latar gelap */
+[data-theme="dark"] .rb{fill:#3B3943}[data-theme="dark"] .rh{fill:#6A6772}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rb{fill:#3B3943}:root:not([data-theme="light"]) .rh{fill:#6A6772}}
 [data-theme="dark"] .tokoh svg,[data-theme="dark"] .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tokoh svg,:root:not([data-theme="light"]) .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}}
-@media (prefers-reduced-motion:reduce){.k-lambai,.k-naik,.k-ketik,.k-baris,.k-uap,.k-bar,.k-pena,.k-centang,.panggung .pose,.pg-papan span,.panggung .klien,.pg-terbang,.pg-titik i{animation:none}
-.panggung .pg3,.pg-papan .pg3{opacity:1}}"""
+@media (prefers-reduced-motion:reduce){.k-lambai,.k-naik,.k-ketik,.k-baris,.k-uap,.k-bar,.k-pena,.k-centang,.panggung .pose,.pg-langkah li,.panggung .klien,.pg-terbang{animation:none}
+.panggung .pg3{opacity:1}.pg-langkah li.pg3{background:var(--teal);color:#fff}}"""
 
 
 def ganti(teks, mulai, selesai, isi, pertama):
