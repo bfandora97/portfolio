@@ -42,8 +42,8 @@ def kepala_bobbi(o, ekspresi="senyum"):
     s.append(f'<path class="rb" d="M38 39.5L36.6 26.2C31.8 27.4 28.4 31.6 28.2 37.6C28.2 39.2 28.4 40.6 28.8 41.8C31.6 40.5 34.8 39.8 38 39.5Z" fill="{r}"/>')
     s.append(f'<path class="rb" d="M38 39.5C36 36 35.2 31 36.2 27C38 20.5 43.5 16.5 50.5 16.2C59 15.8 67 19 70.8 24.8C72.8 28 73 33 71.9 39.5'
              f'C69.6 37.8 67.6 38.6 65.6 41.2C64.6 38.2 61.6 36.4 57 36C50.5 35.5 44 36.8 38 39.5Z" fill="{r}"/>')
-    # helaian: satu panjang meruncing + satu pendek (bentuk sabit, bukan garis rata)
-    s.append('<path class="rh" d="M40 33.2C44 24 54 20 65.4 22.4C55 21.6 46 25 41.3 33.6ZM45.2 35.8C49.6 31.2 55 29.6 61.2 30C55.6 30.8 50.6 32.6 46 36.2Z" fill="#55525C"/>')
+    # helaian: 2 kilap tipis & pendek (bentuk sabit meruncing)
+    s.append('<path class="rh" d="M44.5 30.6C47.8 25.4 53 22.8 59.6 22.6C53.6 23.5 48.9 25.9 45.1 30.9ZM48.6 33.8C51.4 31 54.6 29.8 57.8 29.7C54.7 30.3 51.9 31.7 49 34.1Z" fill="#55525C"/>')
     s.append('</g>')
     s.append(f'<path d="M35 47.8q5.5-1.6 11 0M54 47.8q5.5-1.6 11 0" fill="none" stroke="{r}" stroke-width="3.2" stroke-linecap="round"/>')
     if ekspresi == "senang":
