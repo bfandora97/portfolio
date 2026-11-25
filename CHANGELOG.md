@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-25
+- PR: pemilik kedai berjalan tampak samping (berbalik saat kursor mundur); di meja kerja Bobbi duduk dengan laptop di meja, pemilik kedai duduk di sofa.
 - PR: hero jadi cerita perjalanan (kedai kacau -> kantor -> meja kerja -> ruang presentasi -> kedai ramai, 32 dtk): berjalan + latar bergeser, kursor menggeser cerita (desktop); CSS/JS diberi ?v=versi (anti cache lama).
 - PR: hero jadi cerita 5 adegan (5 detik per adegan, 25 detik): masalah (pemilik kedai bingung, balon pertanyaan) -> kirim -> rapikan -> laporan (balon jawaban) -> cek & bayar.
 - PR: Bobbi rambut quiff (dari referensi Bobbi, tersapu ke kanan Bobbi) + latar kantor di belakang panggung hero (gambar sendiri, ada versi gelap).

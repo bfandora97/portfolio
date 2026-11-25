@@ -388,7 +388,7 @@ a.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 .panggung .nama{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:600;color:var(--muted);z-index:3}
 .panggung .klien{left:4%;animation:pg-maju 32s infinite ease-in-out}.panggung .bobbi{right:4%}
 .pg-a0{animation:pg-a0 32s infinite}.pg-a1{animation:pg-a1 32s infinite}.pg-a2{animation:pg-a2 32s infinite}.pg-a3{animation:pg-a3 32s infinite}.pg-a4{animation:pg-a4 32s infinite}
-.pg-aj{animation:pg-aj 32s infinite}.pg-aj .kaki-b{animation:pg-kaki .36s steps(1) infinite}.pg-aj .kaki-a{animation:pg-kaki .36s steps(1) infinite reverse}.pg-aj svg{animation:pg-ayun .18s ease-in-out infinite alternate}
+.pg-aj{animation:pg-aj 32s infinite}.panggung.mundur .pg-aj{transform:scaleX(-1)}.pg-aj .kaki-b{animation:pg-kaki .36s steps(1) infinite}.pg-aj .kaki-a{animation:pg-kaki .36s steps(1) infinite reverse}.pg-aj svg{animation:pg-ayun .18s ease-in-out infinite alternate}
 .pg-masalah{position:absolute;left:0;bottom:-16px;width:50%;height:300px}.pg-masalah svg{width:100%;height:100%}.pg-masalah .k-naik{animation-delay:var(--d)}
 .pg-acak{animation:pg-acak 2.6s infinite alternate}.pg-rapi{animation:pg-rapi 2.6s infinite alternate}.pg-batang{transform-box:fill-box;transform-origin:left;animation:k-bar 3s ease-out infinite}
 .pg-balon{position:absolute;max-width:240px;padding:9px 14px;border-radius:14px;background:#fff;border:2px solid #101b2d;color:#101b2d;font:700 15px/1.25 "Familjen Grotesk",sans-serif;opacity:0;z-index:4}

@@ -185,6 +185,37 @@ def svg(isi, cls=""):
 
 
 # ---------------------------------------------------------------- pose
+def kepala_samping(o):
+    """Pemilik kedai tampak samping (menghadap kanan): sanggul di belakang, satu mata, hidung menonjol, anting."""
+    r = o["rambut"]
+    return (f'<circle cx="34" cy="26" r="10.5" fill="{r}"/>'
+            f'<ellipse cx="52" cy="55" rx="25" ry="29" fill="{o["kulit"]}"/>'
+            f'<path d="M77 55q5.5 4 .6 9.5" fill="{o["kulit"]}"/>'
+            f'<path d="M27 62C24 36 36 24 54 24C68 24 77 33 78 45C72 40 64 38 56 39C50 40 46 44 45 50C44 56 40 62 33 66Z" fill="{r}"/>'
+            f'<ellipse cx="45" cy="58" rx="4.6" ry="6.6" fill="{o["kulit2"]}"/><circle cx="45" cy="67" r="2" fill="{YEL}"/>'
+            f'<path d="M60 47q5.5-3.6 11 0" fill="none" stroke="{r}" stroke-width="2.8" stroke-linecap="round"/>'
+            f'<ellipse cx="66" cy="56" rx="3.8" ry="4.8" fill="#fff"/><circle cx="67.6" cy="57" r="2.7" fill="{INK}"/><circle cx="68.4" cy="55.8" r=".9" fill="#fff"/>'
+            f'<path d="M64.5 70.5q4.5 3.4 9 0" fill="none" stroke="#8C2F39" stroke-width="2.2" stroke-linecap="round"/>'
+            f'<ellipse cx="63" cy="65.5" rx="4" ry="2.4" fill="{o["pipi"]}" opacity=".4"/>')
+
+
+def badan_samping(o):
+    """Badan tampak samping: lebih ramping, celemek di depan (kanan)."""
+    return (f'<rect x="46" y="78" width="11" height="12" rx="3" fill="{o["kulit2"]}"/>'
+            f'<rect x="39" y="86" width="26" height="52" rx="11" fill="{o["baju"]}"/>'
+            '<path d="M58 97h8v35a5 5 0 0 1-5 5h-3z" fill="#EADBB9"/>')
+
+
+def langkah_samping(o, maju):
+    """Satu fase langkah: kaki depan/belakang (diputar dari pinggul) + tangan berayun berlawanan."""
+    def kaki_(sudut):
+        return (f'<g transform="rotate({sudut} 51.5 131)"><rect x="46" y="130" width="11" height="19" rx="4" fill="{o["celana"]}"/>'
+                f'<rect x="45" y="145" width="18" height="7" rx="3.5" fill="{o["sepatu"]}"/></g>')
+    a, b = (-22, 20) if maju else (20, -22)
+    tgn = (lengan(o, 52, 95, 66, 121) + tangan(o, 67, 123)) if maju else (lengan(o, 52, 95, 38, 121) + tangan(o, 37, 123))
+    return kaki_(b) + kaki_(a), tgn
+
+
 def pose(o, siapa, aksi, cls=""):
     k, B = kaki(o), badan(o, siapa)
     if aksi == "lambai":
@@ -235,6 +266,30 @@ def pose(o, siapa, aksi, cls=""):
                f'<rect x="53" y="132" width="11" height="20" rx="4" fill="{o["celana"]}" transform="rotate(-10 58 132)"/>'
                f'<rect x="53" y="148" width="16" height="7" rx="3.5" fill="{o["sepatu"]}" transform="rotate(-10 58 132)"/></g>'
                + B + lengan(o, 31, 94, 24, 124) + tangan(o, 23, 126) + lengan(o, 69, 94, 76, 124) + tangan(o, 77, 126) + kepala(o, siapa))
+    elif aksi == "samping":  # berjalan tampak samping (menghadap kanan); kaki-a/kaki-b = 2 fase langkah, diganti CSS
+        ka, ta = langkah_samping(o, True)
+        kb, tb = langkah_samping(o, False)
+        isi = (f'<g class="kaki-a">{ka}</g><g class="kaki-b">{kb}</g>' + badan_samping(o)
+               + f'<g class="kaki-a">{ta}</g><g class="kaki-b">{tb}</g>' + kepala_samping(o))
+    elif aksi == "duduk_laptop":  # Bobbi duduk di kursi, laptop di atas meja (tampak belakang layar + logo), mengetik
+        logo = "".join(f'<circle cx="{cx}" cy="{cy}" r="1.6" fill="{c}"/>' for cx, cy, c in
+                       ((46, 118, TEAL), (50, 118, TEAL), (50, 114, TEAL), (54, 118, TEAL), (54, 114, TEAL), (54, 110, YEL)))
+        isi = ('<rect x="18" y="66" width="64" height="66" rx="10" fill="#9AA6B5"/>'
+               '<g transform="translate(0 14)">' + B + '<g class="k-ketik">' + lengan(o, 31, 94, 40, 112) + lengan(o, 69, 94, 60, 112) + '</g>' + kepala(o, siapa) + '</g>'
+               '<rect x="24" y="100" width="52" height="28" rx="3" fill="#D5DBE3" stroke="#AEB8C5" stroke-width="1.2"/>' + logo +
+               '<rect x="2" y="127" width="112" height="8" rx="2" fill="#8E99A8"/><rect x="6" y="135" width="104" height="22" rx="2" fill="#B8C1CD"/>'
+               '<path d="M6 146h104" stroke="#A3AEBC" stroke-width="1.2"/>')
+    elif aksi == "duduk_kopi":  # pemilik kedai duduk di sofa sambil memegang kopi
+        isi = ('<rect x="-8" y="90" width="116" height="50" rx="14" fill="#7FA9A8"/>'
+               '<g transform="translate(0 8)">' + B + lengan(o, 31, 94, 40, 116) + lengan(o, 69, 94, 60, 116)
+               + '<rect x="41" y="104" width="18" height="20" rx="3" fill="#fff" stroke="#C9D1DC"/><path d="M59 108h4a4 4 0 0 1 0 9h-4" fill="none" stroke="#C9D1DC" stroke-width="2"/>'
+               + '<path class="k-uap" d="M46 100c-3-4 3-6 0-10M54 100c-3-4 3-6 0-10" fill="none" stroke="#9AA8BF" stroke-width="1.8" stroke-linecap="round"/>'
+               + tangan(o, 41, 117) + tangan(o, 59, 117) + kepala(o, siapa) + '</g>'
+               + '<rect x="-8" y="134" width="116" height="14" rx="6" fill="#6A9695"/>'
+               + f'<rect x="37" y="138" width="11" height="13" rx="4" fill="{o["celana"]}"/><rect x="52" y="138" width="11" height="13" rx="4" fill="{o["celana"]}"/>'
+               + f'<rect x="33" y="148" width="16" height="7" rx="3.5" fill="{o["sepatu"]}"/><rect x="51" y="148" width="16" height="7" rx="3.5" fill="{o["sepatu"]}"/>'
+               + '<rect x="-16" y="110" width="14" height="42" rx="6" fill="#6A9695"/><rect x="102" y="110" width="14" height="42" rx="6" fill="#6A9695"/>'
+               + '<rect x="-8" y="152" width="6" height="6" fill="#4E6E6D"/><rect x="102" y="152" width="6" height="6" fill="#4E6E6D"/>')
     elif aksi == "pusing":  # adegan masalah: tangan memegang kepala, wajah bingung, keringat (pertanyaan di balon)
         isi = (k + B + kepala(o, siapa, "bingung")
                + lengan(o, 31, 94, 21, 64) + tangan(o, 21, 61) + lengan(o, 69, 94, 79, 64) + tangan(o, 79, 61)
@@ -343,15 +398,12 @@ def latar_kedai(ramai):
 
 
 def latar_kerja():
-    """Meja kerja Bobbi: papan catatan tempel, sofa, layar dinding: data acak -> baris rapi (berulang)."""
+    """Meja kerja Bobbi: papan catatan tempel + layar dinding: data acak -> baris rapi (berulang). Sofa & meja ada di pose karakter."""
     s = [f'<rect width="{LW}" height="{LH}" fill="#EEF3F6"/><rect y="262" width="{LW}" height="88" fill="#E3EAF0"/>',
          '<rect x="30" y="46" width="130" height="96" rx="3" fill="#D9C4AA" stroke="#A9784F" stroke-width="4"/>']
     for x, y, c in ((42, 58, YEL), (78, 62, "#7FC4C0"), (114, 56, "#F4A6A0"), (48, 98, "#7FC4C0"), (86, 102, YEL), (120, 96, "#fff")):
         s.append(f'<rect x="{x}" y="{y}" width="26" height="26" fill="{c}" transform="rotate({(x % 7) - 3} {x + 13} {y + 13})"/>')
-    s.append('<rect x="6" y="236" width="190" height="56" rx="14" fill="#7FA9A8"/><rect x="0" y="266" width="206" height="44" rx="12" fill="#6A9695"/>'
-             '<rect x="14" y="310" width="8" height="18" fill="#4E6E6D"/><rect x="184" y="310" width="8" height="18" fill="#4E6E6D"/>'
-             '<rect x="214" y="250" width="160" height="10" rx="2" fill="#B8C1CD"/><rect x="224" y="260" width="8" height="90" fill="#9AA6B5"/><rect x="356" y="260" width="8" height="90" fill="#9AA6B5"/>'
-             '<rect x="200" y="14" width="190" height="94" rx="5" fill="#2b3446"/><rect x="207" y="21" width="176" height="80" rx="2" fill="#F4F8FA"/>')
+    s.append('<rect x="200" y="14" width="190" height="94" rx="5" fill="#2b3446"/><rect x="207" y="21" width="176" height="80" rx="2" fill="#F4F8FA"/>')
     acak = "".join(f'<rect x="{x}" y="{y}" width="{w}" height="6" fill="{c}" transform="rotate({r} {x} {y})"/>'
                    for x, y, w, c, r in ((216, 30, 40, "#E07A3F", 12), (280, 44, 56, TEAL, -9), (226, 62, 30, YEL, 20), (300, 76, 50, "#D9534F", -15),
                                          (330, 30, 36, "#7FC4C0", 8), (220, 86, 52, "#9AA6B5", -6)))
@@ -419,7 +471,7 @@ def css_panggung():
 .panggung .nama{{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:600;color:var(--muted);z-index:3}}
 .panggung .klien{{left:4%;animation:pg-maju {D} infinite ease-in-out}}.panggung .bobbi{{right:4%}}
 .pg-a0{{animation:pg-a0 {D} infinite}}.pg-a1{{animation:pg-a1 {D} infinite}}.pg-a2{{animation:pg-a2 {D} infinite}}.pg-a3{{animation:pg-a3 {D} infinite}}.pg-a4{{animation:pg-a4 {D} infinite}}
-.pg-aj{{animation:pg-aj {D} infinite}}.pg-aj .kaki-b{{animation:pg-kaki .36s steps(1) infinite}}.pg-aj .kaki-a{{animation:pg-kaki .36s steps(1) infinite reverse}}.pg-aj svg{{animation:pg-ayun .18s ease-in-out infinite alternate}}
+.pg-aj{{animation:pg-aj {D} infinite}}.panggung.mundur .pg-aj{{transform:scaleX(-1)}}.pg-aj .kaki-b{{animation:pg-kaki .36s steps(1) infinite}}.pg-aj .kaki-a{{animation:pg-kaki .36s steps(1) infinite reverse}}.pg-aj svg{{animation:pg-ayun .18s ease-in-out infinite alternate}}
 .pg-masalah{{position:absolute;left:0;bottom:-16px;width:50%;height:300px}}.pg-masalah svg{{width:100%;height:100%}}.pg-masalah .k-naik{{animation-delay:var(--d)}}
 .pg-acak{{animation:pg-acak 2.6s infinite alternate}}.pg-rapi{{animation:pg-rapi 2.6s infinite alternate}}.pg-batang{{transform-box:fill-box;transform-origin:left;animation:k-bar 3s ease-out infinite}}
 .pg-balon{{position:absolute;max-width:240px;padding:9px 14px;border-radius:14px;background:#fff;border:2px solid #101b2d;color:#101b2d;font:700 15px/1.25 "Familjen Grotesk",sans-serif;opacity:0;z-index:4}}
@@ -457,8 +509,8 @@ def macro_hero():
 
     def panel(i, latar, isi=""):
         return f'<div class="pg-panel">{latar}{isi}<span class="pg-lokasi">{{{{ h.lokasi[{i}] }}}}</span></div>'
-    klien = "".join((pose_klien("pusing", "pg-a0"), pose_klien("jalan", "pg-aj"), pose_klien("berkas", "pg-a1"),
-                     pose_klien("kopi", "pg-a2"), pose_klien("senang", "pg-a3"), pose_klien("ttd", "pg-a4")))
+    klien = "".join((pose_klien("pusing", "pg-a0"), pose_klien("samping", "pg-aj"), pose_klien("berkas", "pg-a1"),
+                     pose_klien("duduk_kopi", "pg-a2"), pose_klien("senang", "pg-a3"), pose_klien("ttd", "pg-a4")))
     kantor = latar_kantor().replace('class="pg-latar" viewBox="0 0 560 372"', 'viewBox="0 0 560 372"', 1)
     return ("{% macro panggung_hero() -%}\n"
             "{%- set h = i18n[page.lang].utama.hero -%}{%- set l = i18n[page.lang].utama.cara_kerja.langkah -%}\n"
@@ -466,7 +518,7 @@ def macro_hero():
             '<div class="pg-lantai"></div>\n<div class="pg-jalur">\n'
             + panel(0, latar_kedai(False), f'<div class="pg-masalah">{properti_masalah()}</div>') + "\n"
             + panel(1, kantor, bobbi("lambai", 1)) + "\n"
-            + panel(2, latar_kerja(), bobbi("laptop", 2)) + "\n"
+            + panel(2, latar_kerja(), bobbi("duduk_laptop", 2)) + "\n"
             + panel(3, latar_presentasi(), bobbi("poster", 3)) + "\n"
             + panel(4, latar_kedai(True)) + "\n</div>\n"
             '<div class="pg-balon pg-b0">{{ h.balon_masalah }}</div><div class="pg-balon pg-b3">{{ h.balon_hasil }}</div>\n'
