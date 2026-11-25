@@ -8,7 +8,6 @@
 
 /* ---- 1. Warna (terang + gelap) ---- */
 :root{--ink:#101b2d;--muted:#52607a;--paper:#f4f6f8;--panel:#fff;--line:#d9dfe7;--yellow:#f2c811;--teal:#0e7c7b;--bad:#a23b2a;--btn-bg:#101b2d;--btn-fg:#fff;--code:#101b2d;--th:#eaeef3;--p2:#e6ecf2;--p2dot:14,124,123;--dot:82,96,122;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e8edf5;--muted:#9aa8bf;--paper:#0d1422;--panel:#151e30;--line:#26334b;--teal:#35b8b4;--bad:#e8806d;--btn-bg:#e8edf5;--btn-fg:#0d1422;--code:#0a101c;--th:#1b2740;--p2:#101a2c;--p2dot:53,184,180;--dot:150,165,190;color-scheme:dark}}
 :root[data-theme="dark"]{--ink:#e8edf5;--muted:#9aa8bf;--paper:#0d1422;--panel:#151e30;--line:#26334b;--teal:#35b8b4;--bad:#e8806d;--btn-bg:#e8edf5;--btn-fg:#0d1422;--code:#0a101c;--th:#1b2740;--p2:#101a2c;--p2dot:53,184,180;--dot:150,165,190;color-scheme:dark}
 
 /* ---- 2. Dasar ---- */
@@ -371,14 +370,11 @@ a.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 .k-uap{animation:k-uap 1.6s ease-in-out infinite}@keyframes k-uap{50%{transform:translateY(-3px);opacity:.4}}
 .k-bar{transform-box:fill-box;transform-origin:bottom;animation:k-bar 3s ease-out infinite}.k-merah{animation-delay:.3s}
 @keyframes k-bar{0%{transform:scaleY(.15)}35%,100%{transform:scaleY(1)}}
-.k-pena{animation:k-pena .5s ease-in-out infinite alternate}@keyframes k-pena{to{transform:translate(-5px,1px)}}
-.k-centang{stroke-dasharray:24;animation:k-centang 3s ease-out infinite}@keyframes k-centang{0%,40%{stroke-dashoffset:24}70%,100%{stroke-dashoffset:0}}
 /* Panggung hero = cerita "perjalanan" (31 dtk, dibuat css_panggung()): kedai kacau -> pemilik kedai ke kantor, serahkan data
    -> Bobbi ke ruang kerja -> Bobbi ke kedai bawa laporan -> salaman di kedai yang ramai. Yang berjalan tampak samping, latar bergeser (.pg-jalur = 4 panel).
    Desktop: kursor menggeser cerita maju/mundur (assets/js/panggung.js). */
 :root{--lantai-kedai:#E3D2BD;--garis-kedai:#CFB596;--lantai-kantor:var(--p2);--garis-kantor:var(--line)}
 [data-theme="dark"]{--lantai-kedai:#3A3129;--garis-kedai:#5A4A3A}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--lantai-kedai:#3A3129;--garis-kedai:#5A4A3A}}
 .panggung{position:relative;height:470px;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .pg-jalur{position:absolute;left:0;top:0;width:400%;height:calc(100% - 98px);display:flex;animation:pg-geser 31s infinite ease-in-out}
 .pg-panel{position:relative;flex:0 0 25%;height:100%}.pg-panel>svg{position:absolute;inset:0;width:100%;height:100%}
@@ -402,7 +398,6 @@ a.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 .pg-langkah b{display:grid;place-items:center;flex:none;width:22px;height:22px;border-radius:50%;background:rgba(128,128,128,.2);color:inherit;font-size:12px}
 .pg-langkah .l1{animation:pg-aktif1 31s infinite}.pg-langkah .l2{animation:pg-aktif2 31s infinite}.pg-langkah .l3{animation:pg-aktif3 31s infinite}.pg-langkah .l4{animation:pg-aktif4 31s infinite}
 [data-theme="dark"] .pg-redup{filter:brightness(.6) saturate(.85)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pg-redup{filter:brightness(.6) saturate(.85)}}
 @keyframes pg-geser{0%{transform:none}16.129%{transform:translateX(-0%)}20.968%{transform:translateX(-25%)}37.097%{transform:translateX(-25%)}41.935%{transform:translateX(-50%)}58.065%{transform:translateX(-50%)}62.903%{transform:translateX(-75%)}100%{transform:translateX(-75%)}}@keyframes pg-lantai{0%,18.348%{background:var(--lantai-kedai);border-color:var(--garis-kedai)}18.548%,60.284%{background:var(--lantai-kantor);border-color:var(--garis-kantor)}60.484%,100%{background:var(--lantai-kedai);border-color:var(--garis-kedai)}}@keyframes pg-maju{0%,16.129%{transform:none}20.968%,100%{transform:translateX(70%)}}
 @keyframes pg-tirai{0%{opacity:1}1.5%,98.387%{opacity:0}100%{opacity:1}}
 @keyframes pg-a0{0%{opacity:0}0%{opacity:0}0.0%{opacity:1}16.119%{opacity:1}16.129%{opacity:0}100%{opacity:0}}@keyframes pg-a1{0%{opacity:0}20.958%{opacity:0}20.968%{opacity:1}37.087%{opacity:1}37.097%{opacity:0}100%{opacity:0}}@keyframes pg-a2{0%{opacity:0}41.925000000000004%{opacity:0}41.935%{opacity:1}58.055%{opacity:1}58.065%{opacity:0}100%{opacity:0}}@keyframes pg-a3{0%{opacity:0}62.893%{opacity:0}62.903%{opacity:1}80.63499999999999%{opacity:1}80.645%{opacity:0}100%{opacity:0}}@keyframes pg-a4{0%{opacity:0}80.63499999999999%{opacity:0}80.645%{opacity:1}98.377%{opacity:1}98.387%{opacity:0}100%{opacity:0}}@keyframes pg-aj{0%{opacity:0}16.119%{opacity:0}16.129%{opacity:1}20.958%{opacity:1}20.968%{opacity:0}100%{opacity:0}}@keyframes pg-bj{0%{opacity:0}37.087%{opacity:0}37.097%{opacity:1}41.925000000000004%{opacity:1}41.935%{opacity:0}58.055%{opacity:0}58.065%{opacity:1}62.893%{opacity:1}62.903%{opacity:0}100%{opacity:0}}@keyframes pg-nk{0%{opacity:0}0%{opacity:0}0.0%{opacity:1}37.087%{opacity:1}37.097%{opacity:0}62.893%{opacity:0}62.903%{opacity:1}98.377%{opacity:1}98.387%{opacity:0}100%{opacity:0}}@keyframes pg-nb{0%{opacity:0}37.087%{opacity:0}37.097%{opacity:1}41.925000000000004%{opacity:1}41.935%{opacity:0}58.055%{opacity:0}58.065%{opacity:1}98.377%{opacity:1}98.387%{opacity:0}100%{opacity:0}}@keyframes pg-balon3{0%{opacity:0}65.47399999999999%{opacity:0}65.484%{opacity:1}80.63499999999999%{opacity:1}80.645%{opacity:0}100%{opacity:0}}@keyframes pg-ramai{0%{opacity:0}80.63499999999999%{opacity:0}80.645%{opacity:1}98.377%{opacity:1}98.387%{opacity:0}100%{opacity:0}}@keyframes pg-aktif1{0%,20.958%{background:transparent;color:var(--muted)}20.968%,37.087%{background:var(--teal);color:#fff}37.097%,100%{background:transparent;color:var(--muted)}}@keyframes pg-aktif2{0%,41.925000000000004%{background:transparent;color:var(--muted)}41.935%,58.055%{background:var(--teal);color:#fff}58.065%,100%{background:transparent;color:var(--muted)}}@keyframes pg-aktif3{0%,62.893%{background:transparent;color:var(--muted)}62.903%,80.63499999999999%{background:var(--teal);color:#fff}80.645%,100%{background:transparent;color:var(--muted)}}@keyframes pg-aktif4{0%,80.63499999999999%{background:transparent;color:var(--muted)}80.645%,98.377%{background:var(--teal);color:#fff}98.387%,100%{background:transparent;color:var(--muted)}}
@@ -420,17 +415,11 @@ a.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 [data-theme="dark"] .lk-kaca{fill:#1B2A40}[data-theme="dark"] .lk-gedung{fill:#22344D}[data-theme="dark"] .lk-bingkai{stroke:#2A3A52}[data-theme="dark"] .lk-bingkai2{fill:#1A2638;stroke:#2F405A}
 [data-theme="dark"] .lk-tali{stroke:#33445E}[data-theme="dark"] .lk-gelap{fill:#2A3A52}[data-theme="dark"] .lk-sedang{fill:#223047}[data-theme="dark"] .lk-rak{fill:#33445E}
 [data-theme="dark"] .lk-layar{fill:#1F2D42}[data-theme="dark"] .lk-jam{fill:#1A2638;stroke:#33445E}[data-theme="dark"] .lk-jarum{stroke:#6D7C92}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lk-kaca{fill:#1B2A40}:root:not([data-theme="light"]) .lk-gedung{fill:#22344D}:root:not([data-theme="light"]) .lk-bingkai{stroke:#2A3A52}
-:root:not([data-theme="light"]) .lk-bingkai2{fill:#1A2638;stroke:#2F405A}:root:not([data-theme="light"]) .lk-tali{stroke:#33445E}:root:not([data-theme="light"]) .lk-gelap{fill:#2A3A52}
-:root:not([data-theme="light"]) .lk-sedang{fill:#223047}:root:not([data-theme="light"]) .lk-rak{fill:#33445E}:root:not([data-theme="light"]) .lk-layar{fill:#1F2D42}
-:root:not([data-theme="light"]) .lk-jam{fill:#1A2638;stroke:#33445E}:root:not([data-theme="light"]) .lk-jarum{stroke:#6D7C92}}
 /* Bobbi di Alur kerja (viewBox 100x160) */
 .ak-barista{width:70px;height:112px}
 @media(max-width:860px){.ak-barista{width:50px;height:80px}}
 /* mode gelap: rambut abu-abu arang supaya siluet tidak tenggelam di latar gelap */
 [data-theme="dark"] .rb{fill:#3B3943}[data-theme="dark"] .rh{fill:#6A6772}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rb{fill:#3B3943}:root:not([data-theme="light"]) .rh{fill:#6A6772}}
 [data-theme="dark"] .tokoh svg,[data-theme="dark"] .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tokoh svg,:root:not([data-theme="light"]) .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}}
-@media (prefers-reduced-motion:reduce){.k-lambai,.k-naik,.k-ketik,.k-baris,.k-uap,.k-bar,.k-pena,.k-centang,.panggung *,.panggung .klien{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.k-lambai,.k-naik,.k-ketik,.k-baris,.k-uap,.k-bar,.panggung *,.panggung .klien{animation:none!important}}
 /* KARAKTER:CSS:SELESAI */
