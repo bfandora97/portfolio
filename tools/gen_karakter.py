@@ -301,27 +301,27 @@ CSS = """/* Gerak kecil karakter (k-*) */
 @keyframes k-bar{0%{transform:scaleY(.15)}35%,100%{transform:scaleY(1)}}
 .k-pena{animation:k-pena .5s ease-in-out infinite alternate}@keyframes k-pena{to{transform:translate(-5px,1px)}}
 .k-centang{stroke-dasharray:24;animation:k-centang 3s ease-out infinite}@keyframes k-centang{0%,40%{stroke-dashoffset:24}70%,100%{stroke-dashoffset:0}}
-/* Panggung hero: 5 adegan x 3 detik (pg1..pg5): 0 masalah (balon pertanyaan) -> 1 kirim -> 2 rapikan -> 3 laporan (balon jawaban) -> 4 cek & bayar.
+/* Panggung hero: 5 adegan x 5 detik (pg1..pg5, cukup waktu membaca balon): 0 masalah (balon pertanyaan) -> 1 kirim -> 2 rapikan -> 3 laporan (balon jawaban) -> 4 cek & bayar.
    Bilah 4 langkah di bawah: semua langkah selalu terlihat, yang sedang dimainkan menyala. */
 .panggung{position:relative;height:470px;background:radial-gradient(ellipse at 50% 100%,rgba(14,124,123,.13) 0,var(--panel) 70%);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .pg-lantai{position:absolute;left:0;right:0;bottom:52px;height:46px;background:var(--p2);border-top:2px solid var(--line)}
 .panggung .tokoh{position:absolute;bottom:82px;width:192px;height:307px;z-index:2}
 .panggung .pose{position:absolute;inset:0;opacity:0}.panggung .tokoh svg{width:100%;height:100%;overflow:visible}
 .panggung .nama{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:600;color:var(--muted);z-index:3}
-.panggung .klien{left:4%;animation:pg-datang 15s infinite}.panggung .bobbi{right:4%}
+.panggung .klien{left:4%;animation:pg-datang 25s infinite}.panggung .bobbi{right:4%}
 .pg-langkah{position:absolute;left:0;right:0;bottom:0;height:52px;margin:0;padding:6px;list-style:none;display:flex;gap:6px;background:var(--panel);border-top:1px solid var(--line);z-index:3}
 .pg-langkah li{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;border-radius:8px;font:600 14px/1.15 "Familjen Grotesk",sans-serif;color:var(--muted);text-align:center}
 .pg-langkah b{display:grid;place-items:center;flex:none;width:22px;height:22px;border-radius:50%;background:rgba(128,128,128,.2);color:inherit;font-size:12px}
-.pg-terbang{position:absolute;width:56px;height:42px;left:36%;bottom:272px;opacity:0;z-index:3;animation:pg-lempar 15s infinite}.pg-terbang svg{width:100%;height:100%}
-.panggung .pg1{animation:pg-tampil 15s infinite 0s}.panggung .pg2{animation:pg-tampil 15s infinite -12s}
-.panggung .pg3{animation:pg-tampil 15s infinite -9s}.panggung .pg4{animation:pg-tampil 15s infinite -6s}.panggung .pg5{animation:pg-tampil 15s infinite -3s}
+.pg-terbang{position:absolute;width:56px;height:42px;left:36%;bottom:272px;opacity:0;z-index:3;animation:pg-lempar 25s infinite}.pg-terbang svg{width:100%;height:100%}
+.panggung .pg1{animation:pg-tampil 25s infinite 0s}.panggung .pg2{animation:pg-tampil 25s infinite -20s}
+.panggung .pg3{animation:pg-tampil 25s infinite -15s}.panggung .pg4{animation:pg-tampil 25s infinite -10s}.panggung .pg5{animation:pg-tampil 25s infinite -5s}
 .pg-langkah li.pg2,.pg-langkah li.pg3,.pg-langkah li.pg4,.pg-langkah li.pg5{animation-name:pg-aktif}
 .pg-masalah{position:absolute;left:0;bottom:82px;width:50%;height:300px;opacity:0;z-index:1}.pg-masalah svg{width:100%;height:100%}.pg-masalah .k-naik{animation-delay:var(--d)}
 .pg-balon{position:absolute;top:16px;left:16%;max-width:230px;padding:9px 14px;border-radius:14px;background:#fff;border:2px solid #101b2d;color:#101b2d;font:700 15px/1.25 "Familjen Grotesk",sans-serif;opacity:0;z-index:4}
 .pg-balon::after{content:"";position:absolute;left:22px;bottom:-9px;width:14px;height:14px;background:#fff;border:2px solid #101b2d;border-top:0;border-left:0;transform:rotate(45deg)}
 @keyframes pg-tampil{0%,19.5%{opacity:1}20%,100%{opacity:0}}
 @keyframes pg-aktif{0%,19.5%{background:var(--teal);color:#fff}20%,100%{background:transparent;color:var(--muted)}}
-@keyframes pg-datang{0%{transform:translateX(-170%)}7%,100%{transform:none}}
+@keyframes pg-datang{0%{transform:translateX(-170%)}5%,100%{transform:none}}
 @keyframes pg-lempar{0%,31%{opacity:0;transform:none}33%{opacity:1}40%{opacity:1;transform:translate(385%,290%) rotate(8deg) scale(.6)}42%,100%{opacity:0}}
 @media(max-width:760px){.hero2 .panggung{order:-1;height:340px}.panggung .tokoh{width:124px;height:198px}.panggung .klien{left:3%}.panggung .bobbi{right:3%}
 .pg-langkah{gap:3px;padding:5px 4px}.pg-langkah li{flex-direction:column;gap:2px;font-size:10.5px}.pg-langkah b{width:17px;height:17px;font-size:10px}
