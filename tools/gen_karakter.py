@@ -1,4 +1,4 @@
-"""Karakter ORIGINAL Kemang Data (gaya kartun lembut): Bobbi (analis data, dari foto: wajah lonjong, jambul samping,
+"""Karakter ORIGINAL Kemang Data (gaya kartun lembut): Bobbi (analis data, dari foto: wajah lonjong, rambut pendek rapi,
 alis tebal, kulit sawo matang, kaos hitam + lanyard ID Kemang Data) dan pemilik kedai (celemek). Satu sumber untuk:
   - panggung animasi hero (4 adegan, 12 detik)     -> macro panggung_hero() di src/layouts/macros.html
   - Bobbi di bagian Alur kerja (aksi meja 1-4 + jalan) -> blok KARAKTER:ALUR di macro cara_kerja
@@ -18,7 +18,7 @@ MACROS = ROOT / "src" / "layouts" / "macros.html"
 STYLE = ROOT / "assets" / "css" / "style.css"
 
 INK = "#23262E"
-BOBBI = dict(kulit="#C68B62", kulit2="#B57A53", hidung="#9E6440", rambut="#1E1C1F", pipi="#E0715C",
+BOBBI = dict(kulit="#DDA984", kulit2="#CC966F", hidung="#B57A55", rambut="#1E1C1F", pipi="#E0715C",
              baju="#1F2124", celana="#3A4358", sepatu="#15171B")
 KLIEN = dict(kulit="#D9A07A", kulit2="#C98E68", hidung="#B9805C", rambut="#3B2A22", pipi="#E0715C",
              baju="#E07A3F", celana="#2E3A52", sepatu="#1B2130")
@@ -27,14 +27,15 @@ TEAL, YEL = "#0E7C7B", "#F2C811"
 
 # ---------------------------------------------------------------- bagian tubuh
 def kepala_bobbi(o, ekspresi="senyum"):
-    """Bobbi (dari foto formal): wajah lonjong, rambut pendek rapi dengan jambul disapu ke samping, alis tebal lurus,
+    """Bobbi (dari foto formal): wajah lonjong, rambut pendek rapi belahan samping (tanpa jambul), alis tebal lurus,
     kumis tipis samar. Rambut 2 lapis (belakang di balik wajah + jambul depan) supaya tidak ada celah."""
     r, s = o["rambut"], []
-    s.append(f'<path d="M24 57c-2-15 2-26 11-32h30c9 6 13 17 11 32-1-3-3-6-5-7H29c-2 1-4 4-5 7z" fill="{r}"/>')
+    s.append(f'<path d="M25 55c-2-14 2-25 11-30h28c9 5 13 16 11 30-1-3-3-5-5-6H30c-2 1-4 3-5 6z" fill="{r}"/>')
     s.append(f'<ellipse cx="25.5" cy="58" rx="5" ry="7" fill="{o["kulit2"]}"/><ellipse cx="74.5" cy="58" rx="5" ry="7" fill="{o["kulit2"]}"/>')
     s.append(f'<path d="M50 26c15 0 25 11 25 27 0 19-11 33-25 33S25 72 25 53c0-16 10-27 25-27z" fill="{o["kulit"]}"/>')
-    s.append(f'<path d="M26 48C26 36 32 27 42 22C46 15 55 12 62 14C69 16 74 22 75 30C76 35 75 41 74 46C70 40 63 37 56 37C49 37 43 39 38 41C33 43 29 45 26 48Z" fill="{r}"/>')
-    s.append('<path d="M37 31c6-6 15-10 24-9M42 36c6-5 14-8 22-7M32 40c5-5 11-8 17-9" fill="none" stroke="#45434c" stroke-width="1.5" stroke-linecap="round"/>')
+    # rambut pendek rapi, belahan samping (tanpa jambul)
+    s.append(f'<path d="M26 47c0-12 10-20 24-20 14 0 24 8 24 19-6-5-14-7-22-7-6 0-12 1-17 3-3 1-6 3-9 5z" fill="{r}"/>')
+    s.append('<path d="M37 30c-1 3-1 6 0 9M41 31c7-2 15-1 22 3M40 36c7-2 15-1 22 2" fill="none" stroke="#45434c" stroke-width="1.3" stroke-linecap="round"/>')
     s.append(f'<path d="M35 48.5l11-1.6M54 46.9l11 1.6" fill="none" stroke="{r}" stroke-width="3.8" stroke-linecap="round"/>')
     if ekspresi == "senang":
         s.append(f'<path d="M36 58q4.5-5 9 0M55 58q4.5-5 9 0" fill="none" stroke="{INK}" stroke-width="2.6" stroke-linecap="round"/>')
