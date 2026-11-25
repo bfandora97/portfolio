@@ -185,25 +185,38 @@ def svg(isi, cls=""):
 
 
 # ---------------------------------------------------------------- pose
-def kepala_samping(o):
-    """Pemilik kedai tampak samping (menghadap kanan): sanggul di belakang, satu mata, hidung menonjol, anting."""
+def kepala_samping(o, siapa):
+    """Tampak samping (menghadap kanan): satu mata, hidung menonjol. Pemilik kedai: sanggul + anting. Bobbi: quiff."""
     r = o["rambut"]
-    return (f'<circle cx="34" cy="26" r="10.5" fill="{r}"/>'
-            f'<ellipse cx="52" cy="55" rx="25" ry="29" fill="{o["kulit"]}"/>'
-            f'<path d="M77 55q5.5 4 .6 9.5" fill="{o["kulit"]}"/>'
-            f'<path d="M27 62C24 36 36 24 54 24C68 24 77 33 78 45C72 40 64 38 56 39C50 40 46 44 45 50C44 56 40 62 33 66Z" fill="{r}"/>'
-            f'<ellipse cx="45" cy="58" rx="4.6" ry="6.6" fill="{o["kulit2"]}"/><circle cx="45" cy="67" r="2" fill="{YEL}"/>'
-            f'<path d="M60 47q5.5-3.6 11 0" fill="none" stroke="{r}" stroke-width="2.8" stroke-linecap="round"/>'
-            f'<ellipse cx="66" cy="56" rx="3.8" ry="4.8" fill="#fff"/><circle cx="67.6" cy="57" r="2.7" fill="{INK}"/><circle cx="68.4" cy="55.8" r=".9" fill="#fff"/>'
-            f'<path d="M64.5 70.5q4.5 3.4 9 0" fill="none" stroke="#8C2F39" stroke-width="2.2" stroke-linecap="round"/>'
-            f'<ellipse cx="63" cy="65.5" rx="4" ry="2.4" fill="{o["pipi"]}" opacity=".4"/>')
+    if siapa == "bobbi":
+        rambut = (f'<path d="M26 60C23 34 36 19 57 19C72 20 80 30 78 43C73 37 64 35 56 37C50 39 47 45 46 52C43 57 36 60 26 60Z" fill="{r}"/>'
+                  f'<path d="M54 23C61 13 73 13 80 22C76 20.5 70 21 65 25Z" fill="{r}"/>')
+        alis, hiasan = 3.4, ""
+    else:
+        # rambut turun sampai tengkuk + garis helaian disisir ke belakang
+        rambut = (f'<path d="M26 64C21 38 34 24 54 24C68 24 77 33 78 45C72 40 64 38 56 39C50 40 46 44 45 50C44 58 41 66 37 74C33 75 29 71 26 64Z" fill="{r}"/>'
+                  '<path d="M66 30C56 26 44 28 36 36M60 34C50 32 42 36 37 44" fill="none" stroke="#5A4336" stroke-width="1.4" stroke-linecap="round"/>')
+        alis, hiasan = 2.8, f'<circle cx="45" cy="67" r="2" fill="{YEL}"/>'
+    # sanggul: dua gulungan + ikat rambut + helaian (tampak samping, di belakang atas kepala)
+    sanggul = (f'<ellipse cx="28" cy="30" rx="11" ry="9" fill="{r}" transform="rotate(-28 28 30)"/>'
+               f'<path d="M19 27C13 20 17 12 25 14C29 15 30 20 28 24Z" fill="{r}"/>'
+               '<path d="M21 31C25 26 31 25 35 28M23 36C27 32 32 32 36 34M20 21C22 18 25 18 27 20" fill="none" stroke="#5A4336" stroke-width="1.3" stroke-linecap="round"/>'
+               f'<path d="M33 38L39 33" stroke="{TEAL}" stroke-width="3.4" stroke-linecap="round"/>') if siapa != "bobbi" else ""
+    return (sanggul + f'<ellipse cx="52" cy="55" rx="25" ry="29" fill="{o["kulit"]}"/><path d="M77 55q5.5 4 .6 9.5" fill="{o["kulit"]}"/>' + rambut
+            + f'<ellipse cx="45" cy="58" rx="4.6" ry="6.6" fill="{o["kulit2"]}"/>' + hiasan
+            + f'<path d="M60 47q5.5-3.6 11 0" fill="none" stroke="{r}" stroke-width="{alis}" stroke-linecap="round"/>'
+            + f'<ellipse cx="66" cy="56" rx="3.8" ry="4.8" fill="#fff"/><circle cx="67.6" cy="57" r="2.7" fill="{INK}"/><circle cx="68.4" cy="55.8" r=".9" fill="#fff"/>'
+            + '<path d="M64.5 70.5q4.5 3.4 9 0" fill="none" stroke="#8C2F39" stroke-width="2.2" stroke-linecap="round"/>'
+            + f'<ellipse cx="63" cy="65.5" rx="4" ry="2.4" fill="{o["pipi"]}" opacity=".4"/>')
 
 
-def badan_samping(o):
-    """Badan tampak samping: lebih ramping, celemek di depan (kanan)."""
-    return (f'<rect x="46" y="78" width="11" height="12" rx="3" fill="{o["kulit2"]}"/>'
-            f'<rect x="39" y="86" width="26" height="52" rx="11" fill="{o["baju"]}"/>'
-            '<path d="M58 97h8v35a5 5 0 0 1-5 5h-3z" fill="#EADBB9"/>')
+def badan_samping(o, siapa):
+    """Badan tampak samping: ramping. Pemilik kedai: celemek di depan. Bobbi: kaos + lanyard + ID card."""
+    s = (f'<rect x="46" y="78" width="11" height="12" rx="3" fill="{o["kulit2"]}"/>'
+         f'<rect x="39" y="86" width="26" height="52" rx="11" fill="{o["baju"]}"/>')
+    if siapa == "bobbi":
+        return s + f'<path d="M53 87l7 20" stroke="{YEL}" stroke-width="2.4"/><rect x="56" y="105" width="9" height="12" rx="1.5" fill="#fff"/>'
+    return s + '<path d="M58 97h8v35a5 5 0 0 1-5 5h-3z" fill="#EADBB9"/>'
 
 
 def langkah_samping(o, maju):
@@ -269,8 +282,8 @@ def pose(o, siapa, aksi, cls=""):
     elif aksi == "samping":  # berjalan tampak samping (menghadap kanan); kaki-a/kaki-b = 2 fase langkah, diganti CSS
         ka, ta = langkah_samping(o, True)
         kb, tb = langkah_samping(o, False)
-        isi = (f'<g class="kaki-a">{ka}</g><g class="kaki-b">{kb}</g>' + badan_samping(o)
-               + f'<g class="kaki-a">{ta}</g><g class="kaki-b">{tb}</g>' + kepala_samping(o))
+        isi = (f'<g class="kaki-a">{ka}</g><g class="kaki-b">{kb}</g>' + badan_samping(o, siapa)
+               + f'<g class="kaki-a">{ta}</g><g class="kaki-b">{tb}</g>' + kepala_samping(o, siapa))
     elif aksi == "duduk_laptop":  # Bobbi duduk di kursi, laptop di atas meja (tampak belakang layar + logo), mengetik
         logo = "".join(f'<circle cx="{cx}" cy="{cy}" r="1.6" fill="{c}"/>' for cx, cy, c in
                        ((46, 118, TEAL), (50, 118, TEAL), (50, 114, TEAL), (54, 118, TEAL), (54, 114, TEAL), (54, 110, YEL)))
@@ -294,6 +307,13 @@ def pose(o, siapa, aksi, cls=""):
         isi = (k + B + kepala(o, siapa, "bingung")
                + lengan(o, 31, 94, 21, 64) + tangan(o, 21, 61) + lengan(o, 69, 94, 79, 64) + tangan(o, 79, 61)
                + '<path d="M80 40q4 6 0 9q-4-3 0-9z" fill="#7FC4E8"/>')
+    elif aksi == "salam":  # bersalaman: pemilik kedai menjulurkan tangan kanan ke kanan, Bobbi tangan kiri ke kiri
+        if siapa == "bobbi":
+            isi = (k + B + lengan(o, 69, 94, 74, 126) + tangan(o, 74, 128) + kepala(o, siapa, "senang")
+                   + '<g class="k-salam">' + lengan(o, 31, 94, 6, 108) + tangan(o, 1, 108) + '</g>')
+        else:
+            isi = (k + B + lengan(o, 31, 94, 26, 126) + tangan(o, 26, 128) + kepala(o, siapa, "senang")
+                   + '<g class="k-salam">' + lengan(o, 69, 94, 94, 108) + tangan(o, 99, 108) + '</g>')
     elif aksi == "diri":  # berdiri santai, tangan di samping
         isi = (k + B + lengan(o, 31, 94, 26, 126) + tangan(o, 26, 128) + lengan(o, 69, 94, 74, 126) + tangan(o, 74, 128) + kepala(o, siapa))
     else:
@@ -327,11 +347,12 @@ def properti_masalah():
 
 
 # ---------------------------------------------------------------- cerita "perjalanan" di panggung hero
-# Pemilik kedai berjalan dari kedainya ke Bobbi lalu pulang; tiap pindah adegan latar bergeser (kamera mengikuti).
-#   0 kedai kacau -> 1 kantor (serahkan berkas) -> 2 meja kerja (data dirapikan) -> 3 ruang presentasi (jawaban) -> 4 kedai ramai
-DURASI, ADEGAN = 32, 5          # detik per putaran, detik per adegan (sisanya: berjalan 1,5 dtk antar adegan)
-MULAI = (0, 6.5, 13, 19.5, 26)  # detik mulai tiap adegan
-LW, LH = 560, 350               # viewBox latar (dinding di atas lantai)
+# 0 kedai kacau -> (berjalan) 1 kantor: serahkan berkas -> (berjalan) 2 meja kerja: Bobbi merapikan, pemilik kedai di sofa
+# -> (pemilik kedai pulang) 3 kedai: Bobbi DATANG membawa laporan -> 4 kedai yang sama jadi ramai: cek & bayar.
+DURASI = 31                                                       # detik per putaran
+ADEGAN = ((0, 5), (6.5, 11.5), (13, 18), (19.5, 25), (25, 30.5))  # (mulai, selesai) tiap adegan
+JALAN = ((5, 6.5), (11.5, 13), (18, 19.5))                        # latar bergeser: 1 pemilik kedai -> kantor, 2-3 Bobbi -> ruang kerja -> kedai
+LW, LH = 560, 350                                                   # viewBox latar (dinding di atas lantai)
 
 
 def _pct(t):
@@ -347,30 +368,20 @@ def _jendela(*rentang):
     return "".join(k)
 
 
-def _adegan(i):
-    return (MULAI[i], MULAI[i] + ADEGAN)
-
-
-def _jalan(i):  # berjalan SETELAH adegan i
-    return (MULAI[i] + ADEGAN, MULAI[i + 1])
-
-
 def _svg_latar(isi, cls="pg-redup"):
     return f'<svg class="{cls}" viewBox="0 0 {LW} {LH}" preserveAspectRatio="xMidYMax slice" aria-hidden="true">{isi}</svg>'
 
 
-def latar_kedai(ramai):
-    """Kedai kopi ORIGINAL (hangat). ramai=False: nota berantakan; ramai=True: papan BUKA + pelanggan ngopi."""
+def latar_kedai(kacau):
+    """Kedai kopi ORIGINAL (hangat). kacau=True: nota berserakan + tanaman. kacau=False: rapi + grup .pg-ramai
+    (papan BUKA + pelanggan ngopi) yang muncul di adegan 4."""
     s = [f'<rect width="{LW}" height="{LH}" fill="#F7EFE4"/><rect y="262" width="{LW}" height="88" fill="#EBDDCB"/><rect y="258" width="{LW}" height="5" fill="#D9C4AA"/>',
          '<rect x="18" y="48" width="134" height="160" rx="3" fill="#E4F0F4" stroke="#CFB596" stroke-width="5"/><path d="M85 48v160M18 128h134" stroke="#CFB596" stroke-width="4"/>'
-         '<path d="M14 40h142l-8 18H22z" fill="#E07A3F" opacity=".85"/><path d="M36 40l-6 18M60 40l-4 18M84 40v18M108 40l4 18M132 40l6 18" stroke="#fff" stroke-width="5" opacity=".6"/>']
-    if ramai:
-        s.append(f'<path d="M64 66l21-12 21 12" fill="none" stroke="#8A5A3B" stroke-width="1.5"/><rect x="58" y="66" width="54" height="22" rx="3" fill="{TEAL}"/>'
-                 '<text x="85" y="82" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="sans-serif">{{ h.papan_buka }}</text>')
-    s.append('<rect x="200" y="36" width="160" height="104" rx="4" fill="#2F3B36" stroke="#A9784F" stroke-width="6"/>'
-             '<text x="280" y="60" text-anchor="middle" font-size="15" font-weight="800" fill="#F4F1E8" font-family="sans-serif" letter-spacing="2">MENU</text>'
-             '<path d="M216 76h70M216 92h58M216 108h76M216 124h50" stroke="#F4F1E8" stroke-width="3" opacity=".7" stroke-linecap="round"/>'
-             '<path d="M316 76h28M322 92h22M314 108h30M324 124h20" stroke="#F2C811" stroke-width="3" opacity=".8" stroke-linecap="round"/>')
+         '<path d="M14 40h142l-8 18H22z" fill="#E07A3F" opacity=".85"/><path d="M36 40l-6 18M60 40l-4 18M84 40v18M108 40l4 18M132 40l6 18" stroke="#fff" stroke-width="5" opacity=".6"/>',
+         '<rect x="200" y="36" width="160" height="104" rx="4" fill="#2F3B36" stroke="#A9784F" stroke-width="6"/>'
+         '<text x="280" y="60" text-anchor="middle" font-size="15" font-weight="800" fill="#F4F1E8" font-family="sans-serif" letter-spacing="2">MENU</text>'
+         '<path d="M216 76h70M216 92h58M216 108h76M216 124h50" stroke="#F4F1E8" stroke-width="3" opacity=".7" stroke-linecap="round"/>'
+         '<path d="M316 76h28M322 92h22M314 108h30M324 124h20" stroke="#F2C811" stroke-width="3" opacity=".8" stroke-linecap="round"/>']
     for y in (88, 150):
         s.append(f'<rect x="398" y="{y}" width="140" height="6" rx="2" fill="#A9784F"/>')
         for i, c in enumerate(("#fff", "#E07A3F", "#fff", TEAL, "#fff")):
@@ -382,18 +393,21 @@ def latar_kedai(ramai):
              '<rect x="214" y="196" width="58" height="50" rx="5" fill="#8E99A8"/><rect x="222" y="204" width="42" height="14" rx="2" fill="#5C6B7A"/>'
              '<rect x="232" y="222" width="6" height="10" fill="#3B3A36"/><rect x="248" y="222" width="6" height="10" fill="#3B3A36"/><rect x="228" y="236" width="30" height="6" rx="2" fill="#5C6B7A"/>'
              '<path d="M336 246l6-30h44l6 30z" fill="#5C6B7A"/><rect x="346" y="204" width="36" height="16" rx="2" fill="#BFE3DF"/>')
-    if ramai:
-        for x, baju, rambut in ((440, "#7FA9C9", "#3B2A22"), (500, "#D9534F", "#1E1C1F")):
-            s.append(f'<rect x="{x - 4}" y="300" width="44" height="6" rx="2" fill="#8A5A3B"/><rect x="{x + 15}" y="306" width="6" height="44" fill="#8A5A3B"/>'
-                     f'<rect x="{x + 4}" y="262" width="26" height="40" rx="10" fill="{baju}"/><circle cx="{x + 17}" cy="250" r="12" fill="#D9A07A"/>'
-                     f'<path d="M{x + 5} 248a12 12 0 0 1 24 0q-12-6-24 0z" fill="{rambut}"/><rect x="{x + 26}" y="290" width="9" height="10" rx="2" fill="#fff" stroke="#D9C4AA"/>'
-                     f'<path class="k-uap" d="M{x + 29} 286c-2-3 2-4 0-7" fill="none" stroke="#B8C1CD" stroke-width="1.5" stroke-linecap="round"/>')
-    else:
+    if kacau:
         for x, y, r in ((296, 236, -12), (318, 240, 10), (402, 238, -6), (420, 232, 14)):
             s.append(f'<g transform="rotate({r} {x + 9} {y})"><rect x="{x}" y="{y - 6}" width="18" height="12" rx="1" fill="#fff" stroke="#D9C4AA"/>'
                      f'<path d="M{x + 3} {y - 2}h12M{x + 3} {y + 2}h8" stroke="#C9D1DC" stroke-width="1.3"/></g>')
         s.append(f'<rect x="512" y="300" width="30" height="50" rx="3" fill="#C98E68"/>'
                  f'<path d="M527 300c-14-18-8-40 2-44 6 16 4 32-2 44zm2 0c8-20 22-26 30-22-4 14-16 22-30 22zm-4 0c-10-14-26-16-32-10 6 10 18 12 32 10z" fill="{TEAL}" opacity=".75"/>')
+    else:
+        ramai = [f'<path d="M64 66l21-12 21 12" fill="none" stroke="#8A5A3B" stroke-width="1.5"/><rect x="58" y="66" width="54" height="22" rx="3" fill="{TEAL}"/>'
+                 '<text x="85" y="82" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="sans-serif">{{ h.papan_buka }}</text>']
+        for x, baju, rambut in ((440, "#7FA9C9", "#3B2A22"), (500, "#D9534F", "#1E1C1F")):
+            ramai.append(f'<rect x="{x - 4}" y="300" width="44" height="6" rx="2" fill="#8A5A3B"/><rect x="{x + 15}" y="306" width="6" height="44" fill="#8A5A3B"/>'
+                         f'<rect x="{x + 4}" y="262" width="26" height="40" rx="10" fill="{baju}"/><circle cx="{x + 17}" cy="250" r="12" fill="#D9A07A"/>'
+                         f'<path d="M{x + 5} 248a12 12 0 0 1 24 0q-12-6-24 0z" fill="{rambut}"/><rect x="{x + 26}" y="290" width="9" height="10" rx="2" fill="#fff" stroke="#D9C4AA"/>'
+                         f'<path class="k-uap" d="M{x + 29} 286c-2-3 2-4 0-7" fill="none" stroke="#B8C1CD" stroke-width="1.5" stroke-linecap="round"/>')
+        s.append(f'<g class="pg-ramai">{"".join(ramai)}</g>')
     return _svg_latar("".join(s))
 
 
@@ -415,71 +429,50 @@ def latar_kerja():
     return _svg_latar("".join(s))
 
 
-def latar_presentasi():
-    """Ruang presentasi: layar besar 'untung per channel' (data fiktif; label channel dari i18n)."""
-    s = [f'<rect width="{LW}" height="{LH}" fill="#F1F4F8"/><rect y="262" width="{LW}" height="88" fill="#E6EAF0"/>',
-         '<rect x="172" y="10" width="300" height="100" rx="6" fill="#2b3446"/><rect x="179" y="17" width="286" height="86" rx="3" fill="#fff"/>',
-         f'<rect x="179" y="17" width="286" height="17" rx="3" fill="{TEAL}"/><text x="189" y="29.5" font-size="10.5" font-weight="700" fill="#fff" font-family="sans-serif">{{{{ h.layar.judul }}}}</text>']
-    for i, (w, c) in enumerate(((200, TEAL), (135, "#7FC4C0"), (75, "#D9534F"))):
-        s.append(f'<text x="189" y="{51 + i * 20}" font-size="10" font-weight="700" fill="#52607a" font-family="sans-serif">{{{{ h.layar.channel[{i}] }}}}</text>'
-                 f'<rect class="pg-batang" x="232" y="{42 + i * 20}" width="{w}" height="12" rx="2" fill="{c}"/>')
-    s.append(f'<path d="M438 40l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="{YEL}"/>'
-             '<rect x="190" y="276" width="180" height="74" rx="4" fill="#DCE2EA"/><path d="M280 280v66" stroke="#C9D1DC" stroke-width="3"/>'
-             f'<rect x="40" y="290" width="30" height="60" rx="3" fill="#C9D1DC"/><path d="M55 290c-14-18-8-40 2-44 6 16 4 32-2 44zm2 0c8-20 22-26 30-22-4 14-16 22-30 22z" fill="{TEAL}" opacity=".6"/>'
-             '<circle cx="515" cy="60" r="22" fill="#F7F9FB" stroke="#B8C1CD" stroke-width="3.5"/><path d="M515 46v14l9 6" fill="none" stroke="#8E99A8" stroke-width="2.6" stroke-linecap="round"/>')
-    return _svg_latar("".join(s))
-
-
-def hp_laporan():
-    """HP berisi laporan + centang (adegan 4)."""
-    return (f'<svg viewBox="0 0 70 120" aria-hidden="true"><rect width="70" height="120" rx="10" fill="#2b3446"/><rect x="5" y="10" width="60" height="98" rx="3" fill="#fff"/>'
-            f'<rect x="5" y="10" width="60" height="14" rx="3" fill="{TEAL}"/><rect x="14" y="58" width="10" height="30" fill="{TEAL}"/><rect x="30" y="68" width="10" height="20" fill="#7FC4C0"/>'
-            f'<rect x="46" y="76" width="10" height="12" fill="#D9534F"/><path d="M12 36h30M12 44h22" stroke="#C9D1DC" stroke-width="3"/>'
-            f'<circle cx="52" cy="40" r="8" fill="{TEAL}"/><path d="M48 40l3 3 5-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>')
-
-
 def css_panggung():
-    """CSS panggung hero + keyframes yang dihitung dari garis waktu (MULAI/ADEGAN/DURASI)."""
+    """CSS panggung hero + keyframes yang dihitung dari garis waktu (ADEGAN/JALAN/DURASI)."""
     D = f"{DURASI}s"
     geser = ["0%{transform:none}"]
-    for i in range(1, 5):
-        a, b = _jalan(i - 1)
-        geser.append(f"{_pct(a)}%{{transform:translateX(-{20 * (i - 1)}%)}}{_pct(b)}%{{transform:translateX(-{20 * i}%)}}")
-    geser.append("100%{transform:translateX(-80%)}")
-    t1, t4 = _pct(sum(_jalan(0)) / 2), _pct(sum(_jalan(3)) / 2)
+    for i, (a, b) in enumerate(JALAN, 1):
+        geser.append(f"{_pct(a)}%{{transform:translateX(-{25 * (i - 1)}%)}}{_pct(b)}%{{transform:translateX(-{25 * i}%)}}")
+    geser.append("100%{transform:translateX(-75%)}")
+    t1, t3 = _pct(sum(JALAN[0]) / 2), _pct(sum(JALAN[2]) / 2)
     kedai = "background:var(--lantai-kedai);border-color:var(--garis-kedai)"
     kantor = "background:var(--lantai-kantor);border-color:var(--garis-kantor)"
-    lantai = f"0%,{t1 - .2}%{{{kedai}}}{t1}%,{t4 - .2}%{{{kantor}}}{t4}%,100%{{{kedai}}}"
-    maju = f"0%,{_pct(_jalan(0)[0])}%{{transform:none}}{_pct(_jalan(0)[1])}%,100%{{transform:translateX(70%)}}"
-    aktif = "".join(f"@keyframes pg-aktif{i}{{0%,{_pct(_adegan(i)[0]) - .01}%{{background:transparent;color:var(--muted)}}"
-                    f"{_pct(_adegan(i)[0])}%,{_pct(_adegan(i)[1]) - .01}%{{background:var(--teal);color:#fff}}{_pct(_adegan(i)[1])}%,100%{{background:transparent;color:var(--muted)}}}}"
-                    for i in range(1, 5))
-    vis = "".join(f"@keyframes pg-a{i}{{{_jendela(_adegan(i))}}}" for i in range(5))
-    vis += f"@keyframes pg-aj{{{_jendela(*(_jalan(i) for i in range(4)))}}}@keyframes pg-balon3{{{_jendela((MULAI[3] + .8, MULAI[3] + ADEGAN))}}}"
-    return f"""/* Panggung hero = cerita "perjalanan" ({DURASI} dtk, dibuat css_panggung()): 0 kedai kacau -> 1 kantor -> 2 meja kerja -> 3 ruang presentasi -> 4 kedai ramai.
-   Pemilik kedai berjalan, latar bergeser (.pg-jalur = 5 panel). Desktop: kursor menggeser cerita maju/mundur (assets/js/panggung.js). */
+    lantai = f"0%,{t1 - .2}%{{{kedai}}}{t1}%,{t3 - .2}%{{{kantor}}}{t3}%,100%{{{kedai}}}"
+    maju = f"0%,{_pct(JALAN[0][0])}%{{transform:none}}{_pct(JALAN[0][1])}%,100%{{transform:translateX(70%)}}"
+    a0, a1, a2, a3, a4 = ADEGAN
+    vis = {"a0": [a0], "a1": [a1], "a2": [a2], "a3": [a3], "a4": [a4],
+           "aj": [JALAN[0]], "bj": [JALAN[1], JALAN[2]],                       # yang berjalan: pemilik kedai (1x), Bobbi (2x)
+           "nk": [(a0[0], a1[1]), (a3[0], a4[1])], "nb": [JALAN[1], (JALAN[2][0], a4[1])],  # label nama ikut tokohnya
+           "balon3": [(a3[0] + .8, a3[1])], "ramai": [a4]}
+    kf = "".join(f"@keyframes pg-{k}{{{_jendela(*v)}}}" for k, v in vis.items())
+    kf += "".join(f"@keyframes pg-aktif{i}{{0%,{_pct(a) - .01}%{{background:transparent;color:var(--muted)}}{_pct(a)}%,{_pct(b) - .01}%{{background:var(--teal);color:#fff}}"
+                  f"{_pct(b)}%,100%{{background:transparent;color:var(--muted)}}}}" for i, (a, b) in enumerate(ADEGAN[1:], 1))
+    anim = "".join(f".pg-{k}{{animation:pg-{k} {D} infinite}}" for k in vis if k != "balon3")
+    return f"""/* Panggung hero = cerita "perjalanan" ({DURASI} dtk, dibuat css_panggung()): kedai kacau -> pemilik kedai ke kantor, serahkan data
+   -> Bobbi ke ruang kerja -> Bobbi ke kedai bawa laporan -> salaman di kedai yang ramai. Yang berjalan tampak samping, latar bergeser (.pg-jalur = 4 panel).
+   Desktop: kursor menggeser cerita maju/mundur (assets/js/panggung.js). */
 :root{{--lantai-kedai:#E3D2BD;--garis-kedai:#CFB596;--lantai-kantor:var(--p2);--garis-kantor:var(--line)}}
 [data-theme="dark"]{{--lantai-kedai:#3A3129;--garis-kedai:#5A4A3A}}
 @media (prefers-color-scheme:dark){{:root:not([data-theme="light"]){{--lantai-kedai:#3A3129;--garis-kedai:#5A4A3A}}}}
 .panggung{{position:relative;height:470px;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}}
-.pg-jalur{{position:absolute;left:0;top:0;width:500%;height:calc(100% - 98px);display:flex;animation:pg-geser {D} infinite ease-in-out}}
-.pg-panel{{position:relative;flex:0 0 20%;height:100%}}.pg-panel>svg{{position:absolute;inset:0;width:100%;height:100%}}
-.pg-lokasi{{position:absolute;top:12px;left:14px;padding:5px 11px;border-radius:20px;background:#101b2d;color:#fff;font:700 12px/1.2 "Familjen Grotesk",sans-serif;z-index:3}}
+.pg-jalur{{position:absolute;left:0;top:0;width:400%;height:calc(100% - 98px);display:flex;animation:pg-geser {D} infinite ease-in-out}}
+.pg-panel{{position:relative;flex:0 0 25%;height:100%}}.pg-panel>svg{{position:absolute;inset:0;width:100%;height:100%}}
 .pg-lantai{{position:absolute;left:0;right:0;bottom:52px;height:46px;border-top:2px solid;animation:pg-lantai {D} infinite}}
 .panggung .tokoh{{position:absolute;bottom:82px;width:192px;height:307px;z-index:2}}.pg-panel .tokoh{{bottom:-16px;opacity:0}}
 .panggung .pose{{position:absolute;inset:0;opacity:0}}.panggung .tokoh svg{{width:100%;height:100%;overflow:visible}}
 .panggung .nama{{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:600;color:var(--muted);z-index:3}}
-.panggung .klien{{left:4%;animation:pg-maju {D} infinite ease-in-out}}.panggung .bobbi{{right:4%}}
-.pg-a0{{animation:pg-a0 {D} infinite}}.pg-a1{{animation:pg-a1 {D} infinite}}.pg-a2{{animation:pg-a2 {D} infinite}}.pg-a3{{animation:pg-a3 {D} infinite}}.pg-a4{{animation:pg-a4 {D} infinite}}
-.pg-aj{{animation:pg-aj {D} infinite}}.panggung.mundur .pg-aj{{transform:scaleX(-1)}}.pg-aj .kaki-b{{animation:pg-kaki .36s steps(1) infinite}}.pg-aj .kaki-a{{animation:pg-kaki .36s steps(1) infinite reverse}}.pg-aj svg{{animation:pg-ayun .18s ease-in-out infinite alternate}}
+.panggung .klien{{left:4%;animation:pg-maju {D} infinite ease-in-out}}.panggung .bobbi{{right:4%}}.panggung .nama.pg-nk,.panggung .nama.pg-nb{{opacity:0}}
+{anim}
+.pg-aj .kaki-b,.pg-bj .kaki-b{{animation:pg-kaki .36s steps(1) infinite}}.pg-aj .kaki-a,.pg-bj .kaki-a{{animation:pg-kaki .36s steps(1) infinite reverse}}
+.pg-aj svg,.pg-bj svg{{animation:pg-ayun .18s ease-in-out infinite alternate}}.panggung.mundur .pg-aj,.panggung.mundur .pg-bj{{transform:scaleX(-1)}}
+.k-salam{{animation:pg-salam .3s ease-in-out infinite alternate}}
 .pg-masalah{{position:absolute;left:0;bottom:-16px;width:50%;height:300px}}.pg-masalah svg{{width:100%;height:100%}}.pg-masalah .k-naik{{animation-delay:var(--d)}}
-.pg-acak{{animation:pg-acak 2.6s infinite alternate}}.pg-rapi{{animation:pg-rapi 2.6s infinite alternate}}.pg-batang{{transform-box:fill-box;transform-origin:left;animation:k-bar 3s ease-out infinite}}
+.pg-acak{{animation:pg-acak 2.6s infinite alternate}}.pg-rapi{{animation:pg-rapi 2.6s infinite alternate}}
 .pg-balon{{position:absolute;max-width:240px;padding:9px 14px;border-radius:14px;background:#fff;border:2px solid #101b2d;color:#101b2d;font:700 15px/1.25 "Familjen Grotesk",sans-serif;opacity:0;z-index:4}}
 .pg-balon::after{{content:"";position:absolute;left:24px;bottom:-9px;width:14px;height:14px;background:#fff;border:2px solid #101b2d;border-top:0;border-left:0;transform:rotate(45deg)}}
-.pg-b0{{top:48px;left:10%;animation:pg-a0 {D} infinite}}.pg-b3{{top:150px;left:2%;max-width:165px;animation:pg-balon3 {D} infinite}}
-.pg-b3::after{{left:auto;right:-9px;bottom:auto;top:18px;border:2px solid #101b2d;border-left:0;border-bottom:0}}
-.pg-hp{{position:absolute;right:4%;top:46px;width:84px;opacity:0;z-index:4;animation:pg-a4 {D} infinite}}.pg-hp svg{{width:100%;display:block}}
-.pg-hp span{{display:block;margin-top:6px;text-align:center;font:700 12px/1.2 "Familjen Grotesk",sans-serif;color:var(--ink)}}
+.pg-b0{{top:28px;left:10%;animation:pg-a0 {D} infinite}}.pg-b3{{top:28px;left:24%;animation:pg-balon3 {D} infinite}}
 .pg-tirai{{position:absolute;inset:0;background:var(--panel);z-index:9;pointer-events:none;animation:pg-tirai {D} infinite}}
 .pg-langkah{{position:absolute;left:0;right:0;bottom:0;height:52px;margin:0;padding:6px;list-style:none;display:flex;gap:6px;background:var(--panel);border-top:1px solid var(--line);z-index:5}}
 .pg-langkah li{{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;border-radius:8px;font:600 14px/1.15 "Familjen Grotesk",sans-serif;color:var(--muted);text-align:center}}
@@ -489,41 +482,40 @@ def css_panggung():
 @media (prefers-color-scheme:dark){{:root:not([data-theme="light"]) .pg-redup{{filter:brightness(.6) saturate(.85)}}}}
 @keyframes pg-geser{{{"".join(geser)}}}@keyframes pg-lantai{{{lantai}}}@keyframes pg-maju{{{maju}}}
 @keyframes pg-tirai{{0%{{opacity:1}}1.5%,{_pct(DURASI - .5)}%{{opacity:0}}100%{{opacity:1}}}}
-{vis}
-{aktif}
-@keyframes pg-kaki{{0%{{opacity:1}}50%{{opacity:0}}}}@keyframes pg-ayun{{to{{transform:translateY(-4px)}}}}
+{kf}
+@keyframes pg-kaki{{0%{{opacity:1}}50%{{opacity:0}}}}@keyframes pg-ayun{{to{{transform:translateY(-4px)}}}}@keyframes pg-salam{{to{{transform:translateY(4px)}}}}
 @keyframes pg-acak{{0%,35%{{opacity:1}}50%,100%{{opacity:0}}}}@keyframes pg-rapi{{0%,35%{{opacity:0}}50%,100%{{opacity:1}}}}
 @media(max-width:760px){{.hero2 .panggung{{order:-1;height:340px}}.panggung .tokoh{{width:124px;height:198px}}.panggung .klien{{left:3%}}.panggung .bobbi{{right:3%}}
 .pg-langkah{{gap:3px;padding:5px 4px}}.pg-langkah li{{flex-direction:column;gap:2px;font-size:10.5px}}.pg-langkah b{{width:17px;height:17px;font-size:10px}}
-.panggung .nama{{font-size:11px}}.pg-masalah{{height:200px}}.pg-lokasi{{top:8px;left:8px;padding:3px 8px;font-size:10px}}
-.pg-balon{{font-size:12px;padding:6px 10px;max-width:160px}}.pg-b0{{top:34px;left:6%}}.pg-b3{{top:80px;max-width:110px}}.pg-hp{{width:52px;top:34px}}.pg-hp span{{font-size:9.5px}}}}
+.panggung .nama{{font-size:11px}}.pg-masalah{{height:200px}}.pg-balon{{font-size:12px;padding:6px 10px;max-width:160px}}.pg-b0{{top:20px;left:6%}}.pg-b3{{top:20px;left:14%}}}}
+@media (prefers-reduced-motion:reduce){{.pg-jalur{{transform:translateX(-75%)}}.panggung .klien{{transform:translateX(70%)}}
+.panggung .pg-a3,.panggung .pg-b3,.panggung .nama.pg-nk,.panggung .nama.pg-nb{{opacity:1}}.pg-tirai{{opacity:0}}.pg-lantai{{background:var(--lantai-kedai);border-color:var(--garis-kedai)}}
+.pg-langkah .l3{{background:var(--teal);color:#fff}}.pg-rapi,.pg-ramai,.pg-panel .tokoh{{opacity:0}}}}
 """
 
 
 def macro_hero():
-    def pose_klien(aksi, kelas):
-        return f'<div class="pose {kelas}">{pose(KLIEN, "klien", aksi)}</div>'
+    def pose_(o, siapa, aksi, kelas):
+        return f'<div class="pose {kelas}">{pose(o, siapa, aksi)}</div>'
 
-    def bobbi(aksi, i):
-        return f'<div class="tokoh bobbi pg-a{i}">{pose(BOBBI, "bobbi", aksi)}<span class="nama">{{{{ h.tokoh_bobbi }}}}</span></div>'
-
-    def panel(i, latar, isi=""):
-        return f'<div class="pg-panel">{latar}{isi}<span class="pg-lokasi">{{{{ h.lokasi[{i}] }}}}</span></div>'
-    klien = "".join((pose_klien("pusing", "pg-a0"), pose_klien("samping", "pg-aj"), pose_klien("berkas", "pg-a1"),
-                     pose_klien("duduk_kopi", "pg-a2"), pose_klien("senang", "pg-a3"), pose_klien("ttd", "pg-a4")))
+    def panel(latar, isi=""):
+        return f'<div class="pg-panel">{latar}{isi}</div>'
+    nama_b = '<span class="nama">{{ h.tokoh_bobbi }}</span>'
+    klien = "".join((pose_(KLIEN, "klien", "pusing", "pg-a0"), pose_(KLIEN, "klien", "samping", "pg-aj"), pose_(KLIEN, "klien", "berkas", "pg-a1"),
+                     pose_(KLIEN, "klien", "senang", "pg-a3"), pose_(KLIEN, "klien", "salam", "pg-a4")))
+    bobbi = "".join((pose_(BOBBI, "bobbi", "samping", "pg-bj"), pose_(BOBBI, "bobbi", "poster", "pg-a3"), pose_(BOBBI, "bobbi", "salam", "pg-a4")))
     kantor = latar_kantor().replace('class="pg-latar" viewBox="0 0 560 372"', 'viewBox="0 0 560 372"', 1)
     return ("{% macro panggung_hero() -%}\n"
             "{%- set h = i18n[page.lang].utama.hero -%}{%- set l = i18n[page.lang].utama.cara_kerja.langkah -%}\n"
             f'<div class="panggung rv" role="img" aria-label="{{{{ h.animasi_alt }}}}" data-durasi="{DURASI * 1000}">\n'
             '<div class="pg-lantai"></div>\n<div class="pg-jalur">\n'
-            + panel(0, latar_kedai(False), f'<div class="pg-masalah">{properti_masalah()}</div>') + "\n"
-            + panel(1, kantor, bobbi("lambai", 1)) + "\n"
-            + panel(2, latar_kerja(), bobbi("duduk_laptop", 2)) + "\n"
-            + panel(3, latar_presentasi(), bobbi("poster", 3)) + "\n"
-            + panel(4, latar_kedai(True)) + "\n</div>\n"
+            + panel(latar_kedai(True), f'<div class="pg-masalah">{properti_masalah()}</div>') + "\n"
+            + panel(kantor, f'<div class="tokoh bobbi pg-a1">{pose(BOBBI, "bobbi", "lambai")}{nama_b}</div>') + "\n"
+            + panel(latar_kerja(), f'<div class="tokoh bobbi pg-a2">{pose(BOBBI, "bobbi", "duduk_laptop")}{nama_b}</div>') + "\n"
+            + panel(latar_kedai(False)) + "\n</div>\n"
             '<div class="pg-balon pg-b0">{{ h.balon_masalah }}</div><div class="pg-balon pg-b3">{{ h.balon_hasil }}</div>\n'
-            f'<div class="pg-hp">{hp_laporan()}<span>{{{{ h.label_hp }}}}</span></div>\n'
-            f'<div class="tokoh klien">{klien}<span class="nama">{{{{ h.tokoh_klien }}}}</span></div>\n'
+            f'<div class="tokoh klien">{klien}<span class="nama pg-nk">{{{{ h.tokoh_klien }}}}</span></div>\n'
+            f'<div class="tokoh bobbi">{bobbi}<span class="nama pg-nb">{{{{ h.tokoh_bobbi }}}}</span></div>\n'
             '<div class="pg-tirai"></div>\n'
             '<ol class="pg-langkah">{% for x in l %}<li class="l{{ loop.index }}"><b>{{ loop.index }}</b>{{ x.papan }}</li>{% endfor %}</ol>\n'
             "</div>\n{%- endmacro %}")
@@ -559,9 +551,7 @@ CSS = """/* Gerak kecil karakter (k-*) */
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rb{fill:#3B3943}:root:not([data-theme="light"]) .rh{fill:#6A6772}}
 [data-theme="dark"] .tokoh svg,[data-theme="dark"] .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tokoh svg,:root:not([data-theme="light"]) .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}}
-@media (prefers-reduced-motion:reduce){.k-lambai,.k-naik,.k-ketik,.k-baris,.k-uap,.k-bar,.k-pena,.k-centang,.panggung *,.panggung .klien{animation:none!important}
-.pg-jalur{transform:translateX(-60%)}.panggung .klien{transform:translateX(70%)}.panggung .pg-a3,.pg-panel .tokoh.pg-a3,.panggung .pg-b3{opacity:1}.pg-tirai{opacity:0}
-.pg-lantai{background:var(--lantai-kantor);border-color:var(--garis-kantor)}.pg-langkah .l3{background:var(--teal);color:#fff}.pg-rapi{opacity:0}}"""
+@media (prefers-reduced-motion:reduce){.k-lambai,.k-naik,.k-ketik,.k-baris,.k-uap,.k-bar,.k-pena,.k-centang,.panggung *,.panggung .klien{animation:none!important}}"""
 
 
 CSS = CSS.replace("@@PANGGUNG@@", css_panggung())

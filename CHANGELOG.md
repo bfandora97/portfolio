@@ -3,6 +3,8 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-25
+- PR: alur hero sesuai Bobbi: pemilik kedai serahkan data -> Bobbi jalan ke ruang kerja -> Bobbi jalan ke kedai bawa laporan -> salaman; sanggul tampak samping lebih detail.
+- PR: cerita hero: tanpa papan lokasi; Bobbi berjalan (tampak samping) datang ke kedai membawa laporan, kedai lalu ramai (ruang presentasi & HP dihapus).
 - PR: pemilik kedai berjalan tampak samping (berbalik saat kursor mundur); di meja kerja Bobbi duduk dengan laptop di meja, pemilik kedai duduk di sofa.
 - PR: hero jadi cerita perjalanan (kedai kacau -> kantor -> meja kerja -> ruang presentasi -> kedai ramai, 32 dtk): berjalan + latar bergeser, kursor menggeser cerita (desktop); CSS/JS diberi ?v=versi (anti cache lama).
 - PR: hero jadi cerita 5 adegan (5 detik per adegan, 25 detik): masalah (pemilik kedai bingung, balon pertanyaan) -> kirim -> rapikan -> laporan (balon jawaban) -> cek & bayar.
