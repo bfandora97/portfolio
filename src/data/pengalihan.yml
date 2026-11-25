@@ -1,0 +1,13 @@
+# Alamat LAMA -> alamat BARU (sejak bahasa utama website jadi Inggris, 25 Nov 2026).
+# build.py membuat halaman pengalihan kecil di alamat lama (noindex, tidak masuk sitemap), jadi link lama
+# di Google, Fastwork, WA, dan README tetap jalan. '/' tidak dialihkan: sekarang beranda Inggris.
+pengalihan:
+  /en/: /
+  /en/about/: /about/
+  /en/services/: /services/
+  /en/contact/: /contact/
+  /en/small-business-sales-dashboard.html: /small-business-sales-dashboard.html
+  /tentang/: /id/tentang/
+  /layanan/: /id/layanan/
+  /kontak/: /id/kontak/
+  /umkm-sales-dashboard.html: /id/umkm-sales-dashboard.html

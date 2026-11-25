@@ -1,31 +1,31 @@
 # ALL ENGLISH TEXT. Pair: id.yml with EXACTLY THE SAME KEYS (see the notes at the top of id.yml).
 # The build fails if a key or the number of list items differs from id.yml.
 
-beranda: /en/
+beranda: /
 mode_gelap: Toggle dark mode
 bahasa_ini: English
 label_bahasa: EN
 
 menu:
   utama:
-    - {teks: About, link: "/en/about/", hp: false}
-    - {teks: Services, link: "/en/services/"}
-    - {teks: Contact, link: "/en/contact/", kecil: false}
+    - {teks: About, link: "/about/", hp: false}
+    - {teks: Services, link: "/services/"}
+    - {teks: Contact, link: "/contact/", kecil: false}
   kasus:
-    - {teks: All projects, link: "/en/services/#projects"}
-    - {teks: Contact, link: "/en/contact/", kecil: false}
+    - {teks: All projects, link: "/services/#projects"}
+    - {teks: Contact, link: "/contact/", kecil: false}
 
 footer:
   tagline: "One auto-updating report from all your sales channels. Real profit per product and per channel, no more copy-pasting exports."
   jelajahi: Explore
   hubungi: Contact
   link:
-    - {teks: Home, link: "/en/"}
-    - {teks: About, link: "/en/about/", hp: false}
-    - {teks: Services, link: "/en/services/"}
-    - {teks: Example results, link: "/en/services/#examples"}
-    - {teks: Digital products, link: "/en/services/#templates", syarat: produk}
-    - {teks: Contact, link: "/en/contact/"}
+    - {teks: Home, link: "/"}
+    - {teks: About, link: "/about/", hp: false}
+    - {teks: Services, link: "/services/"}
+    - {teks: Example results, link: "/services/#examples"}
+    - {teks: Digital products, link: "/services/#templates", syarat: produk}
+    - {teks: Contact, link: "/contact/"}
   kontak: [upwork, email, booking, whatsapp]
   temukan: Find us
   temukan_link: [etsy, instagram, tiktok, linkedin]
@@ -119,7 +119,7 @@ utama:
         lebar: 1600
         tinggi: 1000
         alt: Example automatic sales dashboard for a fictional coffee shop
-        link: /en/small-business-sales-dashboard.html
+        link: /small-business-sales-dashboard.html
         link_teks: "See the full case study &rarr;"
         poin:
           - "<b>4-hour weekly recap &rarr; automatic.</b> The owner opens one link on their phone."
@@ -184,7 +184,7 @@ utama:
         anda: Open one link, any time.
         saya: The report refreshes itself, and I walk you through how to read it.
         waktu: Day 5
-        link: /en/small-business-sales-dashboard.html
+        link: /small-business-sales-dashboard.html
         link_teks: "Example: Kopi Senja (fictional) &rarr;"
       - papan: Check &amp; pay
         judul: Revisions, then payment

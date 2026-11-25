@@ -123,6 +123,13 @@ def main():
     sitemap = (SITE / "sitemap.xml").read_text(encoding="utf-8")
     for p, pr in parsed.items():
         rel = p.relative_to(SITE.resolve()).as_posix()
+        html = p.read_text(encoding="utf-8")
+        if 'http-equiv="refresh"' in html:  # halaman pengalihan alamat lama (src/data/pengalihan.yml): cukup cek tujuannya ada
+            m = re.search(r'url=([^"]+)"', html)
+            t, _ = resolve(p, m.group(1)) if m else (None, None)
+            if not m or (t is not None and not t.exists()):
+                errors.append(f"{rel}: pengalihan ke alamat yang tidak ada -> {m.group(1) if m else '?'}")
+            continue
         if not pr.title.strip():
             errors.append(f"{rel}: <title> kosong")
         if not pr.meta.get("description"):

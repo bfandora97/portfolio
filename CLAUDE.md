@@ -6,10 +6,11 @@ Website Kemang Data. Halaman dirakit oleh `build.py` (Python + Jinja2) ke `_site
 
 ```
 src/pages/        isi tiap halaman. Halaman utama = SATU kerangka untuk 2 bahasa (`bahasa:` di front matter):
-                    index.html   -> /           & /en/           (Beranda: hero, masalah, animasi contoh, 3 paket)
-                    tentang.html -> /tentang/   & /en/about/     (profil, cara kerja, FAQ)
-                    layanan.html -> /layanan/   & /en/services/  (semua paket, contoh hasil, studi kasus, produk digital)
-                    kontak.html  -> /kontak/    & /en/contact/   (booking, WA/Upwork, email, Temukan kami)
+                    index.html   -> /           & /id/           (Beranda: hero cerita, masalah, cara kerja, 3 paket)
+                    tentang.html -> /about/     & /id/tentang/   (profil, cara kerja, FAQ)
+                    layanan.html -> /services/  & /id/layanan/   (semua paket, contoh hasil, studi kasus, produk digital)
+                    kontak.html  -> /contact/   & /id/kontak/    (booking, WA/Upwork, email, Temukan kami)
+                  BAHASA UTAMA = INGGRIS di '/' (sejak 25 Nov 2026); Indonesia di '/id/'. Alamat lama dialihkan lewat src/data/pengalihan.yml
                   + halaman studi kasus (layout kasus)
 src/layouts/      base.html (kerangka <head>, script) + macros.html (header, wa(), plan_card, lightbox, ...)
 src/data/i18n/    id.yml + en.yml: SEMUA teks per bahasa (menu, footer, halaman utama, label). Kunci wajib sama persis (build gagal kalau beda)
@@ -52,4 +53,4 @@ python -m http.server -d _site 8000      # http://localhost:8000
 - Halaman baru: buat file di `src/pages/` dengan front matter (`title`, `description`, `lang` wajib; `menu: utama` untuk halaman utama, `og_image`, `og_type`, `scripts`, `alternates`, `sitemap: false` opsional). Sitemap otomatis.
 - Link internal & gambar pakai path absolut (`/assets/img/x.png`, `/#contact`).
 - **Repo ini public**: tidak boleh ada data kantor, data klien asli, nama perusahaan asli dari pekerjaan kantor, atau catatan internal. Data demo harus fiktif dan diberi label.
-- Fase sekarang menyasar UMKM Indonesia (`/`) + toko online internasional via Upwork (`/en/`), dengan halaman yang sama bentuknya. Jangan menonjolkan industri pameran/event.
+- Fase sekarang menyasar toko online internasional via Upwork (`/`, Inggris = bahasa utama) + UMKM Indonesia (`/id/`), dengan halaman yang sama bentuknya. Link untuk calon klien Indonesia (WA, Fastwork, prospek) pakai `https://kemangdata.my.id/id/`. Ganti alamat halaman = tambahkan alamat lama ke `src/data/pengalihan.yml`. Jangan menonjolkan industri pameran/event.
