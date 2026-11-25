@@ -27,16 +27,18 @@ TEAL, YEL = "#0E7C7B", "#F2C811"
 
 # ---------------------------------------------------------------- bagian tubuh
 def kepala_bobbi(o, ekspresi="senyum"):
-    """Bobbi (dari foto formal): wajah lonjong, rambut pendek rapi belahan samping (tanpa jambul), alis tebal lurus,
-    kumis tipis samar. Rambut 2 lapis (belakang di balik wajah + jambul depan) supaya tidak ada celah."""
+    """Bobbi (dari foto formal): wajah lonjong, rambut side part disapu ke kanan + undercut, alis melengkung halus,
+    kumis tipis samar. Rambut 2 lapis (isi kubah di balik wajah + sapuan depan) supaya tidak ada celah."""
     r, s = o["rambut"], []
-    s.append(f'<path d="M25 55c-2-14 2-25 11-30h28c9 5 13 16 11 30-1-3-3-5-5-6H30c-2 1-4 3-5 6z" fill="{r}"/>')
+    s.append(f'<path d="M70 35C69 25 60 19 50 19S31 25 29.5 35Z" fill="{r}"/>')  # isi kubah di balik wajah
     s.append(f'<ellipse cx="25.5" cy="58" rx="5" ry="7" fill="{o["kulit2"]}"/><ellipse cx="74.5" cy="58" rx="5" ry="7" fill="{o["kulit2"]}"/>')
     s.append(f'<path d="M50 26c15 0 25 11 25 27 0 19-11 33-25 33S25 72 25 53c0-16 10-27 25-27z" fill="{o["kulit"]}"/>')
-    # rambut pendek rapi, belahan samping (tanpa jambul)
-    s.append(f'<path d="M26 47c0-12 10-20 24-20 14 0 24 8 24 19-6-5-14-7-22-7-6 0-12 1-17 3-3 1-6 3-9 5z" fill="{r}"/>')
-    s.append('<path d="M37 30c-1 3-1 6 0 9M41 31c7-2 15-1 22 3M40 36c7-2 15-1 22 2" fill="none" stroke="#45434c" stroke-width="1.3" stroke-linecap="round"/>')
-    s.append(f'<path d="M35 48.5l11-1.6M54 46.9l11 1.6" fill="none" stroke="{r}" stroke-width="3.8" stroke-linecap="round"/>')
+    # side part, disapu ke kanan Bobbi (kiri layar); garis rambut tinggi + sudut pelipis; samping ramping (undercut lewat siluet)
+    s.append(f'<path d="M62.5 36.3L64 26.5C68 27.5 71 31.5 71.2 38.5C68.5 37.2 65.5 36.6 62.5 36.3Z" fill="{r}"/>')
+    s.append(f'<path d="M62.5 36.3C64.4 33 65.2 29 64.2 25.6C62.4 19.6 57 16 50 15.6C41.5 15.2 33.5 18 29.4 23.4'
+             f'C27.4 26.4 27.2 31 28.4 36.5C31.4 33.6 35 32.4 39.5 32.2C47.5 31.9 55.5 33.4 62.5 36.3Z" fill="{r}"/>')
+    s.append('<path d="M60.5 31C56.5 23.5 47 19.6 36 21.6M57 34C52 28.6 44 26.8 34.5 28" fill="none" stroke="#4A4852" stroke-width="1.4" stroke-linecap="round"/>')
+    s.append(f'<path d="M35 47.8q5.5-1.6 11 0M54 47.8q5.5-1.6 11 0" fill="none" stroke="{r}" stroke-width="3.2" stroke-linecap="round"/>')
     if ekspresi == "senang":
         s.append(f'<path d="M36 58q4.5-5 9 0M55 58q4.5-5 9 0" fill="none" stroke="{INK}" stroke-width="2.6" stroke-linecap="round"/>')
     else:
