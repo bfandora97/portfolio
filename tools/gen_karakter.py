@@ -36,6 +36,9 @@ def kepala_bobbi(o, ekspresi="senyum"):
     # side part disapu ke kanan Bobbi (= kiri layar): digambar menghadap kanan layar lalu dicerminkan.
     # garis rambut ~y36 (dahi pas), ujung kecil jatuh di depan, sudut belahan bulat, samping ramping (undercut lewat siluet)
     s.append('<g transform="matrix(-1 0 0 1 100 0)">')
+    # undercut = rambut cukur tipis (bukan botak): menyambung dari sudut pelipis, mengikuti kepala sampai atas telinga
+    s.append(f'<path class="rb" d="M30 40.6C28.2 40.6 26.7 41.4 26.2 43C25.7 46 25.6 49 25.8 52L28.9 52.4C28.7 49 28.9 46 30 43.4Z'
+             f'M71.4 38.8C72.8 39.4 73.6 40.8 73.9 42.5C74.4 45.5 74.5 49 74.3 52L71.1 52.4C71.3 49 71.1 45.5 70.1 42.6Z" fill="{r}" opacity=".5"/>')
     s.append(f'<path class="rb" d="M38 39.5L36.6 26.2C31.8 27.4 28.4 31.6 28.2 37.6C28.2 39.2 28.4 40.6 28.8 41.8C31.6 40.5 34.8 39.8 38 39.5Z" fill="{r}"/>')
     s.append(f'<path class="rb" d="M38 39.5C36 36 35.2 31 36.2 27C38 20.5 43.5 16.5 50.5 16.2C59 15.8 67 19 70.8 24.8C72.8 28 73 33 71.9 39.5'
              f'C69.6 37.8 67.6 38.6 65.6 41.2C64.6 38.2 61.6 36.4 57 36C50.5 35.5 44 36.8 38 39.5Z" fill="{r}"/>')
