@@ -26,25 +26,66 @@ TEAL, YEL = "#0E7C7B", "#F2C811"
 
 
 # ---------------------------------------------------------------- bagian tubuh
+def rambut_bobbi():
+    """Quiff (referensi Bobbi): rambut depan naik & tersapu ke kanan Bobbi (= kiri layar), ujung bergumpal bulat,
+    sejumput jatuh di dahi, cambang pendek meruncing di dalam garis wajah. Digambar menghadap kanan layar lalu dicerminkan.
+    TURUN = puncak diturunkan dari tinggi referensi (lebih kalem). Kelas rb/rh = warna mode gelap."""
+    TURUN = 6
+
+    def y(v):
+        return round(v + TURUN * (26 - v) / 17, 2) if v < 26 else v
+    r = BOBBI["rambut"]
+    cermin = '<g transform="matrix(-1 0 0 1 100 0)">'
+    belakang = f'{cermin}<path class="rb" d="M27 44C25.5 33 32 {y(23)} 50 {y(21)}C68 {y(23)} 74.5 33 73 44Z" fill="{r}"/></g>'
+    quiff = (f'<path class="rb" d="M28.6 46.2L26.4 45.8C26 40.5 26.5 35 28.2 31C29.8 {y(27)} 32.4 {y(23.4)} 36 {y(21)}'
+             f'C39 {y(15)} 48 {y(11.5)} 56 {y(13)}C60 {y(13.8)} 63 {y(15.5)} 64 {y(18.5)}C61.5 {y(17)} 59 {y(16.8)} 57 {y(17.5)}'
+             f'C62 {y(14.5)} 67.5 {y(15.5)} 69.6 {y(19.5)}C71.6 {y(22.5)} 72.8 27 73.2 31C73.6 35.5 73.9 40 73.6 45.8L71.4 46.2'
+             f'C71.4 43.6 71.2 41.4 70.6 39.8C68.6 37 64 35.6 58 35.8C52 36 47 37 44 38.5C42 39.5 41 41 41.2 43'
+             f'C39.6 41.8 39 40 38.6 38.8C35 39 31.4 39.6 29.4 40.4C28.9 42.2 28.6 44.2 28.6 46.2Z" fill="{r}"/>')
+    kilap = (f'<path class="rh" d="M39.5 28.5C41.5 {y(22.5)} 45.5 {y(18.5)} 50.5 {y(16.8)}C46.2 {y(19.6)} 42.8 {y(23.2)} 40.2 28.8Z'
+             f'M55.5 27C57.5 {y(23)} 60.5 {y(20.4)} 64.5 {y(19.4)}C61.2 {y(21.4)} 58.6 {y(24)} 56.2 27.3Z" fill="#55525C"/>')
+    return belakang, f"{cermin}{quiff}{kilap}</g>"
+
+
+def latar_kantor():
+    """Latar kantor ORIGINAL di belakang panggung hero (pucat supaya karakter menonjol; area di belakang kepala tenang).
+    viewBox 560x372 = dinding di atas lantai. Warna lewat class lk-* (ada versi mode gelap di CSS)."""
+    s = ['<svg class="pg-latar" viewBox="0 0 560 372" preserveAspectRatio="xMidYMax slice" aria-hidden="true">']
+    s.append('<rect class="lk-kaca" x="170" y="34" width="220" height="230" rx="4"/>')
+    for x, w, h in ((178, 26, 110), (206, 22, 150), (230, 30, 90), (262, 24, 175), (288, 34, 125), (324, 22, 160), (348, 30, 100), (380, 10, 135)):
+        s.append(f'<rect class="lk-gedung" x="{x}" y="{264 - h}" width="{w}" height="{h}"/>')
+    s.append('<path class="lk-bingkai" d="M170 34h220v230H170zM243 34v230M317 34v230M170 110h220M170 188h220" fill="none" stroke-width="5"/>')
+    for x in (215, 345):  # lampu gantung
+        s.append(f'<path class="lk-tali" d="M{x} 0v24" stroke-width="2"/><path class="lk-gelap" d="M{x - 13} 42q13-20 26 0z"/>'
+                 f'<circle cx="{x}" cy="43" r="3" fill="{YEL}" opacity=".7"/>')
+    s.append('<circle class="lk-jam" cx="470" cy="44" r="20" stroke-width="3.5"/><path class="lk-jarum" d="M470 32v12l8 5" fill="none" stroke-width="2.6" stroke-linecap="round"/>')
+    s.append('<rect class="lk-gelap" x="8" y="150" width="56" height="222" rx="2"/>')
+    for y in (205, 262, 318):
+        s.append(f'<rect class="lk-rak" x="11" y="{y}" width="50" height="4"/>')
+    s.append(f'<rect x="16" y="186" width="7" height="19" fill="{TEAL}" opacity=".45"/><rect x="25" y="190" width="6" height="15" fill="{YEL}" opacity=".5"/>'
+             '<rect class="lk-sedang" x="33" y="184" width="8" height="21"/><rect class="lk-sedang" x="20" y="298" width="26" height="20"/>'
+             f'<rect x="45" y="246" width="10" height="16" fill="{TEAL}" opacity=".35"/>')
+    s.append('<rect class="lk-bingkai2" x="70" y="40" width="74" height="46" rx="2" stroke-width="3"/>')
+    s.append(f'<path d="M78 76l14-12 12 7 14-14 18-4" fill="none" stroke="{TEAL}" stroke-width="2.6" opacity=".55" stroke-linecap="round" stroke-linejoin="round"/>')
+    s.append('<rect class="lk-sedang" x="205" y="318" width="150" height="9" rx="2"/><rect class="lk-gelap" x="214" y="327" width="9" height="45"/><rect class="lk-gelap" x="337" y="327" width="9" height="45"/>'
+             '<rect class="lk-gelap" x="246" y="264" width="66" height="44" rx="3"/><rect class="lk-layar" x="250" y="268" width="58" height="36" rx="2"/>'
+             f'<rect x="257" y="285" width="8" height="15" fill="{TEAL}" opacity=".7"/><rect x="268" y="277" width="8" height="23" fill="{TEAL}" opacity=".7"/>'
+             f'<rect x="279" y="289" width="8" height="11" fill="{YEL}" opacity=".8"/><rect x="290" y="281" width="8" height="19" fill="{TEAL}" opacity=".5"/>'
+             '<rect class="lk-gelap" x="275" y="308" width="8" height="10"/>'
+             f'<rect class="lk-sedang" x="326" y="300" width="13" height="18" rx="2"/><path d="M332 300c-8-10-4-20 1-22 3 9 2 16-1 22zm1 0c4-10 10-13 14-11-2 7-8 11-14 11z" fill="{TEAL}" opacity=".55"/>')
+    s.append("</svg>")
+    return "".join(s)
+
+
 def kepala_bobbi(o, ekspresi="senyum"):
     """Bobbi (dari foto formal): wajah lonjong, rambut side part disapu ke kanan + undercut, alis melengkung halus,
     kumis tipis samar. Rambut 2 lapis (isi kubah di balik wajah + sapuan depan) supaya tidak ada celah."""
     r, s = o["rambut"], []
-    s.append(f'<path class="rb" d="M70 37C69 25 60 19 50 19S31 25 30 37Z" fill="{r}"/>')  # isi kubah di balik wajah
+    belakang, depan = rambut_bobbi()
+    s.append(belakang)
     s.append(f'<ellipse cx="25.5" cy="58" rx="5" ry="7" fill="{o["kulit2"]}"/><ellipse cx="74.5" cy="58" rx="5" ry="7" fill="{o["kulit2"]}"/>')
     s.append(f'<path d="M50 26c15 0 25 11 25 27 0 19-11 33-25 33S25 72 25 53c0-16 10-27 25-27z" fill="{o["kulit"]}"/>')
-    # side part disapu ke kanan Bobbi (= kiri layar): digambar menghadap kanan layar lalu dicerminkan.
-    # garis rambut ~y36 (dahi pas), ujung kecil jatuh di depan, sudut belahan bulat, samping ramping (undercut lewat siluet)
-    s.append('<g transform="matrix(-1 0 0 1 100 0)">')
-    # undercut = rambut cukur tipis (bukan botak): menyambung dari sudut pelipis, mengikuti kepala sampai atas telinga
-    s.append(f'<path class="rb" d="M30 40.6C28.2 40.6 26.7 41.4 26.2 43C25.7 46 25.6 49 25.8 52L28.9 52.4C28.7 49 28.9 46 30 43.4Z'
-             f'M71.4 38.8C72.8 39.4 73.6 40.8 73.9 42.5C74.4 45.5 74.5 49 74.3 52L71.1 52.4C71.3 49 71.1 45.5 70.1 42.6Z" fill="{r}" opacity=".5"/>')
-    s.append(f'<path class="rb" d="M38 39.5L36.6 26.2C31.8 27.4 28.4 31.6 28.2 37.6C28.2 39.2 28.4 40.6 28.8 41.8C31.6 40.5 34.8 39.8 38 39.5Z" fill="{r}"/>')
-    s.append(f'<path class="rb" d="M38 39.5C36 36 35.2 31 36.2 27C38 20.5 43.5 16.5 50.5 16.2C59 15.8 67 19 70.8 24.8C72.8 28 73 33 71.9 39.5'
-             f'C69.6 37.8 67.6 38.6 65.6 41.2C64.6 38.2 61.6 36.4 57 36C50.5 35.5 44 36.8 38 39.5Z" fill="{r}"/>')
-    # helaian: 2 kilap tipis & pendek (bentuk sabit meruncing)
-    s.append('<path class="rh" d="M44.5 30.6C47.8 25.4 53 22.8 59.6 22.6C53.6 23.5 48.9 25.9 45.1 30.9ZM48.6 33.8C51.4 31 54.6 29.8 57.8 29.7C54.7 30.3 51.9 31.7 49 34.1Z" fill="#55525C"/>')
-    s.append('</g>')
+    s.append(depan)
     s.append(f'<path d="M35 47.8q5.5-1.6 11 0M54 47.8q5.5-1.6 11 0" fill="none" stroke="{r}" stroke-width="3.2" stroke-linecap="round"/>')
     if ekspresi == "senang":
         s.append(f'<path d="M36 58q4.5-5 9 0M55 58q4.5-5 9 0" fill="none" stroke="{INK}" stroke-width="2.6" stroke-linecap="round"/>')
@@ -211,6 +252,7 @@ def macro_hero():
     return ("{% macro panggung_hero() -%}\n"
             "{%- set h = i18n[page.lang].utama.hero -%}{%- set l = i18n[page.lang].utama.cara_kerja.langkah -%}\n"
             '<div class="panggung rv" role="img" aria-label="{{ h.animasi_alt }}">\n'
+            f'{latar_kantor()}\n'
             f'<div class="tokoh klien">{slot(KLIEN, "klien", ("berkas", "kopi", "senang", "ttd"))}<span class="nama">{{{{ h.tokoh_klien }}}}</span></div>\n'
             f'<div class="pg-terbang">{terbang}</div>\n'
             f'<div class="tokoh bobbi">{slot(BOBBI, "bobbi", ("lambai", "laptop", "poster", "jempol"))}<span class="nama">{{{{ h.tokoh_bobbi }}}}</span></div>\n'
@@ -254,6 +296,17 @@ CSS = """/* Gerak kecil karakter (k-*) */
 .pg-langkah{gap:3px;padding:5px 4px}.pg-langkah li{flex-direction:column;gap:2px;font-size:10.5px}.pg-langkah b{width:17px;height:17px;font-size:10px}
 .panggung .nama{font-size:11px}.pg-terbang{bottom:192px;width:36px;animation-name:pg-lempar-hp}}
 @keyframes pg-lempar-hp{0%,18%{opacity:0;transform:none}20%{opacity:1}26%{opacity:1;transform:translate(385%,183%) rotate(8deg) scale(.6)}28%,100%{opacity:0}}
+/* Latar kantor di belakang panggung (dibuat latar_kantor()) */
+.pg-latar{position:absolute;left:0;top:0;width:100%;height:calc(100% - 98px);z-index:0}
+.lk-kaca{fill:#EAF2F6}.lk-gedung{fill:#DCE5EC}.lk-bingkai{stroke:#D3DBE4}.lk-bingkai2{fill:#F7F9FB;stroke:#C9D1DC}
+.lk-tali{stroke:#B8C1CD}.lk-gelap{fill:#C9D1DC}.lk-sedang{fill:#DCE2EA}.lk-rak{fill:#B8C1CD}.lk-layar{fill:#F4F8FA}.lk-jam{fill:#F7F9FB;stroke:#B8C1CD}.lk-jarum{stroke:#8E99A8}
+[data-theme="dark"] .lk-kaca{fill:#1B2A40}[data-theme="dark"] .lk-gedung{fill:#22344D}[data-theme="dark"] .lk-bingkai{stroke:#2A3A52}[data-theme="dark"] .lk-bingkai2{fill:#1A2638;stroke:#2F405A}
+[data-theme="dark"] .lk-tali{stroke:#33445E}[data-theme="dark"] .lk-gelap{fill:#2A3A52}[data-theme="dark"] .lk-sedang{fill:#223047}[data-theme="dark"] .lk-rak{fill:#33445E}
+[data-theme="dark"] .lk-layar{fill:#1F2D42}[data-theme="dark"] .lk-jam{fill:#1A2638;stroke:#33445E}[data-theme="dark"] .lk-jarum{stroke:#6D7C92}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lk-kaca{fill:#1B2A40}:root:not([data-theme="light"]) .lk-gedung{fill:#22344D}:root:not([data-theme="light"]) .lk-bingkai{stroke:#2A3A52}
+:root:not([data-theme="light"]) .lk-bingkai2{fill:#1A2638;stroke:#2F405A}:root:not([data-theme="light"]) .lk-tali{stroke:#33445E}:root:not([data-theme="light"]) .lk-gelap{fill:#2A3A52}
+:root:not([data-theme="light"]) .lk-sedang{fill:#223047}:root:not([data-theme="light"]) .lk-rak{fill:#33445E}:root:not([data-theme="light"]) .lk-layar{fill:#1F2D42}
+:root:not([data-theme="light"]) .lk-jam{fill:#1A2638;stroke:#33445E}:root:not([data-theme="light"]) .lk-jarum{stroke:#6D7C92}}
 /* Bobbi di Alur kerja (viewBox 100x160) */
 .ak-barista{width:70px;height:112px}
 @media(max-width:860px){.ak-barista{width:50px;height:80px}}
