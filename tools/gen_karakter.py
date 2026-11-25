@@ -192,8 +192,10 @@ def kepala_samping(o, siapa):
     """Tampak samping (menghadap kanan): satu mata, hidung menonjol. Pemilik kedai: sanggul + anting. Bobbi: quiff."""
     r = o["rambut"]
     if siapa == "bobbi":
-        rambut = (f'<path d="M26 60C23 34 36 19 57 19C72 20 80 30 78 43C73 37 64 35 56 37C50 39 47 45 46 52C43 57 36 60 26 60Z" fill="{r}"/>'
-                  f'<path d="M54 23C61 13 73 13 80 22C76 20.5 70 21 65 25Z" fill="{r}"/>')
+        # quiff tampak samping: satu massa bervolume (bukan selembar), naik di depan dengan ujung membulat, setinggi tampak depan
+        rambut = (f'<path d="M30 58C24 48 23 35 31 27C37 21 45 19 53 19C59 14 69 12 76 15C82 18 85 24 82 30C80 34 78 37 76 41'
+                  f'C70 38 64 37 58 38C53 39 50 43 49 48V55C46 56 43 56 41 54C40 50 39 47 37 46C35 50 33 55 30 58Z" fill="{r}"/>'
+                  '<path d="M41 25C50 20 61 18 71 20M47 31C55 27 64 26 73 28" fill="none" stroke="#3A3740" stroke-width="1.5" stroke-linecap="round"/>')
         alis, hiasan = 3.4, ""
     else:
         # rambut turun sampai tengkuk + garis helaian disisir ke belakang

@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-25
+- PR: rambut Bobbi tampak samping jadi quiff bervolume (bukan selembar).
 - PR: langkah berjalan tampak samping: 2 fase yang beda bentuk (melangkah / melintas) supaya kaki terlihat bergerak; kuncir rapat ke kepala.
 - PR: pemilik kedai: sanggul diganti kuncir kuda (depan & samping, helaian menyatu ke ikatan); salaman dengan pergelangan tangan.
 - PR: alur hero sesuai Bobbi: pemilik kedai serahkan data -> Bobbi jalan ke ruang kerja -> Bobbi jalan ke kedai bawa laporan -> salaman; sanggul tampak samping lebih detail.
