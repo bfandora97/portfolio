@@ -30,14 +30,18 @@ def kepala_bobbi(o, ekspresi="senyum"):
     """Bobbi (dari foto formal): wajah lonjong, rambut side part disapu ke kanan + undercut, alis melengkung halus,
     kumis tipis samar. Rambut 2 lapis (isi kubah di balik wajah + sapuan depan) supaya tidak ada celah."""
     r, s = o["rambut"], []
-    s.append(f'<path d="M70 35C69 25 60 19 50 19S31 25 29.5 35Z" fill="{r}"/>')  # isi kubah di balik wajah
+    s.append(f'<path class="rb" d="M70 37C69 25 60 19 50 19S31 25 30 37Z" fill="{r}"/>')  # isi kubah di balik wajah
     s.append(f'<ellipse cx="25.5" cy="58" rx="5" ry="7" fill="{o["kulit2"]}"/><ellipse cx="74.5" cy="58" rx="5" ry="7" fill="{o["kulit2"]}"/>')
     s.append(f'<path d="M50 26c15 0 25 11 25 27 0 19-11 33-25 33S25 72 25 53c0-16 10-27 25-27z" fill="{o["kulit"]}"/>')
-    # side part, disapu ke kanan Bobbi (kiri layar); garis rambut tinggi + sudut pelipis; samping ramping (undercut lewat siluet)
-    s.append(f'<path d="M62.5 36.3L64 26.5C68 27.5 71 31.5 71.2 38.5C68.5 37.2 65.5 36.6 62.5 36.3Z" fill="{r}"/>')
-    s.append(f'<path d="M62.5 36.3C64.4 33 65.2 29 64.2 25.6C62.4 19.6 57 16 50 15.6C41.5 15.2 33.5 18 29.4 23.4'
-             f'C27.4 26.4 27.2 31 28.4 36.5C31.4 33.6 35 32.4 39.5 32.2C47.5 31.9 55.5 33.4 62.5 36.3Z" fill="{r}"/>')
-    s.append('<path d="M60.5 31C56.5 23.5 47 19.6 36 21.6M57 34C52 28.6 44 26.8 34.5 28" fill="none" stroke="#4A4852" stroke-width="1.4" stroke-linecap="round"/>')
+    # side part disapu ke kanan Bobbi (= kiri layar): digambar menghadap kanan layar lalu dicerminkan.
+    # garis rambut ~y36 (dahi pas), ujung kecil jatuh di depan, sudut belahan bulat, samping ramping (undercut lewat siluet)
+    s.append('<g transform="matrix(-1 0 0 1 100 0)">')
+    s.append(f'<path class="rb" d="M38 39.5L36.6 26.2C31.8 27.4 28.4 31.6 28.2 37.6C28.2 39.2 28.4 40.6 28.8 41.8C31.6 40.5 34.8 39.8 38 39.5Z" fill="{r}"/>')
+    s.append(f'<path class="rb" d="M38 39.5C36 36 35.2 31 36.2 27C38 20.5 43.5 16.5 50.5 16.2C59 15.8 67 19 70.8 24.8C72.8 28 73 33 71.9 39.5'
+             f'C69.6 37.8 67.6 38.6 65.6 41.2C64.6 38.2 61.6 36.4 57 36C50.5 35.5 44 36.8 38 39.5Z" fill="{r}"/>')
+    # helaian: satu panjang meruncing + satu pendek (bentuk sabit, bukan garis rata)
+    s.append('<path class="rh" d="M40 33.2C44 24 54 20 65.4 22.4C55 21.6 46 25 41.3 33.6ZM45.2 35.8C49.6 31.2 55 29.6 61.2 30C55.6 30.8 50.6 32.6 46 36.2Z" fill="#55525C"/>')
+    s.append('</g>')
     s.append(f'<path d="M35 47.8q5.5-1.6 11 0M54 47.8q5.5-1.6 11 0" fill="none" stroke="{r}" stroke-width="3.2" stroke-linecap="round"/>')
     if ekspresi == "senang":
         s.append(f'<path d="M36 58q4.5-5 9 0M55 58q4.5-5 9 0" fill="none" stroke="{INK}" stroke-width="2.6" stroke-linecap="round"/>')
@@ -248,6 +252,9 @@ CSS = """/* Gerak kecil karakter (k-*) */
 /* Bobbi di Alur kerja (viewBox 100x160) */
 .ak-barista{width:70px;height:112px}
 @media(max-width:860px){.ak-barista{width:50px;height:80px}}
+/* mode gelap: rambut abu-abu arang supaya siluet tidak tenggelam di latar gelap */
+[data-theme="dark"] .rb{fill:#3B3943}[data-theme="dark"] .rh{fill:#6A6772}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rb{fill:#3B3943}:root:not([data-theme="light"]) .rh{fill:#6A6772}}
 [data-theme="dark"] .tokoh svg,[data-theme="dark"] .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tokoh svg,:root:not([data-theme="light"]) .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}}
 @media (prefers-reduced-motion:reduce){.k-lambai,.k-naik,.k-ketik,.k-baris,.k-uap,.k-bar,.k-pena,.k-centang,.panggung .pose,.pg-papan span,.panggung .klien,.pg-terbang,.pg-titik i{animation:none}

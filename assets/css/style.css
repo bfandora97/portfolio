@@ -397,6 +397,9 @@ a.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 /* Bobbi di Alur kerja (viewBox 100x160) */
 .ak-barista{width:70px;height:112px}
 @media(max-width:860px){.ak-barista{width:50px;height:80px}}
+/* mode gelap: rambut abu-abu arang supaya siluet tidak tenggelam di latar gelap */
+[data-theme="dark"] .rb{fill:#3B3943}[data-theme="dark"] .rh{fill:#6A6772}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rb{fill:#3B3943}:root:not([data-theme="light"]) .rh{fill:#6A6772}}
 [data-theme="dark"] .tokoh svg,[data-theme="dark"] .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tokoh svg,:root:not([data-theme="light"]) .ak-barista svg{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.35))}}
 @media (prefers-reduced-motion:reduce){.k-lambai,.k-naik,.k-ketik,.k-baris,.k-uap,.k-bar,.k-pena,.k-centang,.panggung .pose,.pg-papan span,.panggung .klien,.pg-terbang,.pg-titik i{animation:none}

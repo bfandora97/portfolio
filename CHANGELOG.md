@@ -3,7 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-25
-- PR: Bobbi rambut side part disapu ke kanan + undercut, garis rambut lebih tinggi, alis melengkung halus, kulit lebih terang (permintaan Bobbi).
+- PR: Bobbi rambut side part disapu ke kanan + undercut, dahi proporsional + ujung rambut jatuh, helaian meruncing, rambut abu-abu arang di mode gelap, alis melengkung halus, kulit lebih terang (permintaan Bobbi).
 
 ## 2026-11-24
 - PR: Garis hitam di leher Bobbi dihapus (leher digambar di atas kaos, menyambung dari dagu ke kerah).
