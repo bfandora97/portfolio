@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-25
+- PR: scrub kursor di hero: halus (mengejar kursor) dan sejalan dengan bilah langkah (kursor di bawah langkah N = adegan N).
 - PR: refactor tanpa ubah tampilan (70/72 screenshot identik, 2 sisanya beda anti-aliasing): mode gelap cukup [data-theme] (theme.js selalu set), hapus 4 pose mati + CSS-nya, tanaman() & tanpa tambalan .replace, check_site jaga karakter sinkron & tanpa pose mati.
 - PR: rambut Bobbi tampak samping jadi quiff bervolume (bukan selembar).
 - PR: langkah berjalan tampak samping: 2 fase yang beda bentuk (melangkah / melintas) supaya kaki terlihat bergerak; kuncir rapat ke kepala.
