@@ -3,6 +3,7 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-25
+- PR: refactor tanpa ubah tampilan (70/72 screenshot identik, 2 sisanya beda anti-aliasing): mode gelap cukup [data-theme] (theme.js selalu set), hapus 4 pose mati + CSS-nya, tanaman() & tanpa tambalan .replace, check_site jaga karakter sinkron & tanpa pose mati.
 - PR: rambut Bobbi tampak samping jadi quiff bervolume (bukan selembar).
 - PR: langkah berjalan tampak samping: 2 fase yang beda bentuk (melangkah / melintas) supaya kaki terlihat bergerak; kuncir rapat ke kepala.
 - PR: pemilik kedai: sanggul diganti kuncir kuda (depan & samping, helaian menyatu ke ikatan); salaman dengan pergelangan tangan.

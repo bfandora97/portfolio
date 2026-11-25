@@ -89,6 +89,25 @@ def cek_sumber():
     return errors
 
 
+def cek_karakter():
+    """Penjaga gen_karakter.py: (1) blok karakter di macros.html/style.css = hasil generator (tidak diedit manual,
+    generator sudah dijalankan); (2) tidak ada pose yang didefinisikan tapi tidak dipakai (kode mati)."""
+    import importlib.util
+    errors = []
+    sumber = ROOT / "tools" / "gen_karakter.py"
+    spec = importlib.util.spec_from_file_location("gen_karakter", sumber)
+    gk = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(gk)
+    m, c = gk.hasil()
+    if m != gk.MACROS.read_text(encoding="utf-8") or c != gk.STYLE.read_text(encoding="utf-8"):
+        errors.append("blok karakter di macros.html/style.css beda dengan generator -> jalankan python tools/gen_karakter.py (jangan edit blok KARAKTER manual)")
+    teks = sumber.read_text(encoding="utf-8")
+    for nama in re.findall(r'aksi == "(\w+)"', teks):
+        if teks.count(f'"{nama}"') < 2:
+            errors.append(f"gen_karakter.py: pose \"{nama}\" didefinisikan tapi tidak dipakai -> hapus")
+    return errors
+
+
 def main():
     if not SITE.exists():
         sys.exit("_site/ belum ada. Jalankan: python build.py")
@@ -100,7 +119,7 @@ def main():
         pr.feed(p.read_text(encoding="utf-8"))
         parsed[p] = pr
 
-    errors = cek_sumber()
+    errors = cek_sumber() + cek_karakter()
     sitemap = (SITE / "sitemap.xml").read_text(encoding="utf-8")
     for p, pr in parsed.items():
         rel = p.relative_to(SITE.resolve()).as_posix()
@@ -135,7 +154,7 @@ def main():
         for e in errors:
             print("  -", e)
         sys.exit(1)
-    print(f"OK: {len(parsed)} halaman, semua link, gambar, anchor, menu/footer, dan aturan anti-kode-berulang valid.")
+    print(f"OK: {len(parsed)} halaman, semua link, gambar, anchor, menu/footer, aturan anti-kode-berulang, dan karakter (sinkron, tanpa pose mati) valid.")
 
 
 if __name__ == "__main__":
