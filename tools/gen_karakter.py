@@ -334,6 +334,7 @@ def properti_masalah():
 # -> (pemilik kedai pulang) 3 kedai: Bobbi DATANG membawa laporan -> 4 kedai yang sama jadi ramai: cek & bayar.
 DURASI = 31                                                       # detik per putaran
 ADEGAN = ((0, 5), (6.5, 11.5), (13, 18), (19.5, 25), (25, 30.5))  # (mulai, selesai) tiap adegan
+ADEGAN_ATTR = ";".join(f"{a},{b}" for a, b in ADEGAN)              # untuk assets/js/panggung.js (kursor sejalan bilah langkah)
 JALAN = ((5, 6.5), (11.5, 13), (18, 19.5))                        # latar bergeser: 1 pemilik kedai -> kantor, 2-3 Bobbi -> ruang kerja -> kedai
 LW, LH = 560, 350                                                   # viewBox latar (dinding di atas lantai)
 
@@ -491,7 +492,7 @@ def macro_hero():
     bobbi = "".join((pose_(BOBBI, "bobbi", "samping", "pg-bj"), pose_(BOBBI, "bobbi", "poster", "pg-a3"), pose_(BOBBI, "bobbi", "salam", "pg-a4")))
     return ("{% macro panggung_hero() -%}\n"
             "{%- set h = i18n[page.lang].utama.hero -%}{%- set l = i18n[page.lang].utama.cara_kerja.langkah -%}\n"
-            f'<div class="panggung rv" role="img" aria-label="{{{{ h.animasi_alt }}}}" data-durasi="{DURASI * 1000}">\n'
+            f'<div class="panggung rv" role="img" aria-label="{{{{ h.animasi_alt }}}}" data-durasi="{DURASI * 1000}" data-adegan="{ADEGAN_ATTR}">\n'
             '<div class="pg-lantai"></div>\n<div class="pg-jalur">\n'
             + panel(latar_kedai(True), f'<div class="pg-masalah">{properti_masalah()}</div>') + "\n"
             + panel(latar_kantor(), f'<div class="tokoh bobbi pg-a1">{pose(BOBBI, "bobbi", "lambai")}{nama_b}</div>') + "\n"
