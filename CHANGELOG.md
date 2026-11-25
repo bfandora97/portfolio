@@ -3,6 +3,14 @@
 Paling baru di atas. Satu baris per PR.
 
 ## 2026-11-25
+- PR: rambut Bobbi tampak samping jadi quiff bervolume (bukan selembar).
+- PR: langkah berjalan tampak samping: 2 fase yang beda bentuk (melangkah / melintas) supaya kaki terlihat bergerak; kuncir rapat ke kepala.
+- PR: pemilik kedai: sanggul diganti kuncir kuda (depan & samping, helaian menyatu ke ikatan); salaman dengan pergelangan tangan.
+- PR: alur hero sesuai Bobbi: pemilik kedai serahkan data -> Bobbi jalan ke ruang kerja -> Bobbi jalan ke kedai bawa laporan -> salaman; sanggul tampak samping lebih detail.
+- PR: cerita hero: tanpa papan lokasi; Bobbi berjalan (tampak samping) datang ke kedai membawa laporan, kedai lalu ramai (ruang presentasi & HP dihapus).
+- PR: pemilik kedai berjalan tampak samping (berbalik saat kursor mundur); di meja kerja Bobbi duduk dengan laptop di meja, pemilik kedai duduk di sofa.
+- PR: hero jadi cerita perjalanan (kedai kacau -> kantor -> meja kerja -> ruang presentasi -> kedai ramai, 32 dtk): berjalan + latar bergeser, kursor menggeser cerita (desktop); CSS/JS diberi ?v=versi (anti cache lama).
+- PR: hero jadi cerita 5 adegan (5 detik per adegan, 25 detik): masalah (pemilik kedai bingung, balon pertanyaan) -> kirim -> rapikan -> laporan (balon jawaban) -> cek & bayar.
 - PR: Bobbi rambut quiff (dari referensi Bobbi, tersapu ke kanan Bobbi) + latar kantor di belakang panggung hero (gambar sendiri, ada versi gelap).
 - PR: hero: papan langkah atas diganti bilah 4 langkah di bawah (yang aktif menyala), teks langkah lebih jelas (Kirim data, Saya rapikan, Laporan jadi, Cek & bayar), berkas terbang mendarat di tangan Bobbi.
 - PR: Bobbi rambut side part disapu ke kanan + undercut, dahi proporsional + ujung rambut jatuh, helaian meruncing, rambut abu-abu arang di mode gelap, alis melengkung halus, kulit lebih terang (permintaan Bobbi).

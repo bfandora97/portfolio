@@ -89,7 +89,10 @@ utama:
       - {teks: Jadwalkan call 30 menit, link: booking, kelas: btn alt}
     harga: "Mulai <b>{harga}</b> · selesai {hari} hari · 2x revisi"
     oleh: "Dikerjakan langsung oleh <b>Bobbi</b> · 4 tahun di bidang data"
-    animasi_alt: "Animasi alur kerja: pemilik kedai mengirim berkas, Bobbi merapikan di laptop, menunjukkan laporan, lalu pemilik kedai tanda tangan."
+    animasi_alt: "Animasi perjalanan: pemilik kedai pusing dengan data jualannya, datang ke Bobbi dan menyerahkan data; Bobbi merapikannya di ruang kerja, lalu datang ke kedai membawa laporan; pemilik kedai senang dan mereka bersalaman."
+    balon_masalah: "Untung saya sebenarnya berapa, ya?"
+    balon_hasil: "Ternyata GoFood paling untung!"
+    papan_buka: BUKA
     tokoh_klien: Pemilik kedai
     tokoh_bobbi: Bobbi · Kemang Data
 
