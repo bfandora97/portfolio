@@ -13,7 +13,7 @@
 #   satuan / satuan_en  teks kecil setelah harga
 #   alat / alat_en  teks kecil: alat yang dipakai (opsional)
 #   web_isi / web_isi_en  poin di kartu website
-#   wa            pesan WhatsApp saat klik "Tanya paket ini"
+#   (pesan WhatsApp tombol "Tanya paket ini" dibuat otomatis dari nama + harga: i18n utama.jasa.pesan_wa)
 #   upwork        judul di Upwork Project Catalog (kalau ada); upwork_satuan untuk paket per jumlah
 #   tingkat       paket Basic / Standard / Premium (marketplace). harga dalam Rupiah, usd dalam Dolar.
 
@@ -39,7 +39,6 @@ paket:
       - Standardize phones, names, cities
       - Fix common email typos
       - Merge files into one table
-    wa: Halo Kemang Data, saya mau tanya jasa rapikan data.
     tingkat:
       - {nama: Basic, harga: 300000, usd: 25, isi: "1 file, sampai 1.000 baris", waktu: 2, revisi: 2x}
       - {nama: Standard, harga: 500000, usd: 45, isi: "Sampai 3 file, sampai 5.000 baris", waktu: 3, revisi: 2x}
@@ -69,7 +68,6 @@ paket:
       - Real profit after fees, per product
       - Updates automatically
       - Opens on any phone or laptop
-    wa: Halo Kemang Data, saya mau tanya jasa dashboard Looker Studio / Excel.
     tingkat:
       - {nama: Basic, harga: 500000, usd: 40, isi: "1 halaman, 3–5 KPI", waktu: 3, revisi: 2x}
       - {nama: Standard, harga: 1000000, usd: 80, isi: "2 halaman, filter tanggal, cabang, dan kategori", waktu: 5, revisi: 2x}
@@ -96,7 +94,6 @@ paket:
       - "Short summary: what went up, what went down, what to do"
       - One review call per month
       - Cancel anytime
-    wa: Halo Kemang Data, saya mau tanya paket laporan bulanan.
     tingkat:
       - {nama: Bulanan, harga: 1500000, usd: 120, isi: "Laporan & dashboard bulanan", waktu: null, revisi: "-"}
 
@@ -119,7 +116,6 @@ paket:
       - Power Query cleaning
       - DAX measures
       - .pbix file delivered
-    wa: Halo Kemang Data, saya mau tanya jasa dashboard Power BI.
     tingkat:
       - {nama: Basic, harga: 750000, usd: 60, isi: "1 halaman, 1 sumber data", waktu: 3, revisi: 2x}
       - {nama: Standard, harga: 1500000, usd: 120, isi: "2–3 halaman, sampai 3 sumber data", waktu: 5, revisi: 2x}
@@ -143,7 +139,6 @@ paket:
     web_isi_en:
       - Public business data only
       - Company, industry, website, phone, general email
-    wa: Halo Kemang Data, saya mau tanya jasa lead list B2B.
     tingkat:
       - {nama: Basic, harga: 300000, usd: 25, jumlah: 100, isi: "100 perusahaan", waktu: 2, revisi: "1x (ganti data yang tidak valid)"}
       - {nama: Standard, harga: 600000, usd: 50, jumlah: 250, isi: "250 perusahaan", waktu: 3, revisi: 1x}

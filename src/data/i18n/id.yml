@@ -150,7 +150,8 @@ utama:
     judul: "Jasa &amp; harga"
     lead: "Harga mulai dari angka di bawah. Harga final saya sampaikan setelah melihat contoh data Anda, sebelum pekerjaan dimulai. Semua paket termasuk 2x revisi."
     semua: "Lihat semua layanan &rarr;"
-    tanya: "Tanya paket ini &rarr;"
+    tanya: "Tanya paket ini via WhatsApp &rarr;"
+    pesan_wa: "Halo Kemang Data, saya tertarik paket \"{nama}\" (mulai {harga}). Boleh saya tanya dulu?"
 
   proyek:
     judul: Proyek

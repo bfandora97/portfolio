@@ -82,7 +82,9 @@ https://wa.me/{{ site.whatsapp }}?text={{ pesan|urlencode }}
 {%- if p.get("unggulan") %}<span class="tag">{{ p.label_en if en else p.label }}</span>{% endif -%}
 <h3>{{ p.nama_en if en else p.nama }}</h3>{% set alat = p.get("alat_en") if en else p.get("alat") %}{% if alat %}<p class="via">{{ alat }}</p>{% endif %}<p class="price">{% if en %}${{ t.usd }}{% else %}{{ rupiah(t.harga) }}{% endif %}<small>{{ p.satuan_en if en else p.satuan }}</small></p>
 <ul>{% for i in (p.web_isi_en if en else p.web_isi) %}<li>{{ i }}</li>{% endfor %}</ul>
-<a class="ask" href="{{ site.upwork if en else wa(p.wa) }}">{{ i18n[lang].utama.jasa.tanya }}</a>
+{%- set harga = ("$" ~ t.usd) if en else rupiah(t.harga)|string -%}
+{#- pesan WA otomatis dari nama + harga paket (template i18n utama.jasa.pesan_wa), jadi selalu sesuai kartu yang diklik -#}
+<a class="ask" href="{{ wa(i18n[lang].utama.jasa.pesan_wa|replace("{nama}", p.nama_en if en else p.nama)|replace("{harga}", harga)) }}" target="_blank" rel="noopener">{{ i18n[lang].utama.jasa.tanya }}</a>
 </div>
 {%- endmacro %}
 

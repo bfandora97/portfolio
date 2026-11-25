@@ -144,7 +144,8 @@ utama:
     judul: "Services &amp; pricing"
     lead: "Fixed-price packages, 2 rounds of revisions included. Final scope and price are confirmed in writing before work starts."
     semua: "See all services &rarr;"
-    tanya: "Ask about this on Upwork &rarr;"
+    tanya: "Ask about this on WhatsApp &rarr;"
+    pesan_wa: "Hi Kemang Data, I am interested in the \"{nama}\" package (from {harga}). Could you tell me more?"
 
   proyek:
     judul: Projects
