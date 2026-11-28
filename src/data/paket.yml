@@ -58,13 +58,13 @@ paket:
     satuan: " mulai"
     satuan_en: " from"
     web_isi:
-      - Outlet, GoFood/GrabFood, Shopee jadi satu
+      - Kasir, aplikasi & marketplace jadi satu
       - Untung per produk & per channel, sudah dipotong komisi
       - Produk terlaris & yang menumpuk
       - Dibuka di HP lewat 1 link, gratis
       - Update otomatis, tanpa rekap manual
     web_isi_en:
-      - Shopify, Amazon, Etsy & more in one view
+      - All your stores & marketplaces in one view
       - Real profit after fees, per product
       - Updates automatically
       - Opens on any phone or laptop
