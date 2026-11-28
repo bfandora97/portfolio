@@ -1,6 +1,6 @@
 // Panggung hero (cerita "perjalanan"), khusus desktop: kursor menggeser cerita maju/mundur.
 // Posisi kursor DISELARASKAN dengan bilah langkah: kursor di bawah langkah N = adegan N; perpindahan (berjalan) terjadi
-// di batas antar-langkah; adegan pembuka di 30% kiri langkah 1. Cerita MENGEJAR kursor dengan halus (bukan meloncat).
+// di batas antar-langkah. Cerita MENGEJAR kursor dengan halus (bukan meloncat).
 // Kursor keluar = jalan sendiri lagi. HP / reduced-motion: tetap otomatis. Waktu adegan dari data-adegan (gen_karakter.py).
 (function(){
   var pg=document.querySelector('.panggung[data-durasi][data-adegan]');
@@ -15,8 +15,8 @@
   var titik=function(){
     var r=pg.getBoundingClientRect(), k=[[0,500]];
     langkah.forEach(function(el,i){
-      var b=el.getBoundingClientRect(), L=(b.left-r.left)/r.width, R=(b.right-r.left)/r.width, w=R-L, a=ADEGAN[i+1];
-      k.push([L+(i===0?.3:.08)*w, a[0]+100]);   // awal adegan (langkah 1: 30% kiri untuk pembuka + berjalan)
+      var b=el.getBoundingClientRect(), L=(b.left-r.left)/r.width, R=(b.right-r.left)/r.width, w=R-L, a=ADEGAN[i];
+      k.push([L+.08*w, a[0]+100]);                // awal adegan i (kotak langkah i = adegan i)
       k.push([R-.08*w, a[1]-100]);                // akhir adegan; sisanya (di batas) = berjalan ke adegan berikut
     });
     k.push([1,DUR-600]); return k;

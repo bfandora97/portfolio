@@ -49,7 +49,7 @@ kasus:
 halaman:
   beranda:
     title: "Kemang Data | Laporan Penjualan Otomatis untuk UMKM"
-    description: "Gabungkan laporan outlet, GoFood/GrabFood, dan Shopee jadi satu laporan otomatis di HP. Lihat untung sebenarnya per produk dan per channel. Konsultasi gratis via WhatsApp."
+    description: "Gabungkan laporan kasir, aplikasi pesan-antar, dan marketplace jadi satu laporan otomatis di HP. Lihat untung sebenarnya per produk dan per channel. Konsultasi gratis via WhatsApp."
     og_image: /assets/img/og-image.png
     judul: ""
     lead: ""
@@ -83,16 +83,17 @@ utama:
   hero:
     label: Laporan penjualan & dashboard untuk UMKM
     judul: Lihat untung sebenarnya dari tiap channel, langsung di HP.
-    isi: "Outlet, GoFood/GrabFood, dan Shopee saya gabungkan jadi <b>1 laporan otomatis</b>. Untung per produk dan per channel langsung kelihatan, tanpa rekap manual tiap minggu."
+    isi: "Data dari kasir, aplikasi pesan-antar, dan marketplace saya gabungkan jadi <b>1 laporan otomatis</b>. Untung per produk dan per channel langsung kelihatan, tanpa rekap manual tiap minggu."
     tombol:
       - {teks: Konsultasi gratis via WhatsApp, link: "wa:Halo Kemang Data, saya mau konsultasi soal laporan penjualan usaha saya.", kelas: btn}
       - {teks: Jadwalkan call 30 menit, link: booking, kelas: btn alt}
     harga: "Mulai <b>{harga}</b> · selesai {hari} hari · 2x revisi"
     oleh: "Dikerjakan langsung oleh <b>Bobbi</b> · 4 tahun di bidang data"
-    animasi_alt: "Animasi perjalanan: pemilik kedai pusing dengan data jualannya, datang ke Bobbi dan menyerahkan data; Bobbi merapikannya di ruang kerja, lalu datang ke kedai membawa laporan; pemilik kedai senang dan mereka bersalaman."
+    animasi_alt: "Animasi 3 adegan: pemilik kedai pusing dengan data jualannya; ia datang ke Bobbi dan berkasnya berpindah ke Bobbi, yang mengolahnya di laptop; lalu dashboard laporan untung muncul, pemilik kedai senang dan mereka bersalaman."
     balon_masalah: "Untung saya sebenarnya berapa, ya?"
-    balon_hasil: "Ternyata GoFood paling untung!"
-    papan_buka: BUKA
+    balon_hasil: "Oh, ternyata channel ini paling untung!"
+    adegan: [Data berantakan, Kirim ke saya, Jadi dashboard]
+    dashboard_judul: "Laporan untung per channel"
     tokoh_klien: Pemilik kedai
     tokoh_bobbi: Bobbi · Kemang Data
 
@@ -150,7 +151,7 @@ utama:
     judul: "Jasa &amp; harga"
     lead: "Harga mulai dari angka di bawah. Harga final saya sampaikan setelah melihat contoh data Anda, sebelum pekerjaan dimulai. Semua paket termasuk 2x revisi."
     semua: "Lihat semua layanan &rarr;"
-    tanya: "Tanya paket ini via WhatsApp &rarr;"
+    tanya: "Tanya via WhatsApp&nbsp;&rarr;"
     pesan_wa: "Halo Kemang Data, saya tertarik paket \"{nama}\" (mulai {harga}). Boleh saya tanya dulu?"
 
   proyek:
@@ -174,7 +175,7 @@ utama:
     langkah:
       - papan: Kirim data
         judul: Kirim data penjualan
-        anda: "Kirim export kasir, GoFood/GrabFood, dan Shopee lewat WhatsApp. Belum tahu caranya? Saya pandu."
+        anda: "Kirim export dari kasir, aplikasi, atau marketplace Anda lewat WhatsApp. Belum tahu caranya? Saya pandu."
         saya: Cek data, lalu kirim penawaran tertulis (harga &amp; waktu).
         waktu: "Hari 1 · ± 10 menit untuk Anda"
         link: ""

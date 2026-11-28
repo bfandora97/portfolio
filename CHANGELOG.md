@@ -2,6 +2,10 @@
 
 Paling baru di atas. Satu baris per PR.
 
+## 2026-11-28
+- PR: adegan hero diperjelas: berkas terbang ke Bobbi, Bobbi mengerjakan di laptop, lalu dashboard muncul ("tara!") sebelum salaman.
+- PR: hero jadi 3 adegan (pusing -> datang ke Bobbi -> laporan dikembalikan, senang + salaman); teks jualan tanpa nama merek; tombol kartu dipendekkan.
+
 ## 2026-11-25
 - PR: tombol di kartu paket (ID & EN) membuka WhatsApp dengan pesan otomatis sesuai paket yang diklik (nama + harga dari paket.yml).
 - PR: bahasa utama website = Inggris di '/' (Indonesia pindah ke '/id/'); 9 alamat lama dialihkan otomatis (src/data/pengalihan.yml), sitemap & hreflang ikut.

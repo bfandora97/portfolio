@@ -43,7 +43,7 @@ kasus:
 halaman:
   beranda:
     title: "Kemang Data | Multi-channel Sales Dashboards & Data Cleaning"
-    description: "See your real profit per product and channel. I merge Shopify, Amazon, Etsy and marketplace reports into one dashboard that updates itself. Data cleaning, Looker Studio and Power BI."
+    description: "See your real profit per product and channel. I merge your online store, marketplace and POS reports into one dashboard that updates itself. Data cleaning, Looker Studio and Power BI."
     og_image: /assets/img/og-image-en.png
     judul: ""
     lead: ""
@@ -77,16 +77,17 @@ utama:
   hero:
     label: Sales reports & dashboards for online sellers
     judul: See your real profit per channel, on one screen.
-    isi: "I merge your Shopify, Amazon, Etsy and marketplace exports into <b>1 report that updates itself</b>. Real profit per product and per channel, after fees. No more weekly copy-pasting."
+    isi: "I merge your online store, marketplace and POS exports into <b>1 report that updates itself</b>. Real profit per product and per channel, after fees. No more weekly copy-pasting."
     tombol:
       - {teks: Hire me on Upwork, link: upwork, kelas: btn}
       - {teks: Book a free 30-min call, link: booking, kelas: btn alt}
     harga: "From <b>{harga}</b> · delivered in {hari} days · 2 revisions"
     oleh: "Done by <b>Bobbi</b> myself · 4 years in data"
-    animasi_alt: "Journey animation: a shop owner overwhelmed by sales data visits Bobbi and hands over the files; Bobbi cleans the data at his desk, then visits the shop with the report; the owner cheers and they shake hands."
+    animasi_alt: "Three-scene animation: a shop owner overwhelmed by sales data visits Bobbi; the files move over to Bobbi, who works on them on a laptop; then a profit dashboard pops up, the owner cheers and they shake hands."
     balon_masalah: "What is my real profit?"
-    balon_hasil: "So Etsy earns me the most!"
-    papan_buka: OPEN
+    balon_hasil: "Now I know which channel earns the most!"
+    adegan: [Messy data, Send it to me, Your dashboard]
+    dashboard_judul: "Profit per channel"
     tokoh_klien: Shop owner
     tokoh_bobbi: Bobbi · Kemang Data
 
@@ -144,7 +145,7 @@ utama:
     judul: "Services &amp; pricing"
     lead: "Fixed-price packages, 2 rounds of revisions included. Final scope and price are confirmed in writing before work starts."
     semua: "See all services &rarr;"
-    tanya: "Ask about this on WhatsApp &rarr;"
+    tanya: "Ask on WhatsApp&nbsp;&rarr;"
     pesan_wa: "Hi Kemang Data, I am interested in the \"{nama}\" package (from {harga}). Could you tell me more?"
 
   proyek:
@@ -168,7 +169,7 @@ utama:
     langkah:
       - papan: Send data
         judul: Share your sales exports
-        anda: "Send your POS, Shopify, Amazon, Etsy or marketplace exports. Not sure how? I will guide you."
+        anda: "Send your POS, online store or marketplace exports. Not sure how? I will guide you."
         saya: Review the data and send a fixed quote (price &amp; deadline).
         waktu: "Day 1 · about 10 minutes of your time"
         link: ""
