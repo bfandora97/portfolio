@@ -83,10 +83,11 @@ utama:
       - {teks: Book a free 30-min call, link: booking, kelas: btn alt}
     harga: "From <b>{harga}</b> · delivered in {hari} days · 2 revisions"
     oleh: "Done by <b>Bobbi</b> myself · 4 years in data"
-    animasi_alt: "Three-scene animation: a shop owner overwhelmed by sales data visits Bobbi and hands over the files, then Bobbi returns a report showing real profit per channel; the owner cheers and they shake hands."
+    animasi_alt: "Three-scene animation: a shop owner overwhelmed by sales data visits Bobbi; the files move over to Bobbi, who works on them on a laptop; then a profit dashboard pops up, the owner cheers and they shake hands."
     balon_masalah: "What is my real profit?"
     balon_hasil: "Now I know which channel earns the most!"
-    adegan: [Messy data, Send it to me, Clear profit]
+    adegan: [Messy data, Send it to me, Your dashboard]
+    dashboard_judul: "Profit per channel"
     tokoh_klien: Shop owner
     tokoh_bobbi: Bobbi · Kemang Data
 

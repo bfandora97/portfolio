@@ -370,42 +370,48 @@ a.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 .k-uap{animation:k-uap 1.6s ease-in-out infinite}@keyframes k-uap{50%{transform:translateY(-3px);opacity:.4}}
 .k-bar{transform-box:fill-box;transform-origin:bottom;animation:k-bar 3s ease-out infinite}.k-merah{animation-delay:.3s}
 @keyframes k-bar{0%{transform:scaleY(.15)}35%,100%{transform:scaleY(1)}}
-/* Panggung hero = cerita 3 adegan (18.5 dtk, dibuat css_panggung()): 1 pemilik kedai pusing -> 2 datang ke Bobbi, serahkan data
-   -> 3 laporan dikembalikan, klien senang + salaman. Berjalan tampak samping, latar bergeser (.pg-jalur = 2 panel: kedai, kantor).
+/* Panggung hero = cerita 3 adegan (21.5 dtk, dibuat css_panggung()): 1 pemilik kedai pusing -> 2 datang ke Bobbi, berkas
+   TERBANG ke Bobbi, Bobbi mengerjakan di laptop -> 3 "tara!" dashboard muncul, klien senang + salaman. Latar bergeser (2 panel: kedai, kantor).
    Desktop: kursor menggeser cerita maju/mundur (assets/js/panggung.js). */
 :root{--lantai-kedai:#E3D2BD;--garis-kedai:#CFB596;--lantai-kantor:var(--p2);--garis-kantor:var(--line)}
 [data-theme="dark"]{--lantai-kedai:#3A3129;--garis-kedai:#5A4A3A}
 .panggung{position:relative;height:470px;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.pg-jalur{position:absolute;left:0;top:0;width:200%;height:calc(100% - 98px);display:flex;animation:pg-geser 18.5s infinite ease-in-out}
+.pg-jalur{position:absolute;left:0;top:0;width:200%;height:calc(100% - 98px);display:flex;animation:pg-geser 21.5s infinite ease-in-out}
 .pg-panel{position:relative;flex:0 0 50%;height:100%}.pg-panel>svg{position:absolute;inset:0;width:100%;height:100%}
-.pg-lantai{position:absolute;left:0;right:0;bottom:52px;height:46px;border-top:2px solid;animation:pg-lantai 18.5s infinite}
+.pg-lantai{position:absolute;left:0;right:0;bottom:52px;height:46px;border-top:2px solid;animation:pg-lantai 21.5s infinite}
 .panggung .tokoh{position:absolute;bottom:82px;width:192px;height:307px;z-index:2}.pg-panel .tokoh{bottom:-16px}
 .panggung .pose{position:absolute;inset:0;opacity:0}.panggung .tokoh svg{width:100%;height:100%;overflow:visible}
 .panggung .nama{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:600;color:var(--muted);z-index:3}
-.panggung .klien{left:4%;animation:pg-maju 18.5s infinite ease-in-out}.panggung .bobbi{right:4%}
-.pg-a0{animation:pg-a0 18.5s infinite}.pg-aj{animation:pg-aj 18.5s infinite}.pg-a1{animation:pg-a1 18.5s infinite}.pg-lap{animation:pg-lap 18.5s infinite}.pg-sal{animation:pg-sal 18.5s infinite}
+.panggung .klien{left:4%;animation:pg-maju 21.5s infinite ease-in-out}.panggung .bobbi{right:4%}
+.pg-a0{animation:pg-a0 21.5s infinite}.pg-aj{animation:pg-aj 21.5s infinite}.pg-srh{animation:pg-srh 21.5s infinite}.pg-tng{animation:pg-tng 21.5s infinite}.pg-sng{animation:pg-sng 21.5s infinite}.pg-sal{animation:pg-sal 21.5s infinite}.pg-lmb{animation:pg-lmb 21.5s infinite}.pg-ktk{animation:pg-ktk 21.5s infinite}.pg-jmp{animation:pg-jmp 21.5s infinite}.pg-k1{animation:pg-k1 21.5s infinite}.pg-k2{animation:pg-k2 21.5s infinite}.pg-k3{animation:pg-k3 21.5s infinite}
 .pg-aj .kaki-b{animation:pg-kaki .36s steps(1) infinite}.pg-aj .kaki-a{animation:pg-kaki .36s steps(1) infinite reverse}
 .pg-aj svg{animation:pg-ayun .18s ease-in-out infinite alternate}.panggung.mundur .pg-aj{transform:scaleX(-1)}
 .k-salam{animation:pg-salam .3s ease-in-out infinite alternate}
+.pg-kertas{position:absolute;width:44px;height:34px;opacity:0;z-index:4}.pg-kertas svg{width:100%;height:100%}
+.pg-tara{position:absolute;top:12px;left:25%;width:50%;opacity:0;z-index:4;transform-origin:50% 100%;animation:pg-tara 21.5s infinite}.pg-tara svg{width:100%;display:block}
+.pg-kilau{transform-box:fill-box;transform-origin:center;animation:pg-kilau 1.2s ease-in-out infinite;animation-delay:var(--d)}
 .pg-masalah{position:absolute;left:0;bottom:-16px;width:50%;height:300px}.pg-masalah svg{width:100%;height:100%}.pg-masalah .k-naik{animation-delay:var(--d)}
-.pg-balon{position:absolute;max-width:240px;padding:9px 14px;border-radius:14px;background:#fff;border:2px solid #101b2d;color:#101b2d;font:700 15px/1.25 "Familjen Grotesk",sans-serif;opacity:0;z-index:4}
+.pg-balon{position:absolute;max-width:240px;padding:9px 14px;border-radius:14px;background:#fff;border:2px solid #101b2d;color:#101b2d;font:700 15px/1.25 "Familjen Grotesk",sans-serif;opacity:0;z-index:5}
 .pg-balon::after{content:"";position:absolute;left:24px;bottom:-9px;width:14px;height:14px;background:#fff;border:2px solid #101b2d;border-top:0;border-left:0;transform:rotate(45deg)}
-.pg-b0{top:28px;left:10%;animation:pg-a0 18.5s infinite}.pg-b3{top:28px;left:24%;animation:pg-balon3 18.5s infinite}
-.pg-tirai{position:absolute;inset:0;background:var(--panel);z-index:9;pointer-events:none;animation:pg-tirai 18.5s infinite}
-.pg-langkah{position:absolute;left:0;right:0;bottom:0;height:52px;margin:0;padding:6px;list-style:none;display:flex;gap:6px;background:var(--panel);border-top:1px solid var(--line);z-index:5}
+.pg-b0{top:28px;left:10%;animation:pg-a0 21.5s infinite}.pg-b3{top:150px;left:2%;max-width:165px;animation:pg-balon3 21.5s infinite}
+.pg-b3::after{left:auto;right:-9px;bottom:auto;top:18px;border:2px solid #101b2d;border-left:0;border-bottom:0}
+.pg-tirai{position:absolute;inset:0;background:var(--panel);z-index:9;pointer-events:none;animation:pg-tirai 21.5s infinite}
+.pg-langkah{position:absolute;left:0;right:0;bottom:0;height:52px;margin:0;padding:6px;list-style:none;display:flex;gap:6px;background:var(--panel);border-top:1px solid var(--line);z-index:6}
 .pg-langkah li{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;border-radius:8px;font:600 14px/1.15 "Familjen Grotesk",sans-serif;color:var(--muted);text-align:center}
 .pg-langkah b{display:grid;place-items:center;flex:none;width:22px;height:22px;border-radius:50%;background:rgba(128,128,128,.2);color:inherit;font-size:12px}
-.pg-langkah .l1{animation:pg-aktif1 18.5s infinite}.pg-langkah .l2{animation:pg-aktif2 18.5s infinite}.pg-langkah .l3{animation:pg-aktif3 18.5s infinite}
+.pg-langkah .l1{animation:pg-aktif1 21.5s infinite}.pg-langkah .l2{animation:pg-aktif2 21.5s infinite}.pg-langkah .l3{animation:pg-aktif3 21.5s infinite}
 [data-theme="dark"] .pg-redup{filter:brightness(.6) saturate(.85)}
-@keyframes pg-geser{0%,27.027%{transform:none}35.135%,100%{transform:translateX(-50%)}}@keyframes pg-lantai{0%,30.881%{background:var(--lantai-kedai);border-color:var(--garis-kedai)}31.081%,100%{background:var(--lantai-kantor);border-color:var(--garis-kantor)}}@keyframes pg-maju{0%,27.027%{transform:none}35.135%,100%{transform:translateX(70%)}}
-@keyframes pg-tirai{0%{opacity:1}2.5%,97.297%{opacity:0}100%{opacity:1}}
-@keyframes pg-a0{0%{opacity:0}0%{opacity:0}0.0%{opacity:1}27.017%{opacity:1}27.027%{opacity:0}100%{opacity:0}}@keyframes pg-aj{0%{opacity:0}27.017%{opacity:0}27.027%{opacity:1}35.125%{opacity:1}35.135%{opacity:0}100%{opacity:0}}@keyframes pg-a1{0%{opacity:0}35.125%{opacity:0}35.135%{opacity:1}62.152%{opacity:1}62.162%{opacity:0}100%{opacity:0}}@keyframes pg-lap{0%{opacity:0}62.152%{opacity:0}62.162%{opacity:1}83.774%{opacity:1}83.784%{opacity:0}100%{opacity:0}}@keyframes pg-sal{0%{opacity:0}83.774%{opacity:0}83.784%{opacity:1}97.28699999999999%{opacity:1}97.297%{opacity:0}100%{opacity:0}}@keyframes pg-balon3{0%{opacity:0}66.476%{opacity:0}66.486%{opacity:1}83.774%{opacity:1}83.784%{opacity:0}100%{opacity:0}}@keyframes pg-aktif1{0%,0%{background:transparent;color:var(--muted)}0.0%,27.017%{background:var(--teal);color:#fff}27.027%,100%{background:transparent;color:var(--muted)}}@keyframes pg-aktif2{0%,35.125%{background:transparent;color:var(--muted)}35.135%,62.152%{background:var(--teal);color:#fff}62.162%,100%{background:transparent;color:var(--muted)}}@keyframes pg-aktif3{0%,62.152%{background:transparent;color:var(--muted)}62.162%,97.28699999999999%{background:var(--teal);color:#fff}97.297%,100%{background:transparent;color:var(--muted)}}
+@keyframes pg-geser{0%,23.256%{transform:none}30.233%,100%{transform:translateX(-50%)}}@keyframes pg-lantai{0%,26.544%{background:var(--lantai-kedai);border-color:var(--garis-kedai)}26.744%,100%{background:var(--lantai-kantor);border-color:var(--garis-kantor)}}@keyframes pg-maju{0%,23.256%{transform:none}30.233%,100%{transform:translateX(70%)}}
+@keyframes pg-tirai{0%{opacity:1}2.5%,97.674%{opacity:0}100%{opacity:1}}
+@keyframes pg-a0{0%{opacity:0}0%{opacity:0}0.0%{opacity:1}23.246%{opacity:1}23.256%{opacity:0}100%{opacity:0}}@keyframes pg-aj{0%{opacity:0}23.246%{opacity:0}23.256%{opacity:1}30.223%{opacity:1}30.233%{opacity:0}100%{opacity:0}}@keyframes pg-srh{0%{opacity:0}30.223%{opacity:0}30.233%{opacity:1}37.199000000000005%{opacity:1}37.209%{opacity:0}100%{opacity:0}}@keyframes pg-tng{0%{opacity:0}37.199000000000005%{opacity:0}37.209%{opacity:1}65.106%{opacity:1}65.116%{opacity:0}100%{opacity:0}}@keyframes pg-sng{0%{opacity:0}65.106%{opacity:0}65.116%{opacity:1}87.43199999999999%{opacity:1}87.442%{opacity:0}100%{opacity:0}}@keyframes pg-sal{0%{opacity:0}87.43199999999999%{opacity:0}87.442%{opacity:1}97.664%{opacity:1}97.674%{opacity:0}100%{opacity:0}}@keyframes pg-lmb{0%{opacity:0}30.223%{opacity:0}30.233%{opacity:1}43.711%{opacity:1}43.721%{opacity:0}100%{opacity:0}}@keyframes pg-ktk{0%{opacity:0}43.711%{opacity:0}43.721%{opacity:1}65.106%{opacity:1}65.116%{opacity:0}100%{opacity:0}}@keyframes pg-jmp{0%{opacity:0}65.106%{opacity:0}65.116%{opacity:1}87.43199999999999%{opacity:1}87.442%{opacity:0}100%{opacity:0}}@keyframes pg-balon3{0%{opacity:0}68.827%{opacity:0}68.837%{opacity:1}87.43199999999999%{opacity:1}87.442%{opacity:0}100%{opacity:0}}@keyframes pg-aktif1{0%,0%{background:transparent;color:var(--muted)}0.0%,23.246%{background:var(--teal);color:#fff}23.256%,100%{background:transparent;color:var(--muted)}}@keyframes pg-aktif2{0%,30.223%{background:transparent;color:var(--muted)}30.233%,65.106%{background:var(--teal);color:#fff}65.116%,100%{background:transparent;color:var(--muted)}}@keyframes pg-aktif3{0%,65.106%{background:transparent;color:var(--muted)}65.116%,97.664%{background:var(--teal);color:#fff}97.674%,100%{background:transparent;color:var(--muted)}}@keyframes pg-k1{0%,37.199000000000005%{opacity:0;left:44%;bottom:205px}37.209%{opacity:1;left:44%;bottom:205px}39.535%{left:58%;bottom:265px}41.85%{opacity:1;left:72%;bottom:175px}41.86%,100%{opacity:0;left:72%;bottom:175px}}@keyframes pg-k2{0%,38.13%{opacity:0;left:44%;bottom:205px}38.14%{opacity:1;left:44%;bottom:205px}40.465%{left:58%;bottom:253px}42.781%{opacity:1;left:72%;bottom:175px}42.791%,100%{opacity:0;left:72%;bottom:175px}}@keyframes pg-k3{0%,39.06%{opacity:0;left:44%;bottom:205px}39.07%{opacity:1;left:44%;bottom:205px}41.395%{left:58%;bottom:241px}43.711%{opacity:1;left:72%;bottom:175px}43.721%,100%{opacity:0;left:72%;bottom:175px}}@keyframes pg-tara{0%,65.106%{opacity:0;transform:scale(.3)}65.116%{opacity:1;transform:scale(.3)}66.744%{transform:scale(1.08)}67.907%,97.664%{opacity:1;transform:none}97.674%,100%{opacity:0;transform:none}}
 @keyframes pg-kaki{0%{opacity:1}50%{opacity:0}}@keyframes pg-ayun{to{transform:translateY(-4px)}}@keyframes pg-salam{to{transform:translateY(4px)}}
+@keyframes pg-kilau{0%,100%{opacity:.2;transform:scale(.5)}50%{opacity:1;transform:scale(1.15)}}
 @media(max-width:760px){.hero2 .panggung{order:-1;height:340px}.panggung .tokoh{width:124px;height:198px}.panggung .klien{left:3%}.panggung .bobbi{right:3%}
 .pg-langkah{gap:3px;padding:5px 4px}.pg-langkah li{flex-direction:column;gap:2px;font-size:10.5px}.pg-langkah b{width:17px;height:17px;font-size:10px}
-.panggung .nama{font-size:11px}.pg-masalah{height:200px}.pg-balon{font-size:12px;padding:6px 10px;max-width:160px}.pg-b0{top:20px;left:6%}.pg-b3{top:20px;left:14%}}
+.panggung .nama{font-size:11px}.pg-masalah{height:200px}.pg-balon{font-size:12px;padding:6px 10px;max-width:160px}.pg-b0{top:20px;left:6%}
+.pg-b3{top:96px;max-width:110px}.pg-tara{top:8px;left:20%;width:60%}.pg-kertas{width:30px;height:23px;margin-bottom:-70px}}
 @media (prefers-reduced-motion:reduce){.pg-jalur{transform:translateX(-50%)}.panggung .klien{transform:translateX(70%)}
-.panggung .pg-lap,.panggung .pg-b3{opacity:1}.pg-tirai{opacity:0}.pg-lantai{background:var(--lantai-kantor);border-color:var(--garis-kantor)}
+.panggung .pg-sng,.panggung .pg-jmp,.panggung .pg-b3,.panggung .pg-tara{opacity:1}.pg-tirai{opacity:0}.pg-lantai{background:var(--lantai-kantor);border-color:var(--garis-kantor)}
 .pg-langkah .l3{background:var(--teal);color:#fff}}
 /* Latar kantor (panel 1 panggung, dibuat latar_kantor()) */
 .lk-kaca{fill:#EAF2F6}.lk-gedung{fill:#DCE5EC}.lk-bingkai{stroke:#D3DBE4}.lk-bingkai2{fill:#F7F9FB;stroke:#C9D1DC}

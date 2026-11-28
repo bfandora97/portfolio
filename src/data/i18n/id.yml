@@ -89,10 +89,11 @@ utama:
       - {teks: Jadwalkan call 30 menit, link: booking, kelas: btn alt}
     harga: "Mulai <b>{harga}</b> · selesai {hari} hari · 2x revisi"
     oleh: "Dikerjakan langsung oleh <b>Bobbi</b> · 4 tahun di bidang data"
-    animasi_alt: "Animasi 3 adegan: pemilik kedai pusing dengan data jualannya, datang ke Bobbi dan menyerahkan data, lalu Bobbi mengembalikan laporan untung per channel; pemilik kedai senang dan mereka bersalaman."
+    animasi_alt: "Animasi 3 adegan: pemilik kedai pusing dengan data jualannya; ia datang ke Bobbi dan berkasnya berpindah ke Bobbi, yang mengolahnya di laptop; lalu dashboard laporan untung muncul, pemilik kedai senang dan mereka bersalaman."
     balon_masalah: "Untung saya sebenarnya berapa, ya?"
     balon_hasil: "Oh, ternyata channel ini paling untung!"
-    adegan: [Data berantakan, Kirim ke saya, Untung jelas]
+    adegan: [Data berantakan, Kirim ke saya, Jadi dashboard]
+    dashboard_judul: "Laporan untung per channel"
     tokoh_klien: Pemilik kedai
     tokoh_bobbi: Bobbi · Kemang Data
 
