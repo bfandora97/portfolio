@@ -77,6 +77,14 @@ def latar_kantor():
     return "".join(s)
 
 
+KEPALA_SKALA = .82  # proporsi kepala (1 = gaya chibi lama). Diperkecil supaya tidak terlihat kekanakan
+
+
+def _kepala_kecil(svg, cx=50, cy=84):
+    """Perkecil kepala dengan pusat di dagu (leher tetap tersambung)."""
+    return f'<g transform="translate({cx} {cy}) scale({KEPALA_SKALA}) translate({-cx} {-cy})">{svg}</g>'
+
+
 def kepala_bobbi(o, ekspresi="senyum"):
     """Bobbi (dari foto formal): wajah lonjong, rambut side part disapu ke kanan + undercut, alis melengkung halus,
     kumis tipis samar. Rambut 2 lapis (isi kubah di balik wajah + sapuan depan) supaya tidak ada celah."""
@@ -102,8 +110,7 @@ def kepala_bobbi(o, ekspresi="senyum"):
         s.append('<path d="M45.5 76q4.5 2 9 0" fill="none" stroke="#8C2F39" stroke-width="2.2" stroke-linecap="round"/>')
     else:
         s.append('<path d="M44 75q6 6.5 12 0z" fill="#8C2F39"/><path d="M46 76.8q4 2.6 8 0z" fill="#E9787A"/>')
-    s.append(f'<ellipse cx="33" cy="68" rx="4" ry="2.4" fill="{o["pipi"]}" opacity=".3"/><ellipse cx="67" cy="68" rx="4" ry="2.4" fill="{o["pipi"]}" opacity=".3"/>')
-    return "".join(s)
+    return _kepala_kecil("".join(s))
 
 
 def kepala(o, siapa, ekspresi="senyum"):
@@ -140,10 +147,9 @@ def kepala(o, siapa, ekspresi="senyum"):
         s.append('<path d="M43 71q2.3-2.4 4.6 0t4.6 0t4.6 0" fill="none" stroke="#8C2F39" stroke-width="2.2" stroke-linecap="round"/>')
     else:
         s.append('<path d="M42 68q8 9 16 0z" fill="#8C2F39"/><path d="M44.5 70.5q5.5 4 11 0z" fill="#E9787A"/>')
-    s.append(f'<ellipse cx="32" cy="65" rx="4.5" ry="2.8" fill="{o["pipi"]}" opacity=".4"/><ellipse cx="68" cy="65" rx="4.5" ry="2.8" fill="{o["pipi"]}" opacity=".4"/>')
     if siapa == "klien":
         s.append(f'<circle cx="23" cy="66" r="2" fill="{YEL}"/><circle cx="77" cy="66" r="2" fill="{YEL}"/>')
-    return "".join(s)
+    return _kepala_kecil("".join(s))
 
 
 def kaki(o):
@@ -207,12 +213,11 @@ def kepala_samping(o, siapa):
     sanggul = (f'<path d="M33 31C24 20 9 22 6 36C3 50 9 64 19 74C18 64 19 53 23 46C26 41 29 38 33 37Z" fill="{r}"/>'
                '<path d="M27 29C17 28 11 37 11 48M28 34C21 36 17 44 17 54" fill="none" stroke="#5A4336" stroke-width="1.3" stroke-linecap="round"/>'
                f'<ellipse cx="32" cy="34" rx="3.4" ry="5" fill="{TEAL}" transform="rotate(-20 32 34)"/>') if siapa != "bobbi" else ""
-    return (sanggul + f'<ellipse cx="52" cy="55" rx="25" ry="29" fill="{o["kulit"]}"/><path d="M77 55q5.5 4 .6 9.5" fill="{o["kulit"]}"/>' + rambut
+    return _kepala_kecil(sanggul + f'<ellipse cx="52" cy="55" rx="25" ry="29" fill="{o["kulit"]}"/><path d="M77 55q5.5 4 .6 9.5" fill="{o["kulit"]}"/>' + rambut
             + f'<ellipse cx="45" cy="58" rx="4.6" ry="6.6" fill="{o["kulit2"]}"/>' + hiasan
             + f'<path d="M60 47q5.5-3.6 11 0" fill="none" stroke="{r}" stroke-width="{alis}" stroke-linecap="round"/>'
             + f'<ellipse cx="66" cy="56" rx="3.8" ry="4.8" fill="#fff"/><circle cx="67.6" cy="57" r="2.7" fill="{INK}"/><circle cx="68.4" cy="55.8" r=".9" fill="#fff"/>'
-            + '<path d="M64.5 70.5q4.5 3.4 9 0" fill="none" stroke="#8C2F39" stroke-width="2.2" stroke-linecap="round"/>'
-            + f'<ellipse cx="63" cy="65.5" rx="4" ry="2.4" fill="{o["pipi"]}" opacity=".4"/>')
+            + '<path d="M64.5 70.5q4.5 3.4 9 0" fill="none" stroke="#8C2F39" stroke-width="2.2" stroke-linecap="round"/>')
 
 
 def badan_samping(o, siapa):
@@ -280,8 +285,8 @@ def pose(o, siapa, aksi, cls=""):
                + f'<g class="kaki-a">{ta}</g><g class="kaki-b">{tb}</g>' + kepala_samping(o, siapa))
     elif aksi == "pusing":  # adegan masalah: tangan memegang kepala, wajah bingung, keringat (pertanyaan di balon)
         isi = (k + B + kepala(o, siapa, "bingung")
-               + lengan(o, 31, 94, 21, 64) + tangan(o, 21, 61) + lengan(o, 69, 94, 79, 64) + tangan(o, 79, 61)
-               + '<path d="M80 40q4 6 0 9q-4-3 0-9z" fill="#7FC4E8"/>')
+               + lengan(o, 31, 94, 26, 66) + tangan(o, 26, 63) + lengan(o, 69, 94, 74, 66) + tangan(o, 74, 63)
+               + '<path d="M75 45q4 6 0 9q-4-3 0-9z" fill="#7FC4E8"/>')
     elif aksi == "diri":  # berdiri menunggu, tangan di samping
         isi = (k + B + lengan(o, 31, 94, 26, 126) + tangan(o, 26, 128) + lengan(o, 69, 94, 74, 126) + tangan(o, 74, 128) + kepala(o, siapa))
     elif aksi == "salam":  # bersalaman: pemilik kedai menjulurkan tangan kanan ke kanan, Bobbi tangan kiri ke kiri
@@ -446,10 +451,12 @@ def css_panggung():
 .panggung .pose{{position:absolute;inset:0;opacity:0}}.panggung .tokoh svg{{width:100%;height:100%;overflow:visible}}
 .panggung .nama{{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:600;color:var(--muted);z-index:3}}
 .panggung .klien{{left:4%;animation:pg-maju {D} infinite ease-in-out}}.panggung .bobbi{{right:4%}}
+.panggung .klien .nama{{left:0;transform:none}}.panggung .bobbi .nama{{left:auto;right:0;transform:none}}  /* label menjauh satu sama lain: tidak bertumpuk di panggung sempit */
 {anim}
 .pg-aj .kaki-b{{animation:pg-kaki .36s steps(1) infinite}}.pg-aj .kaki-a{{animation:pg-kaki .36s steps(1) infinite reverse}}
 .pg-aj svg{{animation:pg-ayun .18s ease-in-out infinite alternate}}.panggung.mundur .pg-aj{{transform:scaleX(-1)}}
 .k-salam{{animation:pg-salam .3s ease-in-out infinite alternate}}
+.pg-salaman{{position:absolute;right:4%;bottom:82px;width:396px;height:307px;opacity:0;z-index:3}}.pg-salaman svg{{width:100%;height:100%;overflow:visible}}
 .pg-kertas{{position:absolute;width:44px;height:34px;opacity:0;z-index:4}}.pg-kertas svg{{width:100%;height:100%}}
 .pg-tara{{position:absolute;top:12px;left:25%;width:50%;opacity:0;z-index:4;transform-origin:50% 100%;animation:pg-tara {D} infinite}}.pg-tara svg{{width:100%;display:block}}
 .pg-kilau{{transform-box:fill-box;transform-origin:center;animation:pg-kilau 1.2s ease-in-out infinite;animation-delay:var(--d)}}
@@ -472,7 +479,7 @@ def css_panggung():
 @media(max-width:760px){{.hero2 .panggung{{order:-1;height:340px}}.panggung .tokoh{{width:124px;height:198px}}.panggung .klien{{left:3%}}.panggung .bobbi{{right:3%}}
 .pg-langkah{{gap:3px;padding:5px 4px}}.pg-langkah li{{flex-direction:column;gap:2px;font-size:10.5px}}.pg-langkah b{{width:17px;height:17px;font-size:10px}}
 .panggung .nama{{font-size:11px}}.pg-masalah{{height:200px}}.pg-balon{{font-size:12px;padding:6px 10px;max-width:160px}}.pg-b0{{top:20px;left:6%}}
-.pg-b3{{top:96px;max-width:110px}}.pg-tara{{top:8px;left:20%;width:60%}}.pg-kertas{{width:30px;height:23px;margin-bottom:-70px}}}}
+.pg-b3{{top:96px;max-width:110px}}.pg-salaman{{right:3%;width:256px;height:198px}}.pg-tara{{top:8px;left:20%;width:60%}}.pg-kertas{{width:30px;height:23px;margin-bottom:-70px}}}}
 @media (prefers-reduced-motion:reduce){{.pg-jalur{{transform:translateX(-50%)}}.panggung .klien{{transform:translateX(70%)}}
 .panggung .pg-sng,.panggung .pg-jmp,.panggung .pg-b3,.panggung .pg-tara{{opacity:1}}.pg-tirai{{opacity:0}}.pg-lantai{{background:var(--lantai-kantor);border-color:var(--garis-kantor)}}
 .pg-langkah .l3{{background:var(--teal);color:#fff}}}}
@@ -483,9 +490,15 @@ def macro_hero():
     def pose_(o, siapa, aksi, kelas):
         return f'<div class="pose {kelas}">{pose(o, siapa, aksi)}</div>'
     klien = "".join((pose_(KLIEN, "klien", "pusing", "pg-a0"), pose_(KLIEN, "klien", "samping", "pg-aj"), pose_(KLIEN, "klien", "berkas", "pg-srh"),
-                     pose_(KLIEN, "klien", "diri", "pg-tng"), pose_(KLIEN, "klien", "senang", "pg-sng"), pose_(KLIEN, "klien", "salam", "pg-sal")))
+                     pose_(KLIEN, "klien", "diri", "pg-tng"), pose_(KLIEN, "klien", "senang", "pg-sng")))
     bobbi = "".join((pose_(BOBBI, "bobbi", "lambai", "pg-lmb"), pose_(BOBBI, "bobbi", "laptop", "pg-ktk"),
-                     pose_(BOBBI, "bobbi", "jempol", "pg-jmp"), pose_(BOBBI, "bobbi", "salam", "pg-sal")))
+                     pose_(BOBBI, "bobbi", "jempol", "pg-jmp")))
+
+    def isi(svg_):  # isi <svg> tanpa pembungkusnya
+        return svg_[svg_.index(">") + 1:svg_.rindex("</svg>")]
+    # salaman = SATU gambar berisi dua tokoh, jadi tangan pasti bertemu di ukuran layar apa pun
+    salaman = (f'<svg viewBox="0 0 198 160" aria-hidden="true"><g>{isi(pose(KLIEN, "klien", "salam"))}</g>'
+               f'<g transform="translate(98 0)">{isi(pose(BOBBI, "bobbi", "salam"))}</g></svg>')
     return ("{% macro panggung_hero() -%}\n"
             "{%- set h = i18n[page.lang].utama.hero -%}\n"
             f'<div class="panggung rv" role="img" aria-label="{{{{ h.animasi_alt }}}}" data-durasi="{DURASI * 1000}" data-adegan="{ADEGAN_ATTR}">\n'
@@ -494,7 +507,7 @@ def macro_hero():
             f'<div class="pg-panel">{latar_kantor()}<div class="tokoh bobbi">{bobbi}<span class="nama">{{{{ h.tokoh_bobbi }}}}</span></div></div>\n</div>\n'
             '<div class="pg-balon pg-b0">{{ h.balon_masalah }}</div><div class="pg-balon pg-b3">{{ h.balon_hasil }}</div>\n'
             f'<div class="tokoh klien">{klien}<span class="nama">{{{{ h.tokoh_klien }}}}</span></div>\n'
-            f'{kertas_terbang()}\n<div class="pg-tara">{dashboard_tara()}</div>\n'
+            f'<div class="pg-salaman pg-sal">{salaman}</div>\n{kertas_terbang()}\n<div class="pg-tara">{dashboard_tara()}</div>\n'
             '<div class="pg-tirai"></div>\n'
             '<ol class="pg-langkah">{% for x in h.adegan %}<li class="l{{ loop.index }}"><b>{{ loop.index }}</b>{{ x }}</li>{% endfor %}</ol>\n'
             "</div>\n{%- endmacro %}")
