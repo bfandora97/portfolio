@@ -383,10 +383,12 @@ a.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 .panggung .pose{position:absolute;inset:0;opacity:0}.panggung .tokoh svg{width:100%;height:100%;overflow:visible}
 .panggung .nama{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:600;color:var(--muted);z-index:3}
 .panggung .klien{left:4%;animation:pg-maju 21.5s infinite ease-in-out}.panggung .bobbi{right:4%}
+.panggung .klien .nama{left:0;transform:none}.panggung .bobbi .nama{left:auto;right:0;transform:none}  /* label menjauh satu sama lain: tidak bertumpuk di panggung sempit */
 .pg-a0{animation:pg-a0 21.5s infinite}.pg-aj{animation:pg-aj 21.5s infinite}.pg-srh{animation:pg-srh 21.5s infinite}.pg-tng{animation:pg-tng 21.5s infinite}.pg-sng{animation:pg-sng 21.5s infinite}.pg-sal{animation:pg-sal 21.5s infinite}.pg-lmb{animation:pg-lmb 21.5s infinite}.pg-ktk{animation:pg-ktk 21.5s infinite}.pg-jmp{animation:pg-jmp 21.5s infinite}.pg-k1{animation:pg-k1 21.5s infinite}.pg-k2{animation:pg-k2 21.5s infinite}.pg-k3{animation:pg-k3 21.5s infinite}
 .pg-aj .kaki-b{animation:pg-kaki .36s steps(1) infinite}.pg-aj .kaki-a{animation:pg-kaki .36s steps(1) infinite reverse}
 .pg-aj svg{animation:pg-ayun .18s ease-in-out infinite alternate}.panggung.mundur .pg-aj{transform:scaleX(-1)}
 .k-salam{animation:pg-salam .3s ease-in-out infinite alternate}
+.pg-salaman{position:absolute;right:4%;bottom:82px;width:396px;height:307px;opacity:0;z-index:3}.pg-salaman svg{width:100%;height:100%;overflow:visible}
 .pg-kertas{position:absolute;width:44px;height:34px;opacity:0;z-index:4}.pg-kertas svg{width:100%;height:100%}
 .pg-tara{position:absolute;top:12px;left:25%;width:50%;opacity:0;z-index:4;transform-origin:50% 100%;animation:pg-tara 21.5s infinite}.pg-tara svg{width:100%;display:block}
 .pg-kilau{transform-box:fill-box;transform-origin:center;animation:pg-kilau 1.2s ease-in-out infinite;animation-delay:var(--d)}
@@ -409,7 +411,7 @@ a.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 @media(max-width:760px){.hero2 .panggung{order:-1;height:340px}.panggung .tokoh{width:124px;height:198px}.panggung .klien{left:3%}.panggung .bobbi{right:3%}
 .pg-langkah{gap:3px;padding:5px 4px}.pg-langkah li{flex-direction:column;gap:2px;font-size:10.5px}.pg-langkah b{width:17px;height:17px;font-size:10px}
 .panggung .nama{font-size:11px}.pg-masalah{height:200px}.pg-balon{font-size:12px;padding:6px 10px;max-width:160px}.pg-b0{top:20px;left:6%}
-.pg-b3{top:96px;max-width:110px}.pg-tara{top:8px;left:20%;width:60%}.pg-kertas{width:30px;height:23px;margin-bottom:-70px}}
+.pg-b3{top:96px;max-width:110px}.pg-salaman{right:3%;width:256px;height:198px}.pg-tara{top:8px;left:20%;width:60%}.pg-kertas{width:30px;height:23px;margin-bottom:-70px}}
 @media (prefers-reduced-motion:reduce){.pg-jalur{transform:translateX(-50%)}.panggung .klien{transform:translateX(70%)}
 .panggung .pg-sng,.panggung .pg-jmp,.panggung .pg-b3,.panggung .pg-tara{opacity:1}.pg-tirai{opacity:0}.pg-lantai{background:var(--lantai-kantor);border-color:var(--garis-kantor)}
 .pg-langkah .l3{background:var(--teal);color:#fff}}
